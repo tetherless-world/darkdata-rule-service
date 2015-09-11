@@ -1,0 +1,185 @@
+[
+  {
+    "id": "DiArAvTs",
+    "description": "Time series of area averages of differences between two variables at each spatial grid point"
+  },
+  {
+    "id": "HvLt",
+    "label": "Hovmoller (Longitude)",
+    "description": "Longitude-averaged Hovmoller, plotted over the selected time and longitude ranges",
+    "computation": "Foreach longitude and timestep, average over areally-weighted latitude at a particular vertical level",
+    "visualization": "color-slice grid",
+    "best-for": "east-west movement",
+    "latitude": "sum, average, or count over",
+    "longitude": "plot axis",
+    "vertical": "select layer or level",
+    "time": "plot axis",
+    "cyclic": "none"
+  },
+  {
+    "id": "HiGm",
+    "label": "Histogram",
+    "description": "Distribution of values over time and space",
+    "computation": "Count all values over X,Y,Z,T and bin",
+    "visualization": "histogram",
+    "best-for": "Temporal evolution; detection of events",
+    "latitude": "sum, average, or count over",
+    "longitude": "sum, average, or count over",
+    "vertical": "sum, average, or count over",
+    "time": "sum, average, or count over",
+    "cyclic": "none"
+  },
+  {
+    "id": "TmAvSc",
+    "description": "Time-averaged, interactive X-Y plot of 2 variables"
+  },
+  {
+    "id": "ArAvTs",
+    "label": "Area-averaged Time Series",
+    "description": "Time series of area-averaged values",
+    "computation": "Foreach timestep, average over ROI with areal weighting",
+    "visualization": "time-series",
+    "best-for": "Temporal evolution; detection of events",
+    "latitude": "sum, average, or count over",
+    "longitude": "sum, average, or count over",
+    "vertical": "select layer or level",
+    "time": "plot axis",
+    "cyclic": "none"
+  },
+  {
+    "id": "CoMp",
+    "description": "Simple linear regression of 2 variables at each grid cell"
+  },
+  {
+    "id": "TmAvMp",
+    "label": "Time-averaged Map",
+    "description": "Interactive map of average over time at each grid cell",
+    "computation": "Foreach lat/lon grid cell, average over time for a specific vertical level",
+    "visualization": "color-slice map",
+    "best-for": "spatial extent of event",
+    "latitude": "plot axis",
+    "longitude": "plot axis",
+    "vertical": "select layer or level",
+    "time": "sum, average, or count over",
+    "cyclic": "none"
+  },
+  {
+    "id": "MpAn",
+    "description": "Map animated along the chosen timeline for each grid cell"
+  },
+  {
+    "id": "StSc",
+    "description": "Static Scatter plot"
+  },
+  {
+    "id": "VtPf",
+    "label": "Vertical Profile",
+    "description": "Vertical Profile",
+    "computation": "Foreach level, average over time range and ROI with areal weighting",
+    "visualization": "line plot",
+    "best-for": "Variation with atmospheric height",
+    "latitude": "sum, average, or count over",
+    "longitude": "sum, average, or count over",
+    "vertical": "plot axis",
+    "time": "sum, average, or count over",
+    "cyclic": "none"
+  },
+  {
+    "id": "HvLn",
+    "label": "Hovmoller (Latitude)",
+    "description": "Latitude-averaged Hovmoller, plotted over the selected time and latitude ranges",
+    "computation": "Foreach latitude and timestep, average over longitude at a particular vertical level",
+    "visualization": "color-slice grid",
+    "best-for": "north-south movement",
+    "latitude": "plot axis",
+    "longitude": "sum, average, or count over",
+    "vertical": "select layer or level",
+    "time": "plot axis",
+    "cyclic": "none"
+  },
+  {
+    "id": "QuCl",
+    "label": "User-defined Climatology",
+    "description": "Quasi Climatology Map",
+    "computation": "For a given month or season, compute average over time for each lat/lon cell at a particular vertical level",
+    "visualization": "color-slice map",
+    "best-for": "seasonal variation",
+    "latitude": "plot axis",
+    "longitude": "plot axis",
+    "vertical": "select layer or level",
+    "time": "sum, average, or count over",
+    "cyclic": "sum, average, or count over"
+  },
+  {
+    "id": "InTs",
+    "label": "Seasonal Time Series",
+    "description": "Seasonal (inter annual) time series",
+    "computation": "For a given month or season, compute average over time at each grid cell",
+    "visualization": "time series",
+    "best-for": "year-to-year variability",
+    "latitude": "sum, average, or count over",
+    "longitude": "sum, average, or count over",
+    "vertical": "select layer or level",
+    "time": "plot axis",
+    "cyclic": "sum, average, or count over"
+  },
+  {
+    "id": "DiTmAvMp",
+    "description": "Difference of two time averaged variable maps"
+  },
+  {
+    "id": "IaSc",
+    "description": "Interactive Scatter Plot"
+  },
+  {
+    "id": "AcMp",
+    "description": "Accumulation of measurement over time at each grid point"
+  },
+  {
+    "id": "ArAvSc",
+    "description": "Scatter plot comparing area averaged time series for two variables"
+  },
+  {
+    "id": "CrTm",
+    "description": "Cross Map, Time-Pressure",
+    "note": "not yet implemented",
+    "latitude": "sum, average, or count over",
+    "longitude": "sum, average, or count over",
+    "vertical": "plot axis",
+    "time": "plot axis",
+    "cyclic": "none"
+  },
+  {
+    "id": "CrLt",
+    "description": "Cross Map, Latitude-Pressure",
+    "note": "not yet implemented",
+    "latitude": "plot axis",
+    "longitude": "sum, average, or count over",
+    "vertical": "plot axis",
+    "time": "sum, average, or count over",
+    "cyclic": "none"
+  },
+  {
+    "id": "CrLn",
+    "description": "Cross Map, Longitude-Pressure",
+    "note": "not yet implemented",
+    "latitude": "sum, average, or count over",
+    "longitude": "plot axis",
+    "vertical": "plot axis",
+    "time": "sum, average, or count over",
+    "cyclic": "none"
+  },
+  {
+    "id": "ZnMn",
+    "label": "Zonal Means",
+    "description": "Zonal mean plot, averaged values are plotted over latitude zones",
+    "computation": "Foreach latitude, average over longitudes and time range at a particular vertical level",
+    "visualization": "line plot",
+    "best-for": "global phenomena",
+    "latitude": "plot axis",
+    "longitude": "sum, average, or count over",
+    "vertical": "select layer or level",
+    "time": "sum, average, or count over",
+    "cyclic": "none"
+  }
+]
