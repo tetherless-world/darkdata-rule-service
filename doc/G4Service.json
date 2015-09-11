@@ -22,7 +22,6 @@
     "description": "Distribution of values over time and space",
     "computation": "Count all values over X,Y,Z,T and bin",
     "visualization": "histogram",
-    "best-for": "Temporal evolution; detection of events",
     "latitude": "sum, average, or count over",
     "longitude": "sum, average, or count over",
     "vertical": "sum, average, or count over",
