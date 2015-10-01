@@ -1,0 +1,45 @@
+{
+	"id": "F4FAD00B-D109-4A09-B9A9-5ED5645E7E4A",
+	"score" : "0.68932",
+	"candidate" : {
+		"service" : "ArAvTs",
+		"service_name": "Area-averaged Time Series",
+		"starttime": "2015-01-01T00:00:00Z",
+		"endtime": "2015-04-30T23:59:59Z",
+		"bbox" : { 
+			"west" : 180, 
+			"south" : -5, 
+			"east": 180, 
+			"north" : 5
+		},
+		"variables": [
+			{
+				"id": "MAIMCPASM_5_2_0_RH",
+				"modifiers": [
+					{
+						"key": "z",
+						"value": "1000"
+					}
+				]
+			}
+		],
+		"keywords": [ ],
+		"shape" : "shp_30",
+	},
+	"event": { 
+		"event_id": "EONET_42",
+		"title": "Bangladesh: Floods and Landslides, June 2015",
+		"category": [ "Floods", "Landslides" ],
+		"geometry" : {
+			"date": "2015-06-24T00:00:00Z",
+			"type": "Polygon",
+			"coordinates": [ 
+				[91.2353515625, 20.782820620659265], 
+				[91.2353515625, 23.819522533901992], 
+				[92.87353515625, 23.819522533901992], 
+				[92.87353515625, 20.782820620659265], 
+				[91.2353515625, 20.782820620659265]
+			]
+		}
+	}
+}
