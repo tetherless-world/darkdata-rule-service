@@ -3,5 +3,5 @@ package darkdata.model;
 /**
  * @author szednik
  */
-public class Recommendation {
+public class Candidate {
 }
