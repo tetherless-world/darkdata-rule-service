@@ -1,7 +1,7 @@
 package darkdata.web;
 
-import darkdata.model.Recommendation;
-import darkdata.model.RecommendationRequest;
+import darkdata.model.web.Recommendation;
+import darkdata.model.web.RecommendationRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
