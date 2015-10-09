@@ -5,7 +5,7 @@ package darkdata.model;
  */
 public class CandidateWorkflowScore extends CandidateScore {
 
-    public CandidateWorkflowScore(CandidateWorkflow candidate, Double score) {
-        super(candidate, score);
+    public CandidateWorkflowScore(String id, CandidateWorkflow candidate, Double score) {
+        super(id, candidate, score);
     }
 }

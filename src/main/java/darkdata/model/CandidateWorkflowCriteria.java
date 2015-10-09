@@ -2,7 +2,7 @@ package darkdata.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import darkdata.model.datavariable.DataVariable;
-import darkdata.model.event.Event;
+import darkdata.model.event.eonet.Event;
 
 import java.util.List;
 
