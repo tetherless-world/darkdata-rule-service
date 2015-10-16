@@ -17,6 +17,11 @@ public class CandidateWorkflowCriteria {
     @JsonProperty(value = "data_variables")
     List<DataVariable> variables;
 
+    public CandidateWorkflowCriteria(Event event, List<DataVariable> variables) {
+        this.event = event;
+        this.variables = variables;
+    }
+
     public Event getEvent() {
         return event;
     }
