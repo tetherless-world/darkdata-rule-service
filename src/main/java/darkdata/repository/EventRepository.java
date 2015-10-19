@@ -1,17 +1,15 @@
 package darkdata.repository;
 
 import darkdata.datasource.DarkDataDatasource;
-import darkdata.model.kb.Phenomena;
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntClass;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author szednik
@@ -26,7 +24,7 @@ public class EventRepository {
     @Autowired
     private PhenomenaRepository phenomenaRepository;
 
-    /*
+    /**
      * Returns an instance of the specified phenomena subclass
      * @param uri the URI for the created instance
      * @param phenomena the type of the created instance, should be a phenomena subclass
@@ -48,6 +46,22 @@ public class EventRepository {
         } finally {
             m.removeSubModel(datasource.getOntModel());
         }
+    }
+
+    /**
+     * Returns a List of Individuals with rdf:type dd:Phenomena
+     * @return List of Individual objects
+     * @see Individual
+     */
+    public List<Individual> listEvents() {
+        return datasource.getOntModel()
+                .getOntClass(DarkData.Phenomena.getURI())
+                .listInstances()
+                .toList()
+                .stream()
+                .filter(c -> !c.isAnon())
+                .map(OntResource::asIndividual)
+                .collect(Collectors.toList());
     }
 
 }

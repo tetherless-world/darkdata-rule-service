@@ -24,7 +24,7 @@ public class PhysicalFeatureRepository {
     @Autowired
     private DarkDataDatasource datasource;
 
-    /*
+    /**
      * Returns a class with the given URI
      * @param uri the URI of the class to get
      * @return Optional object containing the OntClass (or empty if no class is found)
@@ -34,7 +34,7 @@ public class PhysicalFeatureRepository {
         return Optional.ofNullable(datasource.getOntModel().getOntClass(uri));
     }
 
-    /*
+    /**
      * Returns a dd:PhysicalFeature subclass with the given label
      * @param label the label of the class to get
      * @return Optional object containing the OntClass (or empty if no class is found)
@@ -46,7 +46,7 @@ public class PhysicalFeatureRepository {
                 .findAny();
     }
 
-    /*
+    /**
      * Returns a list of subclasses of type dd:PhysicalManifestation
      * @return List of OntClass objects for subclasses of dd:PhysicalManifestation
      * @see OntClass
@@ -61,7 +61,7 @@ public class PhysicalFeatureRepository {
                 .collect(Collectors.toList());
     }
 
-    /*
+    /**
      * Returns list of physical manifestation classes for the given phenomena subclass
      * @param phenomena the phenomena subclass associated with the returned physical manifestations
      * @return List of OntClass objects for physical manifestations inferred for the given phenomena subclass

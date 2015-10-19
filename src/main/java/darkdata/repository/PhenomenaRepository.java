@@ -24,7 +24,7 @@ public class PhenomenaRepository {
     @Autowired
     private DarkDataDatasource datasource;
 
-    /*
+    /**
      * Returns a class with the given URI
      * @param uri the URI of the class to get
      * @return Optional object containing the OntClass (or empty if no class is found)
@@ -34,7 +34,7 @@ public class PhenomenaRepository {
         return Optional.ofNullable(datasource.getOntModel().getOntClass(uri));
     }
 
-    /*
+    /**
      * Returns a dd:Phenomena subclass with the given label
      * @param label the label of the class to get
      * @return Optional object containing the OntClass (or empty if no class is found)
@@ -46,9 +46,10 @@ public class PhenomenaRepository {
                 .findAny();
     }
 
-    /*
+    /**
      * Returns a list of dd:Phenomena subclasses associated with the given topic
      * @param topic EONET category name (or similar) associated with phenomena subclass
+     * @return List of OntClass objects
      * @see OntClass
      */
     public List<OntClass> listClassesByTopic(String topic) {
@@ -58,9 +59,9 @@ public class PhenomenaRepository {
                 .collect(Collectors.toList());
     }
 
-    /*
+    /**
      * Returns a list of subclasses of type dd:Phenomena
-     * @return List of OntClass objects for subclasses of dd:Phenomena
+     * @return List of OntClass objects
      * @see OntClass
      */
     public List<OntClass> listSubclasses() {
