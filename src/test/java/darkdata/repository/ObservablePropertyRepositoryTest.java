@@ -1,8 +1,6 @@
 package darkdata.repository;
 
 import darkdata.DarkDataApplication;
-import darkdata.model.kb.g4.G4Service;
-import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Resource;
 import org.junit.Assert;
@@ -22,24 +20,16 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DarkDataApplication.class)
 @WebAppConfiguration
-public class G4ServiceRepositoryTest {
+public class ObservablePropertyRepositoryTest {
 
     @Autowired
-    private G4ServiceRepository repository;
+    private ObservablePropertyRepository repository;
 
     @Test
     public void testListSubclasses() {
-        List<OntClass> g4serviceClasses = repository.listSubclasses();
-        Assert.assertNotNull(g4serviceClasses);
-        Assert.assertFalse(g4serviceClasses.isEmpty());
-        g4serviceClasses.stream().map(Resource::getURI).forEach(System.out::println);
-    }
-
-    @Test
-    public void testListInstances() {
-        List<G4Service> g4services = repository.listInstances();
-        Assert.assertNotNull(g4services);
-        Assert.assertFalse(g4services.isEmpty());
-        g4services.stream().map(G4Service::getIndividual).map(Resource::getURI).forEach(System.out::println);
+        List<OntClass> observablePropertyClasses = repository.listSubclasses();
+        Assert.assertNotNull(observablePropertyClasses);
+        Assert.assertFalse(observablePropertyClasses.isEmpty());
+        observablePropertyClasses.stream().map(Resource::getURI).forEach(System.out::println);
     }
 }

@@ -1,63 +1,44 @@
 {
-  "event": {
-    "id": "EONET_42",
-    "title": "Bangladesh: Floods and Landslides, June 2015",
-    "link": "http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_42",
-    "category": [
+  "criteria" : {
+    "event": {
+      "id": "EONET_224",
+      "title": "Hurricane Olaf",
+      "link": "http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_224",
+      "category": [
+        {
+          "-domain": "Severe Storms",
+          "#text": "Severe Storms"
+        }
+      ],
+      "description": "",
+      "reference": [
+        {
+          "id": "UNISYS",
+          "url": "http://weather.unisys.com/hurricane/e_pacific/2015/OLAF/track.dat"
+        }
+      ],
+      "geometry": [
+        {
+          "date": "2015-10-15T00:00:00Z",
+          "type": "Point",
+          "coordinates": [
+            -117.10,
+            9.90
+          ]
+        }
+      ]
+    },
+    "data_variables": [
       {
-        "-domain": "Floods",
-        "#text": "Floods"
+        "dataset_shortName": "MYD08_D3",
+        "variable_name": "Cirrus_Reflectance_Mean",
+        "science_keyword": "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"
       },
       {
-        "-domain": "Landslides",
-        "#text": "Landslides"
+        "dataset_shortName": "MYD08_D3",
+        "variable_name": "Cloud_Optical_Thickness_Liquid_Mean",
+        "science_keyword": "ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE"
       }
-    ],
-    "description": "Since June 24, torrential rains have set off flash floods and landslides in the low-lying areas in the south-eastern districts of Cox&rsquo; Bazar, Bandarban and Chittagong.",
-    "guid": {
-      "_isPermalink": "true",
-      "__text": "http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_42"
-    },
-    "reference": [
-      {
-        "__prefix": "dc",
-        "id": "ReliefWeb",
-        "url": "http://reliefweb.int/disaster/fl-2015-000068-bgd"
-      }
-    ],
-    "geometry": [
-      {
-        "date": "2015-06-24T00:00:00Z",
-        "type": "Polygon",
-        "coordinates": [
-          [
-            91.2353515625,
-            20.782820620659265
-          ],
-          [
-            91.2353515625,
-            23.819522533901992
-          ],
-          [
-            92.87353515625,
-            23.819522533901992
-          ],
-          [
-            92.87353515625,
-            20.782820620659265
-          ],
-          [
-            91.2353515625,
-            20.782820620659265
-          ]
-        ]
-      }
-    ],
-    "creator": {
-      "_xmlns": "http://purl.org/dc/elements/1.1/",
-      "__prefix": "dc",
-      "__text": "EONET"
-    }
-  },
-  "data_variables": []
+    ]
+  }
 }

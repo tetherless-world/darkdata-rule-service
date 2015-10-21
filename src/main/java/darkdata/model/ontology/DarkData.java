@@ -75,6 +75,8 @@ public class DarkData {
      *  synoptic) significance within the atmosphere</p>
      */
     public static final OntClass Phenomena = m_model.createClass("http://www.purl.org/twc/ns/darkdata#Phenomena");
+
+    public static final OntClass ShortDurationPhenomena = m_model.createClass("http://www.purl.org/twc/ns/darkdata#ShortDurationPhenomena");
     
     public static final OntClass PhysicalManifestation = m_model.createClass("http://www.purl.org/twc/ns/darkdata#PhysicalManifestation");
     
@@ -139,6 +141,43 @@ public class DarkData {
 
     public static final AnnotationProperty topic = m_model.createAnnotationProperty( "http://www.purl.org/twc/ns/darkdata#topic");
 
-    public static final OntProperty observableProperty = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#observableProperty" );
-    
+    public static final AnnotationProperty scienceKeyword = m_model.createAnnotationProperty( "http://www.purl.org/twc/ns/darkdata#scienceKeyword");
+
+    public static final ObjectProperty observableProperty = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#observableProperty" );
+
+    public static final OntClass CandidateWorkflow = m_model.createClass("http://www.purl.org/twc/ns/darkdata#CandidateWorkflow");
+
+    public static final ObjectProperty candidate = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#candidate" );
+
+    public static final ObjectProperty candidateEvent = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#candidateEvent" );
+
+    public static final OntClass CompatibilityAssertion = m_model.createClass("http://www.purl.org/twc/ns/darkdata#CompatibilityAssertion");
+
+    public static final ObjectProperty compatibilityValue = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#compatibilityValue" );
+
+    public static final OntClass CompatibilityValue = m_model.createClass("http://www.purl.org/twc/ns/darkdata#CompatibilityValue");
+
+    public static final Individual slight_compatibility = m_model.createIndividual("http://www.purl.org/twc/ns/darkdata#slight_compatibility", DarkData.CompatibilityValue);
+
+    public static final Individual some_compatibility = m_model.createIndividual("http://www.purl.org/twc/ns/darkdata#some_compatibility", DarkData.CompatibilityValue);
+
+    public static final Individual strong_compatibility = m_model.createIndividual("http://www.purl.org/twc/ns/darkdata#strong_compatibility", DarkData.CompatibilityValue);
+
+    public static final Individual indifferent_compatibility = m_model.createIndividual("http://www.purl.org/twc/ns/darkdata#indifferent_compatibility", DarkData.CompatibilityValue);
+
+    public static final Individual negative_compatibility = m_model.createIndividual("http://www.purl.org/twc/ns/darkdata#negative_compatibility", DarkData.CompatibilityValue);
+
+    public static final ObjectProperty candidateService = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#candidateService" );
+
+    public static final OntClass Dataset = m_model.createClass("http://www.purl.org/twc/ns/darkdata#Dataset");
+
+    public static final ObjectProperty variable = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#variable" );
+
+    public static final ObjectProperty dataset = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#dataset" );
+
+    public static final DatatypeProperty shortName = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#shortName" );
+
+    public static final DatatypeProperty longName = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#longName" );
+
+
 }

@@ -1,7 +1,7 @@
 package darkdata.service;
 
-import darkdata.model.Candidate;
-import darkdata.model.CandidateScore;
+import darkdata.model.kb.candidate.Candidate;
+import darkdata.model.kb.candidate.CandidateScore;
 
 /**
  * @author szednik

@@ -12,6 +12,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +53,12 @@ public class PhysicalFeatureRepositoryTest {
 
     @Test
     public void testListPhysicalManifestationOfPhenomena() {
+        Instant start = Instant.now();
         List<OntClass> features = repository.listPhysicalManifestationOfPhenomena(DarkData.Hurricane);
+        Instant end = Instant.now();
+        Duration diff = Duration.between(start, end);
+        System.out.println("time: "+diff.toMillis()+"ms");
+
         Assert.assertNotNull("list is null", features);
         Assert.assertFalse("list is empty", features.isEmpty());
         features.stream().map(Resource::getURI).forEach(System.out::println);

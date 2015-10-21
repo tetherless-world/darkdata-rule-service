@@ -1,7 +1,7 @@
 package darkdata.service;
 
-import darkdata.model.CandidateWorkflow;
-import darkdata.model.CandidateWorkflowScore;
+import darkdata.model.kb.candidate.CandidateWorkflow;
+import darkdata.model.kb.candidate.CandidateWorkflowScore;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,11 +1,11 @@
 package darkdata.service;
 
 import darkdata.DarkDataApplication;
-import darkdata.model.CandidateWorkflow;
-import darkdata.model.CandidateWorkflowCriteria;
-import darkdata.model.datavariable.DataVariable;
-import darkdata.model.event.eonet.Event;
-import darkdata.model.event.eonet.EventCategory;
+import darkdata.model.api.web.datavariable.DataVariable;
+import darkdata.model.api.web.event.eonet.Event;
+import darkdata.model.api.web.event.eonet.EventCategory;
+import darkdata.model.kb.candidate.CandidateWorkflow;
+import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +14,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,14 +49,19 @@ public class GenerateCandidateWorkflowServiceTest {
     @Test
     public void testGenerate() {
         CandidateWorkflowCriteria criteria = getTestCriteria();
+        Instant start = Instant.now();
         List<CandidateWorkflow> candidates = service.generate(criteria);
+        Instant end = Instant.now();
+        Duration diff = Duration.between(start, end);
+        System.out.println("time: "+diff.toMillis()+"ms");
+
         Assert.assertFalse(candidates.isEmpty());
 
-        for(CandidateWorkflow candidate : candidates) {
-            System.out.println(candidate.getPhenomena().get().getURI());
-            System.out.println(candidate.getPhysicalFeature().get().getURI());
-            System.out.println(candidate.getService().get().getURI());
-            System.out.println("========================");
-        }
+//        for(CandidateWorkflow candidate : candidates) {
+//            System.out.println(candidate.getEvent().get().getIndividual().getURI());
+//            //System.out.println(candidate.getPhysicalFeature().get().getURI());
+//            System.out.println(candidate.getService().get().getIndividual().getURI());
+//            System.out.println("========================");
+//        }
     }
 }

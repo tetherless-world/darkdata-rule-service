@@ -1,6 +1,6 @@
 package darkdata.service;
 
-import darkdata.model.Candidate;
+import darkdata.model.kb.candidate.Candidate;
 
 import java.util.List;
 

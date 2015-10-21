@@ -1,4 +1,4 @@
-package darkdata.model.event.eonet;
+package darkdata.model.api.web.event.eonet;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

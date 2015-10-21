@@ -1,8 +1,11 @@
 package darkdata.repository;
 
 import darkdata.DarkDataApplication;
+import darkdata.model.api.web.event.eonet.Event;
+import darkdata.model.api.web.event.eonet.EventCategory;
 import darkdata.model.kb.Phenomena;
 import darkdata.model.ontology.DarkData;
+import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntResource;
@@ -15,9 +18,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -60,5 +63,26 @@ public class PhenomenaRepositoryTest {
         Assert.assertNotNull("list is null", topicSevereStorms);
         Assert.assertFalse("list is empty", topicSevereStorms.isEmpty());
         topicSevereStorms.stream().map(Resource::getURI).forEach(System.out::println);
+    }
+
+    @Test
+    public void testFoo() {
+
+        Instant start = Instant.now();
+
+        EventCategory category = new EventCategory("Severe Storms","Severe Storms");
+        Event event = new Event("test", "test", "test", "test", Collections.singletonList(category), null);
+
+        List<OntClass> phenomenaList = event.getCategories().stream()
+                .map(EventCategory::getText)
+                .flatMap(t -> repository.listClassesByTopic(t).stream())
+                .collect(Collectors.toList());
+
+        Instant end = Instant.now();
+        Duration diff = Duration.between(start, end);
+
+        Assert.assertFalse(phenomenaList.isEmpty());
+        phenomenaList.stream().map(Resource::getURI).forEach(System.out::println);
+        System.out.println("time: "+diff.toMillis()+"ms");
     }
 }

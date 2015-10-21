@@ -1,6 +1,7 @@
 package darkdata.repository;
 
 import darkdata.datasource.DarkDataDatasource;
+import darkdata.model.kb.Phenomena;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -31,7 +32,7 @@ public class EventRepository {
      * @return Optional object containing the created instance
      * @see Individual
      */
-    public Optional<Individual> createEvent(String uri, OntClass phenomena) {
+    public Optional<Phenomena> createEvent(String uri, OntClass phenomena) {
 
         Optional<OntClass> phenomenaClass = phenomenaRepository.getClass(phenomena.getURI());
         if(!phenomenaClass.isPresent()
@@ -42,7 +43,7 @@ public class EventRepository {
         OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
         m.addSubModel(datasource.getOntModel().getBaseModel());
         try {
-            return Optional.ofNullable(m.createIndividual(uri, phenomena));
+            return Optional.ofNullable(m.createIndividual(uri, phenomena)).map(Phenomena::new);
         } finally {
             m.removeSubModel(datasource.getOntModel());
         }
@@ -53,7 +54,7 @@ public class EventRepository {
      * @return List of Individual objects
      * @see Individual
      */
-    public List<Individual> listEvents() {
+    public List<Phenomena> listEvents() {
         return datasource.getOntModel()
                 .getOntClass(DarkData.Phenomena.getURI())
                 .listInstances()
@@ -61,6 +62,7 @@ public class EventRepository {
                 .stream()
                 .filter(c -> !c.isAnon())
                 .map(OntResource::asIndividual)
+                .map(Phenomena::new)
                 .collect(Collectors.toList());
     }
 

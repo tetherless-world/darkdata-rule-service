@@ -1,4 +1,4 @@
-package darkdata.model;
+package darkdata.model.kb.candidate;
 
 /**
  * @author szednik

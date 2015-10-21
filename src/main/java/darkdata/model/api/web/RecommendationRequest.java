@@ -1,4 +1,4 @@
-package darkdata.model.web;
+package darkdata.model.api.web;
 
 /**
  * @author szednik
