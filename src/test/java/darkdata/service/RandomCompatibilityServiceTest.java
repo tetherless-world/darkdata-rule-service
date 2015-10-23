@@ -24,7 +24,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DarkDataApplication.class)
 @WebAppConfiguration
-public class RandomCompatibilityScoringServiceTest {
+public class RandomCompatibilityServiceTest {
 
     @Autowired
     private RandomCompatibilityService compatibilityService;
