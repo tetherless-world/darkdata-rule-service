@@ -1,44 +1,38 @@
 {
-  "criteria" : {
-    "event": {
-      "id": "EONET_224",
-      "title": "Hurricane Olaf",
-      "link": "http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_224",
-      "category": [
-        {
-          "-domain": "Severe Storms",
-          "#text": "Severe Storms"
-        }
-      ],
-      "description": "",
-      "reference": [
-        {
-          "id": "UNISYS",
-          "url": "http://weather.unisys.com/hurricane/e_pacific/2015/OLAF/track.dat"
-        }
-      ],
-      "geometry": [
-        {
-          "date": "2015-10-15T00:00:00Z",
-          "type": "Point",
-          "coordinates": [
-            -117.10,
-            9.90
-          ]
-        }
-      ]
-    },
-    "data_variables": [
+  "event": {
+    "id": "EONET_224",
+    "title": "Hurricane Olaf",
+    "link": "http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_224",
+    "category": [
       {
-        "dataset_shortName": "MYD08_D3",
-        "variable_name": "Cirrus_Reflectance_Mean",
-        "science_keyword": "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"
-      },
+        "-domain": "Severe Storms",
+        "#text": "Severe Storms"
+      }
+    ],
+    "description": "",
+    "geometry": [
       {
-        "dataset_shortName": "MYD08_D3",
-        "variable_name": "Cloud_Optical_Thickness_Liquid_Mean",
-        "science_keyword": "ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE"
+        "date": "2015-10-15T00:00:00Z",
+        "type": "Point",
+        "coordinates": [
+          -117.10,
+          9.90
+        ]
       }
     ]
-  }
+  },
+  "data_variables": [
+    {
+      "product" : "MYD08_D3",
+      "version" : "51",
+      "variable" : "Cirrus_Reflectance_Mean",
+      "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"
+    },
+    {
+      "product" : "MYD08_D3",
+      "version" : "51",
+      "variable" : "Cloud_Optical_Thickness_Liquid_Mean",
+      "keyword" : "ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE"
+    }
+  ]
 }
