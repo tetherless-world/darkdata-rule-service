@@ -1,6 +1,8 @@
 package darkdata.service;
 
-import darkdata.model.Candidate;
+import darkdata.model.kb.candidate.Candidate;
+
+import java.util.List;
 
 /**
  * @author szednik
@@ -8,5 +10,5 @@ import darkdata.model.Candidate;
 
 public interface CandidateFactory<T extends Candidate,C> {
 
-    T[] generate(C criteria);
+    List<T> generate(C criteria);
 }

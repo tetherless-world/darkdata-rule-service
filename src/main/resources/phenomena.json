@@ -1,0 +1,52 @@
+[
+  {
+    "id": "fire",
+    "label": "Fire"
+  },
+  {
+    "id": "severe_storm",
+    "label": "Severe Storm"
+  },
+  {
+    "id": "dust_smoke_haze",
+    "label": "Dust, Smoke, Haze",
+    "features" : [
+      {
+        "id": "dust_plume",
+        "label": "dust plume"
+      }
+    ]
+  },
+  {
+    "id": "flood",
+    "label": "Flood"
+  },
+  {
+    "id": "volcanic_eruption",
+    "label": "Volcanic Eruption",
+    "features" : [
+      {
+        "id": "ash_plume",
+        "label": "ash plume",
+        "observable_properties": [
+          {
+            "id": "",
+            "label": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "earthquake",
+    "label": "Earthquake"
+  },
+  {
+    "id": "drought",
+    "label": "Drought"
+  },
+  {
+    "id": "hurricane",
+    "label": "Hurricane"
+  }
+]

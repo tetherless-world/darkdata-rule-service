@@ -1,7 +1,7 @@
 package darkdata.service;
 
-import darkdata.model.CandidateWorkflow;
-import darkdata.model.CandidateWorkflowScore;
+import darkdata.model.kb.candidate.CandidateWorkflow;
+import darkdata.model.kb.candidate.CandidateWorkflowScore;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +14,9 @@ public class CandidateWorkflowScoringService
 
     @Override
     public CandidateWorkflowScore score(CandidateWorkflow candidate) {
-        return new CandidateWorkflowScore("noop", candidate, 0d);
+
+
+        //return new CandidateWorkflowScore("noop", candidate, 0d);
+        return null;
     }
 }

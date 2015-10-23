@@ -1,7 +1,9 @@
 package darkdata.web;
 
-import darkdata.model.web.Recommendation;
-import darkdata.model.web.RecommendationRequest;
+import darkdata.model.api.web.Recommendation;
+import darkdata.model.api.web.RecommendationRequest;
+import darkdata.service.RecommendationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/advisor")
 public class AdvisoryController {
 
+    @Autowired
+    private RecommendationService recommendationService;
+
     @RequestMapping(value = "/recommendation", method = RequestMethod.POST)
     public ResponseEntity<Recommendation> recommendation(RecommendationRequest payload) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        Recommendation recommendation = recommendationService.getRecommendation(payload);
+        return new ResponseEntity<>(recommendation, HttpStatus.OK);
     }
 }

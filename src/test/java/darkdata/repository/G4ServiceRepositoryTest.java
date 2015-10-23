@@ -1,6 +1,7 @@
 package darkdata.repository;
 
 import darkdata.DarkDataApplication;
+import darkdata.model.kb.g4.G4Service;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Resource;
@@ -36,9 +37,9 @@ public class G4ServiceRepositoryTest {
 
     @Test
     public void testListInstances() {
-        List<Individual> g4services = repository.listInstances();
+        List<G4Service> g4services = repository.listInstances();
         Assert.assertNotNull(g4services);
         Assert.assertFalse(g4services.isEmpty());
-        g4services.stream().map(Resource::getURI).forEach(System.out::println);
+        g4services.stream().map(G4Service::getIndividual).map(Resource::getURI).forEach(System.out::println);
     }
 }

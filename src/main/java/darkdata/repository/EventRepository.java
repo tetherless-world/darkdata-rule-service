@@ -3,15 +3,14 @@ package darkdata.repository;
 import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.kb.Phenomena;
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntClass;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author szednik
@@ -26,14 +25,14 @@ public class EventRepository {
     @Autowired
     private PhenomenaRepository phenomenaRepository;
 
-    /*
+    /**
      * Returns an instance of the specified phenomena subclass
      * @param uri the URI for the created instance
      * @param phenomena the type of the created instance, should be a phenomena subclass
      * @return Optional object containing the created instance
      * @see Individual
      */
-    public Optional<Individual> createEvent(String uri, OntClass phenomena) {
+    public Optional<Phenomena> createEvent(String uri, OntClass phenomena) {
 
         Optional<OntClass> phenomenaClass = phenomenaRepository.getClass(phenomena.getURI());
         if(!phenomenaClass.isPresent()
@@ -44,10 +43,27 @@ public class EventRepository {
         OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
         m.addSubModel(datasource.getOntModel().getBaseModel());
         try {
-            return Optional.ofNullable(m.createIndividual(uri, phenomena));
+            return Optional.ofNullable(m.createIndividual(uri, phenomena)).map(Phenomena::new);
         } finally {
             m.removeSubModel(datasource.getOntModel());
         }
+    }
+
+    /**
+     * Returns a List of Individuals with rdf:type dd:Phenomena
+     * @return List of Individual objects
+     * @see Individual
+     */
+    public List<Phenomena> listEvents() {
+        return datasource.getOntModel()
+                .getOntClass(DarkData.Phenomena.getURI())
+                .listInstances()
+                .toList()
+                .stream()
+                .filter(c -> !c.isAnon())
+                .map(OntResource::asIndividual)
+                .map(Phenomena::new)
+                .collect(Collectors.toList());
     }
 
 }

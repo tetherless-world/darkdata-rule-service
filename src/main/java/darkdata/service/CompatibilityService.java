@@ -1,7 +1,9 @@
 package darkdata.service;
 
-import darkdata.model.Candidate;
-import darkdata.model.CompatibilityAssertion;
+import darkdata.model.kb.candidate.Candidate;
+import darkdata.model.kb.compatibility.CompatibilityAssertion;
+
+import java.util.List;
 
 /**
  * @author szednik
@@ -9,5 +11,5 @@ import darkdata.model.CompatibilityAssertion;
 
 public interface CompatibilityService<T extends CompatibilityAssertion,S extends Candidate> {
 
-    T[] computeCompatibilities(S candidate);
+    List<T> computeCompatibilities(S candidate);
 }

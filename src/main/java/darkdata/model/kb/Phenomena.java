@@ -1,11 +1,34 @@
 package darkdata.model.kb;
 
+import darkdata.model.ontology.DarkData;
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntResource;
+import org.apache.jena.rdf.model.RDFNode;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author szednik
  */
-public class Phenomena extends Thing {
+public class Phenomena extends IndividualProxy {
 
-    public Phenomena(String id, String label) {
-        super(id, label);
+    public static final OntClass CLASS = DarkData.Phenomena;
+
+    public Phenomena(Individual individual) {
+        super(individual);
     }
+
+    public List<PhysicalFeature> getPhysicalFeatures() {
+        return getIndividual()
+                .listPropertyValues(DarkData.physicalManifestation).toList().stream()
+                .filter(RDFNode::isResource)
+                .map(r -> (OntResource) r.asResource())
+                .filter(OntResource::isIndividual)
+                .map(OntResource::asIndividual)
+                .map(PhysicalFeature::new)
+                .collect(Collectors.toList());
+    }
+
 }

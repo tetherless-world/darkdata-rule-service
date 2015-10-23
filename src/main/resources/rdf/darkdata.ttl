@@ -15,7 +15,12 @@
 dd:topic
         rdf:type owl:AnnotationProperty ;
         rdfs:label "topic" ;
-        rdfs:comment "keyword associated with this class or property" .
+        rdfs:comment "keyword or category associated with this class or property" .
+
+dd:scienceKeyword
+        rdf:type owl:AnnotationProperty ;
+        rdfs:label "science keyword" ;
+        rdfs:comment "science keyword associated with class" .
 
 dd:observableProperty
         rdf:type      owl:ObjectProperty ;
@@ -44,12 +49,22 @@ dd:AerosolOpticalDepth
 
 dd:AshPlume  rdf:type    owl:Class ;
         rdfs:label       "Ash Plume"@en ;
-        rdfs:subClassOf  dd:PhysicalManifestation .
+        rdfs:subClassOf  dd:PhysicalManifestation ;
+        rdfs:subClassOf [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty dd:observableProperty ;
+                        owl:hasValue dd:aerosol_optical_depth_thickness ;
+                ] .
 
 dd:AtmosphericConcentration
         rdf:type         owl:Class ;
         rdfs:label       "Atmospheric Concentration"@en ;
         rdfs:subClassOf  dd:ObservableProperty .
+
+dd:Reflectance
+        rdf:tupe        owl:Class ;
+        rdfs:label      "Reflectance"@en ;
+        rdfs:subClassOf dd:ObservableProperty .
 
 dd:Column_SO2  rdf:type  owl:Class ;
         rdfs:label       "SO2 Column"@en ;
@@ -104,6 +119,11 @@ dd:Phenomena  rdf:type   owl:Class ;
         rdfs:label       "Phenomena"@en ;
         rdfs:subClassOf  dd:Event ;
         rdfs:comment     "An observable occurrence of particular physical (as opposed to dynamic or synoptic) significance within the atmosphere"@en .
+
+dd:ShortDurationPhenomena
+        rdf:type        owl:Class ;
+        rdfs:label      "Short-duration Phenomena"@en ;
+        rdfs:subClassOf dd:Phenomena .
 
 dd:PhysicalManifestation
         rdf:type    owl:Class ;
@@ -380,3 +400,93 @@ dd:ManMade
         rdfs:subClassOf dd:Phenomena ;
         dd:topic "Manmade" ;
         rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/19> .
+
+# Compatibility Assertion
+
+dd:Candidate
+        rdf:type        owl:Class ;
+        rdfs:label      "Candidate" .
+
+dd:CandidateWorkflow
+        rdf:type        owl:Class ;
+        rdfs:label      "Candidate Workflow" ;
+        rdfs:subClassOf dd:Candidate .
+
+dd:CompatibilityAssertion
+        rdf:type        owl:Class ;
+        rdfs:label      "Compatibility Assertion" .
+
+dd:CompatibilityFunction
+        rdf:type        owl:Class ;
+        rdfs:label      "Compatibility Function" .
+
+
+dd:candidateEvent
+        rdf:type        owl:ObjectProperty ;
+        rdfs:label      "candidate event" ;
+        rdfs:domain     dd:CandidateWorkflow ;
+        rdfs:range      dd:Phenomena .
+
+dd:candidateService
+        rdf:type        owl:ObjectProperty ;
+        rdfs:label      "candidate service" ;
+        rdfs:domain     dd:CandidateWorkflow ;
+        rdfs:range      dd:Visualization .
+
+dd:CompatibilityValue
+        rdf:type        owl:Class ;
+        rdfs:label      "Compatibility Value" .
+
+dd:negative_compatibility
+        rdf:type        dd:CompatibilityValue ;
+        rdfs:label      "negative compatibility" .
+
+dd:indifferent_compatibility
+        rdf:type        dd:CompatibilityValue ;
+        rdfs:label      "indifferent compatibility" .
+
+dd:slight_compatibility
+        rdf:type        dd:CompatibilityValue ;
+        rdfs:label      "slight compatibility" .
+
+dd:some_compatibility
+        rdf:type        dd:CompatibilityValue ;
+        rdfs:label      "some compatibility" .
+
+dd:strong_compatibility
+        rdf:type        dd:CompatibilityValue ;
+        rdfs:label      "strong compatibility" .
+
+dd:candidate
+        rdf:type        owl:ObjectProperty ;
+        rdfs:label      "candidate workflow" ;
+        rdfs:domain     dd:CompatibilityAssertion ;
+        rdfs:range      dd:CandidateWorkflow .
+
+dd:basisForAssertion
+        rdf:type        owl:ObjectProperty ;
+        rdfs:label      "basis for assertion" ;
+        rdfs:domain     dd:CompatibilityAssertion ;
+        rdfs:range      dd:CompatibilityFunction .
+
+dd:evidenceForAssertion
+        rdf:type        owl:ObjectProperty ;
+        rdfs:label      "evidence for assertion" ;
+        rdfs:domain     dd:CompatibilityAssertion .
+
+dd:assertionConfidence
+        rdf:type        owl:DatatypeProperty ;
+        rdfs:label      "assertion confidence" ;
+        rdfs:domain     dd:CompatibilityAssertion .
+
+dd:compatibilityValue
+        rdf:type        owl:ObjectProperty ;
+        rdfs:label      "compatibility value" ;
+        rdfs:domain     dd:CompatibilityAssertion ;
+        rdfs:range      dd:CompatibilityValue .
+
+dd:compatibilityAssertion
+        rdf:type        owl:ObjectProperty ;
+        rdfs:label      "compatibility assertion" ;
+        rdfs:range      dd:CompatibilityAssertion ;
+        rdfs:domain     dd:Candidate .
