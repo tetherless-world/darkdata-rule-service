@@ -14,6 +14,9 @@ public class CandidateWorkflowScoringService
 
     @Override
     public CandidateWorkflowScore score(CandidateWorkflow candidate) {
-        return new CandidateWorkflowScore("noop", candidate, 0d);
+
+
+        //return new CandidateWorkflowScore("noop", candidate, 0d);
+        return null;
     }
 }

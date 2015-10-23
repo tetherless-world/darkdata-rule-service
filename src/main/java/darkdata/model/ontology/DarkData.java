@@ -179,5 +179,8 @@ public class DarkData {
 
     public static final DatatypeProperty longName = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#longName" );
 
+    public static final DatatypeProperty assertionConfidence = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#assertionConfidence" );
+
+    public static final ObjectProperty compatibilityAssertion = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#compatibilityAssertion" );
 
 }

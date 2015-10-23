@@ -19,7 +19,7 @@ public class Dataset extends IndividualProxy {
 
     public static final OntClass CLASS = DarkData.Dataset;
 
-    protected Dataset(Individual individual) {
+    public Dataset(Individual individual) {
         super(individual);
     }
 
@@ -38,7 +38,7 @@ public class Dataset extends IndividualProxy {
     }
 
     public Optional<String> getShortName() {
-        return Stream.of(getIndividual().getPropertyResourceValue(DarkData.shortName))
+        return Stream.of(getIndividual().getPropertyValue(DarkData.shortName))
                 .filter(RDFNode::isLiteral)
                 .map(RDFNode::asLiteral)
                 .map(RDFNode::toString)
@@ -50,7 +50,7 @@ public class Dataset extends IndividualProxy {
     }
 
     public Optional<String> getLongName() {
-        return Stream.of(getIndividual().getPropertyResourceValue(DarkData.longName))
+        return Stream.of(getIndividual().getPropertyValue(DarkData.longName))
                 .filter(RDFNode::isLiteral)
                 .map(RDFNode::asLiteral)
                 .map(RDFNode::toString)
