@@ -31,13 +31,13 @@ public class SimpleScoringService implements ScoringService<CandidateWorkflowSco
         groupedAssertions = assertions.stream()
                 .collect(Collectors.groupingBy(a -> a.getValue().get()));
 
-        Map<CompatibilityValue, DoubleSummaryStatistics> f =
+        Map<CompatibilityValue, DoubleSummaryStatistics> statisticsMap =
                 groupedAssertions.entrySet().stream()
                         .collect(Collectors.toMap(Map.Entry::getKey,
                                 e -> e.getValue().stream()
                                         .map(a -> a.getConfidence().get())
                                         .collect(Collectors.summarizingDouble(a -> a))));
 
-        return f.entrySet().stream().findAny().map(a -> a.getValue().getAverage()).get();
+        return statisticsMap.entrySet().stream().findAny().map(a -> a.getValue().getAverage()).get();
     }
 }
