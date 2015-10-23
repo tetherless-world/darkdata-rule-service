@@ -1,6 +1,7 @@
 package darkdata.model.api.web.event.eonet;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
