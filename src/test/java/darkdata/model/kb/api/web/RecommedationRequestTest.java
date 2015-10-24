@@ -61,7 +61,7 @@ public class RecommedationRequestTest {
         return new Event(id, title, link, description,categoryList, geometryList);
     }
     @Test
-    public void TestSerializeRecommendationRequest() throws JsonProcessingException {
+    public void testSerializeRecommendationRequest() throws JsonProcessingException {
         RecommendationRequest recommendationRequest = new RecommendationRequest();
         Assert.assertNotNull(recommendationRequest);
         recommendationRequest.setEvent(createTestEvent());

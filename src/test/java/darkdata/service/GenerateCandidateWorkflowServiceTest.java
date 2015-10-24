@@ -37,7 +37,8 @@ public class GenerateCandidateWorkflowServiceTest {
     }
 
     private List<DataVariable> getTestVariables() {
-        return Arrays.asList(new DataVariable("var","var", null), null);
+        //return Arrays.asList(new DataVariable("var","var", null), null);
+        return Arrays.asList(new DataVariable("test","test","test","test"));
     }
 
     private CandidateWorkflowCriteria getTestCriteria() {

@@ -1,5 +1,7 @@
 package darkdata.model.api.web.datavariable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -8,45 +10,58 @@ import java.util.List;
 
 public class DataVariable {
 
-    String name;
-    String datasetId;
+    @JsonProperty(value = "product")
+    String product;
 
-    String description;
-    String scienceKeyword;
 
-    List<DataVariableModifier> modifiers;
+    @JsonProperty(value = "version")
+    String version;
+    @JsonProperty(value = "variable")
+    String variable;
+    @JsonProperty(value = "keyword")
+    String keyword;
 
-    public DataVariable(String name, String datasetId, List<DataVariableModifier> modifiers) {
-        this.modifiers = modifiers;
-        this.name = name;
-        this.datasetId = datasetId;
+    //List<DataVariableModifier> modifiers;
+
+
+
+
+    public DataVariable(String product, String version, String variable, String keyword) {
+        this.product = product;
+        this.version = version;
+        this.variable = variable;
+        this.keyword = keyword;
     }
 
-    public void setScienceKeyword(String scienceKeyword) {
-        this.scienceKeyword = scienceKeyword;
+    public String getProduct() {
+        return product;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProduct(String product) {
+        this.product = product;
     }
 
-    public String getName() {
-        return name;
+    public String getVersion() {
+        return version;
     }
 
-    public String getDescription() {
-        return description;
+    public void setVersion(String version) {
+        this.version = version;
     }
 
-    public String getScienceKeyword() {
-        return scienceKeyword;
+    public String getVariable() {
+        return variable;
     }
 
-    public String getDatasetId() {
-        return datasetId;
+    public void setVariable(String variable) {
+        this.variable = variable;
     }
 
-    public List<DataVariableModifier> getModifiers() {
-        return modifiers;
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }
