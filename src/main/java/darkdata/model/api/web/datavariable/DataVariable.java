@@ -15,11 +15,12 @@ public class DataVariable {
     @JsonProperty(value = "product")
     String product;
 
-
     @JsonProperty(value = "version")
     String version;
+
     @JsonProperty(value = "variable")
     String variable;
+
     @JsonProperty(value = "keyword")
     String keyword;
 
@@ -31,7 +32,6 @@ public class DataVariable {
         this.variable = variable;
         this.keyword = keyword;
     }
-
 
     public String getProduct() {
         return product;
