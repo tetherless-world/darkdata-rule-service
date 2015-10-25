@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import darkdata.DarkDataApplication;
 import darkdata.model.api.web.RecommendationRequest;
+import darkdata.model.api.web.datavariable.DataVariable;
 import darkdata.model.api.web.event.eonet.Event;
 import darkdata.model.api.web.event.eonet.EventCategory;
 import darkdata.model.api.web.event.eonet.EventGeometry;
@@ -27,7 +28,7 @@ import java.util.List;
 @SpringApplicationConfiguration(classes = DarkDataApplication.class)
 @WebAppConfiguration
 
-public class RecommedationRequestTest {
+public class RecommendationRequestTest {
     @Autowired
     private ObjectMapper mapper;
 
@@ -60,11 +61,20 @@ public class RecommedationRequestTest {
 
         return new Event(id, title, link, description,categoryList, geometryList);
     }
+
+    private List<DataVariable> createTestDataVariable() {
+        DataVariable d1 = new DataVariable("MYD08_D3","51","Cirrus_Reflectance_Mean","ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE");
+        DataVariable d2 = new DataVariable("MYD08_D3","51","Cloud_Optical_Thickness_Liquid_Mean","ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE");
+        return Arrays.asList(d1, d2);
+    }
+
     @Test
     public void testSerializeRecommendationRequest() throws JsonProcessingException {
         RecommendationRequest recommendationRequest = new RecommendationRequest();
         Assert.assertNotNull(recommendationRequest);
         recommendationRequest.setEvent(createTestEvent());
+        recommendationRequest.setDataVariableList(createTestDataVariable());
+        System.out.println(mapper.writeValueAsString(recommendationRequest));
         System.out.println(mapper.writeValueAsString(recommendationRequest));
     }
     }

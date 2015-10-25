@@ -2,7 +2,6 @@ package darkdata.model.api.web.datavariable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
 
 /**
  * @author szednik
@@ -25,13 +24,13 @@ public class DataVariable {
 
 
 
-
     public DataVariable(String product, String version, String variable, String keyword) {
         this.product = product;
         this.version = version;
         this.variable = variable;
         this.keyword = keyword;
     }
+
 
     public String getProduct() {
         return product;

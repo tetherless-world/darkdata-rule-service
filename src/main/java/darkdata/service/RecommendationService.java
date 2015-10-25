@@ -1,6 +1,6 @@
 package darkdata.service;
 
-import darkdata.model.api.web.Recommendation;
+import darkdata.model.api.web.RecommendationResponse;
 import darkdata.model.api.web.RecommendationRequest;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RecommendationService {
 
-    public Recommendation getRecommendation(RecommendationRequest request) {
+    public RecommendationResponse getRecommendation(RecommendationRequest request) {
         return null;
     }
 }
