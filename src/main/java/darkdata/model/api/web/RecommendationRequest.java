@@ -10,14 +10,18 @@ import java.util.List;
  * @author szednik
  */
 public class RecommendationRequest {
-    @JsonProperty(value = "event")
+
+    @JsonProperty("event")
     private Event event;
 
     @JsonProperty("data_variables")
     private List<DataVariable> dataVariableList;
 
-    public RecommendationRequest(List<DataVariable> dataVariableList) {
-    this.dataVariableList = dataVariableList;
+    public RecommendationRequest() { }
+
+    public RecommendationRequest(Event event, List<DataVariable> dataVariableList) {
+        this.event = event;
+        this.dataVariableList = dataVariableList;
     }
 
     public List<DataVariable> getDataVariableList() {
@@ -28,11 +32,6 @@ public class RecommendationRequest {
         this.dataVariableList = dataVariableList;
     }
 
-
-    public RecommendationRequest() {
-    }
-
-
     public Event getEvent() {
         return event;
     }
@@ -40,7 +39,5 @@ public class RecommendationRequest {
     public void setEvent(Event event) {
         this.event = event;
     }
-
-
 
 }

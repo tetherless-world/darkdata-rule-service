@@ -1,16 +1,17 @@
 {
   "candidates" : [
     {
-      "visualization" : {
+      "workflow" : {
         "service": "ArAvTs",
         "start_time": "2015-01-01T00:00:00Z",
         "end_time": "2015-04-30T23:59:59Z",
         "bbox": "180,-5,180,5",
-        "variables": [
+        "data_variables": [
           {
             "product" : "MYD08_D3",
             "version" : "51",
             "variable" : "Cirrus_Reflectance_Mean",
+            "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE",
             "modifiers": [ ]
           }
         ],
