@@ -18,6 +18,11 @@ public class RecommendationResponse {
 
     public RecommendationResponse() { }
 
+    public RecommendationResponse(RecommendationRequest request, List<CandidateWorkflow> candidates) {
+        this.request = request;
+        this.candidates = candidates;
+    }
+
     public RecommendationRequest getRequest() {
         return request;
     }

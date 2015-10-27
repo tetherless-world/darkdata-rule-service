@@ -1,5 +1,6 @@
 @prefix :  <http://www.purl.org/twc/ns/darkdata#> .
 @prefix dd:  <http://www.purl.org/twc/ns/darkdata#> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
@@ -198,76 +199,97 @@ dd:visible_radiance  rdf:type  dd:Radiance ;
 # Giovanni Visualization instances
 
 dd:DiArAvTs  rdf:type  dd:Visualization ;
+        dct:identifier "DiArAvTs" ;
         rdfs:comment  "Time series of area averages of differences between two variables at each spatial grid point"@en .
 
 dd:HvLn  rdf:type     dd:Visualization , dd:Hovmoller ;
         rdfs:label    "Hovmoller (Longitude)"@en ;
+        dct:identifier  "HvLn" ;
         rdfs:comment  "Longitude-averaged Hovmoller, plotted over the selected time and latitude ranges"@en .
 
 dd:HiGm  rdf:type     dd:Visualization ;
         rdfs:label    "Histogram"@en ;
+        dct:identifier "HiGm" ;
         rdfs:comment  "Distribution of values over time and space"@en .
 
 dd:TmAvSc  rdf:type   dd:Visualization ;
+        dct:identifier "TmAvSc" ;
         rdfs:comment  "Time-averaged, interactive X-Y plot of 2 variables"@en .
 
 dd:ArAvTs  rdf:type   dd:Visualization ;
         rdfs:label    "Area-averaged Time Series"@en ;
+        dct:identifier "ArAvTs" ;
         rdfs:comment  "Time series of area-averaged values"@en .
 
 dd:CoMp  rdf:type     dd:Visualization ;
+        dct:identifier "CoMp";
         rdfs:comment  "Simple linear regression of 2 variables at each grid cell"@en .
 
 dd:TmAvMp  rdf:type   dd:Visualization ;
         rdfs:label    "Time-averaged Map"@en ;
+        dct:identifier "TmAvMp";
         rdfs:comment  "Interactive map of average over time at each grid cell"@en .
 
 dd:MpAn  rdf:type     dd:Visualization ;
+        dct:identifier "MpAn ";
         rdfs:comment  "Map animated along the chosen timeline for each grid cell"@en .
 
 dd:StSc  rdf:type     dd:Visualization ;
         rdfs:label    "Static Scatter plot"@en ;
+        dct:identifier "StSc" ;
         rdfs:comment  "Static Scatter plot"@en .
 
 dd:VtPf  rdf:type     dd:Visualization ;
         rdfs:label    "Vertical Profile"@en ;
+        dct:identifier "VtPf" ;
         rdfs:comment  "Vertical Profile"@en .
 
 dd:HvLt  rdf:type     dd:Visualization , dd:Hovmoller ;
         rdfs:label    "Hovmoller (Latitude)"@en ;
+        dct:identifier "HvLt" ;
         rdfs:comment  "Latitude-averaged Hovmoller, plotted over the selected time and longitude ranges"@en .
 
 dd:QuCl  rdf:type     dd:Visualization ;
         rdfs:label    "User-defined Climatology"@en ;
+        dct:identifier "QuCl" ;
         rdfs:comment  "Quasi Climatology Map"@en .
 
 dd:InTs  rdf:type     dd:Visualization ;
         rdfs:label    "Seasonal Time Series"@en ;
+        dct:identifier "InTs" ;
         rdfs:comment  "Seasonal (inter annual) time series"@en .
 
 dd:DiTmAvMp  rdf:type dd:Visualization ;
+        dct:identifier "DiTmAvMp" ;
         rdfs:comment  "Difference of two time averaged variable maps"@en .
 
 dd:IaSc  rdf:type     dd:Visualization ;
+        dct:identifier "IaSc" ;
         rdfs:comment  "Interactive Scatter Plot"@en .
 
 dd:AcMp  rdf:type     dd:Visualization ;
+        dct:identifier "AcMp" ;
         rdfs:comment  "Accumulation of measurement over time at each grid point"@en .
 
 dd:ArAvSc  rdf:type   dd:Visualization ;
+        dct:identifier "ArAvSc" ;
         rdfs:comment  "Scatter plot comparing area averaged time series for two variables"@en .
 
 dd:CrTm  rdf:type     dd:Visualization ;
+        dct:identifier "CrTm" ;
         rdfs:comment  "Cross Map, Time-Pressure"@en .
 
 dd:CrLt  rdf:type     dd:Visualization ;
+        dct:identifer "CrLt" ;
         rdfs:comment  "Cross Map, Latitude-Pressure"@en .
 
 dd:CrLn  rdf:type     dd:Visualization ;
+        dct:identifier "CrLn" ;
         rdfs:comment  "Cross Map, Longitude-Pressure"@en .
 
 dd:ZnMn  rdf:type     dd:Visualization ;
         rdfs:label    "Zonal Means"@en ;
+        dct:identifier "ZnMn" ;
         rdfs:comment  "Zonal mean plot, averaged values are plotted over latitude zones"@en .
 
 # Phenomena sub-classes
@@ -490,3 +512,13 @@ dd:compatibilityAssertion
         rdfs:label      "compatibility assertion" ;
         rdfs:range      dd:CompatibilityAssertion ;
         rdfs:domain     dd:Candidate .
+
+dd:startDateTime
+        rdf:type        owl:DatatypeProperty ;
+        rdfs:label      "start datetime" ;
+        rdfs:range      xsd:dateTime .
+
+dd:endDateTime
+        rdf:type        owl:DatatypeProperty ;
+        rdfs:label      "end datetime" ;
+        rdfs:range      xsd:dateTime .

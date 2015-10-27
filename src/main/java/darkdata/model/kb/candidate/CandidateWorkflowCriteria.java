@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author szednik
  */
-public class CandidateWorkflowCriteria {
+public class CandidateWorkflowCriteria extends CandidateCriteria {
 
     @JsonProperty(value = "event")
     Event event;
