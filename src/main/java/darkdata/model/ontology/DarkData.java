@@ -187,5 +187,7 @@ public class DarkData {
 
     public static final DatatypeProperty endDateTime = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#endDateTime" );
 
+    public static final ObjectProperty geometry = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#compatibilityAssertion" );
+
 
 }

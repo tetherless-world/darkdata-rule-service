@@ -1,10 +1,6 @@
 package darkdata.model.kb.coverage;
 
 import darkdata.DarkDataApplication;
-import darkdata.model.ontology.GeoSparql;
-import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.rdf.model.ModelFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,17 +24,13 @@ public class GeometryTest {
 
     @Test
     public void testCreateGeometry() {
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual g = m.createIndividual("urn:geometry/test", GeoSparql.Geometry);
-        Geometry geometry = new Geometry(g);
+        Geometry geometry = GeometryTestHarness.createGeometry("urn:geometry/testCreateGeometry");
         Assert.assertNotNull(geometry);
     }
 
     @Test
     public void testGetStartDateTime() {
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual g = m.createIndividual("urn:geometry/test", GeoSparql.Geometry);
-        Geometry geometry = new Geometry(g);
+        Geometry geometry = GeometryTestHarness.createGeometry("urn:geometry/testGetStartDateTime");
         Assert.assertNotNull(geometry);
 
         LocalDateTime date = LocalDateTime.parse("2015-10-15T00:00:00Z", DateTimeFormatter.ISO_DATE_TIME);
@@ -50,9 +42,7 @@ public class GeometryTest {
 
     @Test
     public void testSetStartDateTime_String() {
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual g = m.createIndividual("urn:geometry/test", GeoSparql.Geometry);
-        Geometry geometry = new Geometry(g);
+        Geometry geometry = GeometryTestHarness.createGeometry("urn:geometry/testSetStartDateTime_String");
         Assert.assertNotNull(geometry);
 
         geometry.setStartDateTime("2015-10-15T00:00:00Z");
@@ -63,9 +53,7 @@ public class GeometryTest {
 
     @Test
     public void testGetEndDateTime() {
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual g = m.createIndividual("urn:geometry/test", GeoSparql.Geometry);
-        Geometry geometry = new Geometry(g);
+        Geometry geometry = GeometryTestHarness.createGeometry("urn:geometry/testGetEndDateTime");
         Assert.assertNotNull(geometry);
 
         LocalDateTime date = LocalDateTime.parse("2015-10-15T00:00:00Z", DateTimeFormatter.ISO_DATE_TIME);
@@ -77,9 +65,7 @@ public class GeometryTest {
 
     @Test
     public void testSetEndDateTime_String() {
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual g = m.createIndividual("urn:geometry/test", GeoSparql.Geometry);
-        Geometry geometry = new Geometry(g);
+        Geometry geometry = GeometryTestHarness.createGeometry("urn:geometry/testSetEndDateTime_String");
         Assert.assertNotNull(geometry);
 
         geometry.setEndDateTime("2015-10-15T00:00:00Z");

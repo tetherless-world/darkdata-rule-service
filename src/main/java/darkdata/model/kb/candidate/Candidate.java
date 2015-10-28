@@ -24,6 +24,7 @@ public class Candidate extends IndividualProxy {
     }
 
     public void addCompatibilityAssertion(CompatibilityAssertion assertion) {
+        getIndividual().getOntModel().addSubModel(assertion.getIndividual().getModel());
         getIndividual().addProperty(DarkData.compatibilityAssertion, assertion.getIndividual());
     }
 

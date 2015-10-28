@@ -1,7 +1,7 @@
 package darkdata.web;
 
-import darkdata.model.api.web.RecommendationResponse;
-import darkdata.model.api.web.RecommendationRequest;
+import darkdata.web.api.RecommendationRequest;
+import darkdata.web.api.RecommendationResponse;
 import darkdata.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

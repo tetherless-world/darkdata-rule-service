@@ -1,8 +1,8 @@
 package darkdata.service;
 
-import darkdata.model.api.web.datavariable.DataVariable;
-import darkdata.model.api.web.event.eonet.Event;
-import darkdata.model.api.web.event.eonet.EventCategory;
+import darkdata.web.api.datavariable.DataVariable;
+import darkdata.web.api.event.eonet.Event;
+import darkdata.web.api.event.eonet.EventCategory;
 import darkdata.model.kb.Phenomena;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;

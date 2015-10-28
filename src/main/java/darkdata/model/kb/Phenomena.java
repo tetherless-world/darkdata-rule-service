@@ -7,7 +7,6 @@ import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.RDFNode;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,11 +33,18 @@ public class Phenomena extends IndividualProxy {
     }
 
     public List<Geometry> getGeometries() {
-        return Collections.<Geometry>emptyList();
+        return getIndividual()
+                .listPropertyValues(DarkData.geometry).toList().stream()
+                .filter(RDFNode::isResource)
+                .map(RDFNode::asResource)
+                .map(r -> getIndividual().getOntModel().getIndividual(r.getURI()))
+                .map(Geometry::new)
+                .collect(Collectors.toList());
     }
 
     public void addGeometry(Geometry geometry) {
-        // TODO
+        getIndividual().getOntModel().addSubModel(geometry.getIndividual().getModel());
+        getIndividual().setPropertyValue(DarkData.geometry, geometry.getIndividual());
     }
 
 }

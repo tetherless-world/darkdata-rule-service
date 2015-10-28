@@ -19,6 +19,7 @@ public class CandidateWorkflow extends Candidate {
     }
 
     public void setEvent(Phenomena event) {
+        getIndividual().getOntModel().addSubModel(event.getIndividual().getModel());
         getIndividual().setPropertyValue(DarkData.candidateEvent, event.getIndividual());
     }
 
@@ -32,6 +33,7 @@ public class CandidateWorkflow extends Candidate {
     }
 
     public void setService(G4Service service) {
+        getIndividual().getOntModel().addSubModel(service.getIndividual().getModel());
         getIndividual().setPropertyValue(DarkData.candidateService, service.getIndividual());
     }
 

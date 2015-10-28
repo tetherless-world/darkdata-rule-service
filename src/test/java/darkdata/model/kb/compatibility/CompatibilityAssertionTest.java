@@ -2,10 +2,7 @@ package darkdata.model.kb.compatibility;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.candidate.CandidateWorkflow;
-import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.rdf.model.ModelFactory;
+import darkdata.model.kb.candidate.CandidateWorkflowTestHarness;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,9 +24,7 @@ public class CompatibilityAssertionTest {
     @Test
     public void testGetValue() {
 
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual c = m.createIndividual("urn:foo", DarkData.CompatibilityAssertion);
-        CompatibilityAssertion assertion = new CompatibilityAssertion(c);
+        CompatibilityAssertion assertion = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:assertion/testGetValue");
         Assert.assertNotNull(assertion);
 
         assertion.setValue(CompatibilityValue.SLIGHT);
@@ -42,9 +37,7 @@ public class CompatibilityAssertionTest {
     @Test
     public void testGetConfidence() {
 
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual c = m.createIndividual("urn:foo", DarkData.CompatibilityAssertion);
-        CompatibilityAssertion assertion = new CompatibilityAssertion(c);
+        CompatibilityAssertion assertion = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:/assertion/testGetConfidence");
         Assert.assertNotNull(assertion);
 
         assertion.setConfidence(0.42D);
@@ -56,13 +49,11 @@ public class CompatibilityAssertionTest {
     @Test
     public void testGetCandidate() {
 
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual c = m.createIndividual("urn:foo", DarkData.CompatibilityAssertion);
-        CompatibilityAssertion assertion = new CompatibilityAssertion(c);
+        CompatibilityAssertion assertion = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:assertion/testGetCandidate");
         Assert.assertNotNull(assertion);
 
-        Individual cw = m.createIndividual("urn:bar", DarkData.CandidateWorkflow);
-        CandidateWorkflow candidate = new CandidateWorkflow(cw);
+        CandidateWorkflow candidate = CandidateWorkflowTestHarness.createCandidateWorkflow("urn:candidate/testGetCandidate");
+        Assert.assertNotNull(candidate);
 
         assertion.setCandidateWorkflow(candidate);
         Optional<CandidateWorkflow> result = assertion.getCandidate();

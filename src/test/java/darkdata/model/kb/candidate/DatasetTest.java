@@ -2,12 +2,6 @@ package darkdata.model.kb.candidate;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.Dataset;
-import darkdata.model.kb.compatibility.CompatibilityAssertion;
-import darkdata.model.kb.compatibility.CompatibilityValue;
-import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.rdf.model.ModelFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,9 +23,7 @@ public class DatasetTest {
     @Test
     public void testGetShortName() {
 
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual d = m.createIndividual("urn:dataset", DarkData.Dataset);
-        Dataset dataset = new Dataset(d);
+        Dataset dataset = DatasetTestHarness.createDataset("urn:dataset/testGetShortName");
         Assert.assertNotNull(dataset);
 
         dataset.setShortName("shortNameTest");
@@ -44,9 +36,7 @@ public class DatasetTest {
     @Test
     public void testGetLongName() {
 
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual d = m.createIndividual("urn:dataset", DarkData.Dataset);
-        Dataset dataset = new Dataset(d);
+        Dataset dataset = DatasetTestHarness.createDataset("urn:dataset/testGetLongName");
         Assert.assertNotNull(dataset);
 
         dataset.setLongName("longNameTest");
@@ -55,4 +45,6 @@ public class DatasetTest {
         Assert.assertTrue(result.isPresent());
         Assert.assertEquals("longNameTest", result.get());
     }
+
+    // TODO testGetVariables
 }

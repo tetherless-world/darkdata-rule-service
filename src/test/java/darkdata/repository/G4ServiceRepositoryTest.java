@@ -2,7 +2,6 @@ package darkdata.repository;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.g4.G4Service;
-import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Resource;
 import org.junit.Assert;

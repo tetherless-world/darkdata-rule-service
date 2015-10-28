@@ -1,8 +1,8 @@
 package darkdata.model.kb.candidate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import darkdata.model.api.web.datavariable.DataVariable;
-import darkdata.model.api.web.event.eonet.Event;
+import darkdata.web.api.datavariable.DataVariable;
+import darkdata.web.api.event.eonet.Event;
 
 import java.util.List;
 

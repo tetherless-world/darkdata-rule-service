@@ -31,10 +31,12 @@ public class CompatibilityAssertion extends IndividualProxy {
     }
 
     public void setCandidateWorkflow(CandidateWorkflow candidate) {
+        getIndividual().getOntModel().addSubModel(candidate.getIndividual().getModel());
         getIndividual().setPropertyValue(DarkData.candidate, candidate.getIndividual());
     }
 
     public void setValue(CompatibilityValue value) {
+        getIndividual().getOntModel().addSubModel(value.getIndividual().getModel());
         getIndividual().setPropertyValue(DarkData.compatibilityValue, value.getIndividual());
     }
 

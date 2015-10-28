@@ -1,14 +1,10 @@
 package darkdata.repository;
 
 import darkdata.DarkDataApplication;
-import darkdata.model.api.web.event.eonet.Event;
-import darkdata.model.api.web.event.eonet.EventCategory;
-import darkdata.model.kb.Phenomena;
+import darkdata.web.api.event.eonet.Event;
+import darkdata.web.api.event.eonet.EventCategory;
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.base.Sys;
-import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
-import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.Resource;
 import org.junit.Assert;
 import org.junit.Test;

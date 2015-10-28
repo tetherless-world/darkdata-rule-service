@@ -2,11 +2,9 @@ package darkdata.model.kb.candidate;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.Phenomena;
+import darkdata.model.kb.PhenomenaTestHarness;
 import darkdata.model.kb.g4.G4Service;
-import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.rdf.model.ModelFactory;
+import darkdata.model.kb.g4.G4ServiceTestHarness;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,28 +25,27 @@ public class CandidateWorkflowTest {
     @Test
     public void testGetEvent() {
 
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual c = m.createIndividual("urn:foo", DarkData.CandidateWorkflow);
-        CandidateWorkflow candidate = new CandidateWorkflow(c);
+        CandidateWorkflow candidate = CandidateWorkflowTestHarness.createCandidateWorkflow("urn:candidate/testGetEvent");
+        Assert.assertNotNull(candidate);
 
-        Individual e = m.createIndividual("urn:bar", DarkData.Hurricane);
-        Phenomena event = new Phenomena(e);
+        Phenomena hurricane = PhenomenaTestHarness.createHurricane("urn:event/testGetEvent");
+        Assert.assertNotNull(hurricane);
 
-        candidate.setEvent(event);
+        candidate.setEvent(hurricane);
         Optional<Phenomena> result = candidate.getEvent();
 
         Assert.assertTrue("result has no value", result.isPresent());
-        Assert.assertEquals(event, result.get());
+        Assert.assertEquals(hurricane, result.get());
     }
 
     @Test
     public void testGetService() {
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual c = m.createIndividual("urn:foo", DarkData.CandidateWorkflow);
-        CandidateWorkflow candidate = new CandidateWorkflow(c);
 
-        Individual s = m.createIndividual("urn:bar", DarkData.Hovmoller);
-        G4Service service = new G4Service(s);
+        CandidateWorkflow candidate = CandidateWorkflowTestHarness.createCandidateWorkflow("urn:candidate/testGetService");
+        Assert.assertNotNull(candidate);
+
+        G4Service service = G4ServiceTestHarness.createService("urn:service/testGetService");
+        Assert.assertNotNull(candidate);
 
         candidate.setService(service);
         Optional<G4Service> result = candidate.getService();
