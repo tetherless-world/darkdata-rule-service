@@ -26,4 +26,8 @@ public class AdvisoryController {
         RecommendationResponse recommendationResponse = recommendationService.getRecommendation(payload);
         return new ResponseEntity<>(recommendationResponse, HttpStatus.OK);
     }
+    @RequestMapping(value = "/status",method = RequestMethod.GET)
+    public ResponseEntity<String> status(){
+        return new ResponseEntity<>("I am Up.", HttpStatus.OK);
+    }
 }
