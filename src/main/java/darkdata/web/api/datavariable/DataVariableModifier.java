@@ -1,4 +1,4 @@
-package darkdata.model.api.web.datavariable;
+package darkdata.web.api.datavariable;
 
 /**
  * @author szednik

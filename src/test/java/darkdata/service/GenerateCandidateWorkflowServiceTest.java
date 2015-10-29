@@ -1,9 +1,9 @@
 package darkdata.service;
 
 import darkdata.DarkDataApplication;
-import darkdata.model.api.web.datavariable.DataVariable;
-import darkdata.model.api.web.event.eonet.Event;
-import darkdata.model.api.web.event.eonet.EventCategory;
+import darkdata.web.api.datavariable.DataVariable;
+import darkdata.web.api.event.eonet.Event;
+import darkdata.web.api.event.eonet.EventCategory;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import org.junit.Assert;
@@ -37,7 +37,8 @@ public class GenerateCandidateWorkflowServiceTest {
     }
 
     private List<DataVariable> getTestVariables() {
-        return Arrays.asList(new DataVariable("var","var", null), null);
+        //return Arrays.asList(new DataVariable("var","var", null), null);
+        return Arrays.asList(new DataVariable("test","test","test","test"));
     }
 
     private CandidateWorkflowCriteria getTestCriteria() {

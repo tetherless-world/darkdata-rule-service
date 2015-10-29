@@ -3,7 +3,6 @@ package darkdata.repository;
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.Phenomena;
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.RDFNode;
 import org.junit.Assert;

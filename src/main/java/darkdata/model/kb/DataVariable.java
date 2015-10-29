@@ -1,10 +1,8 @@
 package darkdata.model.kb;
 
-import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
-import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.ResourceFactory;
 
@@ -27,7 +25,7 @@ public class DataVariable extends IndividualProxy {
     }
 
     public Optional<String> getShortName() {
-        return Stream.of(getIndividual().getPropertyResourceValue(DarkData.shortName))
+        return Stream.of(getIndividual().getPropertyValue(DarkData.shortName))
                 .filter(RDFNode::isLiteral)
                 .map(RDFNode::asLiteral)
                 .map(RDFNode::toString)
@@ -35,14 +33,15 @@ public class DataVariable extends IndividualProxy {
     }
 
     public void setDataset(Dataset dataset) {
+        getIndividual().getOntModel().addSubModel(dataset.getIndividual().getModel());
         getIndividual().setPropertyValue(DarkData.dataset, dataset.getIndividual());
     }
 
     public Optional<Dataset> getDataset() {
         return Stream.of(getIndividual().getPropertyResourceValue(DarkData.dataset))
-                .map(r -> (OntResource) r)
-                .filter(OntResource::isIndividual)
-                .map(OntResource::asIndividual)
+                .filter(RDFNode::isResource)
+                .map(RDFNode::asResource)
+                .map(r -> getIndividual().getOntModel().getIndividual(r.getURI()))
                 .map(Dataset::new)
                 .findFirst();
     }

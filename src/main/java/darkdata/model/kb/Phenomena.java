@@ -1,5 +1,6 @@
 package darkdata.model.kb;
 
+import darkdata.model.kb.coverage.Geometry;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
@@ -29,6 +30,21 @@ public class Phenomena extends IndividualProxy {
                 .map(OntResource::asIndividual)
                 .map(PhysicalFeature::new)
                 .collect(Collectors.toList());
+    }
+
+    public List<Geometry> getGeometries() {
+        return getIndividual()
+                .listPropertyValues(DarkData.geometry).toList().stream()
+                .filter(RDFNode::isResource)
+                .map(RDFNode::asResource)
+                .map(r -> getIndividual().getOntModel().getIndividual(r.getURI()))
+                .map(Geometry::new)
+                .collect(Collectors.toList());
+    }
+
+    public void addGeometry(Geometry geometry) {
+        getIndividual().getOntModel().addSubModel(geometry.getIndividual().getModel());
+        getIndividual().setPropertyValue(DarkData.geometry, geometry.getIndividual());
     }
 
 }

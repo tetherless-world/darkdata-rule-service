@@ -8,6 +8,7 @@ import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.RDFNode;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -16,11 +17,14 @@ import java.util.stream.Collectors;
 
 public class Candidate extends IndividualProxy {
 
+    private CandidateScore score;
+
     public Candidate(Individual individual) {
         super(individual);
     }
 
     public void addCompatibilityAssertion(CompatibilityAssertion assertion) {
+        getIndividual().getOntModel().addSubModel(assertion.getIndividual().getModel());
         getIndividual().addProperty(DarkData.compatibilityAssertion, assertion.getIndividual());
     }
 
@@ -31,5 +35,13 @@ public class Candidate extends IndividualProxy {
                 .map(r -> getIndividual().getOntModel().getIndividual(r.getURI()))
                 .map(CompatibilityAssertion::new)
                 .collect(Collectors.toList());
+    }
+
+    public void setScore(CandidateScore score) {
+        this.score = score;
+    }
+
+    public Optional<CandidateScore> getScore() {
+        return Optional.ofNullable(this.score);
     }
 }

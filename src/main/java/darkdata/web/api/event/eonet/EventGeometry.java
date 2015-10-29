@@ -1,4 +1,4 @@
-package darkdata.model.api.web.event.eonet;
+package darkdata.web.api.event.eonet;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,9 +17,9 @@ public class EventGeometry {
     String date;
 
     @JsonProperty(value = "coordinates")
-    List<List<Long>> coordinates;
+    List<List<Double>> coordinates;
 
-    public EventGeometry(String type, String date, List<List<Long>> coordinates) {
+    public EventGeometry(String type, String date, List<List<Double>> coordinates) {
         this.type = type;
         this.date = date;
         this.coordinates = coordinates;
@@ -33,7 +33,7 @@ public class EventGeometry {
         return date;
     }
 
-    public List<List<Long>> getCoordinates() {
+    public List<List<Double>> getCoordinates() {
         return coordinates;
     }
 }

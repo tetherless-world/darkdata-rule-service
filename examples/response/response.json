@@ -1,0 +1,62 @@
+{
+  "candidates" : [
+    {
+      "workflow" : {
+        "service": "ArAvTs",
+        "start_time": "2015-01-01T00:00:00Z",
+        "end_time": "2015-04-30T23:59:59Z",
+        "bbox": "180,-5,180,5",
+        "data_variables": [
+          {
+            "product" : "MYD08_D3",
+            "version" : "51",
+            "variable" : "Cirrus_Reflectance_Mean",
+            "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE",
+            "modifiers": [ ]
+          }
+        ],
+        "dataKeyword": [ ],
+        "shape": "shp_30"
+      },
+      "score" : 2.543
+    }
+  ],
+  "criteria" : {
+    "event": {
+      "id": "EONET_224",
+      "title": "Hurricane Olaf",
+      "link": "http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_224",
+      "category": [
+        {
+          "-domain": "Severe Storms",
+          "#text": "Severe Storms"
+        }
+      ],
+      "description": "",
+      "geometry": [
+        {
+          "date": "2015-10-15T00:00:00Z",
+          "type": "Point",
+          "coordinates": [
+            -117.10,
+            9.90
+          ]
+        }
+      ]
+    },
+    "data_variables": [
+      {
+        "product" : "MYD08_D3",
+        "version" : "51",
+        "variable" : "Cirrus_Reflectance_Mean",
+        "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"
+      },
+      {
+        "product" : "MYD08_D3",
+        "version" : "51",
+        "variable" : "Cloud_Optical_Thickness_Liquid_Mean",
+        "keyword" : "ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE"
+      }
+    ]
+  }
+}

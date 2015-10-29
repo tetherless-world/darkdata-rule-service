@@ -1,0 +1,15 @@
+{
+  "id" : "EONET_224",
+  "title" : "Hurricane Olaf",
+  "link" : "http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_224",
+  "description" : "",
+  "category" : [ {
+    "-domain" : "Severe Storms",
+    "#text" : "Severe Storms"
+  } ],
+  "geometry" : [ {
+    "type" : "Point",
+    "date" : "2015-10-15T00:00:00Z",
+    "coordinates" : [ [ -117.1, 9.9 ] ]
+  } ]
+}

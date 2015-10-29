@@ -2,10 +2,7 @@ package darkdata.model.kb.candidate;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.compatibility.CompatibilityAssertion;
-import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.rdf.model.ModelFactory;
+import darkdata.model.kb.compatibility.CompatibilityAssertionTestHarness;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,15 +23,9 @@ public class CandidateTest {
     @Test
     public void testGetCompatibilityAssertions() {
 
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual c = m.createIndividual("urn:candidate", DarkData.CandidateWorkflow);
-        CandidateWorkflow candidate = new CandidateWorkflow(c);
-
-        Individual a1 = m.createIndividual("urn:assertion1", DarkData.CompatibilityAssertion);
-        CompatibilityAssertion assertion1 = new CompatibilityAssertion(a1);
-
-        Individual a2 = m.createIndividual("urn:assertion2", DarkData.CompatibilityAssertion);
-        CompatibilityAssertion assertion2 = new CompatibilityAssertion(a2);
+        CandidateWorkflow candidate = CandidateWorkflowTestHarness.createCandidateWorkflow("urn:candidate/testGetCompatibilityAssertions");
+        CompatibilityAssertion assertion1 = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:assertion1");
+        CompatibilityAssertion assertion2 = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:assertion2");
 
         candidate.addCompatibilityAssertion(assertion1);
         candidate.addCompatibilityAssertion(assertion2);
