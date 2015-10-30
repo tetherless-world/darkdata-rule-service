@@ -10,8 +10,7 @@
 
 <http://www.purl.org/twc/ns/darkdata>
         rdf:type     owl:Ontology ;
-        rdfs:label   "Dark Data Ontology"@en ;
-        owl:imports  <http://def.seegrid.csiro.au/ontology/om/om-lite> .
+        rdfs:label   "Dark Data Ontology"@en .
 
 dd:topic
         rdf:type owl:AnnotationProperty ;
