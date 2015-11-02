@@ -84,12 +84,6 @@ public class AdvisoryControllerTest {
         mockMvc.perform(get("/advisor/status"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("I am Up."));
-//
-//                .andExpect(jsonPath("$",hasSize(1)))
-//                .andExpect(jsonPath("$[0].service",is("ArAvTs")))
-//                .andExpect(jsonPath("$[0].start_time",is("2015-01-01T00:00:00Z")))
-//                .andExpect(jsonPath("$[0].end_time",is("2015-04-30T23:59:59Z")))
-//                .andExpect(jsonPath("$[0].bbox",is("180,-5,180,5")));
 
     }
 
