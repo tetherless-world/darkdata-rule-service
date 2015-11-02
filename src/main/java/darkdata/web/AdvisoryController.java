@@ -23,9 +23,15 @@ public class AdvisoryController {
 
     @RequestMapping(value = "/recommendation", method = RequestMethod.POST)
     public ResponseEntity<RecommendationResponse> recommendation(RecommendationRequest payload) {
+
+        if(payload == null || payload.getEvent() == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         RecommendationResponse recommendationResponse = recommendationService.getRecommendation(payload);
         return new ResponseEntity<>(recommendationResponse, HttpStatus.OK);
     }
+
     @RequestMapping(value = "/status",method = RequestMethod.GET)
     public ResponseEntity<String> status(){
         return new ResponseEntity<>("I am Up.", HttpStatus.OK);

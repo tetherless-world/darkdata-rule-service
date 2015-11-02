@@ -1,41 +1,25 @@
 package darkdata.web;
 
 import darkdata.DarkDataApplication;
-import darkdata.service.RecommendationService;
-import darkdata.web.api.RecommendationResponse;
-import org.apache.http.HttpStatus;
-
-import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.hateoas.client.Traverson;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.net.URI;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
-
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 /**
  * @author anirudhprabhu
@@ -55,31 +39,28 @@ public class AdvisoryControllerTest {
 
     private MockMvc mockMvc;
 
-    private RecommendationService recommendationServiceMock;
+//    private RecommendationService recommendationServiceMock;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
 
-/*
-    @Autowired
-    void setConverters(HttpMessageConverter<?>[] converters) {
+//    @Autowired
+//    void setConverters(HttpMessageConverter<?>[] converters) {
+//
+//        this.mappingJackson2HttpMessageConverter = Arrays.asList(converters).stream().filter(
+//                hmc -> hmc instanceof MappingJackson2HttpMessageConverter).findAny().get();
+//
+//        Assert.assertNotNull("the JSON message converter must not be null",
+//                this.mappingJackson2HttpMessageConverter);
+//    }
 
-        this.mappingJackson2HttpMessageConverter = Arrays.asList(converters).stream().filter(
-                hmc -> hmc instanceof MappingJackson2HttpMessageConverter).findAny().get();
-
-        Assert.assertNotNull("the JSON message converter must not be null",
-                this.mappingJackson2HttpMessageConverter);
-    }
-*/
     @Before
     public void setup() throws Exception {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
-
     }
 
     @Test
-    public void findAll_Responses() throws Exception {
-
+    public void testAdvisorGetForStatus() throws Exception {
 
         mockMvc.perform(get("/advisor/status"))
                 .andExpect(status().isOk())
@@ -88,7 +69,7 @@ public class AdvisoryControllerTest {
     }
 
     @Test
-    public void findAll_Responses_forPost() throws Exception {
+    public void testAdvisorPostForRecommendation() throws Exception {
         mockMvc.perform(post("/advisor/recommendation"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
@@ -124,13 +105,7 @@ public class AdvisoryControllerTest {
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].version", containsInAnyOrder("51")))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].variable", containsInAnyOrder("Cirrus_Reflectance_Mean","Cloud_Optical_Thickness_Liquid_Mean")))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].keyword", containsInAnyOrder("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE","ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE")));
-
-
-
     }
-
-
-
-    }
+}
 
 
