@@ -93,6 +93,48 @@ public class AdvisoryControllerTest {
 
     }
 
+    @Test
+    public void findAll_Responses_forPost() throws Exception {
+        mockMvc.perform(post("/advisor/recommendation"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.candidates", hasSize(1)))
+                .andExpect(jsonPath("$.candidates[*].workflow", hasSize(1)))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].service", containsInAnyOrder("ArAvTs")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].start_time",containsInAnyOrder("2015-01-01T00:00:00Z")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].end_time",containsInAnyOrder("2015-04-30T23:59:59Z")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].bbox",containsInAnyOrder("180,-5,180,5")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables",hasSize(1)))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].product",containsInAnyOrder("MYD08_D3")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].version",containsInAnyOrder("51")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].variable",containsInAnyOrder("Cirrus_Reflectance_Mean")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].keyword",containsInAnyOrder("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].modifiers",isEmptyOrNullString()))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].shape", containsInAnyOrder("shp_30")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].dataKeyword",isEmptyOrNullString()))
+                .andExpect(jsonPath("$.candidates[*].score", containsInAnyOrder(2.543D)))
+                .andExpect(jsonPath("$.criteria",hasSize(1)))
+                .andExpect(jsonPath("$.criteria[*].event",hasSize(1)))
+                .andExpect(jsonPath("$.criteria[*].event[*].id",containsInAnyOrder("EONET_224")))
+                .andExpect(jsonPath("$.criteria[*].event[*].title", containsInAnyOrder("Hurricane Olaf")))
+                .andExpect(jsonPath("$.criteria[*].event[*].link", containsInAnyOrder("http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_224")))
+                .andExpect(jsonPath("$.criteria[*].event[*].category", hasSize(1)))
+                .andExpect(jsonPath("$.criteria[*].event[*].category[*].-domain", containsInAnyOrder("Severe Storms")))
+                .andExpect(jsonPath("$.criteria[*].event[*].category[*].#text", containsInAnyOrder("Severe Storms")))
+                .andExpect(jsonPath("$.criteria[*].event[*].geometry",hasSize(1)))
+                .andExpect(jsonPath("$.criteria[*].event[*].geometry[*].date",containsInAnyOrder("2015-10-15T00:00:00Z")))
+                .andExpect(jsonPath("$.criteria[*].event[*].geometry[*].type",containsInAnyOrder("Point")))
+                .andExpect(jsonPath("$.criteria[*].event[*].geometry[*].coordinates",containsInAnyOrder(-117.10D,9.90D)))
+                .andExpect(jsonPath("$.criteria[*].data_variables",hasSize(2)))
+                .andExpect(jsonPath("$.criteria[*].data_variables[*].product",containsInAnyOrder("MYD08_D3")))
+                .andExpect(jsonPath("$.criteria[*].data_variables[*].version", containsInAnyOrder("51")))
+                .andExpect(jsonPath("$.criteria[*].data_variables[*].variable", containsInAnyOrder("Cirrus_Reflectance_Mean","Cloud_Optical_Thickness_Liquid_Mean")))
+                .andExpect(jsonPath("$.criteria[*].data_variables[*].keyword", containsInAnyOrder("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE","ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE")));
+
+
+
+    }
+
 
 
     }
