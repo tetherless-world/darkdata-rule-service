@@ -1,25 +1,32 @@
 package darkdata.web;
 
 import darkdata.DarkDataApplication;
+import org.apache.commons.io.IOUtils;
+import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.Charset;
+import java.util.Arrays;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+
 
 /**
  * @author anirudhprabhu
@@ -28,6 +35,10 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DarkDataApplication.class)
 @WebAppConfiguration("server.port=0")
+//@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+//        DirtiesContextTestExecutionListener.class,
+//        TransactionalTestExecutionListener.class,
+//        DbUnitTestExecutionListener.class})
 //@IntegrationTest("server.port=0")
 //@DirtiesContext
 
@@ -38,21 +49,26 @@ public class AdvisoryControllerTest {
             Charset.forName("utf8"));
 
     private MockMvc mockMvc;
+    private MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter;
 
 //    private RecommendationService recommendationServiceMock;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
 
-//    @Autowired
-//    void setConverters(HttpMessageConverter<?>[] converters) {
-//
-//        this.mappingJackson2HttpMessageConverter = Arrays.asList(converters).stream().filter(
-//                hmc -> hmc instanceof MappingJackson2HttpMessageConverter).findAny().get();
-//
-//        Assert.assertNotNull("the JSON message converter must not be null",
-//                this.mappingJackson2HttpMessageConverter);
-//    }
+    @Value("classpath:json/request.json")
+    private Resource request;
+    @Autowired
+    void setConverters(HttpMessageConverter<?>[] converters) {
+
+        this.mappingJackson2HttpMessageConverter = Arrays.asList(converters).stream()
+                .filter(hmc -> hmc instanceof MappingJackson2HttpMessageConverter)
+                .map(f -> (MappingJackson2HttpMessageConverter) f)
+                .findAny()
+                .get();
+        Assert.assertNotNull("the JSON message converter must not be null",
+                this.mappingJackson2HttpMessageConverter);
+    }
 
     @Before
     public void setup() throws Exception {
@@ -70,7 +86,10 @@ public class AdvisoryControllerTest {
 
     @Test
     public void testAdvisorPostForRecommendation() throws Exception {
-        mockMvc.perform(post("/advisor/recommendation"))
+
+        String request_string = IOUtils.toString(request.getInputStream());
+        System.out.println(request_string);
+        mockMvc.perform(post("/advisor/recommendation").content(request_string).contentType(contentType))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$.candidates", hasSize(1)))
@@ -103,8 +122,8 @@ public class AdvisoryControllerTest {
                 .andExpect(jsonPath("$.criteria[*].data_variables",hasSize(2)))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].product",containsInAnyOrder("MYD08_D3")))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].version", containsInAnyOrder("51")))
-                .andExpect(jsonPath("$.criteria[*].data_variables[*].variable", containsInAnyOrder("Cirrus_Reflectance_Mean","Cloud_Optical_Thickness_Liquid_Mean")))
-                .andExpect(jsonPath("$.criteria[*].data_variables[*].keyword", containsInAnyOrder("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE","ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE")));
+                .andExpect(jsonPath("$.criteria[*].data_variables[*].variable", containsInAnyOrder("Cirrus_Reflectance_Mean", "Cloud_Optical_Thickness_Liquid_Mean")))
+                .andExpect(jsonPath("$.criteria[*].data_variables[*].keyword", containsInAnyOrder("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE", "ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE")));
     }
 }
 
