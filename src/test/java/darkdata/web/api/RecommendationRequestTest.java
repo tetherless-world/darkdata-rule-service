@@ -1,13 +1,12 @@
 package darkdata.web.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import darkdata.DarkDataApplication;
 import darkdata.web.api.datavariable.DataVariable;
-import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.datavariable.DataVariableTestHarness;
+import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.event.eonet.EventTestHarness;
 import org.junit.Assert;
 import org.junit.Test;
@@ -58,10 +57,12 @@ public class RecommendationRequestTest {
         ObjectNode serialized_pojo = mapper.valueToTree(recommendationRequest);
         JsonNode expected = mapper.readTree(request.getInputStream());
         Assert.assertEquals("expect does not equal serialized pojo", expected, serialized_pojo);
-        //System.out.println(mapper.writeValueAsString(recommendationRequest));
     }
 
-
-
+    @Test
+    public void testDeserializeRecommendationRequest() throws IOException {
+        RecommendationRequest recommendationRequest = mapper.readValue(request.getInputStream(), RecommendationRequest.class);
+        Assert.assertNotNull(recommendationRequest);
+    }
 
 }

@@ -26,6 +26,8 @@ public class DataVariable {
 
     List<DataVariableModifier> modifiers = Collections.<DataVariableModifier>emptyList();
 
+    public DataVariable() { }
+
     public DataVariable(String product, String version, String variable, String keyword) {
         this.product = product;
         this.version = version;

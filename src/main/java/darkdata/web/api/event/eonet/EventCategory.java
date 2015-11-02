@@ -14,8 +14,18 @@ public class EventCategory {
     @JsonProperty(value = "#text")
     String text;
 
+    public EventCategory() { }
+
     public EventCategory(String domain, String text) {
         this.domain = domain;
+        this.text = text;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
+    public void setText(String text) {
         this.text = text;
     }
 
