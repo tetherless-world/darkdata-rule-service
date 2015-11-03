@@ -1,11 +1,17 @@
 package darkdata.web;
 
 import darkdata.DarkDataApplication;
+import darkdata.service.RecommendationService;
+import darkdata.web.api.RecommendationRequest;
+import darkdata.web.api.RecommendationResponse;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.core.io.Resource;
@@ -13,15 +19,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.nio.charset.Charset;
 
+import static org.mockito.Matchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 
 /**
@@ -39,15 +45,19 @@ public class AdvisoryControllerTest {
 
     private MockMvc mockMvc;
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+    @Mock
+    private RecommendationService recommendationService;
+
+    @InjectMocks
+    private AdvisoryController advisoryController;
 
     @Value("classpath:json/request.json")
     private Resource request;
 
     @Before
     public void setup() throws Exception {
-        this.mockMvc = webAppContextSetup(webApplicationContext).build();
+        MockitoAnnotations.initMocks(this);
+        this.mockMvc = MockMvcBuilders.standaloneSetup(advisoryController).build();
     }
 
     @Test
@@ -59,6 +69,12 @@ public class AdvisoryControllerTest {
 
     @Test
     public void testAdvisorPostForRecommendation() throws Exception {
+        // TODO create a response with content and match content at end of test
+        RecommendationResponse response = new RecommendationResponse();
+
+        Mockito.when(recommendationService.getRecommendation(any(RecommendationRequest.class)))
+                .thenReturn(response);
+
         final String request_string = IOUtils.toString(request.getInputStream());
         mockMvc.perform(post("/advisor/recommendation")
                 .content(request_string)
