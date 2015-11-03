@@ -19,11 +19,11 @@ public class Event {
     @JsonProperty(value = "link")
     String link;
 
-    @JsonProperty(value = "description")
-    String description;
-
     @JsonProperty(value = "category")
     List<EventCategory> categories;
+
+    @JsonProperty(value = "description")
+    String description;
 
     @JsonProperty(value = "geometry")
     List<EventGeometry> geometry;

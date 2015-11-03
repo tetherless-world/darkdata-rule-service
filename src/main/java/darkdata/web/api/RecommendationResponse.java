@@ -10,11 +10,13 @@ import java.util.List;
  */
 public class RecommendationResponse {
 
-    @JsonProperty("criteria")
-    private RecommendationRequest request;
+
 
     @JsonProperty("candidates")
     private List<CandidateWorkflow> candidates;
+
+    @JsonProperty("criteria")
+    private RecommendationRequest request;
 
     public RecommendationResponse() { }
 

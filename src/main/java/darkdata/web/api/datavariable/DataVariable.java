@@ -24,6 +24,7 @@ public class DataVariable {
     @JsonProperty(value = "keyword")
     String keyword;
 
+    @JsonProperty(value = "modifiers")
     List<DataVariableModifier> modifiers = Collections.<DataVariableModifier>emptyList();
 
     public DataVariable() { }
