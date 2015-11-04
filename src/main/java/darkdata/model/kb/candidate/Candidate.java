@@ -4,7 +4,6 @@ import darkdata.model.kb.IndividualProxy;
 import darkdata.model.kb.compatibility.CompatibilityAssertion;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.RDFNode;
 
 import java.util.List;
@@ -24,7 +23,6 @@ public class Candidate extends IndividualProxy {
     }
 
     public void addCompatibilityAssertion(CompatibilityAssertion assertion) {
-        getIndividual().getOntModel().addSubModel(assertion.getIndividual().getModel());
         getIndividual().addProperty(DarkData.compatibilityAssertion, assertion.getIndividual());
     }
 
@@ -35,6 +33,14 @@ public class Candidate extends IndividualProxy {
                 .map(r -> getIndividual().getOntModel().getIndividual(r.getURI()))
                 .map(CompatibilityAssertion::new)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<CompatibilityAssertion> createCompatibilityAssertion(String uri) {
+        Optional<CompatibilityAssertion> assertion = Optional.ofNullable(getIndividual().getOntModel().createIndividual(uri, DarkData.CompatibilityAssertion))
+                .map(CompatibilityAssertion::new);
+        assertion.ifPresent(this::addCompatibilityAssertion);
+        assertion.ifPresent(a -> a.setCandidate(this));
+        return assertion;
     }
 
     public void setScore(CandidateScore score) {

@@ -33,7 +33,7 @@ public class DataVariable extends IndividualProxy {
     }
 
     public void setDataset(Dataset dataset) {
-        getIndividual().getOntModel().addSubModel(dataset.getIndividual().getModel());
+//        getIndividual().getOntModel().addSubModel(dataset.getIndividual().getModel());
         getIndividual().setPropertyValue(DarkData.dataset, dataset.getIndividual());
     }
 

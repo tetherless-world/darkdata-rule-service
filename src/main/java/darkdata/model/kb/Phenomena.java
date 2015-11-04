@@ -2,12 +2,14 @@ package darkdata.model.kb;
 
 import darkdata.model.kb.coverage.Geometry;
 import darkdata.model.ontology.DarkData;
+import darkdata.model.ontology.GeoSparql;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.RDFNode;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -43,8 +45,14 @@ public class Phenomena extends IndividualProxy {
     }
 
     public void addGeometry(Geometry geometry) {
-        getIndividual().getOntModel().addSubModel(geometry.getIndividual().getModel());
         getIndividual().setPropertyValue(DarkData.geometry, geometry.getIndividual());
+    }
+
+    public Optional<Geometry> createGeometry(String uri) {
+        Optional<Geometry> geometry =  Optional.ofNullable(getIndividual().getOntModel().createIndividual(uri, GeoSparql.Geometry))
+                .map(Geometry::new);
+        geometry.ifPresent(this::addGeometry);
+        return geometry;
     }
 
 }

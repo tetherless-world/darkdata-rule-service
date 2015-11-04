@@ -1,6 +1,7 @@
 package darkdata.model.kb.compatibility;
 
 import darkdata.model.kb.IndividualProxy;
+import darkdata.model.kb.candidate.Candidate;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
@@ -30,13 +31,11 @@ public class CompatibilityAssertion extends IndividualProxy {
                 .findFirst();
     }
 
-    public void setCandidateWorkflow(CandidateWorkflow candidate) {
-        getIndividual().getOntModel().addSubModel(candidate.getIndividual().getModel());
+    public void setCandidate(Candidate candidate) {
         getIndividual().setPropertyValue(DarkData.candidate, candidate.getIndividual());
     }
 
     public void setValue(CompatibilityValue value) {
-        getIndividual().getOntModel().addSubModel(value.getIndividual().getModel());
         getIndividual().setPropertyValue(DarkData.compatibilityValue, value.getIndividual());
     }
 

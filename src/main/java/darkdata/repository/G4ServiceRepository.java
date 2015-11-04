@@ -1,6 +1,7 @@
 package darkdata.repository;
 
 import darkdata.datasource.DarkDataDatasource;
+import darkdata.model.kb.DataVariable;
 import darkdata.model.kb.g4.G4Service;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
@@ -68,6 +69,11 @@ public class G4ServiceRepository {
                 .filter(c -> !c.isAnon())
                 .map(c -> getByURI(c.getURI()).get())
                 .findAny();
+    }
+
+    public Optional<G4Service> createService(String uri) {
+        return Optional.ofNullable(datasource.getOntModel().createIndividual(uri, DarkData.Visualization))
+                .map(G4Service::new);
     }
 
 }

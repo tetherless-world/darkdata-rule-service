@@ -4,6 +4,7 @@ import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntResource;
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.ResourceFactory;
 
@@ -38,11 +39,10 @@ public class Dataset extends IndividualProxy {
     }
 
     public Optional<String> getShortName() {
-        return Stream.of(getIndividual().getPropertyValue(DarkData.shortName))
+        return Optional.ofNullable(getIndividual().getPropertyValue(DarkData.shortName))
                 .filter(RDFNode::isLiteral)
                 .map(RDFNode::asLiteral)
-                .map(RDFNode::toString)
-                .findAny();
+                .map(Literal::getString);
     }
 
     public void setLongName(String longName) {
@@ -50,10 +50,9 @@ public class Dataset extends IndividualProxy {
     }
 
     public Optional<String> getLongName() {
-        return Stream.of(getIndividual().getPropertyValue(DarkData.longName))
+        return Optional.ofNullable(getIndividual().getPropertyValue(DarkData.longName))
                 .filter(RDFNode::isLiteral)
                 .map(RDFNode::asLiteral)
-                .map(RDFNode::toString)
-                .findAny();
+                .map(Literal::getString);
     }
 }
