@@ -14,6 +14,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.io.IOException;
+
 /**
  * @author szednik
  */
@@ -41,6 +43,12 @@ public class EventTest {
         ObjectNode serialized_pojo = mapper.valueToTree(event);
         JsonNode expected = mapper.readTree(eonet_224.getInputStream());
         Assert.assertEquals("expect does not equal serialized pojo", expected, serialized_pojo);
+    }
+
+    @Test
+    public void testDeserializeEvent() throws IOException {
+        Event event = mapper.readValue(eonet_224.getInputStream(), Event.class);
+        Assert.assertNotNull(event);
     }
 
 }

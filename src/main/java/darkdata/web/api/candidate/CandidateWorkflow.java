@@ -9,7 +9,7 @@ import darkdata.web.api.workflow.Workflow;
 
 public class CandidateWorkflow {
 
-    @JsonProperty("visualization")
+    @JsonProperty("workflow")
     private Workflow workflow;
 
     @JsonProperty("score")
