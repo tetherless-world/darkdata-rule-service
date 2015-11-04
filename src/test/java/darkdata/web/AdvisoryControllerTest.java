@@ -1,14 +1,11 @@
 package darkdata.web;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import darkdata.DarkDataApplication;
 import darkdata.service.RecommendationService;
 import darkdata.web.api.RecommendationRequest;
 import darkdata.web.api.RecommendationResponse;
-import darkdata.web.api.candidate.CandidateWorkflow;
 import org.apache.commons.io.IOUtils;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,16 +26,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyList;
-import static org.mockito.Matchers.anyListOf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -76,9 +69,6 @@ public class AdvisoryControllerTest {
 
 
 
-//    @Autowired
-//    private List<CandidateWorkflow> candidates;
-
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
@@ -94,18 +84,13 @@ public class AdvisoryControllerTest {
 
     @Test
     public void testAdvisorPostForRecommendation() throws Exception {
-        // TODO create a response with content and match content at end of test
-        RecommendationRequest recommendationRequest = mapper.readValue(IOUtils.toString(request.getInputStream()), RecommendationRequest.class);
-        //System.out.println(recommendationRequest);
-        //RecommendationResponse response = new RecommendationResponse(recommendationRequest);
+
         RecommendationResponse recommendationResponse = mapper.readValue(IOUtils.toString(response.getInputStream()), RecommendationResponse.class);
         Mockito.when(recommendationService.getRecommendation(any(RecommendationRequest.class)))
                 .thenReturn(recommendationResponse);
 
-        String response_1 = mapper.writeValueAsString(recommendationResponse);
-        System.out.println(response_1);
+        mapper.writeValueAsString(recommendationResponse);
         final String request_string = IOUtils.toString(request.getInputStream());
-        //System.out.println(request_string);
         mockMvc.perform(post("/advisor/recommendation")
                 .content(request_string)
                 .contentType(contentType))
@@ -146,6 +131,54 @@ public class AdvisoryControllerTest {
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].modifiers", containsInAnyOrder(Arrays.asList(), Arrays.asList())));
 
     }
+
+    @Test
+    public void testBadRequest() throws Exception {
+        mockMvc.perform(post("/advisor/recommendation")
+                .content("{\n" +
+                        "    \"glossary\": {\n" +
+                        "        \"title\": \"example glossary\",\n" +
+                        "\t\t\"GlossDiv\": {\n" +
+                        "            \"title\": \"S\",\n" +
+                        "\t\t\t\"GlossList\": {\n" +
+                        "                \"GlossEntry\": {\n" +
+                        "                    \"ID\": \"SGML\",\n" +
+                        "\t\t\t\t\t\"SortAs\": \"SGML\",\n" +
+                        "\t\t\t\t\t\"GlossTerm\": \"Standard Generalized Markup Language\",\n" +
+                        "\t\t\t\t\t\"Acronym\": \"SGML\",\n" +
+                        "\t\t\t\t\t\"Abbrev\": \"ISO 8879:1986\",\n" +
+                        "\t\t\t\t\t\"GlossDef\": {\n" +
+                        "                        \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\",\n" +
+                        "\t\t\t\t\t\t\"GlossSeeAlso\": [\"GML\", \"XML\"]\n" +
+                        "                    },\n" +
+                        "\t\t\t\t\t\"GlossSee\": \"markup\"\n" +
+                        "                }\n" +
+                        "            }\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "}\n")
+                .contentType(contentType))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+    
+
+    @Test
+    public void testInternalError() throws Exception {
+        final String request_string = IOUtils.toString(request.getInputStream());
+
+        Mockito.when(recommendationService.getRecommendation(any(RecommendationRequest.class)))
+                .thenThrow(new RuntimeException());
+
+        mockMvc.perform(post("/advisor/recommendation")
+                .content(request_string).contentType(contentType))
+                .andExpect(status().isInternalServerError())
+                .andDo(print())
+                .andReturn();
+
+
+    }
+
 }
 
 
