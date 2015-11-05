@@ -1,0 +1,98 @@
+[bob-rule:
+(?feature rdf:type dd:AshPlume)
+->
+(?feature dd:strongCompatibilityFor dd:temporal_evolution),
+(?feature dd:indifferentCompatibilityFor dd:east-west-movement),
+(?feature dd:indifferentCompatibilityFor dd:north-south-movement),
+(?feature dd:slightCompatibilityFor dd:spatial_extent_of_event),
+(?feature dd:strongCompatibilityFor dd:seasonal_variation),
+(?feature dd:strongCompatibilityFor dd:year-to-year-variability),
+(?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+(?feature dd:strongCompatibilityFor dd:global_phenomena),
+(?feature dd:strongCompatibilityFor dd:detection_of_events)
+]
+
+[bob-rule2:
+(?feature rdf:type dd:Landslide)
+->
+(?feature dd:strongCompatibilityFor dd:temporal_evolution),
+(?feature dd:someCompatibilityFor dd:east-west-movement),
+(?feature dd:someCompatibilityFor dd:north-south-movement),
+(?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+(?feature dd:someCompatibilityFor dd:seasonal_variation),
+(?feature dd:someCompatibilityFor dd:year-to-year-variability),
+(?feature dd:indifferentCompatibilityFor dd:variation_with_atmospheric_height),
+(?feature dd:someCompatibilityFor dd:global_phenomena),
+(?feature dd:strongCompatibilityFor dd:detection_of_events)
+]
+
+[bob-rule3:
+(?feature rdf:type dd:AirQuality)
+->
+(?feature dd:strongCompatibilityFor dd:temporal_evolution),
+(?feature dd:slightCompatibilityFor dd:east-west-movement),
+(?feature dd:slightCompatibilityFor dd:north-south-movement),
+(?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+(?feature dd:strongCompatibilityFor dd:seasonal_variation),
+(?feature dd:strongCompatibilityFor dd:year-to-year-variability),
+(?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+(?feature dd:slightCompatibilityFor dd:global_phenomena),
+(?feature dd:slightCompatibilityFor dd:detection_of_events)
+]
+
+[bob-rule4:
+(?feature rdf:type dd:DustPlume)
+->
+(?feature dd:strongCompatibilityFor dd:temporal_evolution),
+(?feature dd:strongCompatibilityFor dd:east-west-movement),
+(?feature dd:stongCompatibilityFor dd:north-south-movement),
+(?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+(?feature dd:indifferentCompatibilityFor dd:seasonal_variation),
+(?feature dd:indifferentCompatibilityFor dd:year-to-year-variability),
+(?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+(?feature dd:indifferentCompatibilityFor dd:global_phenomena),
+(?feature dd:someCompatibilityFor dd:detection_of_events)
+]
+
+[bob-rule5:
+(?feature rdf:type dd:StationaryWaterVaporAnomaly)
+->
+(?feature dd:strongCompatibilityFor dd:temporal_evolution),
+(?feature dd:strongCompatibilityFor dd:east-west-movement),
+(?feature dd:strongCompatibilityFor dd:north-south-movement),
+(?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+(?feature dd:strongCompatibilityFor dd:seasonal_variation),
+(?feature dd:someCompatibilityFor dd:year-to-year-variability),
+(?feature dd:someCompatibilityFor dd:variation_with_atmospheric_height),
+(?feature dd:strongCompatibilityFor dd:global_phenomena),
+(?feature dd:strongCompatibilityFor dd:detection_of_events)
+]
+
+[bob-rule6:
+(?feature rdf:type dd:Weather)
+->
+(?feature dd:strongCompatibilityFor dd:temporal_evolution),
+(?feature dd:someCompatibilityFor dd:east-west-movement),
+(?feature dd:someCompatibilityFor dd:north-south-movement),
+(?feature dd:someCompatibilityFor dd:spatial_extent_of_event),
+(?feature dd:strongCompatibilityFor dd:seasonal_variation),
+(?feature dd:someCompatibilityFor dd:year-to-year-variability),
+(?feature dd:someCompatibilityFor dd:variation_with_atmospheric_height),
+(?feature dd:slightCompatibilityFor dd:global_phenomena),
+(?feature dd:someCompatibilityFor dd:detection_of_events)
+]
+
+[bob-rule7:
+(?feature rdf:type dd:Precipitation)
+->
+(?feature dd:strongCompatibilityFor dd:temporal_evolution),
+(?feature dd:strongCompatibilityFor dd:east-west-movement),
+(?feature dd:strongCompatibilityFor dd:north-south-movement),
+(?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+(?feature dd:strongCompatibilityFor dd:seasonal_variation),
+(?feature dd:strongCompatibilityFor dd:year-to-year-variability),
+(?feature dd:slightCompatibilityFor dd:variation_with_atmospheric_height),
+(?feature dd:slightCompatibilityFor dd:global_phenomena),
+(?feature dd:someCompatibilityFor dd:detection_of_events)
+]
+
