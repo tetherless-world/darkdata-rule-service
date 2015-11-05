@@ -6,12 +6,13 @@ import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
 
 import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * @author szednik
@@ -22,13 +23,15 @@ public class CompatibilityAssertion extends IndividualProxy {
 
     public CompatibilityAssertion(Individual individual) {
         super(individual);
+        individual.addOntClass(CLASS);
     }
 
     public Optional<CandidateWorkflow> getCandidate() {
-        return Stream.of(getIndividual().getPropertyResourceValue(DarkData.candidate))
-                .map(r -> getIndividual().getOntModel().getIndividual(r.getURI()))
-                .map(CandidateWorkflow::new)
-                .findFirst();
+        OntModel m = getIndividual().getOntModel();
+        return Optional.ofNullable(getIndividual().getPropertyResourceValue(DarkData.candidate))
+                .map(Resource::getURI)
+                .map(m::getIndividual)
+                .map(CandidateWorkflow::new);
     }
 
     public void setCandidate(Candidate candidate) {
@@ -40,10 +43,11 @@ public class CompatibilityAssertion extends IndividualProxy {
     }
 
     public Optional<CompatibilityValue> getValue() {
-        return Stream.of(getIndividual().getPropertyResourceValue(DarkData.compatibilityValue))
-                .map(r -> getIndividual().getOntModel().createIndividual(r.getURI(), DarkData.CompatibilityValue))
-                .map(CompatibilityValue::new)
-                .findFirst();
+        OntModel m = getIndividual().getOntModel();
+        return Optional.ofNullable(getIndividual().getPropertyResourceValue(DarkData.compatibilityValue))
+                .map(Resource::getURI)
+                .map(m::getIndividual)
+                .map(CompatibilityValue::new);
     }
 
     public void setConfidence(double confidence) {
@@ -51,10 +55,9 @@ public class CompatibilityAssertion extends IndividualProxy {
     }
 
     public Optional<Double> getConfidence() {
-        return Stream.of(getIndividual().getPropertyValue(DarkData.assertionConfidence))
+        return Optional.ofNullable(getIndividual().getPropertyValue(DarkData.assertionConfidence))
                 .filter(RDFNode::isLiteral)
                 .map(RDFNode::asLiteral)
-                .map(Literal::getDouble)
-                .findAny();
+                .map(Literal::getDouble);
     }
 }

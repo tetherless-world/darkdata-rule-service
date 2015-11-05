@@ -4,7 +4,10 @@ import darkdata.model.kb.IndividualProxy;
 import darkdata.model.kb.compatibility.CompatibilityAssertion;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,10 +19,13 @@ import java.util.stream.Collectors;
 
 public class Candidate extends IndividualProxy {
 
+    public static final OntClass CLASS = DarkData.Candidate;
+
     private CandidateScore score;
 
     public Candidate(Individual individual) {
         super(individual);
+        individual.addRDFType(CLASS);
     }
 
     public void addCompatibilityAssertion(CompatibilityAssertion assertion) {
@@ -27,16 +33,19 @@ public class Candidate extends IndividualProxy {
     }
 
     public List<CompatibilityAssertion> getCompatibilityAssertions() {
+        OntModel m = getIndividual().getOntModel();
         return getIndividual().listPropertyValues(DarkData.compatibilityAssertion).toList().stream()
                 .filter(RDFNode::isResource)
                 .map(RDFNode::asResource)
-                .map(r -> getIndividual().getOntModel().getIndividual(r.getURI()))
+                .map(Resource::getURI)
+                .map(m::getIndividual)
                 .map(CompatibilityAssertion::new)
                 .collect(Collectors.toList());
     }
 
     public Optional<CompatibilityAssertion> createCompatibilityAssertion(String uri) {
-        Optional<CompatibilityAssertion> assertion = Optional.ofNullable(getIndividual().getOntModel().createIndividual(uri, DarkData.CompatibilityAssertion))
+        OntModel m = getIndividual().getOntModel();
+        Optional<CompatibilityAssertion> assertion = Optional.ofNullable(m.createIndividual(uri, DarkData.CompatibilityAssertion))
                 .map(CompatibilityAssertion::new);
         assertion.ifPresent(this::addCompatibilityAssertion);
         assertion.ifPresent(a -> a.setCandidate(this));

@@ -11,7 +11,6 @@ import org.apache.jena.rdf.model.ResourceFactory;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author szednik
@@ -22,6 +21,7 @@ public class Dataset extends IndividualProxy {
 
     public Dataset(Individual individual) {
         super(individual);
+        individual.addOntClass(CLASS);
     }
 
     public List<DataVariable> getVariables() {

@@ -13,5 +13,6 @@ public class ObservableProperty extends IndividualProxy {
 
     public ObservableProperty(Individual individual) {
         super(individual);
+        individual.addOntClass(CLASS);
     }
 }

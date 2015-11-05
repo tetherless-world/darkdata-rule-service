@@ -145,6 +145,8 @@ public class DarkData {
 
     public static final ObjectProperty observableProperty = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#observableProperty" );
 
+    public static final OntClass Candidate = m_model.createClass("http://www.purl.org/twc/ns/darkdata#Candidate");
+
     public static final OntClass CandidateWorkflow = m_model.createClass("http://www.purl.org/twc/ns/darkdata#CandidateWorkflow");
 
     public static final ObjectProperty candidate = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#candidate" );
@@ -188,6 +190,5 @@ public class DarkData {
     public static final DatatypeProperty endDateTime = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#endDateTime" );
 
     public static final ObjectProperty geometry = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#compatibilityAssertion" );
-
 
 }
