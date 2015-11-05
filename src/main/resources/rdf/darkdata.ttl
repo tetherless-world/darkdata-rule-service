@@ -665,7 +665,7 @@ dd:SeasonalTimeSeries rdf:type owl:Class ;
                       
                       rdfs:label "Seasonal Time-Series"@en ;
                       
-                      rdfs:subClassOf dd:Visualization .
+                      rdfs:subClassOf dd:TimeSeries .
 
 
 
