@@ -3,9 +3,12 @@ package darkdata.model.kb.candidate;
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.DataVariable;
 import darkdata.model.kb.Dataset;
+import darkdata.repository.DataVariableRepository;
+import darkdata.repository.DatasetRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -21,9 +24,16 @@ import java.util.Optional;
 @WebAppConfiguration
 public class DataVariableTest {
 
+    @Autowired
+    private DataVariableRepository dataVariableRepository;
+
+    @Autowired
+    private DatasetRepository datasetRepository;
+
     @Test
     public void testGetShortName() {
-        DataVariable variable = DataVariableTestHarness.createDataVariable("urn:variable/testGetShortName");
+
+        DataVariable variable = dataVariableRepository.createDataVariable("urn:variable/testGetShortName").get();
         Assert.assertNotNull(variable);
 
         variable.setShortName("shortNameTest");
@@ -35,10 +45,10 @@ public class DataVariableTest {
 
     @Test
     public void testGetDatset() {
-        DataVariable variable = DataVariableTestHarness.createDataVariable("urn:variable/testGetDatset");
+        DataVariable variable = dataVariableRepository.createDataVariable("urn:variable/testGetDatset").get();
         Assert.assertNotNull(variable);
 
-        Dataset dataset = DatasetTestHarness.createDataset("urn:dataset/testGetDatset");
+        Dataset dataset = datasetRepository.createDataset("urn:dataset/testGetDatset").get();
         Assert.assertNotNull(dataset);
 
         variable.setDataset(dataset);

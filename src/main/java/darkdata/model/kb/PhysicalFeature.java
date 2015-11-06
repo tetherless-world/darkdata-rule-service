@@ -18,6 +18,7 @@ public class PhysicalFeature extends IndividualProxy {
 
     public PhysicalFeature(Individual individual) {
         super(individual);
+        individual.addOntClass(CLASS);
     }
 
     public List<ObservableProperty> observableProperties() {

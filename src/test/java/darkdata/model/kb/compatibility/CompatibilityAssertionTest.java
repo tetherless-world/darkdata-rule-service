@@ -2,10 +2,12 @@ package darkdata.model.kb.compatibility;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.candidate.CandidateWorkflow;
-import darkdata.model.kb.candidate.CandidateWorkflowTestHarness;
+import darkdata.repository.CandidateWorkflowRepository;
+import darkdata.repository.CompatibilityAssertionRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -21,10 +23,16 @@ import java.util.Optional;
 @WebAppConfiguration
 public class CompatibilityAssertionTest {
 
+    @Autowired
+    private CandidateWorkflowRepository candidateRepository;
+
+    @Autowired
+    private CompatibilityAssertionRepository assertionRepository;
+
     @Test
     public void testGetValue() {
 
-        CompatibilityAssertion assertion = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:assertion/testGetValue");
+        CompatibilityAssertion assertion = assertionRepository.createCompatibilityAssertion("urn:assertion/testGetValue").get();
         Assert.assertNotNull(assertion);
 
         assertion.setValue(CompatibilityValue.SLIGHT);
@@ -37,7 +45,7 @@ public class CompatibilityAssertionTest {
     @Test
     public void testGetConfidence() {
 
-        CompatibilityAssertion assertion = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:/assertion/testGetConfidence");
+        CompatibilityAssertion assertion = assertionRepository.createCompatibilityAssertion("urn:/assertion/testGetConfidence").get();
         Assert.assertNotNull(assertion);
 
         assertion.setConfidence(0.42D);
@@ -49,13 +57,12 @@ public class CompatibilityAssertionTest {
     @Test
     public void testGetCandidate() {
 
-        CompatibilityAssertion assertion = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:assertion/testGetCandidate");
-        Assert.assertNotNull(assertion);
-
-        CandidateWorkflow candidate = CandidateWorkflowTestHarness.createCandidateWorkflow("urn:candidate/testGetCandidate");
+        CandidateWorkflow candidate = candidateRepository.createCandidateWorkflow("urn:candidate/testGetCandidate").get();
         Assert.assertNotNull(candidate);
 
-        assertion.setCandidateWorkflow(candidate);
+        CompatibilityAssertion assertion = candidate.createCompatibilityAssertion("urn:assertion/testGetCandidate").get();
+        Assert.assertNotNull(assertion);
+
         Optional<CandidateWorkflow> result = assertion.getCandidate();
         Assert.assertTrue(result.isPresent());
         Assert.assertEquals(candidate, result.get());

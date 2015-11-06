@@ -35,8 +35,8 @@ public class RandomCompatibilityService implements CompatibilityService<Compatib
             CompatibilityValue compatibilityValue = getRandomCompatibilityValue();
             double confidence = getRandomCompatibilityConfidence();
 
-            Optional<CompatibilityAssertion> assertion = compatibilityAssertionRepository.createCandidateAssertion(uri);
-            assertion.ifPresent(a -> a.setCandidateWorkflow(candidate));
+            Optional<CompatibilityAssertion> assertion = compatibilityAssertionRepository.createCompatibilityAssertion(uri);
+            assertion.ifPresent(a -> a.setCandidate(candidate));
             assertion.ifPresent(a -> a.setValue(compatibilityValue));
             assertion.ifPresent(a -> a.setConfidence(confidence));
             assertion.ifPresent(assertions::add);

@@ -1,5 +1,6 @@
 package darkdata.service;
 
+import darkdata.model.kb.candidate.CandidateScore;
 import darkdata.web.api.RecommendationRequest;
 import darkdata.web.api.RecommendationResponse;
 import darkdata.web.api.datavariable.DataVariable;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -67,12 +69,18 @@ public class RecommendationService {
     }
 
     public darkdata.web.api.candidate.CandidateWorkflow transform(CandidateWorkflow c) {
-        double score = c.getScore().get().getScore();
+
+        double score = c.getScore()
+                .map(CandidateScore::getScore)
+                .orElse(0d);
+
         Workflow workflow = new Workflow();
 
         c.getService()
                 .map(G4Service::getIdentifier)
-                .ifPresent(serviceId -> workflow.setService(serviceId.get()));
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .ifPresent(workflow::setService);
 
         //workflow.setStartTime("");
         //workflow.setEndTime("");

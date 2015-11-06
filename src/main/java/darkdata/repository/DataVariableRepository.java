@@ -2,13 +2,8 @@ package darkdata.repository;
 
 import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.kb.DataVariable;
-import darkdata.model.kb.Phenomena;
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.OntClass;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.ontology.OntResource;
-import org.apache.jena.rdf.model.ModelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,15 +21,9 @@ public class DataVariableRepository {
     @Autowired
     private DarkDataDatasource datasource;
 
-    public Optional<DataVariable> createDataVariable(String uri, OntClass variableClass) {
-        // TODO add check that variableClass is a subclass of DataVariable
-        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
-        m.addSubModel(datasource.getOntModel().getBaseModel());
-        try {
-            return Optional.ofNullable(m.createIndividual(uri, variableClass)).map(DataVariable::new);
-        } finally {
-            m.removeSubModel(datasource.getOntModel());
-        }
+    public Optional<DataVariable> createDataVariable(String uri) {
+        return Optional.ofNullable(datasource.getOntModel().createIndividual(uri, DarkData.DataVariable))
+                .map(DataVariable::new);
     }
 
     public List<DataVariable> listDataVariables() {

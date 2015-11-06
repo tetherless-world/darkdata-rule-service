@@ -2,12 +2,16 @@ package darkdata.model.kb;
 
 import darkdata.model.kb.coverage.Geometry;
 import darkdata.model.ontology.DarkData;
+import darkdata.model.ontology.GeoSparql;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -19,6 +23,7 @@ public class Phenomena extends IndividualProxy {
 
     public Phenomena(Individual individual) {
         super(individual);
+        individual.addOntClass(CLASS);
     }
 
     public List<PhysicalFeature> getPhysicalFeatures() {
@@ -33,18 +38,27 @@ public class Phenomena extends IndividualProxy {
     }
 
     public List<Geometry> getGeometries() {
+        OntModel m = getIndividual().getOntModel();
         return getIndividual()
                 .listPropertyValues(DarkData.geometry).toList().stream()
                 .filter(RDFNode::isResource)
                 .map(RDFNode::asResource)
-                .map(r -> getIndividual().getOntModel().getIndividual(r.getURI()))
+                .map(Resource::getURI)
+                .map(m::getIndividual)
                 .map(Geometry::new)
                 .collect(Collectors.toList());
     }
 
     public void addGeometry(Geometry geometry) {
-        getIndividual().getOntModel().addSubModel(geometry.getIndividual().getModel());
         getIndividual().setPropertyValue(DarkData.geometry, geometry.getIndividual());
+    }
+
+    public Optional<Geometry> createGeometry(String uri) {
+        OntModel m = getIndividual().getOntModel();
+        Optional<Geometry> geometry =  Optional.ofNullable(m.createIndividual(uri, GeoSparql.Geometry))
+                .map(Geometry::new);
+        geometry.ifPresent(this::addGeometry);
+        return geometry;
     }
 
 }
