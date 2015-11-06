@@ -14,6 +14,7 @@ public class CompatibilityValue extends IndividualProxy {
 
     public CompatibilityValue(Individual individual) {
         super(individual);
+        individual.addOntClass(CLASS);
     }
 
     public static CompatibilityValue NEGATIVE = new CompatibilityValue(DarkData.negative_compatibility);

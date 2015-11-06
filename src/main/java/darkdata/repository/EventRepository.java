@@ -3,8 +3,9 @@ package darkdata.repository;
 import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.kb.Phenomena;
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.*;
-import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,13 +41,8 @@ public class EventRepository {
             return Optional.empty();
         }
 
-        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
-        m.addSubModel(datasource.getOntModel().getBaseModel());
-        try {
-            return Optional.ofNullable(m.createIndividual(uri, phenomena)).map(Phenomena::new);
-        } finally {
-            m.removeSubModel(datasource.getOntModel());
-        }
+        return Optional.ofNullable(datasource.getOntModel().createIndividual(uri, phenomena))
+                .map(Phenomena::new);
     }
 
     /**

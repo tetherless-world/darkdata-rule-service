@@ -2,10 +2,11 @@ package darkdata.model.kb.candidate;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.compatibility.CompatibilityAssertion;
-import darkdata.model.kb.compatibility.CompatibilityAssertionTestHarness;
+import darkdata.repository.CandidateWorkflowRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -20,15 +21,20 @@ import java.util.List;
 @WebAppConfiguration
 public class CandidateTest {
 
+    @Autowired
+    private CandidateWorkflowRepository repository;
+
     @Test
     public void testGetCompatibilityAssertions() {
 
-        CandidateWorkflow candidate = CandidateWorkflowTestHarness.createCandidateWorkflow("urn:candidate/testGetCompatibilityAssertions");
-        CompatibilityAssertion assertion1 = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:assertion1");
-        CompatibilityAssertion assertion2 = CompatibilityAssertionTestHarness.createCompatibilityAssertion("urn:assertion2");
+        CandidateWorkflow candidate = repository.createCandidateWorkflow("urn:candidate/testGetCompatibilityAssertions").get();
+        Assert.assertNotNull(candidate);
 
-        candidate.addCompatibilityAssertion(assertion1);
-        candidate.addCompatibilityAssertion(assertion2);
+        CompatibilityAssertion assertion1 = candidate.createCompatibilityAssertion("urn:assertion1").get();
+        Assert.assertNotNull(assertion1);
+
+        CompatibilityAssertion assertion2 = candidate.createCompatibilityAssertion("urn:assertion2").get();
+        Assert.assertNotNull(assertion2);
 
         List<CompatibilityAssertion> results = candidate.getCompatibilityAssertions();
 

@@ -2,9 +2,11 @@ package darkdata.model.kb.candidate;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.Dataset;
+import darkdata.repository.DatasetRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -20,10 +22,13 @@ import java.util.Optional;
 @WebAppConfiguration
 public class DatasetTest {
 
+    @Autowired
+    private DatasetRepository datasetRepository;
+
     @Test
     public void testGetShortName() {
 
-        Dataset dataset = DatasetTestHarness.createDataset("urn:dataset/testGetShortName");
+        Dataset dataset = datasetRepository.createDataset("urn:dataset/testGetShortName").get();
         Assert.assertNotNull(dataset);
 
         dataset.setShortName("shortNameTest");
@@ -36,7 +41,7 @@ public class DatasetTest {
     @Test
     public void testGetLongName() {
 
-        Dataset dataset = DatasetTestHarness.createDataset("urn:dataset/testGetLongName");
+        Dataset dataset = datasetRepository.createDataset("urn:dataset/testGetLongName").get();
         Assert.assertNotNull(dataset);
 
         dataset.setLongName("longNameTest");
