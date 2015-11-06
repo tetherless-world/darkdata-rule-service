@@ -21,6 +21,7 @@ import java.io.InputStream;
 public class DarkDataDatasource {
 
     private OntModel ontModel;
+    private OntModel schema;
 
     @Value("classpath:rdf/darkdata.ttl")
     Resource darkDataOntology;
@@ -41,7 +42,7 @@ public class DarkDataDatasource {
     @PostConstruct
     public void setup() {
 
-        OntModel schema = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+        schema = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
         schema.read(getInputStream(darkDataOntology), DarkData.getURI(),"TURTLE");
 
         Model scienceKeywords = ModelFactory.createDefaultModel();
@@ -52,6 +53,10 @@ public class DarkDataDatasource {
         ontModel.addSubModel(schema);
         ontModel.addSubModel(scienceKeywords);
         ontModel.prepare();
+    }
+
+    public OntModel getSchema() {
+        return schema;
     }
 
     public OntModel getOntModel() {

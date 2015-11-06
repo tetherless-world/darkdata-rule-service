@@ -40,6 +40,7 @@ public class CompatibilityAssertion extends IndividualProxy {
 
     public void setValue(CompatibilityValue value) {
         getIndividual().setPropertyValue(DarkData.compatibilityValue, value.getIndividual());
+        getIndividual().getOntModel().add(value.getIndividual().listProperties().toList());
     }
 
     public Optional<CompatibilityValue> getValue() {

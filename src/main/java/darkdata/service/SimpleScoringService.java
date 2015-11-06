@@ -6,17 +6,18 @@ import darkdata.model.kb.compatibility.CompatibilityAssertion;
 import darkdata.model.kb.compatibility.CompatibilityValue;
 import org.springframework.stereotype.Service;
 
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import javax.annotation.Resource;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * @author szednik
  */
 @Service
-public class SimpleScoringService implements ScoringService<CandidateWorkflowScore, CandidateWorkflow> {
+public class SimpleScoringService implements CandidateWorkflowScoringService {
+
+    @Resource(name = "simpleWeights")
+    private Properties weights;
 
     @Override
     public CandidateWorkflowScore score(CandidateWorkflow candidate) {
@@ -46,27 +47,8 @@ public class SimpleScoringService implements ScoringService<CandidateWorkflowSco
                                 .collect(Collectors.summarizingDouble(a -> a))));
     }
 
-    // TODO encode weights in properties file
-
     private Double getWeight(CompatibilityValue value) {
-
-        if(value.equals(CompatibilityValue.NEGATIVE)) {
-            return -1d;
-        }
-        else if(value.equals(CompatibilityValue.INDIFFERENT)) {
-            return 1d;
-        }
-        else if(value.equals(CompatibilityValue.SLIGHT)) {
-            return 2d;
-        }
-        else if(value.equals(CompatibilityValue.SOME)) {
-            return 3d;
-        }
-        else if(value.equals(CompatibilityValue.STRONG)) {
-            return 5d;
-        }
-        else {
-            return 1d;
-        }
+        String weightIdentifier = value.getIdentifier().orElse("DEFAULT");
+        return Double.valueOf(weights.getOrDefault(weightIdentifier, 0).toString());
     }
 }
