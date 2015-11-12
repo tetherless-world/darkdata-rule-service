@@ -1,8 +1,8 @@
 package darkdata.model.kb;
 
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.RDFNode;
 
@@ -18,17 +18,16 @@ public class PhysicalFeature extends IndividualProxy {
 
     public PhysicalFeature(OntResource individual) {
         super(individual);
-        //individual.addOntClass(CLASS);
         individual.addRDFType(CLASS);
     }
 
     public List<ObservableProperty> observableProperties() {
+        OntModel m = getIndividual().getOntModel();
         return getIndividual()
                 .listPropertyValues(DarkData.observableProperty).toList().stream()
                 .filter(RDFNode::isResource)
-                .map(r -> (OntResource) r.asResource())
-                .filter(OntResource::isIndividual)
-                .map(OntResource::asIndividual)
+                .map(RDFNode::asResource)
+                .map(m::getOntResource)
                 .map(ObservableProperty::new)
                 .collect(Collectors.toList());
     }

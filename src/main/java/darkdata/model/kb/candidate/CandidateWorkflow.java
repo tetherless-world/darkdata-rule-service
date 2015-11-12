@@ -77,6 +77,7 @@ public class CandidateWorkflow extends Candidate {
 
     public void setFeature(PhysicalFeature feature) {
         getIndividual().setPropertyValue(DarkData.candidateFeature, feature.getIndividual());
+        getIndividual().getOntModel().add(feature.getIndividual().listProperties().toList());
     }
 
     public Optional<PhysicalFeature> getFeature() {
