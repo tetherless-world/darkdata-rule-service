@@ -2,6 +2,5 @@
   "product" : "MYD08_D3",
   "version" : "51",
   "variable" : "Cirrus_Reflectance_Mean",
-  "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE",
-  "modifiers": [ ]
+  "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"
 }
