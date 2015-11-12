@@ -21,9 +21,9 @@ public class Phenomena extends IndividualProxy {
 
     public static final OntClass CLASS = DarkData.Phenomena;
 
-    public Phenomena(Individual individual) {
+    public Phenomena(OntResource individual) {
         super(individual);
-        individual.addOntClass(CLASS);
+        individual.addRDFType(CLASS);
     }
 
     public List<PhysicalFeature> getPhysicalFeatures() {

@@ -68,6 +68,7 @@ public class RecommendationService {
         return c;
     }
 
+    // TODO write custom Transform<T,S> class
     public darkdata.web.api.candidate.CandidateWorkflow transform(CandidateWorkflow c) {
 
         double score = c.getScore()
@@ -82,8 +83,17 @@ public class RecommendationService {
                 .map(Optional::get)
                 .ifPresent(workflow::setService);
 
-        //workflow.setStartTime("");
-        //workflow.setEndTime("");
+        // TODO workflow.setStartTime("");
+
+        // TODO workflow.setEndTime("");
+
+        // TODO workflow.setBoundingBox("");
+
+        // TODO workflow.setDataVariables([]);
+
+        // TODO workflow.setShape("");
+
+        // TODO workflow.setKeywords([]);
 
         return new darkdata.web.api.candidate.CandidateWorkflow(workflow, score);
     }

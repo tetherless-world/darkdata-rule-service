@@ -1,19 +1,20 @@
 package darkdata.model.kb;
 
 import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntResource;
 
 /**
  * @author szednik
  */
 public class IndividualProxy {
 
-    private Individual individual;
+    private OntResource individual;
 
-    protected IndividualProxy(Individual individual) {
+    protected IndividualProxy(OntResource individual) {
         this.individual = individual;
     }
 
-    public Individual getIndividual() {
+    public OntResource getIndividual() {
         return individual;
     }
 

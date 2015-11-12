@@ -4,6 +4,7 @@ import darkdata.DarkDataApplication;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.compatibility.CompatibilityAssertion;
 import darkdata.model.ontology.DarkData;
+import darkdata.repository.CandidateWorkflowRepository;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -29,13 +30,12 @@ public class RandomCompatibilityServiceTest {
     @Autowired
     private RandomCompatibilityService compatibilityService;
 
+    @Autowired
+    private CandidateWorkflowRepository repository;
+
     @Test
     public void testComputeCompatibilities() {
-
-        OntModel m = ModelFactory.createOntologyModel();
-        Individual c = m.createIndividual("urn:foo", DarkData.CandidateWorkflow);
-        CandidateWorkflow candidate = new CandidateWorkflow(c);
-
+        CandidateWorkflow candidate = repository.createCandidateWorkflow("urn:candidate/random/testComputeCompatibilites").get();
         List<CompatibilityAssertion> assertions = compatibilityService.computeCompatibilities(candidate);
         Assert.assertFalse(assertions.isEmpty());
         assertions.stream().forEach(p -> System.out.println(p.getValue().get().getIndividual().getURI()+"\t"+p.getConfidence().get()));

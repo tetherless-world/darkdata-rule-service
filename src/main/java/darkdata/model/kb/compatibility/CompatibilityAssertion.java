@@ -4,12 +4,11 @@ import darkdata.model.kb.IndividualProxy;
 import darkdata.model.kb.candidate.Candidate;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
 
 import java.util.Optional;
@@ -21,16 +20,17 @@ public class CompatibilityAssertion extends IndividualProxy {
 
     public final static OntClass CLASS = DarkData.CompatibilityAssertion;
 
-    public CompatibilityAssertion(Individual individual) {
+    public CompatibilityAssertion(OntResource individual) {
         super(individual);
-        individual.addOntClass(CLASS);
+        individual.addRDFType(CLASS);
     }
 
     public Optional<CandidateWorkflow> getCandidate() {
         OntModel m = getIndividual().getOntModel();
         return Optional.ofNullable(getIndividual().getPropertyResourceValue(DarkData.candidate))
-                .map(Resource::getURI)
-                .map(m::getIndividual)
+                .filter(RDFNode::isResource)
+                .map(RDFNode::asResource)
+                .map(m::getOntResource)
                 .map(CandidateWorkflow::new);
     }
 
@@ -40,15 +40,25 @@ public class CompatibilityAssertion extends IndividualProxy {
 
     public void setValue(CompatibilityValue value) {
         getIndividual().setPropertyValue(DarkData.compatibilityValue, value.getIndividual());
+        // TODO for the moment we have to do this or the score does not show up
         getIndividual().getOntModel().add(value.getIndividual().listProperties().toList());
     }
 
     public Optional<CompatibilityValue> getValue() {
         OntModel m = getIndividual().getOntModel();
         return Optional.ofNullable(getIndividual().getPropertyResourceValue(DarkData.compatibilityValue))
-                .map(Resource::getURI)
-                .map(m::getIndividual)
+                .filter(RDFNode::isResource)
+                .map(RDFNode::asResource)
+                .map(m::getOntResource)
                 .map(CompatibilityValue::new);
+    }
+
+    public Optional<CompatibilityValue> createValue() {
+        OntModel m = getIndividual().getOntModel();
+        Optional<CompatibilityValue> v = Optional.ofNullable(m.createIndividual(DarkData.CompatibilityValue))
+                .map(CompatibilityValue::new);
+        v.ifPresent(this::setValue);
+        return v;
     }
 
     public void setConfidence(double confidence) {

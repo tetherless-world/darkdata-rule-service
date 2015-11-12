@@ -14,7 +14,7 @@ import java.util.*;
  */
 
 @Service
-public class RandomCompatibilityService implements CompatibilityService<CompatibilityAssertion, CandidateWorkflow> {
+public class RandomCompatibilityService implements CandidateWorkflowCompatibilityService {
 
     @Autowired
     private CompatibilityAssertionRepository compatibilityAssertionRepository;

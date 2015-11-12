@@ -1,5 +1,6 @@
 package darkdata.service;
 
+import darkdata.model.kb.Dataset;
 import darkdata.web.api.datavariable.DataVariable;
 import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.event.eonet.EventCategory;
@@ -37,6 +38,12 @@ public class GenerateCandidateWorkflowService
     private CandidateWorkflowRepository candidateWorkflowRepository;
 
     @Autowired
+    private DataVariableRepository variableRepository;
+
+    @Autowired
+    private DatasetRepository datasetRepository;
+
+    @Autowired
     private EventRepository eventRepository;
 
     /**
@@ -63,6 +70,9 @@ public class GenerateCandidateWorkflowService
                 List<OntClass> features = featureRepository.listPhysicalManifestationOfPhenomena(phenomena);
                 for(OntClass feature : features) {
                     for(DataVariable variable: variables) {
+
+                        darkdata.model.kb.DataVariable var = transform(variable);
+
                         for (G4Service g4service : g4services) {
 
                             String candidate_uri = "urn:candidate-workflow/"+UUID.randomUUID().toString();
@@ -74,6 +84,8 @@ public class GenerateCandidateWorkflowService
                             //candidate.setPhenomena(phenomena);
                             //candidate.setPhysicalFeature(feature);
                             candidate.setService(g4service);
+
+                            candidate.addVariable(var);
 
                             // TODO add variables in separate following component?
                             // 1-variable for some services
@@ -88,5 +100,25 @@ public class GenerateCandidateWorkflowService
         }
 
         return candidateWorkflows;
+    }
+
+    // TODO put into own transformer class
+    private darkdata.model.kb.DataVariable transform(DataVariable variable) {
+
+        String varId = variable.getProduct()+"_"+variable.getVersion()+"_"+variable.getVariable();
+        String varURI = "urn:variable/"+varId;
+
+        darkdata.model.kb.DataVariable var = variableRepository.createDataVariable(varURI).get();
+
+        String datasetID = variable.getProduct()+"_"+variable.getVersion();
+        String datasetURI = "urn:dataset/"+datasetID;
+
+        Dataset dataset = datasetRepository.createDataset(datasetURI).get();
+        dataset.setShortName(variable.getProduct());
+
+        var.setShortName(variable.getVariable());
+        var.setDataset(dataset);
+
+        return var;
     }
 }

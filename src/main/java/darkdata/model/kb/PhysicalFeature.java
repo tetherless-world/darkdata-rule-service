@@ -16,9 +16,10 @@ public class PhysicalFeature extends IndividualProxy {
 
     public static final OntClass CLASS = DarkData.PhysicalManifestation;
 
-    public PhysicalFeature(Individual individual) {
+    public PhysicalFeature(OntResource individual) {
         super(individual);
-        individual.addOntClass(CLASS);
+        //individual.addOntClass(CLASS);
+        individual.addRDFType(CLASS);
     }
 
     public List<ObservableProperty> observableProperties() {
