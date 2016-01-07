@@ -6,6 +6,7 @@ import darkdata.model.kb.Phenomena;
 import darkdata.model.kb.PhysicalFeature;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.compatibility.CompatibilityAssertion;
+import darkdata.model.kb.compatibility.CompatibilityValue;
 import darkdata.model.kb.g4.G4Service;
 import darkdata.model.ontology.DarkData;
 import darkdata.repository.CandidateWorkflowRepository;
@@ -48,7 +49,7 @@ public class RuleBasedCompatibilityServiceTest {
     private G4ServiceRepository serviceRepository;
 
     @Autowired
-    private DarkDataDatasource datasource;
+    private OWLDLReasoningService reasoningService;
 
     @Test
     public void testComputeCompatibility() {
@@ -56,7 +57,6 @@ public class RuleBasedCompatibilityServiceTest {
         CandidateWorkflow candidate = repository.createCandidateWorkflow("urn:candidate/rules/testComputeCompatibility").get();
         Phenomena volcanicEruption = eventRepository.createEvent("urn:event/testComputeCompatibility", DarkData.VolcanicEruption).get();
         G4Service arAvTs = serviceRepository.getByIdentifier("ArAvTs").get();
-//        G4Service arAvTs = serviceRepository.getByIdentifier("HvLt").get();
 
         candidate.setEvent(volcanicEruption);
         candidate.setService(arAvTs);
@@ -65,14 +65,16 @@ public class RuleBasedCompatibilityServiceTest {
         List<CompatibilityAssertion> assertions = service.computeCompatibilities(candidate);
         Assert.assertFalse(assertions.isEmpty());
 
-        System.out.println("\nprinting out confidence assertions for "+arAvTs.getIdentifier().get());
         assertions.stream()
-                .forEach(a -> System.out.println(a.getValue().get().getIdentifier().get()));
+                .forEach(a -> Assert.assertEquals(CompatibilityValue.STRONG, a.getValue().get()));
     }
 
     private void setInferredFeature(CandidateWorkflow candidate) {
         Phenomena event = candidate.getEvent().get();
-        OntModel inf = reason(candidate);
+
+        OntModel candidateModel = candidate.getIndividual().getOntModel();
+
+        OntModel inf = reasoningService.reason(candidateModel);
         List<PhysicalFeature> features = getInferredFeatures(inf, event);
         Assert.assertNotNull(features);
         Assert.assertFalse(features.isEmpty());
@@ -80,14 +82,6 @@ public class RuleBasedCompatibilityServiceTest {
         // For this test just get the the 1st feature, in future compute compatibilities for all features
         PhysicalFeature feature = features.get(0);
         candidate.setFeature(feature);
-    }
-
-    private OntModel reason(CandidateWorkflow candidate) {
-        OntModel m = candidate.getIndividual().getOntModel();
-        OntModel inf = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF, m);
-        inf.addSubModel(datasource.getSchema());
-        inf.prepare();
-        return inf;
     }
 
     private List<PhysicalFeature> getInferredFeatures(OntModel m, Phenomena event) {

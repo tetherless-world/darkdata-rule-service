@@ -1,21 +1,24 @@
 package darkdata.service;
 
+import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.kb.Dataset;
-import darkdata.web.api.datavariable.DataVariable;
-import darkdata.web.api.event.eonet.Event;
-import darkdata.web.api.event.eonet.EventCategory;
 import darkdata.model.kb.Phenomena;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.model.kb.g4.G4Service;
 import darkdata.repository.*;
+import darkdata.web.api.datavariable.DataVariable;
+import darkdata.web.api.event.eonet.EventCategory;
 import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @author szednik
@@ -28,8 +31,8 @@ public class GenerateCandidateWorkflowService
     @Autowired
     private PhenomenaRepository phenomenaRepository;
 
-    @Autowired
-    private PhysicalFeatureRepository featureRepository;
+//    @Autowired
+//    private PhysicalFeatureRepository featureRepository;
 
     @Autowired
     private G4ServiceRepository g4ServiceRepository;
@@ -46,6 +49,9 @@ public class GenerateCandidateWorkflowService
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private DarkDataDatasource datasource;
+
     /**
      * Generate candidate workflows
      * @param criteria candidate workflow criteria
@@ -55,50 +61,47 @@ public class GenerateCandidateWorkflowService
     @Override
     public List<CandidateWorkflow> generate(CandidateWorkflowCriteria criteria) {
 
-        Event event = criteria.getEvent();
-        List<DataVariable> variables = criteria.getVariables();
-        List<G4Service> g4services = g4ServiceRepository.listInstances();
         List<CandidateWorkflow> candidateWorkflows = new ArrayList<>();
 
-        // TODO re-write using a Java8 stream?
+        String eventLink = criteria.getEvent().getLink();
+        List<DataVariable> variables = criteria.getVariables();
+        List<G4Service> g4services = g4ServiceRepository.listInstances();
 
-        List<EventCategory> categories = event.getCategories();
-        for( EventCategory category : categories) {
-            String topic = category.getText();
-            List<OntClass> phenomenaList = phenomenaRepository.listClassesByTopic(topic);
-            for(OntClass phenomena : phenomenaList) {
-                List<OntClass> features = featureRepository.listPhysicalManifestationOfPhenomena(phenomena);
-                for(OntClass feature : features) {
-                    for(DataVariable variable: variables) {
+        List<OntClass> phenomenaList = criteria.getEvent().getCategories().stream()
+                .map(EventCategory::getText)
+                .map(phenomenaRepository::listClassesByTopic)
+                .flatMap(Collection::stream)
+                .distinct()
+                .collect(Collectors.toList());
 
-                        darkdata.model.kb.DataVariable var = transform(variable);
+        // create OntModel for candidates
+        OntModel m = datasource.createOntModel();
 
-                        for (G4Service g4service : g4services) {
+        for(OntClass phenomenaClass : phenomenaList) {
+            for (G4Service g4service : g4services) {
+                for (DataVariable variable : variables) {
 
-                            String candidate_uri = "urn:candidate-workflow/"+UUID.randomUUID().toString();
-                            CandidateWorkflow candidate = candidateWorkflowRepository.createCandidateWorkflow(candidate_uri).get();
+                    darkdata.model.kb.DataVariable var = transform(variable);
 
-                            Phenomena event2 = eventRepository.createEvent(event.getLink(), phenomena).get();
-                            candidate.setEvent(event2);
+                    String candidate_uri = "urn:candidate-workflow/" + UUID.randomUUID().toString();
+                    CandidateWorkflow candidate = candidateWorkflowRepository.createCandidateWorkflow(m, candidate_uri).get();
 
-                            //candidate.setPhenomena(phenomena);
-                            //candidate.setPhysicalFeature(feature);
-                            candidate.setService(g4service);
+                    Phenomena event = eventRepository.createEvent(m, eventLink, phenomenaClass).get();
+                    candidate.setEvent(event);
 
-                            candidate.addVariable(var);
+                    candidate.setService(g4service);
+                    candidate.addVariable(var);
 
-                            // TODO add variables in separate following component?
-                            // 1-variable for some services
-                            // 2-variables for comparison services
-                            //candidate.setVariables(Arrays.asList(variable));
+                    // TODO add variables in separate following component?
+                    // 1-variable for some services
+                    // 2-variables for comparison services
 
-                            candidateWorkflows.add(candidate);
-                        }
-                    }
+                    candidateWorkflows.add(candidate);
                 }
             }
         }
 
+        m.prepare();
         return candidateWorkflows;
     }
 

@@ -65,7 +65,8 @@ public class DarkDataDatasource {
 
     // TODO factoryMethod for each process?
     public OntModel createOntModel() {
-        OntModel m = ModelFactory.createOntologyModel();
+//        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
         m.addSubModel(ontModel);
         return m;
     }

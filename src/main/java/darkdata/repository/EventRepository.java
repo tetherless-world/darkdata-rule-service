@@ -5,6 +5,7 @@ import darkdata.model.kb.Phenomena;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,18 @@ public class EventRepository {
         }
 
         return Optional.ofNullable(datasource.getOntModel().createIndividual(uri, phenomena))
+                .map(Phenomena::new);
+    }
+
+    public Optional<Phenomena> createEvent(OntModel m, String uri, OntClass phenomena) {
+
+        Optional<OntClass> phenomenaClass = phenomenaRepository.getClass(phenomena.getURI());
+        if(!phenomenaClass.isPresent()
+                || !phenomenaRepository.listSubclasses().contains(phenomenaClass.get())) {
+            return Optional.empty();
+        }
+
+        return Optional.ofNullable(m.createIndividual(uri, phenomena))
                 .map(Phenomena::new);
     }
 
