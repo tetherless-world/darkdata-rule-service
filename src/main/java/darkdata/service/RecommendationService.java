@@ -33,8 +33,8 @@ public class RecommendationService {
     @Autowired
     private SimpleScoringService scoringService;
 
-    @Autowired
-    private OWLDLReasoningService reasoningService;
+//    @Autowired
+//    private OWLDLReasoningService reasoningService;
 
     private double SCORE_THRESHOLD = 0;
 
