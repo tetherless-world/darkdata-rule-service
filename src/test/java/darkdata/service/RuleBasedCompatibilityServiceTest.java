@@ -13,9 +13,6 @@ import darkdata.repository.CandidateWorkflowRepository;
 import darkdata.repository.EventRepository;
 import darkdata.repository.G4ServiceRepository;
 import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.RDFNode;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +22,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author szednik
@@ -49,49 +45,34 @@ public class RuleBasedCompatibilityServiceTest {
     private G4ServiceRepository serviceRepository;
 
     @Autowired
-    private OWLDLReasoningService reasoningService;
+    private DarkDataDatasource datasource;
 
     @Test
     public void testComputeCompatibility() {
 
-        CandidateWorkflow candidate = repository.createCandidateWorkflow("urn:candidate/rules/testComputeCompatibility").get();
-        Phenomena volcanicEruption = eventRepository.createEvent("urn:event/testComputeCompatibility", DarkData.VolcanicEruption).get();
+        OntModel m = datasource.createOntModel();
+
+        CandidateWorkflow candidate = repository.createCandidateWorkflow(m, "urn:candidate/rules/testComputeCompatibility").get();
+        Phenomena volcanicEruption = eventRepository.createEvent(m, "urn:event/testComputeCompatibility", DarkData.VolcanicEruption).get();
         G4Service arAvTs = serviceRepository.getByIdentifier("ArAvTs").get();
+
+        Assert.assertEquals(m, candidate.getIndividual().getOntModel());
 
         candidate.setEvent(volcanicEruption);
         candidate.setService(arAvTs);
-        setInferredFeature(candidate);
+
+        List<PhysicalFeature> features = candidate.getEvent().get().getPhysicalFeatures();
+        Assert.assertNotNull("features is null", features);
+        Assert.assertFalse("features is empty", features.isEmpty());
+
+        // for test purposes this candidate will focus on the 1st feature inferred for the given event
+        candidate.setFeature(features.get(0));
 
         List<CompatibilityAssertion> assertions = service.computeCompatibilities(candidate);
         Assert.assertFalse(assertions.isEmpty());
 
         assertions.stream()
                 .forEach(a -> Assert.assertEquals(CompatibilityValue.STRONG, a.getValue().get()));
-    }
-
-    private void setInferredFeature(CandidateWorkflow candidate) {
-        Phenomena event = candidate.getEvent().get();
-
-        OntModel candidateModel = candidate.getIndividual().getOntModel();
-
-        OntModel inf = reasoningService.reason(candidateModel);
-        List<PhysicalFeature> features = getInferredFeatures(inf, event);
-        Assert.assertNotNull(features);
-        Assert.assertFalse(features.isEmpty());
-
-        // For this test just get the the 1st feature, in future compute compatibilities for all features
-        PhysicalFeature feature = features.get(0);
-        candidate.setFeature(feature);
-    }
-
-    private List<PhysicalFeature> getInferredFeatures(OntModel m, Phenomena event) {
-        return m.getOntResource(event.getIndividual())
-                .listPropertyValues(DarkData.physicalManifestation).toList().stream()
-                .filter(RDFNode::isResource)
-                .map(RDFNode::asResource)
-                .map(m::getOntResource)
-                .map(PhysicalFeature::new)
-                .collect(Collectors.toList());
     }
 
 }
