@@ -16,6 +16,8 @@ Dark Data Rule Service
 
 ## Run
 
+This project using Spring Boot so it will build an executable JAR file that when run with the ``java -jar`` command will start an embedded tomcat instance on port 8095.
+
 ``java -jar darkdata-rule-service-0.0.1-SNAPSHOT.jar``
 
 ## Service Test
