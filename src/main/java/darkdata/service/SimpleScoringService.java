@@ -43,7 +43,9 @@ public class SimpleScoringService implements CandidateWorkflowScoringService {
         return groupAssertions(assertions).entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey,
                         e -> e.getValue().stream()
-                                .map(a -> a.getConfidence().get())
+                                .map(CompatibilityAssertion::getConfidence)
+                                .filter(Optional::isPresent)
+                                .map(Optional::get)
                                 .collect(Collectors.summarizingDouble(a -> a))));
     }
 

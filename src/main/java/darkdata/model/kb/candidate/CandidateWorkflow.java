@@ -75,6 +75,10 @@ public class CandidateWorkflow extends Candidate {
                 .map(DataVariable::new);
     }
 
+    public List<DataVariable> listVariables() {
+        return Collections.emptyList();
+    }
+
     public void setFeature(PhysicalFeature feature) {
         getIndividual().setPropertyValue(DarkData.candidateFeature, feature.getIndividual());
         getIndividual().getOntModel().add(feature.getIndividual().listProperties().toList());

@@ -1,17 +1,12 @@
 package darkdata.service;
 
 import darkdata.DarkDataApplication;
-import darkdata.model.kb.Phenomena;
 import darkdata.model.kb.PhysicalFeature;
-import darkdata.model.kb.candidate.Candidate;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
-import darkdata.model.ontology.DarkData;
 import darkdata.web.api.datavariable.DataVariable;
 import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.event.eonet.EventCategory;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.rdf.model.RDFNode;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +17,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author szednik
@@ -64,6 +58,7 @@ public class GenerateCandidateWorkflowServiceTest {
             Assert.assertTrue(candidate.getService().isPresent());
             Assert.assertTrue(candidate.getVariable().isPresent());
             Assert.assertTrue(candidate.getEvent().isPresent());
+            Assert.assertTrue(candidate.getFeature().isPresent());
         }
     }
 }

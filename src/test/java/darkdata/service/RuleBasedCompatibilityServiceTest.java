@@ -6,7 +6,6 @@ import darkdata.model.kb.Phenomena;
 import darkdata.model.kb.PhysicalFeature;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.compatibility.CompatibilityAssertion;
-import darkdata.model.kb.compatibility.CompatibilityValue;
 import darkdata.model.kb.g4.G4Service;
 import darkdata.model.ontology.DarkData;
 import darkdata.repository.CandidateWorkflowRepository;
@@ -72,7 +71,37 @@ public class RuleBasedCompatibilityServiceTest {
         Assert.assertFalse(assertions.isEmpty());
 
         assertions.stream()
-                .forEach(a -> Assert.assertEquals(CompatibilityValue.STRONG, a.getValue().get()));
+                .forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
+                //.forEach(a -> System.out.println(a.getValue().get().getIdentifier().get()));
+    }
+
+    @Test
+    public void testComputeCompatibility_SevereStorm() {
+
+        OntModel m = datasource.createOntModel();
+
+        CandidateWorkflow candidate = repository.createCandidateWorkflow(m, "urn:candidate/rules/testComputeCompatibility_SevereStorm").get();
+        Phenomena volcanicEruption = eventRepository.createEvent(m, "urn:event/testComputeCompatibility", DarkData.SevereStorm).get();
+        G4Service arAvTs = serviceRepository.getByIdentifier("ArAvTs").get();
+
+        Assert.assertEquals(m, candidate.getIndividual().getOntModel());
+
+        candidate.setEvent(volcanicEruption);
+        candidate.setService(arAvTs);
+
+        List<PhysicalFeature> features = candidate.getEvent().get().getPhysicalFeatures();
+        Assert.assertNotNull("features is null", features);
+        Assert.assertFalse("features is empty", features.isEmpty());
+
+        // for test purposes this candidate will focus on the 1st feature inferred for the given event
+        candidate.setFeature(features.get(0));
+
+        List<CompatibilityAssertion> assertions = service.computeCompatibilities(candidate);
+        Assert.assertFalse(assertions.isEmpty());
+
+        assertions.stream()
+                //.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
+                .forEach(a -> System.out.println(a.getValue().get().getIdentifier().get()));
     }
 
 }

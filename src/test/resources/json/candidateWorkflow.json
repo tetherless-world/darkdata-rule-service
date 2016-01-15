@@ -12,5 +12,6 @@
     } ],
     "shape" : "shp_30"
   },
+  "feature": "http://www.purl.org/twc/ns/darkdata#AshPlume",
   "score" : 2.543
 }

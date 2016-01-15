@@ -1,5 +1,26 @@
 @prefix dd: <http://www.purl.org/twc/ns/darkdata#>.
 
+[ex-rule0:
+ (?feature rdf:type dd:WindFields)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:indifferentCompatibilityFor dd:east-west-movement),
+ (?feature dd:indifferentCompatibilityFor dd:north-south-movement),
+ (?feature dd:slightCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:indifferentCompatibilityFor dd:seasonal_variation),
+ (?feature dd:indifferentCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:someCompatibilityFor dd:global_phenomena),
+ (?feature dd:slightCompatibilityFor dd:detection_of_events)
+]
+
+[ex-rule1:
+ (?feature rdf:type dd:HurricaneEye)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height)
+]
+
 [bob-rule1:
  (?feature rdf:type dd:AshPlume)
  ->

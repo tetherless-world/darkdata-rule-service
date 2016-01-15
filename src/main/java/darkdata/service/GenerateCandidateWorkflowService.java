@@ -1,12 +1,16 @@
 package darkdata.service;
 
 import darkdata.datasource.DarkDataDatasource;
-import darkdata.model.kb.Dataset;
 import darkdata.model.kb.Phenomena;
+import darkdata.model.kb.PhysicalFeature;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.model.kb.g4.G4Service;
-import darkdata.repository.*;
+import darkdata.repository.CandidateWorkflowRepository;
+import darkdata.repository.EventRepository;
+import darkdata.repository.G4ServiceRepository;
+import darkdata.repository.PhenomenaRepository;
+import darkdata.transformers.DataVariableAPI2KBConverter;
 import darkdata.web.api.datavariable.DataVariable;
 import darkdata.web.api.event.eonet.EventCategory;
 import org.apache.jena.ontology.OntClass;
@@ -31,9 +35,6 @@ public class GenerateCandidateWorkflowService
     @Autowired
     private PhenomenaRepository phenomenaRepository;
 
-//    @Autowired
-//    private PhysicalFeatureRepository featureRepository;
-
     @Autowired
     private G4ServiceRepository g4ServiceRepository;
 
@@ -41,10 +42,7 @@ public class GenerateCandidateWorkflowService
     private CandidateWorkflowRepository candidateWorkflowRepository;
 
     @Autowired
-    private DataVariableRepository variableRepository;
-
-    @Autowired
-    private DatasetRepository datasetRepository;
+    private DataVariableAPI2KBConverter dataVariableAPI2KBConverter;
 
     @Autowired
     private EventRepository eventRepository;
@@ -74,54 +72,38 @@ public class GenerateCandidateWorkflowService
                 .distinct()
                 .collect(Collectors.toList());
 
-        // create OntModel for candidates
+        // create OntModel with OWL DL reasoning for candidates
         OntModel m = datasource.createOntModel();
 
         for(OntClass phenomenaClass : phenomenaList) {
             for (G4Service g4service : g4services) {
                 for (DataVariable variable : variables) {
 
-                    darkdata.model.kb.DataVariable var = transform(variable);
-
-                    String candidate_uri = "urn:candidate-workflow/" + UUID.randomUUID().toString();
-                    CandidateWorkflow candidate = candidateWorkflowRepository.createCandidateWorkflow(m, candidate_uri).get();
-
                     Phenomena event = eventRepository.createEvent(m, eventLink, phenomenaClass).get();
-                    candidate.setEvent(event);
 
-                    candidate.setService(g4service);
-                    candidate.addVariable(var);
+                    for(PhysicalFeature feature : event.getPhysicalFeatures()) {
 
-                    // TODO add variables in separate following component?
-                    // 1-variable for some services
-                    // 2-variables for comparison services
+                        darkdata.model.kb.DataVariable var = dataVariableAPI2KBConverter.convert(variable).get();
 
-                    candidateWorkflows.add(candidate);
+                        String candidate_uri = "urn:candidate-workflow/" + UUID.randomUUID().toString();
+                        CandidateWorkflow candidate = candidateWorkflowRepository.createCandidateWorkflow(m, candidate_uri).get();
+
+                        candidate.setEvent(event);
+                        candidate.setFeature(feature);
+                        candidate.setService(g4service);
+                        candidate.addVariable(var);
+
+                        // TODO add variables in separate following component?
+                        // 1-variable for some services
+                        // 2-variables for comparison services
+
+                        candidateWorkflows.add(candidate);
+                    }
                 }
             }
         }
 
         m.prepare();
         return candidateWorkflows;
-    }
-
-    // TODO put into own transformer class
-    private darkdata.model.kb.DataVariable transform(DataVariable variable) {
-
-        String varId = variable.getProduct()+"_"+variable.getVersion()+"_"+variable.getVariable();
-        String varURI = "urn:variable/"+varId;
-
-        darkdata.model.kb.DataVariable var = variableRepository.createDataVariable(varURI).get();
-
-        String datasetID = variable.getProduct()+"_"+variable.getVersion();
-        String datasetURI = "urn:dataset/"+datasetID;
-
-        Dataset dataset = datasetRepository.createDataset(datasetURI).get();
-        dataset.setShortName(variable.getProduct());
-
-        var.setShortName(variable.getVariable());
-        var.setDataset(dataset);
-
-        return var;
     }
 }

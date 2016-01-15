@@ -7,6 +7,7 @@ import darkdata.model.kb.compatibility.CompatibilityAssertion;
 import darkdata.model.kb.compatibility.CompatibilityValue;
 import darkdata.model.kb.g4.G4Service;
 import darkdata.model.ontology.DarkData;
+import org.apache.jena.base.Sys;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntProperty;
 import org.apache.jena.rdf.model.InfModel;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
@@ -107,7 +109,7 @@ public class RuleBasedCompatibilityService implements CandidateWorkflowCompatibi
 
         OntModel m = candidate.getIndividual().getOntModel();
 
-        if (!feature.isPresent() || !service.isPresent()) { return; }
+        if(!feature.isPresent() || !service.isPresent()) { return; }
 
         Stream.of(feature.get())
                 .flatMap(f -> ruleInf.listObjectsOfProperty(compatibilityProperty).toList().stream())
@@ -118,6 +120,7 @@ public class RuleBasedCompatibilityService implements CandidateWorkflowCompatibi
                 .map(f -> m.createIndividual(DarkData.CompatibilityAssertion))
                 .map(CompatibilityAssertion::new)
                 .peek(a -> a.setValue(compatibilityValue))
+                .peek(a -> a.setConfidence(1d))
                 .peek(candidate::addCompatibilityAssertion)
                 .collect(Collectors.toList());
     }
