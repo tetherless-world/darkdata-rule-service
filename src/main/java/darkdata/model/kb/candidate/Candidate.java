@@ -3,11 +3,10 @@ package darkdata.model.kb.candidate;
 import darkdata.model.kb.IndividualProxy;
 import darkdata.model.kb.compatibility.CompatibilityAssertion;
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.Resource;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +22,7 @@ public class Candidate extends IndividualProxy {
 
     private CandidateScore score;
 
-    public Candidate(Individual individual) {
+    public Candidate(OntResource individual) {
         super(individual);
         individual.addRDFType(CLASS);
     }
@@ -37,8 +36,7 @@ public class Candidate extends IndividualProxy {
         return getIndividual().listPropertyValues(DarkData.compatibilityAssertion).toList().stream()
                 .filter(RDFNode::isResource)
                 .map(RDFNode::asResource)
-                .map(Resource::getURI)
-                .map(m::getIndividual)
+                .map(m::getOntResource)
                 .map(CompatibilityAssertion::new)
                 .collect(Collectors.toList());
     }

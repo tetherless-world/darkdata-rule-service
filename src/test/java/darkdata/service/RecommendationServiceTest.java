@@ -31,20 +31,10 @@ public class RecommendationServiceTest {
     private RecommendationService service;
 
     @Autowired
-    private CandidateWorkflowRepository repository;
-
-    @Autowired
     private ObjectMapper mapper;
 
     @Value("classpath:json/request.json")
     private Resource request;
-
-    @Test
-    public void testTransform() {
-        darkdata.model.kb.candidate.CandidateWorkflow c = repository.createCandidateWorkflow("urn:candidate/testTransform").get();
-        CandidateWorkflow result = service.transform(c);
-        Assert.assertNotNull(result);
-    }
 
     @Test
     public void testGetRecommendation() throws IOException {

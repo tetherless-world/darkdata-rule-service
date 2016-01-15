@@ -21,13 +21,24 @@ public class Phenomena extends IndividualProxy {
 
     public static final OntClass CLASS = DarkData.Phenomena;
 
-    public Phenomena(Individual individual) {
+    public Phenomena(OntResource individual) {
         super(individual);
-        individual.addOntClass(CLASS);
+        individual.addRDFType(CLASS);
     }
 
     public List<PhysicalFeature> getPhysicalFeatures() {
         return getIndividual()
+                .listPropertyValues(DarkData.physicalManifestation).toList().stream()
+                .filter(RDFNode::isResource)
+                .map(r -> (OntResource) r.asResource())
+                .filter(OntResource::isIndividual)
+                .map(OntResource::asIndividual)
+                .map(PhysicalFeature::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<PhysicalFeature> getPhysicalFeatures(OntModel m) {
+        return m.getOntResource(this.getIndividual())
                 .listPropertyValues(DarkData.physicalManifestation).toList().stream()
                 .filter(RDFNode::isResource)
                 .map(r -> (OntResource) r.asResource())

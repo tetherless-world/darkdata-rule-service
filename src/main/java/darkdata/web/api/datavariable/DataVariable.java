@@ -1,5 +1,6 @@
 package darkdata.web.api.datavariable;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.List;
  * @author szednik
  */
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DataVariable {
 
     @JsonProperty(value = "product")

@@ -1,6 +1,9 @@
 package darkdata.repository;
 
 import darkdata.datasource.DarkDataDatasource;
+import darkdata.model.kb.Phenomena;
+import darkdata.model.kb.PhysicalFeature;
+import darkdata.model.kb.g4.G4Service;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -82,5 +85,19 @@ public class PhysicalFeatureRepository {
         } finally {
             m.removeSubModel(datasource.getOntModel());
         }
+    }
+
+    public Optional<PhysicalFeature> createPhysicalFeature(String uri, OntClass featureClass) {
+        // TODO add check that featureClass is subclass of dd:PhysicalManifestation
+        return Optional.ofNullable(datasource.getOntModel()
+                .createIndividual(uri, featureClass))
+                .map(PhysicalFeature::new);
+    }
+
+    public Optional<PhysicalFeature> createPhysicalFeature(OntClass featureClass) {
+        // TODO add check that featureClass is subclass of dd:PhysicalManifestation
+        return Optional.ofNullable(datasource.getOntModel()
+                .createIndividual(featureClass))
+                .map(PhysicalFeature::new);
     }
 }

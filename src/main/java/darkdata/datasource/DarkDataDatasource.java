@@ -21,6 +21,7 @@ import java.io.InputStream;
 public class DarkDataDatasource {
 
     private OntModel ontModel;
+    private OntModel schema;
 
     @Value("classpath:rdf/darkdata.ttl")
     Resource darkDataOntology;
@@ -41,7 +42,7 @@ public class DarkDataDatasource {
     @PostConstruct
     public void setup() {
 
-        OntModel schema = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+        schema = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
         schema.read(getInputStream(darkDataOntology), DarkData.getURI(),"TURTLE");
 
         Model scienceKeywords = ModelFactory.createDefaultModel();
@@ -54,13 +55,18 @@ public class DarkDataDatasource {
         ontModel.prepare();
     }
 
+    public OntModel getSchema() {
+        return schema;
+    }
+
     public OntModel getOntModel() {
         return ontModel;
     }
 
     // TODO factoryMethod for each process?
     public OntModel createOntModel() {
-        OntModel m = ModelFactory.createOntologyModel();
+//        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
         m.addSubModel(ontModel);
         return m;
     }

@@ -56,7 +56,7 @@ public class DarkData {
     public static final OntClass Flood = m_model.createClass("http://www.purl.org/twc/ns/darkdata#Flood");
     
     public static final OntClass Histogram = m_model.createClass("http://www.purl.org/twc/ns/darkdata#Histogram");
-    
+
     public static final OntClass Hovmoller = m_model.createClass("http://www.purl.org/twc/ns/darkdata#Hovmoller");
     
     public static final OntClass Hurricane = m_model.createClass("http://www.purl.org/twc/ns/darkdata#Hurricane");
@@ -189,6 +189,22 @@ public class DarkData {
 
     public static final DatatypeProperty endDateTime = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#endDateTime" );
 
-    public static final ObjectProperty geometry = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#compatibilityAssertion" );
+    public static final ObjectProperty geometry = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#geometry" );
+
+    public static final ObjectProperty slightCompatibilityFor = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#slightCompatibilityFor" );
+
+    public static final ObjectProperty someCompatibilityFor = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#someCompatibilityFor" );
+
+    public static final ObjectProperty strongCompatibilityFor = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#strongCompatibilityFor" );
+
+    public static final ObjectProperty indifferentCompatibilityFor = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#indifferentCompatibilityFor" );
+
+    public static final ObjectProperty negativeCompatibilityFor = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#negativeCompatibilityFor" );
+
+    public static final ObjectProperty bestFor = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#bestFor" );
+
+    public static final ObjectProperty candidateVariable = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#candidateVariable" );
+
+    public static final ObjectProperty candidateFeature = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#candidateFeature" );
 
 }

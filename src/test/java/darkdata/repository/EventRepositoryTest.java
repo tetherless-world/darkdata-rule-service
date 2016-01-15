@@ -35,7 +35,7 @@ public class EventRepositoryTest {
         Optional<Phenomena> event = repository.createEvent(uri, DarkData.Hurricane);
         Assert.assertTrue(event.isPresent());
         Assert.assertEquals(uri, event.get().getIndividual().getURI());
-        Assert.assertEquals(DarkData.Hurricane, event.get().getIndividual().getOntClass(true));
+        Assert.assertEquals(DarkData.Hurricane, event.get().getIndividual().getRDFType(true));
 
         Stream.of(event.get())
                 .map(Phenomena::getIndividual)
@@ -53,7 +53,7 @@ public class EventRepositoryTest {
         Optional<Phenomena> event = repository.createEvent(uri, DarkData.VolcanicEruption);
         Assert.assertTrue(event.isPresent());
         Assert.assertEquals(uri, event.get().getIndividual().getURI());
-        Assert.assertEquals(DarkData.VolcanicEruption, event.get().getIndividual().getOntClass(true));
+        Assert.assertEquals(DarkData.VolcanicEruption, event.get().getIndividual().getRDFType(true));
 
         Stream.of(event.get())
                 .map(Phenomena::getIndividual)

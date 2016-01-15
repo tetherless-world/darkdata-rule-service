@@ -1,6 +1,7 @@
 package darkdata.service;
 
 import darkdata.DarkDataApplication;
+import darkdata.model.kb.PhysicalFeature;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.web.api.datavariable.DataVariable;
@@ -14,6 +15,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -49,5 +51,17 @@ public class GenerateCandidateWorkflowServiceTest {
         CandidateWorkflowCriteria criteria = getTestCriteria();
         List<CandidateWorkflow> candidates = service.generate(criteria);
         Assert.assertFalse(candidates.isEmpty());
+
+        for(CandidateWorkflow candidate : candidates) {
+            Assert.assertTrue(candidate.getFeature().isPresent());
+            //System.out.println("getting physical features:\t" +  LocalDateTime.now());
+            PhysicalFeature feature = candidate.getFeature().get();
+            //System.out.println("getting observable properties:\t" +  LocalDateTime.now());
+            Assert.assertFalse(feature.observableProperties().isEmpty());
+            Assert.assertTrue(candidate.getService().isPresent());
+            Assert.assertTrue(candidate.getVariable().isPresent());
+            Assert.assertTrue(candidate.getEvent().isPresent());
+            Assert.assertTrue(candidate.getFeature().isPresent());
+        }
     }
 }

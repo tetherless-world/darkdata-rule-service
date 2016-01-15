@@ -1,14 +1,12 @@
 package darkdata.service;
 
-import darkdata.model.kb.candidate.CandidateScore;
+import darkdata.model.kb.candidate.CandidateWorkflow;
+import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
+import darkdata.transformers.CandidateWorkflowConverter;
 import darkdata.web.api.RecommendationRequest;
 import darkdata.web.api.RecommendationResponse;
 import darkdata.web.api.datavariable.DataVariable;
 import darkdata.web.api.event.eonet.Event;
-import darkdata.web.api.workflow.Workflow;
-import darkdata.model.kb.candidate.CandidateWorkflow;
-import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
-import darkdata.model.kb.g4.G4Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +26,13 @@ public class RecommendationService {
     private GenerateCandidateWorkflowService generateCandidateWorkflowService;
 
     @Autowired
-    private RandomCompatibilityService compatibilityService;
+    private RuleBasedCompatibilityService compatibilityService;
 
     @Autowired
     private SimpleScoringService scoringService;
+
+    @Autowired
+    private CandidateWorkflowConverter candidateWorkflowConverter;
 
     private double SCORE_THRESHOLD = 0;
 
@@ -45,7 +46,9 @@ public class RecommendationService {
                 .map(this::computeCandidateScore)
                 .filter(c -> c.getScore().isPresent())
                 .filter(c -> c.getScore().get().getScore() > SCORE_THRESHOLD)
-                .map(this::transform)
+                .map(candidateWorkflowConverter::convert)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .sorted(Comparator.comparing(darkdata.web.api.candidate.CandidateWorkflow::getScore).reversed())
                 .collect(Collectors.toList());
 
@@ -66,25 +69,5 @@ public class RecommendationService {
     public CandidateWorkflow computeCandidateScore(CandidateWorkflow c) {
         c.setScore(scoringService.score(c));
         return c;
-    }
-
-    public darkdata.web.api.candidate.CandidateWorkflow transform(CandidateWorkflow c) {
-
-        double score = c.getScore()
-                .map(CandidateScore::getScore)
-                .orElse(0d);
-
-        Workflow workflow = new Workflow();
-
-        c.getService()
-                .map(G4Service::getIdentifier)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .ifPresent(workflow::setService);
-
-        //workflow.setStartTime("");
-        //workflow.setEndTime("");
-
-        return new darkdata.web.api.candidate.CandidateWorkflow(workflow, score);
     }
 }

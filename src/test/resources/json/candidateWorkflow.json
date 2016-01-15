@@ -8,11 +8,10 @@
       "product" : "MYD08_D3",
       "version" : "51",
       "variable" : "Cirrus_Reflectance_Mean",
-      "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE",
-      "modifiers" : [ ]
+      "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"
     } ],
-    "dataKeyword" : [ ],
     "shape" : "shp_30"
   },
+  "feature": "http://www.purl.org/twc/ns/darkdata#AshPlume",
   "score" : 2.543
 }
