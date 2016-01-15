@@ -3,6 +3,7 @@ package darkdata.transformers;
 import darkdata.model.kb.IndividualProxy;
 import darkdata.model.kb.candidate.CandidateScore;
 import darkdata.model.kb.candidate.CandidateWorkflow;
+import darkdata.model.ontology.DarkData;
 import darkdata.web.api.workflow.Workflow;
 import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.Resource;
@@ -62,7 +63,7 @@ public class CandidateWorkflowConverter implements Converter<CandidateWorkflow, 
                 .map(IndividualProxy::getIndividual)
                 .map(OntResource::getRDFType)
                 .map(Resource::getURI)
-                .get();
+                .orElse(DarkData.PhysicalManifestation.getURI());
 
         return Optional.of(new darkdata.web.api.candidate.CandidateWorkflow(workflow, feature, score));
 
