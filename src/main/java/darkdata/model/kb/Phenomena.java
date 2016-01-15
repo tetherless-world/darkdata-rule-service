@@ -37,6 +37,17 @@ public class Phenomena extends IndividualProxy {
                 .collect(Collectors.toList());
     }
 
+    public List<PhysicalFeature> getPhysicalFeatures(OntModel m) {
+        return m.getOntResource(this.getIndividual())
+                .listPropertyValues(DarkData.physicalManifestation).toList().stream()
+                .filter(RDFNode::isResource)
+                .map(r -> (OntResource) r.asResource())
+                .filter(OntResource::isIndividual)
+                .map(OntResource::asIndividual)
+                .map(PhysicalFeature::new)
+                .collect(Collectors.toList());
+    }
+
     public List<Geometry> getGeometries() {
         OntModel m = getIndividual().getOntModel();
         return getIndividual()
