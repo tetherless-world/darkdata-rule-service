@@ -15,7 +15,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,9 +53,7 @@ public class GenerateCandidateWorkflowServiceTest {
 
         for(CandidateWorkflow candidate : candidates) {
             Assert.assertTrue(candidate.getFeature().isPresent());
-            //System.out.println("getting physical features:\t" +  LocalDateTime.now());
             PhysicalFeature feature = candidate.getFeature().get();
-            //System.out.println("getting observable properties:\t" +  LocalDateTime.now());
             Assert.assertFalse(feature.observableProperties().isEmpty());
             Assert.assertTrue(candidate.getService().isPresent());
             Assert.assertTrue(candidate.getVariable().isPresent());

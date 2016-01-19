@@ -7,9 +7,12 @@ import darkdata.model.ontology.DarkData;
 import darkdata.web.api.workflow.Workflow;
 import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.util.iterator.ExtendedIterator;
+import org.apache.jena.vocabulary.OWL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -39,6 +42,8 @@ public class CandidateWorkflowConverter implements Converter<CandidateWorkflow, 
 
         Workflow workflow = new Workflow();
 
+        Assert.isTrue(candidate.getService().isPresent(), "candidate must have a service");
+
         candidate.getService()
                 .flatMap(g4ServiceConverter::convert)
                 .ifPresent(workflow::setService);
@@ -48,6 +53,8 @@ public class CandidateWorkflowConverter implements Converter<CandidateWorkflow, 
         // TODO workflow.setEndTime("");
 
         // TODO workflow.setBoundingBox("");
+
+        Assert.isTrue(candidate.getVariable().isPresent(), "candidate must have at least 1 data variable");
 
         // TODO support multiple variables
         candidate.getVariable()
@@ -59,11 +66,19 @@ public class CandidateWorkflowConverter implements Converter<CandidateWorkflow, 
 
         // TODO workflow.setKeywords([]);
 
+        Assert.isTrue(candidate.getFeature().isPresent(), "candidate must have a physical feature");
+
         String feature = candidate.getFeature()
                 .map(IndividualProxy::getIndividual)
-                .map(OntResource::getRDFType)
+                .map(i -> i.listRDFTypes(true))
+                .map(ExtendedIterator::toList)
+                .get().stream()
                 .map(Resource::getURI)
-                .orElse(DarkData.PhysicalManifestation.getURI());
+                .filter(u -> !u.equals(OWL.Thing.getURI()))
+                .filter(u -> !u.equals(DarkData.PhysicalManifestation.getURI()))
+                .findFirst().get();
+
+        Assert.hasText(feature);
 
         return Optional.of(new darkdata.web.api.candidate.CandidateWorkflow(workflow, feature, score));
 
