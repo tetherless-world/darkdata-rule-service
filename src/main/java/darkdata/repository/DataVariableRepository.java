@@ -3,6 +3,7 @@ package darkdata.repository;
 import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.kb.DataVariable;
 import darkdata.model.ontology.DarkData;
+import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class DataVariableRepository {
 
     public Optional<DataVariable> createDataVariable(String uri) {
         return Optional.ofNullable(datasource.getOntModel().createIndividual(uri, DarkData.DataVariable))
+                .map(DataVariable::new);
+    }
+
+    public Optional<DataVariable> createDataVariable(OntModel m, String uri) {
+        return Optional.ofNullable(m.createIndividual(uri, DarkData.DataVariable))
                 .map(DataVariable::new);
     }
 

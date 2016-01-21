@@ -5,8 +5,11 @@ import darkdata.model.kb.Dataset;
 import darkdata.model.kb.IndividualProxy;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.util.Optional;
 
@@ -16,6 +19,8 @@ import java.util.Optional;
 @Component
 public class DataVariableConverter implements Converter<DataVariable, Optional<darkdata.web.api.datavariable.DataVariable>> {
 
+    private static final Logger logger = LoggerFactory.getLogger(DataVariableConverter.class);
+
     @Override
     public Optional<darkdata.web.api.datavariable.DataVariable> convert(DataVariable dataVariable) {
 
@@ -23,14 +28,20 @@ public class DataVariableConverter implements Converter<DataVariable, Optional<d
             return Optional.empty();
         }
 
+        logger.info("in DataVariableConverter::convert with {}", dataVariable.getIndividual().getURI());
+
         darkdata.web.api.datavariable.DataVariable var = new darkdata.web.api.datavariable.DataVariable();
 
         dataVariable.getDataset()
                 .flatMap(Dataset::getShortName)
                 .ifPresent(var::setProduct);
 
+        Assert.isTrue(dataVariable.getShortName().isPresent(), "data variable does not have short name");
+
         dataVariable.getShortName()
                 .ifPresent(var::setVariable);
+
+        Assert.isTrue(dataVariable.getDataset().isPresent(), "data variable does not have dataset");
 
         dataVariable.getDataset()
                 .map(IndividualProxy::getIndividual)

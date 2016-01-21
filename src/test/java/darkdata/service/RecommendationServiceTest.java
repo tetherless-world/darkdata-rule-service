@@ -42,5 +42,7 @@ public class RecommendationServiceTest {
         Assert.assertNotNull(requestObj);
         RecommendationResponse response = service.getRecommendation(requestObj);
         Assert.assertNotNull(response);
+
+        System.out.println(mapper.writeValueAsString(response));
     }
 }
