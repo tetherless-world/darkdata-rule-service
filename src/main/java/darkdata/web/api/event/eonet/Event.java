@@ -1,5 +1,6 @@
 package darkdata.web.api.event.eonet;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
  * @author szednik
  */
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Event {
 
     @JsonProperty(value = "id")
@@ -19,14 +21,14 @@ public class Event {
     @JsonProperty(value = "link")
     String link;
 
-    @JsonProperty(value = "category")
+    @JsonProperty(value = "categories")
     List<EventCategory> categories;
 
     @JsonProperty(value = "description")
     String description;
 
-    @JsonProperty(value = "geometry")
-    List<EventGeometry> geometry;
+    @JsonProperty(value = "geometries")
+    List<EventGeometry> geometries;
 
     public Event() { }
 
@@ -35,13 +37,13 @@ public class Event {
                  String link,
                  String description,
                  List<EventCategory> categories,
-                 List<EventGeometry> geometry) {
+                 List<EventGeometry> geometries) {
         this.id = id;
         this.title = title;
         this.link = link;
         this.description = description;
         this.categories = categories;
-        this.geometry = geometry;
+        this.geometries = geometries;
     }
 
     public void setId(String id) {
@@ -64,8 +66,8 @@ public class Event {
         this.categories = categories;
     }
 
-    public void setGeometry(List<EventGeometry> geometry) {
-        this.geometry = geometry;
+    public void setGeometries(List<EventGeometry> geometries) {
+        this.geometries = geometries;
     }
 
     public String getId() {
@@ -88,7 +90,7 @@ public class Event {
         return categories;
     }
 
-    public List<EventGeometry> getGeometry() {
-        return geometry;
+    public List<EventGeometry> getGeometries() {
+        return geometries;
     }
 }

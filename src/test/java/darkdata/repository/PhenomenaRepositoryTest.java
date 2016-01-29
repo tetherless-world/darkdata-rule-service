@@ -66,11 +66,11 @@ public class PhenomenaRepositoryTest {
 
         Instant start = Instant.now();
 
-        EventCategory category = new EventCategory("Severe Storms","Severe Storms");
+        EventCategory category = new EventCategory(10, "Severe Storms");
         Event event = new Event("test", "test", "test", "test", Collections.singletonList(category), null);
 
         List<OntClass> phenomenaList = event.getCategories().stream()
-                .map(EventCategory::getText)
+                .map(EventCategory::getTitle)
                 .flatMap(t -> repository.listClassesByTopic(t).stream())
                 .collect(Collectors.toList());
 
