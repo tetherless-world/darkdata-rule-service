@@ -31,7 +31,7 @@ public class GenerateCandidateWorkflowServiceTest {
     private GenerateCandidateWorkflowService service;
 
     private Event getTestEvent() {
-        EventCategory category = new EventCategory(8, "Volcanoes");
+        EventCategory category = new EventCategory(12, "Volcanoes");
         return new Event("test", "test", "test", "test", Collections.singletonList(category), null);
     }
 

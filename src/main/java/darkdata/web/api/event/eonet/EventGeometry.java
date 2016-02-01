@@ -18,11 +18,11 @@ public class EventGeometry {
     String type;
 
     @JsonProperty(value = "coordinates")
-    List<List<Double>> coordinates;
+    List<Double> coordinates;
 
     public EventGeometry() { }
 
-    public EventGeometry(String type, String date, List<List<Double>> coordinates) {
+    public EventGeometry(String type, String date, List<Double> coordinates) {
         this.date = date;
         this.type = type;
         this.coordinates = coordinates;
@@ -36,7 +36,7 @@ public class EventGeometry {
         this.date = date;
     }
 
-    public void setCoordinates(List<List<Double>> coordinates) {
+    public void setCoordinates(List<Double> coordinates) {
         this.coordinates = coordinates;
     }
 
@@ -48,7 +48,7 @@ public class EventGeometry {
         return date;
     }
 
-    public List<List<Double>> getCoordinates() {
+    public List<Double> getCoordinates() {
         return coordinates;
     }
 }

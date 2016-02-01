@@ -25,22 +25,30 @@
     "event": {
       "id": "EONET_224",
       "title": "Hurricane Olaf",
-      "link": "http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_224",
-      "category": [
+      "description": "",
+      "link": "http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_224",
+      "closed": "2015-11-02T00:00:00Z",
+      "categories": [
         {
-          "-domain": "Severe Storms",
-          "#text": "Severe Storms"
+          "id": 10,
+          "title": "Severe Storms"
         }
       ],
-      "description": "",
-      "geometry": [
+      "sources": [
+        {
+          "id": "EO",
+          "url": "http://earthobservatory.nasa.gov/NaturalHazards/view.php?id=86851"
+        },
+        {
+          "id": "UNISYS",
+          "url": "http://weather.unisys.com/hurricane/e_pacific/2015/OLAF/track.dat"
+        }
+
+      ],
+      "geometries": [
         {
           "date": "2015-10-15T00:00:00Z",
-          "type": "Point",
-          "coordinates": [
-            [-117.10,
-            9.90]
-          ]
+          "type": "Point", "coordinates": [ -117.10, 9.90 ]
         }
       ]
     },

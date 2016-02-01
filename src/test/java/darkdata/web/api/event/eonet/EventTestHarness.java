@@ -21,7 +21,7 @@ public class EventTestHarness {
 
         String geometry_type = "Point";
         String geometry_date = "2015-10-15T00:00:00Z";
-        List<List<Double>> geometry_coordinates = Collections.singletonList(Arrays.asList(-117.10d, 9.90d));
+        List<Double> geometry_coordinates = Arrays.asList(-117.10d, 9.90d);
 
         EventCategory category = new EventCategory(category_id, category_title);
         EventGeometry geometry = new EventGeometry(geometry_type, geometry_date, geometry_coordinates);
