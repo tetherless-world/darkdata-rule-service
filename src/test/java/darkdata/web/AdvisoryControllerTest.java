@@ -25,13 +25,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Collections;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Matchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -115,14 +113,13 @@ public class AdvisoryControllerTest {
                 .andExpect(jsonPath("$.criteria[*]").value(hasKey("event")))
                 .andExpect(jsonPath("$.criteria[*].event[*].id", is("EONET_224")))
                 .andExpect(jsonPath("$.criteria[*].event[*].title", is("Hurricane Olaf")))
-                .andExpect(jsonPath("$.criteria[*].event[*].link", is("http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_224")))
-                .andExpect(jsonPath("$.criteria[*].event[*].category", hasSize(1)))
-                .andExpect(jsonPath("$.criteria[*].event[*].category[*].-domain", containsInAnyOrder("Severe Storms")))
-                .andExpect(jsonPath("$.criteria[*].event[*].category[*].#text", containsInAnyOrder("Severe Storms")))
-                .andExpect(jsonPath("$.criteria[*].event[*].geometry",hasSize(1)))
-                .andExpect(jsonPath("$.criteria[*].event[*].geometry[*].date",containsInAnyOrder("2015-10-15T00:00:00Z")))
-                .andExpect(jsonPath("$.criteria[*].event[*].geometry[*].type",containsInAnyOrder("Point")))
-                .andExpect(jsonPath("$.criteria[*].event[*].geometry[*].coordinates", contains(Collections.singletonList(Arrays.asList(-117.10d, 9.90d)))))
+                .andExpect(jsonPath("$.criteria[*].event[*].link", is("http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_224")))
+                .andExpect(jsonPath("$.criteria[*].event[*].categories", hasSize(1)))
+                .andExpect(jsonPath("$.criteria[*].event[*].categories[0].title", is("Severe Storms")))
+                .andExpect(jsonPath("$.criteria[*].event[*].geometries",hasSize(1))) //really 52, but abbreviated for testing
+                .andExpect(jsonPath("$.criteria[*].event[*].geometries[0].date",is("2015-10-15T00:00:00Z")))
+                .andExpect(jsonPath("$.criteria[*].event[*].geometries[0].type",is("Point")))
+                .andExpect(jsonPath("$.criteria[*].event[*].geometries[0].coordinates", is(Arrays.asList(-117.10d, 9.90d))))
                 .andExpect(jsonPath("$.criteria[*].data_variables", hasSize(2)))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].product",hasItem("MYD08_D3")))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].version", hasItem("51")))

@@ -68,12 +68,7 @@ public class GenerateCandidateWorkflowService
         List<DataVariable> variables = criteria.getVariables();
         List<G4Service> g4services = g4ServiceRepository.listInstances();
 
-        List<OntClass> phenomenaList = criteria.getEvent().getCategories().stream()
-                .map(EventCategory::getText)
-                .map(phenomenaRepository::listClassesByTopic)
-                .flatMap(Collection::stream)
-                .distinct()
-                .collect(Collectors.toList());
+        List<OntClass> phenomenaList = getPhenomenaClasses(criteria.getEvent().getCategories());
 
         // create OntModel with OWL DL reasoning for candidates
         final OntModel inf = datasource.createOntModel();
@@ -99,7 +94,7 @@ public class GenerateCandidateWorkflowService
                         String uri = "urn:candidate-workflow/" + UUID.randomUUID().toString();
                         List<CandidateWorkflow> newCandidates = Stream.of(uri)
                                 .map(u -> candidateWorkflowRepository.createCandidateWorkflow(m, u).get())
-                                .peek(c -> logger.info("created candidate {}", c.getIndividual().getURI()))
+                                .peek(c -> logger.debug("created candidate {}", c.getIndividual().getURI()))
                                 .peek(c -> c.setEvent(event))
                                 .peek(c -> c.setFeature(feature))
                                 .peek(c -> c.setService(g4service))
@@ -120,22 +115,17 @@ public class GenerateCandidateWorkflowService
         return candidateWorkflows;
     }
 
-//    private CandidateWorkflow generateCandidate(OntModel m, DataVariable variable, Phenomena event, PhysicalFeature feature) {
-//
-//        darkdata.model.kb.DataVariable var = dataVariableAPI2KBConverter.convert(variable).get();
-//
-//        String candidate_uri = "urn:candidate-workflow/" + UUID.randomUUID().toString();
-//        logger.info("creating candidate {}", candidate_uri);
-//        CandidateWorkflow candidate = candidateWorkflowRepository.createCandidateWorkflow(m, candidate_uri).get();
-//
-//        candidate.setEvent(event);
-//        candidate.setFeature(feature);
-//        candidate.setService(g4service);
-//        candidate.addVariable(var);
-//
-//        // TODO add variables in separate following component?
-//        // 1-variable for some services
-//        // 2-variables for comparison services
-//
-//    }
+    /**
+     * Use EONET event category text to determine Phenomena classes
+     * @param categories List of EventCategory
+     * @return List of OntClass (subclasses of dd:Phenomena)
+     */
+    public List<OntClass> getPhenomenaClasses(List<EventCategory> categories) {
+        return categories.stream()
+                .map(EventCategory::getTitle)
+                .map(phenomenaRepository::listClassesByTopic)
+                .flatMap(Collection::stream)
+                .distinct()
+                .collect(Collectors.toList());
+    }
 }

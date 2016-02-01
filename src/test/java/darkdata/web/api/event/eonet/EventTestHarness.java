@@ -13,17 +13,17 @@ public class EventTestHarness {
 
         String id = "EONET_224";
         String title = "Hurricane Olaf";
-        String link = "http://eonet.sci.gsfc.nasa.gov/api/v1/events/EONET_224";
+        String link = "http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_224";
         String description = "";
 
-        String category_domain = "Severe Storms";
-        String category_text = "Severe Storms";
+        int category_id = 10;
+        String category_title = "Severe Storms";
 
         String geometry_type = "Point";
         String geometry_date = "2015-10-15T00:00:00Z";
-        List<List<Double>> geometry_coordinates = Collections.singletonList(Arrays.asList(-117.10d, 9.90d));
+        List<Double> geometry_coordinates = Arrays.asList(-117.10d, 9.90d);
 
-        EventCategory category = new EventCategory(category_domain, category_text);
+        EventCategory category = new EventCategory(category_id, category_title);
         EventGeometry geometry = new EventGeometry(geometry_type, geometry_date, geometry_coordinates);
 
         List<EventCategory> categoryList = Collections.singletonList(category);

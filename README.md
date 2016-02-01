@@ -28,4 +28,4 @@ Check that the service has been successfully started
 
 Get a workflow recommendation using an example input file
 
-``curl -XPOST -H "Content-Type: application/json" localhost:8095/advisor/recommendation --data-binary @examples/request/request.json``
+``curl -XPOST -H "Content-Type: application/json" localhost:8095/advisor/recommendation --data-binary @examples/eonet_224/request.json``

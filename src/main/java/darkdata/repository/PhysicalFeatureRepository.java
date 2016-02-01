@@ -1,9 +1,7 @@
 package darkdata.repository;
 
 import darkdata.datasource.DarkDataDatasource;
-import darkdata.model.kb.Phenomena;
 import darkdata.model.kb.PhysicalFeature;
-import darkdata.model.kb.g4.G4Service;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -51,6 +49,7 @@ public class PhysicalFeatureRepository {
      * @return List of OntClass objects for subclasses of dd:PhysicalManifestation
      * @see OntClass
      */
+    // TODO cache
     public List<OntClass> listSubclasses() {
         return datasource.getOntModel()
                 .getOntClass(DarkData.PhysicalManifestation.getURI())
@@ -67,8 +66,8 @@ public class PhysicalFeatureRepository {
      * @return List of OntClass objects for physical manifestations inferred for the given phenomena subclass
      * @see OntClass
      */
+    // TODO cache
     public List<OntClass> listPhysicalManifestationOfPhenomena(OntClass phenomena) {
-        // TODO add check that phenomena is a subclass of DarkData.Phenomena
         OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
         m.addSubModel(datasource.getOntModel());
         try {
@@ -88,16 +87,17 @@ public class PhysicalFeatureRepository {
     }
 
     public Optional<PhysicalFeature> createPhysicalFeature(String uri, OntClass featureClass) {
-        // TODO add check that featureClass is subclass of dd:PhysicalManifestation
-        return Optional.ofNullable(datasource.getOntModel()
-                .createIndividual(uri, featureClass))
+        return Optional.ofNullable(datasource.getOntModel().createIndividual(uri, featureClass))
                 .map(PhysicalFeature::new);
     }
 
-    public Optional<PhysicalFeature> createPhysicalFeature(OntClass featureClass) {
-        // TODO add check that featureClass is subclass of dd:PhysicalManifestation
-        return Optional.ofNullable(datasource.getOntModel()
-                .createIndividual(featureClass))
+    public Optional<PhysicalFeature> createPhysicalFeature(OntModel m, String uri, OntClass featureClass) {
+        return Optional.ofNullable(m.createIndividual(uri, featureClass))
+                .map(PhysicalFeature::new);
+    }
+
+    public Optional<PhysicalFeature> createPhysicalFeature(OntModel m, OntClass featureClass) {
+        return Optional.ofNullable(m.createIndividual(featureClass))
                 .map(PhysicalFeature::new);
     }
 }

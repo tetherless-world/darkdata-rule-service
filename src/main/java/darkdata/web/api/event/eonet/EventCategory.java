@@ -8,32 +8,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class EventCategory {
 
-    @JsonProperty(value = "-domain")
-    String domain;
+    @JsonProperty(value = "id")
+    int id;
 
-    @JsonProperty(value = "#text")
-    String text;
+    @JsonProperty(value = "title")
+    String title;
 
     public EventCategory() { }
 
-    public EventCategory(String domain, String text) {
-        this.domain = domain;
-        this.text = text;
+    public EventCategory(int id, String title) {
+        this.id = id;
+        this.title = title;
     }
 
-    public void setDomain(String domain) {
-        this.domain = domain;
+    public int getId() {
+        return id;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDomain() {
-        return domain;
+    public String getTitle() {
+        return title;
     }
 
-    public String getText() {
-        return text;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
