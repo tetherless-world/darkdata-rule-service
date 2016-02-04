@@ -25,6 +25,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Matchers.any;
@@ -104,10 +105,8 @@ public class AdvisoryControllerTest {
                 .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].product",containsInAnyOrder("MYD08_D3")))
                 .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].version",containsInAnyOrder("51")))
                 .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].variable",containsInAnyOrder("Cirrus_Reflectance_Mean")))
-                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].keyword",containsInAnyOrder("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE")))
-//                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].modifiers", contains(Arrays.asList(empty()))))
+//                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].keywords",is(Collections.singletonList("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"))))
                 .andExpect(jsonPath("$.candidates[*].workflow[*].shape", containsInAnyOrder("shp_30")))
-//                .andExpect(jsonPath("$.candidates[*].workflow[*].dataKeyword", contains(Arrays.asList(empty()))))
                 .andExpect(jsonPath("$.candidates[*].score", containsInAnyOrder(2.543D)))
                 .andExpect(jsonPath("$").value(hasKey("criteria")))
                 .andExpect(jsonPath("$.criteria[*]").value(hasKey("event")))
@@ -124,7 +123,7 @@ public class AdvisoryControllerTest {
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].product",hasItem("MYD08_D3")))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].version", hasItem("51")))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].variable", containsInAnyOrder("Cirrus_Reflectance_Mean", "Cloud_Optical_Thickness_Liquid_Mean")))
-                .andExpect(jsonPath("$.criteria[*].data_variables[*].keyword", containsInAnyOrder("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE", "ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE")))
+//                .andExpect(jsonPath("$.criteria[*].data_variables[*].keywords",is(Arrays.asList("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE", "ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE")))
 //                .andExpect(jsonPath("$.criteria[*].data_variables[*].modifiers", containsInAnyOrder(Arrays.asList(), Arrays.asList())));
         ;
 

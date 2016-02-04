@@ -5,8 +5,10 @@ import darkdata.model.kb.PhysicalFeature;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.web.api.datavariable.DataVariable;
+import darkdata.web.api.datavariable.DataVariableTestHarness;
 import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.event.eonet.EventCategory;
+import darkdata.web.api.event.eonet.EventTestHarness;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,12 +33,11 @@ public class GenerateCandidateWorkflowServiceTest {
     private GenerateCandidateWorkflowService service;
 
     private Event getTestEvent() {
-        EventCategory category = new EventCategory(12, "Volcanoes");
-        return new Event("test", "test", "test", "test", Collections.singletonList(category), null);
+        return EventTestHarness.createEvent_EONET_224();
     }
 
     private List<DataVariable> getTestVariables() {
-        return Collections.singletonList(new DataVariable("test", "test", "test", "test"));
+        return Collections.singletonList(DataVariableTestHarness.createVariable_MYD08_D3_51_Cirrus_Reflectance_Mean());
     }
 
     private CandidateWorkflowCriteria getTestCriteria() {
