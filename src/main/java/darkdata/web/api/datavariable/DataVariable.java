@@ -23,19 +23,19 @@ public class DataVariable {
     @JsonProperty(value = "variable")
     String variable;
 
-    @JsonProperty(value = "keyword")
-    String keyword;
+    @JsonProperty(value = "keywords")
+    List<String> keywords;
 
     @JsonProperty(value = "modifiers")
     List<DataVariableModifier> modifiers = Collections.<DataVariableModifier>emptyList();
 
     public DataVariable() { }
 
-    public DataVariable(String product, String version, String variable, String keyword) {
+    public DataVariable(String product, String version, String variable, List<String> keywords) {
         this.product = product;
         this.version = version;
         this.variable = variable;
-        this.keyword = keyword;
+        this.keywords = keywords;
     }
 
     public String getProduct() {
@@ -62,12 +62,12 @@ public class DataVariable {
         this.variable = variable;
     }
 
-    public String getKeyword() {
-        return keyword;
+    public List<String> getKeywords() {
+        return keywords;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    public void setKeyword(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     public List<DataVariableModifier> getModifiers() {

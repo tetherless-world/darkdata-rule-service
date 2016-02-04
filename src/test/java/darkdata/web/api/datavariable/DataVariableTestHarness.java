@@ -1,5 +1,7 @@
 package darkdata.web.api.datavariable;
 
+import java.util.Collections;
+
 /**
  * @author szednik
  */
@@ -7,10 +9,10 @@ package darkdata.web.api.datavariable;
 public class DataVariableTestHarness {
 
     public static DataVariable createVariable_MYD08_D3_51_Cirrus_Reflectance_Mean() {
-        return new DataVariable("MYD08_D3","51","Cirrus_Reflectance_Mean","ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE");
+        return new DataVariable("MYD08_D3","51","Cirrus_Reflectance_Mean", Collections.singletonList("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"));
     }
 
     public static DataVariable createVariable_MYD08_D3_51_Cloud_Optical_Thickness_Liquid_Mean() {
-        return new DataVariable("MYD08_D3","51","Cloud_Optical_Thickness_Liquid_Mean","ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE");
+        return new DataVariable("MYD08_D3","51","Cloud_Optical_Thickness_Liquid_Mean",Collections.singletonList("ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE"));
     }
 }
