@@ -33,8 +33,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
-
 /**
  * @author anirudhprabhu
  */
@@ -118,7 +116,7 @@ public class AdvisoryControllerTest {
                 .andExpect(jsonPath("$.criteria[*].event[*].geometries",hasSize(1))) //really 52, but abbreviated for testing
                 .andExpect(jsonPath("$.criteria[*].event[*].geometries[0].date",is("2015-10-15T00:00:00Z")))
                 .andExpect(jsonPath("$.criteria[*].event[*].geometries[0].type",is("Point")))
-                .andExpect(jsonPath("$.criteria[*].event[*].geometries[0].coordinates", is(Arrays.asList(-117.10d, 9.90d))))
+                .andExpect(jsonPath("$.criteria[*].event[*].geometries[0].coordinates", is(Collections.singletonList(Arrays.asList(-117.10d, 9.90d)))))
                 .andExpect(jsonPath("$.criteria[*].data_variables", hasSize(2)))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].product",hasItem("MYD08_D3")))
                 .andExpect(jsonPath("$.criteria[*].data_variables[*].version", hasItem("51")))
