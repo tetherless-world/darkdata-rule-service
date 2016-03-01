@@ -1,11 +1,12 @@
 package darkdata.service;
 
 import org.apache.jena.ontology.OntModel;
+import org.apache.jena.rdf.model.InfModel;
 
 /**
  * @author szednik
  */
 public interface ReasoningService {
 
-    OntModel reason(OntModel m);
+    InfModel reason(OntModel m);
 }
