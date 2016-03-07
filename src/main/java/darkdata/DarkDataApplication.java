@@ -1,5 +1,6 @@
 package darkdata;
 
+import darkdata.service.RuleBasedReasoningService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
@@ -37,5 +38,13 @@ public class DarkDataApplication {
         PropertiesFactoryBean p = new PropertiesFactoryBean();
         p.setLocation(simpleWeightsResource);
         return p;
+    }
+
+    @Value("classpath:rules/some.rules")
+    private Resource basicRules;
+
+    @Bean
+    public RuleBasedReasoningService basicRulesReasoningService() {
+        return new RuleBasedReasoningService(basicRules);
     }
 }
