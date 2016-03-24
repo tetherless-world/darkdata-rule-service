@@ -40,9 +40,9 @@ public class AdvisoryController {
 
     private void validate(RecommendationRequest request) throws IllegalArgumentException {
         Assert.notNull(request, "payload is null");
-        Assert.notNull(request.getEvent(), "event is null");
-        Assert.notNull(request.getDataVariableList(), "data variable list is null");
-        Assert.notEmpty(request.getDataVariableList(), "data variable list is empty");
+        //Assert.notNull(request.getEvent(), "event is null");
+        //Assert.notNull(request.getDataVariableList(), "data variable list is null");
+        //Assert.notEmpty(request.getDataVariableList(), "data variable list is empty");
     }
 
     // possibly have GET for recommendations by category-type?
