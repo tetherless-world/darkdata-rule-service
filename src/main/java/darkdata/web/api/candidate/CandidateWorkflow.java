@@ -52,30 +52,25 @@ public class CandidateWorkflow {
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (!(o instanceof CandidateWorkflow)) return false;
 
         CandidateWorkflow that = (CandidateWorkflow) o;
 
         return Double.compare(that.getScore(), getScore()) == 0
-                && (getWorkflow() != null && getWorkflow().getService() != null
-                ? getWorkflow().getService().equals(that.getWorkflow().getService())
-                : that.getWorkflow().getService() == null
-                && (getFeature() != null
-                ? getFeature().equals(that.getFeature())
-                : that.getFeature() == null));
+                && (getWorkflow() != null ? getWorkflow().equals(that.getWorkflow()) : that.getWorkflow() == null
+                && (getFeature() != null ? getFeature().equals(that.getFeature()) : that.getFeature() == null));
+
     }
 
     @Override
     public int hashCode() {
         int result;
         long temp;
-        result = getWorkflow() != null && getWorkflow().getService() != null ? getWorkflow().getService().hashCode() : 0;
+        result = getWorkflow() != null ? getWorkflow().hashCode() : 0;
         result = 31 * result + (getFeature() != null ? getFeature().hashCode() : 0);
         temp = Double.doubleToLongBits(getScore());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
-
 }

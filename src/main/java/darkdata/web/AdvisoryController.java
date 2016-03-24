@@ -45,6 +45,9 @@ public class AdvisoryController {
         Assert.notEmpty(request.getDataVariableList(), "data variable list is empty");
     }
 
+    // possibly have GET for recommendations by category-type?
+    // /recommendation?event-category=Hurricane
+
     @RequestMapping(value = "/status",method = RequestMethod.GET)
     public ResponseEntity<String> status(){
         return new ResponseEntity<>("I am Up.", HttpStatus.OK);
