@@ -36,13 +36,23 @@ public class RecommendationServiceTest {
     @Value("classpath:json/request.json")
     private Resource request;
 
+    @Value("classpath:json/request.only-event-categories.json")
+    private Resource eventTypeOnlyRequest;
+
     @Test
     public void testGetRecommendation() throws IOException {
         RecommendationRequest requestObj = mapper.readValue(IOUtils.toString(request.getInputStream()), RecommendationRequest.class);
         Assert.assertNotNull(requestObj);
         RecommendationResponse response = service.getRecommendation(requestObj);
         Assert.assertNotNull(response);
+    }
 
+    @Test
+    public void testGetRecommendation_eventTypeOnly() throws IOException {
+        RecommendationRequest requestObj = mapper.readValue(IOUtils.toString(eventTypeOnlyRequest.getInputStream()), RecommendationRequest.class);
+        Assert.assertNotNull(requestObj);
+        RecommendationResponse response = service.getRecommendation(requestObj);
+        Assert.assertNotNull(response);
         System.out.println(mapper.writeValueAsString(response));
     }
 }

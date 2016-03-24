@@ -6,12 +6,10 @@ import darkdata.model.kb.PhysicalFeature;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.model.kb.g4.G4Service;
-import darkdata.repository.CandidateWorkflowRepository;
-import darkdata.repository.EventRepository;
-import darkdata.repository.G4ServiceRepository;
-import darkdata.repository.PhenomenaRepository;
+import darkdata.repository.*;
 import darkdata.transformers.DataVariableAPI2KBConverter;
 import darkdata.web.api.datavariable.DataVariable;
+import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.event.eonet.EventCategory;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
@@ -64,11 +62,17 @@ public class GenerateCandidateWorkflowService
 
         List<CandidateWorkflow> candidateWorkflows = new ArrayList<>();
 
-        String eventLink = criteria.getEvent().getLink();
+        Optional<String> eventLink = Optional.ofNullable(criteria.getEvent()).map(Event::getLink);
+
         List<DataVariable> variables = criteria.getVariables();
+
         List<G4Service> g4services = g4ServiceRepository.listInstances();
 
-        List<OntClass> phenomenaList = getPhenomenaClasses(criteria.getEvent().getCategories());
+        List<EventCategory> categories = Optional.ofNullable(criteria.getEvent())
+                .map(Event::getCategories)
+                .orElseGet(criteria::getCategories);
+
+        List<OntClass> phenomenaList = getPhenomenaClasses(categories);
 
         // create OntModel with OWL DL reasoning for candidates
         final OntModel inf = datasource.createOntModel();
@@ -79,7 +83,8 @@ public class GenerateCandidateWorkflowService
         dataVariableAPI2KBConverter.setOntModel(m);
 
         List<Phenomena> events = phenomenaList.stream()
-                .map(p -> eventRepository.createEvent(m, eventLink, p).get())
+                .map(p -> eventRepository.createEvent(m, eventLink.orElseGet(this::generateEventURI), p))
+                .map(Optional::get)
                 .collect(Collectors.toList());
 
         inf.addSubModel(m);
@@ -89,23 +94,41 @@ public class GenerateCandidateWorkflowService
             List<PhysicalFeature> features = event.getPhysicalFeatures(inf);
             for(PhysicalFeature feature : features) {
                 for (G4Service g4service : g4services) {
-                    for (DataVariable variable : variables) {
+                    if(variables == null || variables.isEmpty()) {
 
                         String uri = "urn:candidate-workflow/" + UUID.randomUUID().toString();
                         List<CandidateWorkflow> newCandidates = Stream.of(uri)
-                                .map(u -> candidateWorkflowRepository.createCandidateWorkflow(m, u).get())
+                                .map(u -> candidateWorkflowRepository.createCandidateWorkflow(m, u))
+                                .map(Optional::get)
                                 .peek(c -> logger.debug("created candidate {}", c.getIndividual().getURI()))
                                 .peek(c -> c.setEvent(event))
                                 .peek(c -> c.setFeature(feature))
                                 .peek(c -> c.setService(g4service))
-                                .peek(c -> {
-                                    darkdata.model.kb.DataVariable var = dataVariableAPI2KBConverter.convert(variable).get();
-                                    c.addVariable(var);
-                                })
                                 .collect(Collectors.toList());
 
                         // TODO what to do in situation where service takes 2 variables?
                         candidateWorkflows.addAll(newCandidates);
+
+                    } else {
+                        for (DataVariable variable : variables) {
+
+                            String uri = "urn:candidate-workflow/" + UUID.randomUUID().toString();
+                            List<CandidateWorkflow> newCandidates = Stream.of(uri)
+                                    .map(u -> candidateWorkflowRepository.createCandidateWorkflow(m, u))
+                                    .map(Optional::get)
+                                    .peek(c -> logger.debug("created candidate {}", c.getIndividual().getURI()))
+                                    .peek(c -> c.setEvent(event))
+                                    .peek(c -> c.setFeature(feature))
+                                    .peek(c -> c.setService(g4service))
+                                    .peek(c -> {
+                                        darkdata.model.kb.DataVariable var = dataVariableAPI2KBConverter.convert(variable).get();
+                                        c.addVariable(var);
+                                    })
+                                    .collect(Collectors.toList());
+
+                            // TODO what to do in situation where service takes 2 variables?
+                            candidateWorkflows.addAll(newCandidates);
+                        }
                     }
                 }
             }
@@ -127,5 +150,9 @@ public class GenerateCandidateWorkflowService
                 .flatMap(Collection::stream)
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    private String generateEventURI() {
+        return "urn:event/"+UUID.randomUUID().toString();
     }
 }

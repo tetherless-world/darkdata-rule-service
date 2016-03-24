@@ -1,14 +1,17 @@
 package darkdata.web.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.datavariable.DataVariable;
+import darkdata.web.api.event.eonet.EventCategory;
 
 import java.util.List;
 
 /**
  * @author szednik
  */
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RecommendationRequest {
 
     @JsonProperty("event")
@@ -16,6 +19,9 @@ public class RecommendationRequest {
 
     @JsonProperty("data_variables")
     private List<DataVariable> dataVariableList;
+
+    @JsonProperty(value = "event-categories")
+    List<EventCategory> categories;
 
     public RecommendationRequest() { }
 
@@ -40,4 +46,11 @@ public class RecommendationRequest {
         this.event = event;
     }
 
+    public List<EventCategory> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<EventCategory> categories) {
+        this.categories = categories;
+    }
 }
