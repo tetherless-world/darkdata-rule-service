@@ -90,4 +90,33 @@ public class Workflow {
     public void setShape(String shape) {
         this.shape = shape;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Workflow)) return false;
+
+        Workflow workflow = (Workflow) o;
+
+        return getService() != null ? getService().equals(workflow.getService()) : workflow.getService() == null
+                && (getStartTime() != null ? getStartTime().equals(workflow.getStartTime()) : workflow.getStartTime() == null
+                && (getEndTime() != null ? getEndTime().equals(workflow.getEndTime()) : workflow.getEndTime() == null
+                && (getBoundingBox() != null ? getBoundingBox().equals(workflow.getBoundingBox()) : workflow.getBoundingBox() == null
+                && (getVariables() != null ? getVariables().equals(workflow.getVariables()) : workflow.getVariables() == null
+                && (getKeywords() != null ? getKeywords().equals(workflow.getKeywords()) : workflow.getKeywords() == null
+                && (getShape() != null ? getShape().equals(workflow.getShape()) : workflow.getShape() == null))))));
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getService() != null ? getService().hashCode() : 0;
+        result = 31 * result + (getStartTime() != null ? getStartTime().hashCode() : 0);
+        result = 31 * result + (getEndTime() != null ? getEndTime().hashCode() : 0);
+        result = 31 * result + (getBoundingBox() != null ? getBoundingBox().hashCode() : 0);
+        result = 31 * result + (getVariables() != null ? getVariables().hashCode() : 0);
+        result = 31 * result + (getKeywords() != null ? getKeywords().hashCode() : 0);
+        result = 31 * result + (getShape() != null ? getShape().hashCode() : 0);
+        return result;
+    }
 }

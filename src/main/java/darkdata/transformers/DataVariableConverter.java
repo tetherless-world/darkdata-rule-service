@@ -28,7 +28,7 @@ public class DataVariableConverter implements Converter<DataVariable, Optional<d
             return Optional.empty();
         }
 
-        logger.info("in DataVariableConverter::convert with {}", dataVariable.getIndividual().getURI());
+        logger.trace("in DataVariableConverter::convert with {}", dataVariable.getIndividual().getURI());
 
         darkdata.web.api.datavariable.DataVariable var = new darkdata.web.api.datavariable.DataVariable();
 

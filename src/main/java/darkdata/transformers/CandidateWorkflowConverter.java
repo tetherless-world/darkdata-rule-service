@@ -54,8 +54,6 @@ public class CandidateWorkflowConverter implements Converter<CandidateWorkflow, 
 
         // TODO workflow.setBoundingBox("");
 
-        Assert.isTrue(candidate.getVariable().isPresent(), "candidate must have at least 1 data variable");
-
         // TODO support multiple variables
         candidate.getVariable()
                 .flatMap(variableConverter::convert)
@@ -68,6 +66,7 @@ public class CandidateWorkflowConverter implements Converter<CandidateWorkflow, 
 
         Assert.isTrue(candidate.getFeature().isPresent(), "candidate must have a physical feature");
 
+        // TODO there is an issue here with getting the most specific feature type URI
         String feature = candidate.getFeature()
                 .map(IndividualProxy::getIndividual)
                 .map(i -> i.listRDFTypes(true))
