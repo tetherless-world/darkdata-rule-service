@@ -22,6 +22,8 @@ import java.io.IOException;
 /**
  * @author szednik
  */
+
+@SuppressWarnings("Duplicates")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DarkDataApplication.class)
 @WebAppConfiguration
@@ -60,7 +62,7 @@ public class RecommendationServiceTest {
     }
 
     @Test
-    public void testGetREcommendation_eventOnly() throws IOException {
+    public void testGetRecommendation_eventOnly() throws IOException {
         RecommendationRequest requestObj = mapper.readValue(IOUtils.toString(eventOnlyRequest.getInputStream()), RecommendationRequest.class);
         Assert.assertNotNull(requestObj);
         RecommendationResponse response = service.getRecommendation(requestObj);
