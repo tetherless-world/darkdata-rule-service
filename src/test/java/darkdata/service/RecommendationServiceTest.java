@@ -44,6 +44,9 @@ public class RecommendationServiceTest {
     @Value("classpath:json/request.only-event.json")
     private Resource eventOnlyRequest;
 
+    @Value("classpath:json/request.event-categories-and-vars.json")
+    private Resource eventCategoriesAndVariablesRequest;
+
     @Test
     public void testGetRecommendation() throws IOException {
         RecommendationRequest requestObj = mapper.readValue(IOUtils.toString(request.getInputStream()), RecommendationRequest.class);
@@ -64,6 +67,15 @@ public class RecommendationServiceTest {
     @Test
     public void testGetRecommendation_eventOnly() throws IOException {
         RecommendationRequest requestObj = mapper.readValue(IOUtils.toString(eventOnlyRequest.getInputStream()), RecommendationRequest.class);
+        Assert.assertNotNull(requestObj);
+        RecommendationResponse response = service.getRecommendation(requestObj);
+        Assert.assertNotNull(response);
+        System.out.println(mapper.writeValueAsString(response));
+    }
+
+    @Test
+    public void testGetRecommendation_eventCategoriesAndVariables() throws IOException {
+        RecommendationRequest requestObj = mapper.readValue(IOUtils.toString(eventCategoriesAndVariablesRequest.getInputStream()), RecommendationRequest.class);
         Assert.assertNotNull(requestObj);
         RecommendationResponse response = service.getRecommendation(requestObj);
         Assert.assertNotNull(response);
