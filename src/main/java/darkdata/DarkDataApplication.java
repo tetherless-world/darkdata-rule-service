@@ -10,6 +10,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author szednik
@@ -40,11 +42,15 @@ public class DarkDataApplication {
         return p;
     }
 
-    @Value("classpath:rules/some.rules")
+    @Value("classpath:rules/characteristic_compatibility.rules")
     private Resource basicRules;
 
+    @Value("classpath:rules/time_interval.rules")
+    private Resource timeIntervalRules;
+
     @Bean
-    public RuleBasedReasoningService basicRulesReasoningService() {
-        return new RuleBasedReasoningService(basicRules);
+    public RuleBasedReasoningService ruleBasedReasoningService() {
+        List<Resource> rulesets = Arrays.asList(basicRules, timeIntervalRules);
+        return new RuleBasedReasoningService(rulesets);
     }
 }
