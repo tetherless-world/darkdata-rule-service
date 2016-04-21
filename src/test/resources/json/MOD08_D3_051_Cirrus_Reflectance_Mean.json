@@ -1,6 +1,7 @@
 {
+  "id": "MYD08_D3_6_Cirrus_Reflectance_Mean",
   "product" : "MYD08_D3",
-  "version" : "51",
+  "version" : "6",
   "variable" : "Cirrus_Reflectance_Mean",
   "keywords" : ["ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"]
 }

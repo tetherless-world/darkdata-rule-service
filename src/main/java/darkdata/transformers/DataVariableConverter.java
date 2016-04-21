@@ -32,6 +32,8 @@ public class DataVariableConverter implements Converter<DataVariable, Optional<d
 
         darkdata.web.api.datavariable.DataVariable var = new darkdata.web.api.datavariable.DataVariable();
 
+        dataVariable.getIdentifier().ifPresent(var::setIdentifier);
+
         dataVariable.getDataset()
                 .flatMap(Dataset::getShortName)
                 .ifPresent(var::setProduct);

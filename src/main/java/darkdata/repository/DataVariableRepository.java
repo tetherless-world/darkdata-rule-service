@@ -2,9 +2,13 @@ package darkdata.repository;
 
 import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.kb.DataVariable;
+import darkdata.model.kb.g4.G4Service;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntResource;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.ResourceFactory;
+import org.apache.jena.vocabulary.DCTerms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +34,23 @@ public class DataVariableRepository {
     public Optional<DataVariable> createDataVariable(OntModel m, String uri) {
         return Optional.ofNullable(m.createIndividual(uri, DarkData.DataVariable))
                 .map(DataVariable::new);
+    }
+
+    public Optional<DataVariable> getByURI(String uri) {
+        return Optional.ofNullable(datasource.getOntModel().getIndividual(uri))
+                .map(DataVariable::new);
+    }
+
+    public Optional<DataVariable> getByIdentifier(String identifier) {
+        return datasource.getOntModel()
+                .listSubjectsWithProperty(DCTerms.identifier, ResourceFactory.createTypedLiteral(identifier))
+                .toList()
+                .stream()
+                .filter(c -> !c.isAnon())
+                .map(Resource::getURI)
+                .map(this::getByURI)
+                .map(Optional::get)
+                .findAny();
     }
 
     public List<DataVariable> listDataVariables() {

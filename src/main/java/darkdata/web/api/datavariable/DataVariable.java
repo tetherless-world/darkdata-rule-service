@@ -14,6 +14,9 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DataVariable {
 
+    @JsonProperty(value = "id")
+    String identifier;
+
     @JsonProperty(value = "product")
     String product;
 
@@ -31,11 +34,24 @@ public class DataVariable {
 
     public DataVariable() { }
 
-    public DataVariable(String product, String version, String variable, List<String> keywords) {
+    public DataVariable(String identifier) {
+        this.identifier = identifier;
+    }
+
+    public DataVariable(String identifier, String product, String version, String variable, List<String> keywords) {
+        this.identifier = identifier;
         this.product = product;
         this.version = version;
         this.variable = variable;
         this.keywords = keywords;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
     public String getProduct() {

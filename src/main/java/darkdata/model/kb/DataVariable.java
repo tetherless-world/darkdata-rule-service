@@ -1,7 +1,6 @@
 package darkdata.model.kb;
 
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntResource;
@@ -9,6 +8,7 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
+import org.apache.jena.vocabulary.DCTerms;
 
 import java.util.Optional;
 
@@ -22,6 +22,13 @@ public class DataVariable extends IndividualProxy {
     public DataVariable(OntResource individual) {
         super(individual);
         individual.addRDFType(CLASS);
+    }
+
+    public Optional<String> getIdentifier() {
+        return Optional.ofNullable(getIndividual().getPropertyValue(DCTerms.identifier))
+                .filter(RDFNode::isLiteral)
+                .map(RDFNode::asLiteral)
+                .map(Literal::getString);
     }
 
     public void setShortName(String shortName) {
