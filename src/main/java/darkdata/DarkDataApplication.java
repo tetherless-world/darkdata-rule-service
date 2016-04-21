@@ -1,5 +1,6 @@
 package darkdata;
 
+import darkdata.datasource.DarkDataDatasource;
 import darkdata.service.RuleBasedReasoningService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
@@ -11,6 +12,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -47,6 +49,19 @@ public class DarkDataApplication {
 
     @Value("classpath:rules/time_interval.rules")
     private Resource timeIntervalRules;
+
+    @Value("classpath:rdf/sciencekeywords.ttl")
+    private Resource gcmdScienceKeywords;
+
+    @Value("classpath:rdf/darkdata.ttl")
+    Resource darkDataOntology;
+
+    @Bean
+    public DarkDataDatasource datasource() {
+        List<Resource> ontologies = Collections.singletonList(darkDataOntology);
+        List<Resource> dataModels = Collections.singletonList(gcmdScienceKeywords);
+        return new DarkDataDatasource(ontologies, dataModels);
+    }
 
     @Bean
     public RuleBasedReasoningService ruleBasedReasoningService() {
