@@ -53,13 +53,16 @@ public class DarkDataApplication {
     @Value("classpath:rdf/sciencekeywords.ttl")
     private Resource gcmdScienceKeywords;
 
+    @Value("classpath:rdf/datafields.ttl")
+    private Resource datafields;
+
     @Value("classpath:rdf/darkdata.ttl")
     Resource darkDataOntology;
 
     @Bean
     public DarkDataDatasource datasource() {
         List<Resource> ontologies = Collections.singletonList(darkDataOntology);
-        List<Resource> dataModels = Collections.singletonList(gcmdScienceKeywords);
+        List<Resource> dataModels = Arrays.asList(gcmdScienceKeywords, datafields);
         return new DarkDataDatasource(ontologies, dataModels);
     }
 
