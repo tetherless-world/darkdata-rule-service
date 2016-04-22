@@ -86,8 +86,7 @@ public class RuleBasedCompatibilityServiceTest {
         Assert.assertFalse(assertions.isEmpty());
 
         assertions.stream()
-//                .forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
-                .forEach(a -> System.out.println(a.getValue().get().getIdentifier().get()));
+                .forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
     }
 
     @Test
@@ -134,7 +133,7 @@ public class RuleBasedCompatibilityServiceTest {
                 .orElseThrow(() -> new RuntimeException("could not create service"));
 
         DataVariable variable = variableRepository.createDataVariable(m, "urn:variable/testComputeCompatibility_Hurricane")
-                .orElseThrow(() -> new RuntimeException(("could not create data variable")));
+                .orElseThrow(() -> new RuntimeException("could not create data variable"));
 
         Individual halfHourly = m.createIndividual("http://darkdata.tw.rpi.edu/data/time-interval/half-hourly", DarkData.TimeInterval);
         variable.getIndividual().addProperty(DarkData.timeInterval, halfHourly);

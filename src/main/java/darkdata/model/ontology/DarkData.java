@@ -213,4 +213,9 @@ public class DarkData {
 
     public static final ObjectProperty basisForAssertion = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#basisForAssertion" );
 
+    public static final OntClass DataProduct = m_model.createClass( "http://www.purl.org/twc/ns/darkdata#DataProduct" );
+
+    public static final OntClass VersionedDataProduct = m_model.createClass( "http://www.purl.org/twc/ns/darkdata#VersionedDataProduct" );
+
+    public static final DatatypeProperty version = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#version" );
 }

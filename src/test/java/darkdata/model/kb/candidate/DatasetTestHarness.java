@@ -1,6 +1,6 @@
 package darkdata.model.kb.candidate;
 
-import darkdata.model.kb.Dataset;
+import darkdata.model.kb.VersionedDataProduct;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
@@ -11,9 +11,9 @@ import org.apache.jena.rdf.model.ModelFactory;
  */
 public class DatasetTestHarness {
 
-    public static Dataset createDataset(String uri) {
+    public static VersionedDataProduct createDataset(String uri) {
         OntModel m = ModelFactory.createOntologyModel();
         Individual d = m.createIndividual(uri, DarkData.Dataset);
-        return new Dataset(d);
+        return new VersionedDataProduct(d);
     }
 }

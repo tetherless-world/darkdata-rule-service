@@ -2,7 +2,7 @@ package darkdata.model.kb.candidate;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.DataVariable;
-import darkdata.model.kb.Dataset;
+import darkdata.model.kb.VersionedDataProduct;
 import darkdata.repository.DataVariableRepository;
 import darkdata.repository.DatasetRepository;
 import org.junit.Assert;
@@ -48,12 +48,12 @@ public class DataVariableTest {
         DataVariable variable = dataVariableRepository.createDataVariable("urn:variable/testGetDatset").get();
         Assert.assertNotNull(variable);
 
-        Dataset dataset = datasetRepository.createDataset("urn:dataset/testGetDatset").get();
-        Assert.assertNotNull(dataset);
+        VersionedDataProduct versionedDataProduct = datasetRepository.createDataset("urn:dataset/testGetDatset").get();
+        Assert.assertNotNull(versionedDataProduct);
 
-        variable.setDataset(dataset);
-        Optional<Dataset> result = variable.getDataset();
+        variable.setDataset(versionedDataProduct);
+        Optional<VersionedDataProduct> result = variable.getVersionedDataProduct();
         Assert.assertTrue(result.isPresent());
-        Assert.assertEquals(dataset, result.get());
+        Assert.assertEquals(versionedDataProduct, result.get());
     }
 }

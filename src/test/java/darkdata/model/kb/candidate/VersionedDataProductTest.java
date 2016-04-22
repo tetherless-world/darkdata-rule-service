@@ -1,7 +1,7 @@
 package darkdata.model.kb.candidate;
 
 import darkdata.DarkDataApplication;
-import darkdata.model.kb.Dataset;
+import darkdata.model.kb.VersionedDataProduct;
 import darkdata.repository.DatasetRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import java.util.Optional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DarkDataApplication.class)
 @WebAppConfiguration
-public class DatasetTest {
+public class VersionedDataProductTest {
 
     @Autowired
     private DatasetRepository datasetRepository;
@@ -28,11 +28,11 @@ public class DatasetTest {
     @Test
     public void testGetShortName() {
 
-        Dataset dataset = datasetRepository.createDataset("urn:dataset/testGetShortName").get();
-        Assert.assertNotNull(dataset);
+        VersionedDataProduct versionedDataProduct = datasetRepository.createDataset("urn:dataset/testGetShortName").get();
+        Assert.assertNotNull(versionedDataProduct);
 
-        dataset.setShortName("shortNameTest");
-        Optional<String> result = dataset.getShortName();
+        versionedDataProduct.setShortName("shortNameTest");
+        Optional<String> result = versionedDataProduct.getShortName();
 
         Assert.assertTrue(result.isPresent());
         Assert.assertEquals("shortNameTest", result.get());
@@ -41,11 +41,11 @@ public class DatasetTest {
     @Test
     public void testGetLongName() {
 
-        Dataset dataset = datasetRepository.createDataset("urn:dataset/testGetLongName").get();
-        Assert.assertNotNull(dataset);
+        VersionedDataProduct versionedDataProduct = datasetRepository.createDataset("urn:dataset/testGetLongName").get();
+        Assert.assertNotNull(versionedDataProduct);
 
-        dataset.setLongName("longNameTest");
-        Optional<String> result = dataset.getLongName();
+        versionedDataProduct.setLongName("longNameTest");
+        Optional<String> result = versionedDataProduct.getLongName();
 
         Assert.assertTrue(result.isPresent());
         Assert.assertEquals("longNameTest", result.get());

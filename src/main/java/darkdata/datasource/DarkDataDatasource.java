@@ -4,6 +4,8 @@ import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 
 import javax.annotation.PostConstruct;
@@ -23,6 +25,8 @@ public class DarkDataDatasource {
 
     private List<Resource> ontologies;
     private List<Resource> data;
+
+    private static final Logger logger = LoggerFactory.getLogger(DarkDataDatasource.class);
 
     public DarkDataDatasource(List<Resource> ontologies, List<Resource> data) {
         this.ontologies = ontologies;
@@ -47,7 +51,9 @@ public class DarkDataDatasource {
         for(Resource dataModel: data) {
             try(InputStream is = dataModel.getInputStream()) {
                 Model _model = ModelFactory.createDefaultModel();
+                logger.debug("loading: "+dataModel.getFilename());
                 _model.read(is, null, "TURTLE");
+                dataModels.add(_model);
             } catch (IOException e) {
                 e.printStackTrace();
             }

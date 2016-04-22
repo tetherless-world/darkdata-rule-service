@@ -32,6 +32,7 @@ public class CandidateWorkflow extends Candidate {
 
     public void setEvent(Phenomena event) {
         getIndividual().setPropertyValue(DarkData.candidateEvent, event.getIndividual());
+        getIndividual().getOntModel().add(event.getIndividual().listProperties());
     }
 
     public Optional<Phenomena> getEvent() {
@@ -45,6 +46,7 @@ public class CandidateWorkflow extends Candidate {
 
     public void setService(G4Service service) {
         getIndividual().setPropertyValue(DarkData.candidateService, service.getIndividual());
+        getIndividual().getOntModel().add(service.getIndividual().listProperties());
     }
 
     public Optional<G4Service> getService() {
@@ -64,6 +66,7 @@ public class CandidateWorkflow extends Candidate {
 
     public void addVariable(DataVariable variable) {
         getIndividual().setPropertyValue(DarkData.candidateVariable, variable.getIndividual());
+        getIndividual().getOntModel().add(variable.getIndividual().listProperties());
     }
 
     public Optional<DataVariable> getVariable() {
@@ -81,7 +84,7 @@ public class CandidateWorkflow extends Candidate {
 
     public void setFeature(PhysicalFeature feature) {
         getIndividual().setPropertyValue(DarkData.candidateFeature, feature.getIndividual());
-        getIndividual().getOntModel().add(feature.getIndividual().listProperties().toList());
+        getIndividual().getOntModel().add(feature.getIndividual().listProperties());
     }
 
     public Optional<PhysicalFeature> getFeature() {
