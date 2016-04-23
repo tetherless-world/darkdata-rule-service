@@ -15,22 +15,22 @@ import java.util.List;
 public class DataVariable {
 
     @JsonProperty(value = "id")
-    String identifier;
+    private String identifier;
 
     @JsonProperty(value = "product")
-    String product;
+    private String product;
 
     @JsonProperty(value = "version")
-    String version;
+    private String version;
 
     @JsonProperty(value = "variable")
-    String variable;
+    private String variable;
 
     @JsonProperty(value = "keywords")
-    List<String> keywords;
+    private List<String> keywords;
 
     @JsonProperty(value = "modifiers")
-    List<DataVariableModifier> modifiers = Collections.<DataVariableModifier>emptyList();
+    private List<DataVariableModifier> modifiers = Collections.<DataVariableModifier>emptyList();
 
     public DataVariable() { }
 
@@ -92,5 +92,29 @@ public class DataVariable {
 
     public void setModifiers(List<DataVariableModifier> modifiers) {
         this.modifiers = modifiers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DataVariable)) return false;
+
+        DataVariable variable1 = (DataVariable) o;
+
+        return getIdentifier() != null ? getIdentifier().equals(variable1.getIdentifier()) : variable1.getIdentifier() == null
+                && (getProduct() != null ? getProduct().equals(variable1.getProduct()) : variable1.getProduct() == null
+                && (getVersion() != null ? getVersion().equals(variable1.getVersion()) : variable1.getVersion() == null
+                && (getVariable() != null ? getVariable().equals(variable1.getVariable()) : variable1.getVariable() == null
+                && (getModifiers() != null ? getModifiers().equals(variable1.getModifiers()) : variable1.getModifiers() == null))));
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getIdentifier() != null ? getIdentifier().hashCode() : 0;
+        result = 31 * result + (getProduct() != null ? getProduct().hashCode() : 0);
+        result = 31 * result + (getVersion() != null ? getVersion().hashCode() : 0);
+        result = 31 * result + (getVariable() != null ? getVariable().hashCode() : 0);
+        result = 31 * result + (getModifiers() != null ? getModifiers().hashCode() : 0);
+        return result;
     }
 }
