@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
+import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -42,6 +45,20 @@ public class DarkDataApplication {
         PropertiesFactoryBean p = new PropertiesFactoryBean();
         p.setLocation(simpleWeightsResource);
         return p;
+    }
+
+    @Bean
+    public CacheManager cacheManager() {
+        SimpleCacheManager cacheManager = new SimpleCacheManager();
+        cacheManager.setCaches(Arrays.asList(
+                new ConcurrentMapCache("datafields"),
+                new ConcurrentMapCache("products"),
+                new ConcurrentMapCache("services"),
+                new ConcurrentMapCache("features"),
+                new ConcurrentMapCache("phenomena"),
+                new ConcurrentMapCache("observableProperties")
+        ));
+        return cacheManager;
     }
 
     @Value("classpath:rules/characteristic_compatibility.rules")

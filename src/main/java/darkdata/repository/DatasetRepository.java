@@ -7,6 +7,7 @@ import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.vocabulary.RDFS;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,6 +49,7 @@ public class DatasetRepository {
                 .findFirst();
     }
 
+    @Cacheable("products")
     public List<VersionedDataProduct> list() {
         return datasource.getOntModel()
                 .listIndividuals(DarkData.VersionedDataProduct)

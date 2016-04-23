@@ -7,6 +7,7 @@ import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.vocabulary.DCTerms;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class DataVariableRepository {
                 .map(DataVariable::new);
     }
 
+    @Cacheable("datafields")
     public Optional<DataVariable> getByIdentifier(String identifier) {
         return datasource.getOntModel()
                 .listIndividuals(DarkData.DataVariable)
@@ -47,6 +49,7 @@ public class DataVariableRepository {
                 .findFirst();
     }
 
+    @Cacheable("datafields")
     public List<DataVariable> list() {
         return datasource.getOntModel()
                 .listIndividuals(DarkData.DataVariable)

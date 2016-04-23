@@ -1,15 +1,15 @@
 package darkdata.repository;
 
 import darkdata.datasource.DarkDataDatasource;
-import darkdata.model.kb.DataVariable;
 import darkdata.model.kb.g4.G4Service;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
-import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.vocabulary.DCTerms;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +31,7 @@ public class G4ServiceRepository {
      * @return List of OntClass objects
      * @see OntClass
      */
+    @Cacheable("services")
     public List<OntClass> listSubclasses() {
         return datasource.getOntModel()
                 .getOntClass(DarkData.Visualization.getURI())
@@ -43,34 +44,33 @@ public class G4ServiceRepository {
      * @return List of Individual objects
      * @see Individual
      */
-    // TODO cache this
+
+    @Cacheable("services")
     public List<G4Service> listInstances() {
         return datasource.getOntModel()
-                .getOntClass(DarkData.Visualization.getURI())
-                .listInstances()
-                .toList()
-                .stream()
-                .filter(c -> !c.isAnon())
-                .map(OntResource::asIndividual)
+                .listIndividuals(DarkData.Visualization)
+                .toList().stream()
                 .map(G4Service::new)
                 .collect(Collectors.toList());
     }
 
+    @Cacheable("services")
     public Optional<G4Service> getByURI(String uri) {
         return Optional.ofNullable(datasource.getOntModel().getIndividual(uri))
                 .map(G4Service::new);
     }
 
+    @Cacheable("services")
     public Optional<G4Service> getByIdentifier(String identifier) {
         return datasource.getOntModel()
-                .listSubjectsWithProperty(DCTerms.identifier, ResourceFactory.createTypedLiteral(identifier))
-                .toList()
-                .stream()
-                .filter(c -> !c.isAnon())
-                .map(c -> getByURI(c.getURI()).get())
+                .listIndividuals(DarkData.Visualization)
+                .toList().stream()
+                .filter(i -> i.hasProperty(DCTerms.identifier, ResourceFactory.createTypedLiteral(identifier)))
+                .map(G4Service::new)
                 .findAny();
     }
 
+    @CacheEvict(value = "services", allEntries = true)
     public Optional<G4Service> createService(String uri) {
         return Optional.ofNullable(datasource.getOntModel().createIndividual(uri, DarkData.Visualization))
                 .map(G4Service::new);
