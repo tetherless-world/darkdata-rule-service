@@ -1,7 +1,8 @@
 package darkdata.transformers;
 
+import darkdata.model.kb.DataProduct;
 import darkdata.model.kb.DataVariable;
-import darkdata.model.kb.Dataset;
+import darkdata.model.kb.VersionedDataProduct;
 import darkdata.model.kb.IndividualProxy;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Resource;
@@ -32,18 +33,21 @@ public class DataVariableConverter implements Converter<DataVariable, Optional<d
 
         darkdata.web.api.datavariable.DataVariable var = new darkdata.web.api.datavariable.DataVariable();
 
-        dataVariable.getDataset()
-                .flatMap(Dataset::getShortName)
-                .ifPresent(var::setProduct);
+        Assert.isTrue(dataVariable.getIdentifier().isPresent(), "kb data variable is missing identifier");
+        dataVariable.getIdentifier().ifPresent(var::setIdentifier);
+        Assert.hasText(var.getIdentifier(), "api data variable is missing identifier");
 
-        Assert.isTrue(dataVariable.getShortName().isPresent(), "data variable does not have short name");
+        dataVariable.getVersionedDataProduct()
+                .flatMap(VersionedDataProduct::getDataProduct)
+                .flatMap(DataProduct::getShortName)
+                .ifPresent(var::setProduct);
 
         dataVariable.getShortName()
                 .ifPresent(var::setVariable);
 
-        Assert.isTrue(dataVariable.getDataset().isPresent(), "data variable does not have dataset");
+        Assert.isTrue(dataVariable.getVersionedDataProduct().isPresent(), "data variable does not have dataset");
 
-        dataVariable.getDataset()
+        dataVariable.getVersionedDataProduct()
                 .map(IndividualProxy::getIndividual)
                 .map(Resource::getURI)
                 .flatMap(this::getVersionFromDatasetURI)

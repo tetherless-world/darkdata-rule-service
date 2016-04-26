@@ -31,7 +31,7 @@ public class SimpleScoringService implements CandidateWorkflowScoringService {
         Map<CompatibilityValue, DoubleSummaryStatistics> statisticsMap = getGroupedCompatibilitySummaries(assertions);
         return statisticsMap.entrySet().stream()
                 .map(e -> getWeight(e.getKey()) * e.getValue().getAverage())
-                .collect(Collectors.summingDouble(v -> v));
+                .collect(Collectors.summingDouble(v -> v)) / assertions.size();
     }
 
     private Map<CompatibilityValue, List<CompatibilityAssertion>> groupAssertions(List<CompatibilityAssertion> assertions) {

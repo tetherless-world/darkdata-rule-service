@@ -7,7 +7,6 @@ import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.web.api.datavariable.DataVariable;
 import darkdata.web.api.datavariable.DataVariableTestHarness;
 import darkdata.web.api.event.eonet.Event;
-import darkdata.web.api.event.eonet.EventCategory;
 import darkdata.web.api.event.eonet.EventTestHarness;
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,7 +36,7 @@ public class GenerateCandidateWorkflowServiceTest {
     }
 
     private List<DataVariable> getTestVariables() {
-        return Collections.singletonList(DataVariableTestHarness.createVariable_MYD08_D3_51_Cirrus_Reflectance_Mean());
+        return Collections.singletonList(DataVariableTestHarness.createVariable_MYD08_D3_6_Cirrus_Reflectance_Mean());
     }
 
     private CandidateWorkflowCriteria getTestCriteria() {

@@ -8,8 +8,9 @@
         "bbox": "180,-5,180,5",
         "data_variables": [
           {
+            "id": "MYD08_D3_6_Cirrus_Reflectance_Mean",
             "product" : "MYD08_D3",
-            "version" : "51",
+            "version" : "6",
             "variable" : "Cirrus_Reflectance_Mean",
             "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE",
             "modifiers": [ ]
@@ -55,13 +56,13 @@
     "data_variables": [
       {
         "product" : "MYD08_D3",
-        "version" : "51",
+        "version" : "6",
         "variable" : "Cirrus_Reflectance_Mean",
         "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"
       },
       {
         "product" : "MYD08_D3",
-        "version" : "51",
+        "version" : "6",
         "variable" : "Cloud_Optical_Thickness_Liquid_Mean",
         "keyword" : "ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE"
       }

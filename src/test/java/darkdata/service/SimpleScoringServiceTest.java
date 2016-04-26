@@ -52,6 +52,6 @@ public class SimpleScoringServiceTest {
 
         CandidateWorkflowScore score = scoringService.score(candidate);
         Assert.assertNotNull(score);
-        Assert.assertEquals(Double.valueOf(2.11d), score.getScore());
+        Assert.assertEquals(Double.valueOf(0.5275d), score.getScore());
     }
 }

@@ -5,8 +5,9 @@
     "end_time" : "2015-04-30T23:59:59Z",
     "bbox" : "180,-5,180,5",
     "data_variables" : [ {
+      "id": "MYD08_D3_6_Cirrus_Reflectance_Mean",
       "product" : "MYD08_D3",
-      "version" : "51",
+      "version" : "6",
       "variable" : "Cirrus_Reflectance_Mean",
       "keywords" : ["ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"]
     } ],

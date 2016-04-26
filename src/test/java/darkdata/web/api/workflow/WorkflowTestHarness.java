@@ -17,7 +17,7 @@ public class WorkflowTestHarness {
         workflow.setEndTime("2015-04-30T23:59:59Z");
         workflow.setBoundingBox("180,-5,180,5");
         workflow.setShape("shp_30");
-        DataVariable variable = DataVariableTestHarness.createVariable_MYD08_D3_51_Cirrus_Reflectance_Mean();
+        DataVariable variable = DataVariableTestHarness.createVariable_MYD08_D3_6_Cirrus_Reflectance_Mean();
         workflow.setVariables(Collections.singletonList(variable));
         return workflow;
     }

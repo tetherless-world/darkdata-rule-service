@@ -1,57 +1,71 @@
 package darkdata.datasource;
 
-import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author szednik
  */
 
-@Service
 public class DarkDataDatasource {
 
     private OntModel ontModel;
     private OntModel schema;
 
-    @Value("classpath:rdf/darkdata.ttl")
-    Resource darkDataOntology;
+    private List<Resource> ontologies;
+    private List<Resource> data;
 
-    @Value("classpath:rdf/sciencekeywords.ttl")
-    Resource gcmdScienceKeywords;
+    private static final Logger logger = LoggerFactory.getLogger(DarkDataDatasource.class);
 
-    final String GCMD_SCIENCE_KEYWORDS_BASE = "http://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords";
-
-    private static InputStream getInputStream(Resource resource) {
-        try {
-            return resource.getInputStream();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public DarkDataDatasource(List<Resource> ontologies, List<Resource> data) {
+        this.ontologies = ontologies;
+        this.data = data;
     }
 
     @PostConstruct
     public void setup() {
 
+        final List<Model> dataModels = new ArrayList<>();
+
         schema = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
-        schema.read(getInputStream(darkDataOntology), DarkData.getURI(),"TURTLE");
 
-        Model scienceKeywords = ModelFactory.createDefaultModel();
-        scienceKeywords.read(getInputStream(gcmdScienceKeywords), GCMD_SCIENCE_KEYWORDS_BASE, "TURTLE");
+        for(Resource ontology: ontologies) {
+            try(InputStream is = ontology.getInputStream()) {
+                schema.read(is, null, "TURTLE");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-        //ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF, schema);
+        for(Resource dataModel: data) {
+            try(InputStream is = dataModel.getInputStream()) {
+                Model _model = ModelFactory.createDefaultModel();
+                logger.debug("loading: "+dataModel.getFilename());
+                _model.read(is, null, "TURTLE");
+                dataModels.add(_model);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         ontModel = ModelFactory.createOntologyModel();
         ontModel.addSubModel(schema);
-        ontModel.addSubModel(scienceKeywords);
+
+        for(Model model: dataModels) {
+            ontModel.addSubModel(model);
+        }
+
         ontModel.prepare();
     }
 
@@ -65,7 +79,6 @@ public class DarkDataDatasource {
 
     // TODO factoryMethod for each process?
     public OntModel createOntModel() {
-//        OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
         OntModel m = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
         m.addSubModel(ontModel);
         return m;

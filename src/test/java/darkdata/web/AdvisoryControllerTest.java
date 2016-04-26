@@ -101,7 +101,7 @@ public class AdvisoryControllerTest {
                 .andExpect(jsonPath("$.candidates[*].workflow[*].bbox",containsInAnyOrder("180,-5,180,5")))
                 .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables",hasSize(1)))
                 .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].product",containsInAnyOrder("MYD08_D3")))
-                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].version",containsInAnyOrder("51")))
+                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].version",containsInAnyOrder("6")))
                 .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].variable",containsInAnyOrder("Cirrus_Reflectance_Mean")))
 //                .andExpect(jsonPath("$.candidates[*].workflow[*].data_variables[*].keywords",is(Collections.singletonList("ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"))))
                 .andExpect(jsonPath("$.candidates[*].workflow[*].shape", containsInAnyOrder("shp_30")))

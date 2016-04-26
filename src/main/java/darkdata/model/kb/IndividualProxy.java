@@ -1,5 +1,6 @@
 package darkdata.model.kb;
 
+import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntResource;
 
 /**
@@ -16,6 +17,10 @@ public class IndividualProxy {
 
     public OntResource getIndividual() {
         return individual;
+    }
+
+    public boolean hasType(OntClass clazz) {
+        return getIndividual().hasRDFType(clazz);
     }
 
     @Override

@@ -1,15 +1,22 @@
 package darkdata;
 
+import darkdata.datasource.DarkDataDatasource;
 import darkdata.service.RuleBasedReasoningService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
+import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author szednik
@@ -40,11 +47,45 @@ public class DarkDataApplication {
         return p;
     }
 
-    @Value("classpath:rules/some.rules")
+    @Bean
+    public CacheManager cacheManager() {
+        SimpleCacheManager cacheManager = new SimpleCacheManager();
+        cacheManager.setCaches(Arrays.asList(
+                new ConcurrentMapCache("datafields"),
+                new ConcurrentMapCache("products"),
+                new ConcurrentMapCache("services"),
+                new ConcurrentMapCache("features"),
+                new ConcurrentMapCache("phenomena"),
+                new ConcurrentMapCache("observableProperties")
+        ));
+        return cacheManager;
+    }
+
+    @Value("classpath:rules/characteristic_compatibility.rules")
     private Resource basicRules;
 
+    @Value("classpath:rules/time_interval.rules")
+    private Resource timeIntervalRules;
+
+    @Value("classpath:rdf/sciencekeywords.ttl")
+    private Resource gcmdScienceKeywords;
+
+    @Value("classpath:rdf/datafields.ttl")
+    private Resource datafields;
+
+    @Value("classpath:rdf/darkdata.ttl")
+    Resource darkDataOntology;
+
     @Bean
-    public RuleBasedReasoningService basicRulesReasoningService() {
-        return new RuleBasedReasoningService(basicRules);
+    public DarkDataDatasource datasource() {
+        List<Resource> ontologies = Collections.singletonList(darkDataOntology);
+        List<Resource> dataModels = Arrays.asList(gcmdScienceKeywords, datafields);
+        return new DarkDataDatasource(ontologies, dataModels);
+    }
+
+    @Bean
+    public RuleBasedReasoningService ruleBasedReasoningService() {
+        List<Resource> rulesets = Arrays.asList(basicRules, timeIntervalRules);
+        return new RuleBasedReasoningService(rulesets);
     }
 }

@@ -38,7 +38,7 @@ public class DataVariableTest {
 
     @Test
     public void testSerializeDataVariable() throws IOException {
-        DataVariable dataVariable = DataVariableTestHarness.createVariable_MYD08_D3_51_Cirrus_Reflectance_Mean();
+        DataVariable dataVariable = DataVariableTestHarness.createVariable_MYD08_D3_6_Cirrus_Reflectance_Mean();
         Assert.assertNotNull(dataVariable);
         ObjectNode serialized_pojo = mapper.valueToTree(dataVariable);
         JsonNode expected = mapper.readTree(mod08_d3_051_crm.getInputStream());

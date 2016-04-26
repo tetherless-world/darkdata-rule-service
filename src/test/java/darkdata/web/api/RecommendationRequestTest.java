@@ -43,8 +43,8 @@ public class RecommendationRequestTest {
     }
 
     private List<DataVariable> createTestDataVariableList() {
-        DataVariable d1 = DataVariableTestHarness.createVariable_MYD08_D3_51_Cirrus_Reflectance_Mean();
-        DataVariable d2 = DataVariableTestHarness.createVariable_MYD08_D3_51_Cloud_Optical_Thickness_Liquid_Mean();
+        DataVariable d1 = DataVariableTestHarness.createVariable_MYD08_D3_6_Cirrus_Reflectance_Mean();
+        DataVariable d2 = DataVariableTestHarness.createVariable_MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean();
         return Arrays.asList(d1, d2);
     }
 

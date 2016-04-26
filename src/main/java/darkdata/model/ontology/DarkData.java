@@ -207,4 +207,15 @@ public class DarkData {
 
     public static final ObjectProperty candidateFeature = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#candidateFeature" );
 
+    public static final ObjectProperty timeInterval = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#timeInterval" );
+
+    public static final OntClass TimeInterval = m_model.createClass( "http://www.purl.org/twc/ns/darkdata#TimeInterval" );
+
+    public static final ObjectProperty basisForAssertion = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#basisForAssertion" );
+
+    public static final OntClass DataProduct = m_model.createClass( "http://www.purl.org/twc/ns/darkdata#DataProduct" );
+
+    public static final OntClass VersionedDataProduct = m_model.createClass( "http://www.purl.org/twc/ns/darkdata#VersionedDataProduct" );
+
+    public static final DatatypeProperty version = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#version" );
 }

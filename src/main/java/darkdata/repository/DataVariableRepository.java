@@ -4,8 +4,10 @@ import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.kb.DataVariable;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntResource;
+import org.apache.jena.rdf.model.ResourceFactory;
+import org.apache.jena.vocabulary.DCTerms;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,14 +34,26 @@ public class DataVariableRepository {
                 .map(DataVariable::new);
     }
 
-    public List<DataVariable> listDataVariables() {
+    public Optional<DataVariable> getByURI(String uri) {
+        return Optional.ofNullable(datasource.getOntModel().getIndividual(uri))
+                .map(DataVariable::new);
+    }
+
+    @Cacheable("datafields")
+    public Optional<DataVariable> getByIdentifier(String identifier) {
         return datasource.getOntModel()
-                .getOntClass(DarkData.DataVariable.getURI())
-                .listInstances()
-                .toList()
-                .stream()
-                .filter(c -> !c.isAnon())
-                .map(OntResource::asIndividual)
+                .listIndividuals(DarkData.DataVariable)
+                .toList().stream()
+                .filter(i -> i.hasProperty(DCTerms.identifier, ResourceFactory.createTypedLiteral(identifier)))
+                .map(DataVariable::new)
+                .findFirst();
+    }
+
+    @Cacheable("datafields")
+    public List<DataVariable> list() {
+        return datasource.getOntModel()
+                .listIndividuals(DarkData.DataVariable)
+                .toList().stream()
                 .map(DataVariable::new)
                 .collect(Collectors.toList());
     }

@@ -2,7 +2,6 @@ package darkdata.repository;
 
 import darkdata.DarkDataApplication;
 import org.apache.jena.ontology.OntClass;
-import org.apache.jena.rdf.model.Resource;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +29,5 @@ public class ObservablePropertyRepositoryTest {
         List<OntClass> observablePropertyClasses = repository.listSubclasses();
         Assert.assertNotNull(observablePropertyClasses);
         Assert.assertFalse(observablePropertyClasses.isEmpty());
-        observablePropertyClasses.stream().map(Resource::getURI).forEach(System.out::println);
     }
 }

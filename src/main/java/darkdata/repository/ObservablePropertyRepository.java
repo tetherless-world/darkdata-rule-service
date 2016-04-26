@@ -4,6 +4,7 @@ import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntClass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -59,6 +60,7 @@ public class ObservablePropertyRepository {
      * @return List of OntClass objects
      * @see OntClass
      */
+    @Cacheable("observableProperties")
     public List<OntClass> listSubclasses() {
         return datasource.getOntModel()
                 .getOntClass(DarkData.ObservableProperty.getURI())

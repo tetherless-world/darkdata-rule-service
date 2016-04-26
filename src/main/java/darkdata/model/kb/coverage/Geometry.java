@@ -5,6 +5,7 @@ import darkdata.model.ontology.DarkData;
 import darkdata.model.ontology.GeoSparql;
 import org.apache.jena.datatypes.xsd.XSDDatatype;
 import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.ResourceFactory;
@@ -18,8 +19,9 @@ import java.util.Optional;
  */
 public class Geometry extends IndividualProxy {
 
-    public Geometry(Individual individual) {
+    public Geometry(OntResource individual) {
         super(individual);
+        individual.addRDFType(GeoSparql.Geometry);
     }
 
     public Optional<String> getWKT() {

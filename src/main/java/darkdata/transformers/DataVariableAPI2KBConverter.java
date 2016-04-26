@@ -1,6 +1,6 @@
 package darkdata.transformers;
 
-import darkdata.model.kb.Dataset;
+import darkdata.model.kb.VersionedDataProduct;
 import darkdata.repository.DataVariableRepository;
 import darkdata.repository.DatasetRepository;
 import darkdata.web.api.datavariable.DataVariable;
@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 
 import java.util.Optional;
 
@@ -38,25 +37,38 @@ public class DataVariableAPI2KBConverter implements Converter<DataVariable, Opti
             return Optional.empty();
         }
 
-        String varId = variable.getProduct()+"_"+variable.getVersion()+"_"+variable.getVariable();
-        String varURI = "urn:variable/"+varId;
+        String varId = (variable.getIdentifier() != null) ?
+                variable.getIdentifier() :
+                variable.getProduct()+"_"+variable.getVersion()+"_"+variable.getVariable();
 
-        darkdata.model.kb.DataVariable var = variableRepository.createDataVariable(ontModel, varURI).get();
+        Optional<darkdata.model.kb.DataVariable> var = variableRepository.getByIdentifier(varId);
+        if(var.isPresent()) {
+            return var;
+        }
 
-        String datasetID = variable.getProduct()+"_"+variable.getVersion();
-        String datasetURI = "urn:dataset/"+datasetID;
+        String varURI = "http://darkdata.tw.rpi.edu/data/datafield/"+varId;
+        Optional<darkdata.model.kb.DataVariable> var2 = variableRepository.createDataVariable(ontModel, varURI);
 
-        Dataset dataset = datasetRepository.createDataset(ontModel, datasetURI).get();
-        dataset.setShortName(variable.getProduct());
-        Assert.isTrue(dataset.getShortName().isPresent(), "dataset should have a short name");
+        Optional<VersionedDataProduct> dataset = getDataset(variable.getProduct(), variable.getVersion());
+        var2.ifPresent(v -> v.setShortName(variable.getVariable()));
+        dataset.ifPresent(d -> var2.ifPresent(v -> v.setDataset(d)));
 
-        var.setShortName(variable.getVariable());
-        Assert.isTrue(var.getShortName().isPresent(), "variable should have a short name");
+        return var2;
+    }
 
-        var.setDataset(dataset);
-        Assert.isTrue(var.getDataset().isPresent(), "variable should have an associated dataset");
+    private Optional<VersionedDataProduct> getDataset(String shortname, String version) {
 
-        return Optional.of(var);
+        String datasetID = shortname+"."+version;
+        Optional<VersionedDataProduct> dataset = datasetRepository.getByShortName(datasetID);
+
+        if(!dataset.isPresent()) {
+            String datasetURI = "http://darkdata.tw.rpi.edu/data/versioned-product/"+datasetID;
+            dataset = datasetRepository.createDataset(ontModel, datasetURI);
+            dataset.ifPresent(d -> d.setShortName(shortname));
+            dataset.ifPresent(d -> d.setVersion(version));
+        }
+
+        return dataset;
     }
 
     public OntModel getOntModel() {

@@ -4,6 +4,7 @@ import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntClass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class PhenomenaRepository {
      * @return Optional object containing the OntClass (or empty if no class is found)
      * @see OntClass
      */
+    @Cacheable("phenomena")
     public Optional<OntClass> getClassByLabel(String label) {
         return listSubclasses().stream()
                 .filter(c -> c.getLabel("en").equals(label))
@@ -48,6 +50,7 @@ public class PhenomenaRepository {
      * @return List of OntClass objects
      * @see OntClass
      */
+    @Cacheable("phenomena")
     public List<OntClass> listClassesByTopic(String topic) {
         return listSubclasses()
                 .stream()
@@ -60,7 +63,7 @@ public class PhenomenaRepository {
      * @return List of OntClass objects
      * @see OntClass
      */
-    // TODO add caching
+    @Cacheable("phenomena")
     public List<OntClass> listSubclasses() {
         return datasource.getOntModel()
                 .getOntClass(DarkData.Phenomena.getURI())

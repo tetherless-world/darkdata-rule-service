@@ -5,7 +5,6 @@ import darkdata.model.kb.candidate.CandidateScore;
 import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.ontology.DarkData;
 import darkdata.web.api.workflow.Workflow;
-import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.util.iterator.ExtendedIterator;
 import org.apache.jena.vocabulary.OWL;

@@ -6,8 +6,6 @@ import darkdata.transformers.CandidateWorkflowConverter;
 import darkdata.transformers.Request2CandidateCriteriaConverter;
 import darkdata.web.api.RecommendationRequest;
 import darkdata.web.api.RecommendationResponse;
-import darkdata.web.api.datavariable.DataVariable;
-import darkdata.web.api.event.eonet.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,12 +58,12 @@ public class RecommendationService {
         return new RecommendationResponse(request, sortedScoredCandidates);
     }
 
-    public CandidateWorkflow computeCompatibilities(CandidateWorkflow c) {
+    private CandidateWorkflow computeCompatibilities(CandidateWorkflow c) {
         compatibilityService.computeCompatibilities(c).stream().forEach(c::addCompatibilityAssertion);
         return c;
     }
 
-    public CandidateWorkflow computeCandidateScore(CandidateWorkflow c) {
+    private CandidateWorkflow computeCandidateScore(CandidateWorkflow c) {
         c.setScore(scoringService.score(c));
         return c;
     }

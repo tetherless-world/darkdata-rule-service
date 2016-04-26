@@ -21,9 +21,9 @@
 #################################################################
 
 
-###  http://purl.org/dc/terms/identifer
+###  http://purl.org/dc/terms/identifier
 
-dct:identifer rdf:type owl:AnnotationProperty .
+dct:identifier rdf:type owl:AnnotationProperty .
 
 
 
@@ -110,6 +110,18 @@ dd:candidateEvent rdf:type owl:ObjectProperty ;
 
 
 
+###  http://www.purl.org/twc/ns/darkdata#candidateVariable
+
+dd:candidateVariable rdf:type owl:ObjectProperty ;
+
+             rdfs:label "candidate variable" ;
+
+             rdfs:range dd:DataVariable ;
+
+             rdfs:domain dd:CandidateWorkflow .
+
+
+
 ###  http://www.purl.org/twc/ns/darkdata#candidateService
 
 dd:candidateService rdf:type owl:ObjectProperty ;
@@ -119,6 +131,18 @@ dd:candidateService rdf:type owl:ObjectProperty ;
                     rdfs:domain dd:CandidateWorkflow ;
                     
                     rdfs:range dd:Visualization .
+
+
+
+###  http://www.purl.org/twc/ns/darkdata#candidateFeature
+
+dd:candidateFeature rdf:type owl:ObjectProperty ;
+
+                    rdfs:label "candidate feature" ;
+
+                    rdfs:domain dd:CandidateWorkflow ;
+
+                    rdfs:range dd:PhysicalManifestation .
 
 
 
@@ -534,8 +558,15 @@ dd:HurricaneEye rdf:type owl:Class ;
                 
                 rdfs:label "Hurricane Eye"@en ;
                 
-                rdfs:subClassOf dd:PhysicalManifestation .
-
+                rdfs:subClassOf dd:PhysicalManifestation ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty dd:strongCompatibilityFor ;
+                                  owl:hasValue dd:temporal_evolution
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty dd:strongCompatibilityFor ;
+                                  owl:hasValue dd:variation_with_atmospheric_height
+                                ] .
 
 
 ###  http://www.purl.org/twc/ns/darkdata#Landslide
@@ -844,6 +875,42 @@ dd:WindFields rdf:type owl:Class ;
               rdfs:label "Wind Fields"@en ;
               
               rdfs:subClassOf dd:PhysicalManifestation .
+#                              [ rdf:type owl:Restriction ;
+#                                owl:onProperty dd:strongCompatibilityFor ;
+#                                owl:hasValue dd:temporal_evolution
+#                              ] ,
+#                              [ rdf:type owl:Restriction ;
+#                                owl:onProperty dd:indifferentCompatibilityFor ;
+#                                owl:hasValue dd:east-west-movement
+#                              ] ,
+#                              [ rdf:type owl:Restriction ;
+#                                owl:onProperty dd:indifferentCompatibilityFor ;
+#                                owl:hasValue dd:north-south-movement
+#                              ] ,
+#                              [ rdf:type owl:Restriction ;
+#                                owl:onProperty dd:slightCompatibilityFor ;
+#                                owl:hasValue dd:spatial_extent_of_event
+#                              ] ,
+#                              [ rdf:type owl:Restriction ;
+#                                owl:onProperty dd:indifferentCompatibilityFor ;
+#                                owl:hasValue dd:seasonal_variation
+#                              ] ,
+#                              [ rdf:type owl:Restriction ;
+#                                owl:onProperty dd:indifferentCompatibilityFor ;
+#                                owl:hasValue dd:year-to-year-variability
+#                              ] ,
+#                              [ rdf:type owl:Restriction ;
+#                                owl:onProperty dd:strongCompatibilityFor ;
+#                                owl:hasValue dd:variation_with_atmospheric_height
+#                              ] ,
+#                              [ rdf:type owl:Restriction ;
+#                                owl:onProperty dd:someCompatibilityFor ;
+#                                owl:hasValue dd:global_phenomena
+#                              ] ,
+#                              [ rdf:type owl:Restriction ;
+#                                owl:onProperty dd:slightCompatibilityFor ;
+#                                owl:hasValue dd:detection_of_events
+#                              ] .
 
 
 
@@ -931,7 +998,7 @@ dd:CrLn rdf:type dd:Visualization ,
 dd:CrLt rdf:type dd:Visualization ,
                  owl:NamedIndividual ;
         
-        dct:identifer "CrLt" ;
+        dct:identifier "CrLt" ;
         
         rdfs:comment "Cross Map, Latitude-Pressure"@en .
 
@@ -1178,7 +1245,7 @@ dd:indifferent_compatibility rdf:type dd:CompatibilityValue ,
                              
                              rdfs:label "indifferent compatibility" ;
                              
-                             dct:identifer "INDIFFERENT"^^xsd:string .
+                             dct:identifier "INDIFFERENT"^^xsd:string .
 
 
 
@@ -1196,7 +1263,7 @@ dd:negative_compatibility rdf:type dd:CompatibilityValue ,
                           
                           rdfs:label "negative compatibility" ;
                           
-                          dct:identifer "NEGATIVE"^^xsd:string .
+                          dct:identifier "NEGATIVE"^^xsd:string .
 
 
 
@@ -1221,7 +1288,7 @@ dd:slight_compatibility rdf:type dd:CompatibilityValue ,
                         
                         rdfs:label "slight compatibility" ;
                         
-                        dct:identifer "SLIGHT"^^xsd:string .
+                        dct:identifier "SLIGHT"^^xsd:string .
 
 
 
@@ -1232,7 +1299,7 @@ dd:some_compatibility rdf:type dd:CompatibilityValue ,
                       
                       rdfs:label "some compatibility" ;
                       
-                      dct:identifer "SOME"^^xsd:string .
+                      dct:identifier "SOME"^^xsd:string .
 
 
 
@@ -1250,7 +1317,7 @@ dd:strong_compatibility rdf:type dd:CompatibilityValue ,
                         
                         rdfs:label "strong compatibility" ;
                         
-                        dct:identifer "STRONG"^^xsd:string .
+                        dct:identifier "STRONG"^^xsd:string .
 
 
 
