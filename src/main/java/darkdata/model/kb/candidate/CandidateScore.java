@@ -1,5 +1,7 @@
 package darkdata.model.kb.candidate;
 
+import org.apache.jena.rdf.model.Resource;
+
 /**
  * @author szednik
  */
@@ -7,9 +9,9 @@ public class CandidateScore {
 
     private String id;
     private Double score;
-    private Candidate candidate;
+    private Resource candidate;
 
-    public CandidateScore(String id, Candidate candidate, Double score) {
+    public CandidateScore(String id, Resource candidate, Double score) {
         this.id = id;
         this.score = score;
         this.candidate = candidate;
@@ -23,7 +25,7 @@ public class CandidateScore {
         return score;
     }
 
-    public Candidate getCandidate() {
+    public Resource getCandidate() {
         return candidate;
     }
 

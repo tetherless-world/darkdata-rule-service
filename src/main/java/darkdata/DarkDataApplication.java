@@ -84,8 +84,17 @@ public class DarkDataApplication {
     }
 
     @Bean
-    public RuleBasedReasoningService ruleBasedReasoningService() {
+    public RuleBasedReasoningService compatibilityRulesReasoningService() {
         List<Resource> rulesets = Arrays.asList(basicRules, timeIntervalRules);
+        return new RuleBasedReasoningService(rulesets);
+    }
+
+    @Value("classpath:rules/generate_candidates.rules")
+    private Resource candidateGenerationRules;
+
+    @Bean
+    public RuleBasedReasoningService candidateGenerationReasoningService() {
+        List<Resource> rulesets = Collections.singletonList(candidateGenerationRules);
         return new RuleBasedReasoningService(rulesets);
     }
 }

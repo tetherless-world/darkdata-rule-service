@@ -7725,7 +7725,6 @@
     dct:isPartOf <http://darkdata.tw.rpi.edu/data/versioned-product/GSSTFM.3> ;
     dd:hasDeployment <http://darkdata.tw.rpi.edu/data/platform-instrument/SSMI> ;
     dd:measurement <http://darkdata.tw.rpi.edu/data/measurement/Latent+Heat+Flux> ;
-    dd:processingLevel "None"^^xsd:integer ;
     dd:shortName "SET1_INT_E" ;
     dd:spatialResolution <http://darkdata.tw.rpi.edu/data/spatial-resolution/0.25+deg.> ;
     dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly> .
@@ -7743,7 +7742,6 @@
     dct:isPartOf <http://darkdata.tw.rpi.edu/data/versioned-product/GSSTFM.3> ;
     dd:hasDeployment <http://darkdata.tw.rpi.edu/data/platform-instrument/SSMI> ;
     dd:measurement <http://darkdata.tw.rpi.edu/data/measurement/Sensible+Heat+Flux> ;
-    dd:processingLevel "None"^^xsd:integer ;
     dd:shortName "SET1_INT_H" ;
     dd:spatialResolution <http://darkdata.tw.rpi.edu/data/spatial-resolution/0.25+deg.> ;
     dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly> .
@@ -7761,7 +7759,6 @@
     dct:isPartOf <http://darkdata.tw.rpi.edu/data/versioned-product/GSSTFM.3> ;
     dd:hasDeployment <http://darkdata.tw.rpi.edu/data/platform-instrument/SSMI> ;
     dd:measurement <http://darkdata.tw.rpi.edu/data/measurement/Wind> ;
-    dd:processingLevel "None"^^xsd:integer ;
     dd:shortName "SET1_INT_ST_mag" ;
     dd:spatialResolution <http://darkdata.tw.rpi.edu/data/spatial-resolution/0.25+deg.> ;
     dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly> .
@@ -7779,7 +7776,6 @@
     dct:isPartOf <http://darkdata.tw.rpi.edu/data/versioned-product/GSSTFM.3> ;
     dd:hasDeployment <http://darkdata.tw.rpi.edu/data/platform-instrument/SSMI> ;
     dd:measurement <http://darkdata.tw.rpi.edu/data/measurement/Wind+Stress+Direction> ;
-    dd:processingLevel "None"^^xsd:integer ;
     dd:shortName "SET1_INT_ST_vec" ;
     dd:spatialResolution <http://darkdata.tw.rpi.edu/data/spatial-resolution/0.25+deg.> ;
     dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly> .

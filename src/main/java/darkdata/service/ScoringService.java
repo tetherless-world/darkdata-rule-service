@@ -1,13 +1,12 @@
 package darkdata.service;
 
-import darkdata.model.kb.candidate.Candidate;
-import darkdata.model.kb.candidate.CandidateScore;
+import org.apache.jena.rdf.model.Resource;
 
 /**
  * @author szednik
  */
 
-public interface ScoringService<S extends CandidateScore,T extends Candidate> {
+interface ScoringService<S extends Resource,T extends Resource> {
 
     S score(T candidate);
 }

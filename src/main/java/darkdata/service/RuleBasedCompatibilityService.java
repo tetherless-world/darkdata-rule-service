@@ -6,7 +6,10 @@ import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.RDFNode;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.perf4j.StopWatch;
+import org.perf4j.slf4j.Slf4JStopWatch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,33 +19,22 @@ import java.util.List;
  */
 
 @Service
-public class RuleBasedCompatibilityService implements CandidateWorkflowCompatibilityService {
+public class RuleBasedCompatibilityService {
 
-    @Autowired
-    private RuleBasedReasoningService ruleBasedReasoningService;
+    private static final Logger logger = LoggerFactory.getLogger(RuleBasedCompatibilityService.class);
 
-    @Override
-    public List<CompatibilityAssertion> computeCompatibilities(CandidateWorkflow candidate) {
-        OntModel m = candidate.getIndividual().getOntModel();
-        InfModel ruleInf = ruleBasedReasoningService.reason(m);
-        copyAssertionsToCandidateModel(ruleInf, candidate);
-        return candidate.getCompatibilityAssertions();
-    }
-
-    private void copyAssertionsToCandidateModel(InfModel ruleInf, CandidateWorkflow candidate) {
-
-//        Optional<PhysicalFeature> feature = candidate.getFeature();
-//        Optional<G4Service> service = candidate.getService();
-//        if(!feature.isPresent() || !service.isPresent()) { return; }
-
-        OntModel m = candidate.getIndividual().getOntModel();
-
-        ruleInf.listObjectsOfProperty(candidate.getIndividual(), DarkData.compatibilityAssertion)
+    public List<CompatibilityAssertion> computeCompatibilities(final InfModel ruleInf, CandidateWorkflow candidate) {
+//        StopWatch watch = new Slf4JStopWatch("RuleBasedCompatibilityService::computeCompatibilities");
+        final OntModel m = candidate.getIndividual().getOntModel();
+        ruleInf.getDeductionsModel()
+                .listObjectsOfProperty(candidate.getIndividual(), DarkData.compatibilityAssertion)
                 .toList()
                 .stream()
                 .map(RDFNode::asResource)
                 .peek(a -> candidate.getIndividual().addProperty(DarkData.compatibilityAssertion, a))
                 .forEach(n -> m.add(n.listProperties().toList()));
+//        watch.stop();
+        return candidate.getCompatibilityAssertions();
     }
 
 }

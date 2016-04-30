@@ -1,84 +1,102 @@
 package darkdata.transformers;
 
-import darkdata.model.kb.IndividualProxy;
-import darkdata.model.kb.candidate.CandidateScore;
-import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.ontology.DarkData;
+import darkdata.web.api.candidate.CandidateWorkflow;
+import darkdata.web.api.datavariable.DataVariable;
 import darkdata.web.api.workflow.Workflow;
-import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.util.iterator.ExtendedIterator;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.rdf.model.*;
+import org.apache.jena.vocabulary.DCTerms;
 import org.apache.jena.vocabulary.OWL;
+import org.apache.jena.vocabulary.RDF;
+import org.apache.jena.vocabulary.RDFS;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author szednik
  */
 @Component
-public class CandidateWorkflowConverter implements Converter<CandidateWorkflow, Optional<darkdata.web.api.candidate.CandidateWorkflow>> {
-
-    @Autowired
-    private G4ServiceConverter g4ServiceConverter;
+public class CandidateWorkflowConverter implements Converter<Resource, Optional<CandidateWorkflow>> {
 
     @Autowired
     private DataVariableConverter variableConverter;
 
-    @Override
-    public Optional<darkdata.web.api.candidate.CandidateWorkflow> convert(CandidateWorkflow candidate) {
+    private static final Logger logger = LoggerFactory.getLogger(CandidateWorkflowConverter.class);
+
+    private Model model;
+
+    public Optional<CandidateWorkflow> convert(Resource candidate) {
 
         if (candidate == null) {
             return Optional.empty();
         }
 
-        double score = candidate.getScore()
-                .map(CandidateScore::getScore)
-                .orElse(0d);
-
         Workflow workflow = new Workflow();
 
-        Assert.isTrue(candidate.getService().isPresent(), "candidate must have a service");
+        double score = getScore(candidate).orElse(0D);
 
-        candidate.getService()
-                .flatMap(g4ServiceConverter::convert)
-                .ifPresent(workflow::setService);
+        String service = getService(candidate).orElse("UNKNOWN");
+        workflow.setService(service);
 
-        // TODO workflow.setStartTime("");
+        variableConverter.setModel(model);
 
-        // TODO workflow.setEndTime("");
+        List<DataVariable> vars = getDataFields(candidate).stream()
+                .map(variableConverter::convert)
+                .map(Optional::get)
+                .collect(Collectors.toList());
+        workflow.setVariables(vars);
 
-        // TODO workflow.setBoundingBox("");
+        String feature = getFeature(candidate).orElse("UNKNOWN");
 
-        // TODO support multiple variables
-        candidate.getVariable()
-                .flatMap(variableConverter::convert)
-                .map(Arrays::asList)
-                .ifPresent(workflow::setVariables);
+        return Optional.of(new CandidateWorkflow(workflow, feature, score));
+    }
 
-        // TODO workflow.setShape("");
-
-        // TODO workflow.setKeywords([]);
-
-        Assert.isTrue(candidate.getFeature().isPresent(), "candidate must have a physical feature");
-
-        // TODO there is an issue here with getting the most specific feature type URI
-        String feature = candidate.getFeature()
-                .map(IndividualProxy::getIndividual)
-                .map(i -> i.listRDFTypes(true))
-                .map(ExtendedIterator::toList)
-                .get().stream()
+    private Optional<String> getFeature(Resource candidate) {
+        Resource feature = model.listObjectsOfProperty(candidate, DarkData.candidateFeature).next().asResource();
+        return model.listObjectsOfProperty(feature, RDF.type).toList().stream()
+                .map(RDFNode::asResource)
+                .filter(r -> !r.isAnon())
                 .map(Resource::getURI)
                 .filter(u -> !u.equals(OWL.Thing.getURI()))
+                .filter(u -> !u.equals(RDFS.Resource.getURI()))
                 .filter(u -> !u.equals(DarkData.PhysicalManifestation.getURI()))
-                .findFirst().get();
+                .findFirst();
+    }
 
-        Assert.hasText(feature);
+    private List<Resource> getDataFields(Resource candidate) {
+        return model.listObjectsOfProperty(candidate, DarkData.candidateVariable)
+                .toList().stream()
+                .map(RDFNode::asResource)
+                .collect(Collectors.toList());
+    }
 
-        return Optional.of(new darkdata.web.api.candidate.CandidateWorkflow(workflow, feature, score));
+    private Optional<String> getService( Resource candidate) {
+        return Optional.ofNullable(model.listObjectsOfProperty(candidate, DarkData.candidateService).next().asResource())
+                .map(r -> model.listObjectsOfProperty(r, DCTerms.identifier).next().asLiteral().getString());
+    }
 
+    private Optional<Double> getScore(Resource candidate) {
+        return Optional.ofNullable(model.listObjectsOfProperty(candidate, DarkData.candidateScore))
+                .filter(NodeIterator::hasNext)
+                .map(NodeIterator::next)
+                .map(RDFNode::asLiteral)
+                .map(Literal::getDouble);
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 }

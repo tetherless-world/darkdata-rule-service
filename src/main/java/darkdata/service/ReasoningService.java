@@ -8,5 +8,5 @@ import org.apache.jena.rdf.model.InfModel;
  */
 public interface ReasoningService {
 
-    InfModel reason(OntModel m);
+    InfModel reason(final OntModel m);
 }
