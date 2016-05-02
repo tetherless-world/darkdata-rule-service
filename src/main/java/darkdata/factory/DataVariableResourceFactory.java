@@ -1,10 +1,12 @@
-package darkdata.transformers;
+package darkdata.factory;
 
+import darkdata.model.kb.IndividualProxy;
 import darkdata.model.kb.VersionedDataProduct;
 import darkdata.repository.DataVariableRepository;
 import darkdata.repository.DatasetRepository;
 import darkdata.web.api.datavariable.DataVariable;
 import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import java.util.Optional;
  */
 
 @Component
-public class DataVariableAPI2KBConverter {
+public class DataVariableResourceFactory implements ResourceFactory<OntResource, OntModel, DataVariable> {
 
     @Autowired
     private DataVariableRepository variableRepository;
@@ -25,9 +27,10 @@ public class DataVariableAPI2KBConverter {
     @Autowired
     private DatasetRepository datasetRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(DataVariableAPI2KBConverter.class);
+    private static final Logger logger = LoggerFactory.getLogger(DataVariableResourceFactory.class);
 
-    public Optional<darkdata.model.kb.DataVariable> convert(OntModel m, DataVariable variable) {
+    @Override
+    public Optional<OntResource> get(final OntModel model, final DataVariable variable) {
 
         if(variable == null) {
             return Optional.empty();
@@ -38,21 +41,22 @@ public class DataVariableAPI2KBConverter {
                 variable.getProduct()+"_"+variable.getVersion()+"_"+variable.getVariable();
 
         Optional<darkdata.model.kb.DataVariable> var = variableRepository.getByIdentifier(varId);
+
         if(var.isPresent()) {
-            return var;
+            return var.map(IndividualProxy::getIndividual);
         }
 
         String varURI = "http://darkdata.tw.rpi.edu/data/datafield/"+varId;
-        Optional<darkdata.model.kb.DataVariable> var2 = variableRepository.createDataVariable(m, varURI);
+        Optional<darkdata.model.kb.DataVariable> var2 = variableRepository.createDataVariable(model, varURI);
 
-        Optional<VersionedDataProduct> dataset = getDataset(m, variable.getProduct(), variable.getVersion());
+        Optional<VersionedDataProduct> dataset = getDataset(model, variable.getProduct(), variable.getVersion());
         var2.ifPresent(v -> v.setShortName(variable.getVariable()));
         dataset.ifPresent(d -> var2.ifPresent(v -> v.setDataset(d)));
 
-        return var2;
+        return var2.map(IndividualProxy::getIndividual);
     }
 
-    private Optional<VersionedDataProduct> getDataset(OntModel m, String shortname, String version) {
+    private Optional<VersionedDataProduct> getDataset(final OntModel m, final String shortname, final String version) {
 
         String datasetID = shortname+"."+version;
         Optional<VersionedDataProduct> dataset = datasetRepository.getByShortName(datasetID);

@@ -2,8 +2,8 @@ package darkdata.service;
 
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.model.ontology.DarkData;
-import darkdata.transformers.CandidateWorkflowConverter;
-import darkdata.transformers.Request2CandidateCriteriaConverter;
+import darkdata.factory.CandidateWorkflowObjectFactory;
+import darkdata.factory.CandidateWorkflowCriteriaFactory;
 import darkdata.web.api.RecommendationRequest;
 import darkdata.web.api.RecommendationResponse;
 import darkdata.web.api.candidate.CandidateWorkflow;
@@ -37,10 +37,10 @@ public class RecommendationService {
     private SimpleScoringService scoringService;
 
     @Autowired
-    private CandidateWorkflowConverter candidateWorkflowConverter;
+    private CandidateWorkflowObjectFactory candidateWorkflowObjectFactory;
 
     @Autowired
-    private Request2CandidateCriteriaConverter request2CandidateCriteriaConverter;
+    private CandidateWorkflowCriteriaFactory candidateWorkflowCriteriaFactory;
 
     @Autowired
     private RuleBasedReasoningService compatibilityRulesReasoningService;
@@ -53,7 +53,7 @@ public class RecommendationService {
     }
 
     public RecommendationResponse getRecommendation(RecommendationRequest request) {
-        CandidateWorkflowCriteria criteria = request2CandidateCriteriaConverter.convert(request)
+        CandidateWorkflowCriteria criteria = candidateWorkflowCriteriaFactory.get(request)
                 .orElseThrow(() -> new RuntimeException("could not generate candidate criteria"));
 
         Model m = generateCandidateWorkflowService.generateCandidates(criteria);
@@ -72,7 +72,7 @@ public class RecommendationService {
         return candidates.stream()
                 .map(c -> scoringService.score(m, c))
                 .filter(r -> getScore(m, r).orElse((double) -1) > getScoreThreshold())
-                .map(c -> candidateWorkflowConverter.convert(m, c))
+                .map(c -> candidateWorkflowObjectFactory.get(m, c))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .distinct()
