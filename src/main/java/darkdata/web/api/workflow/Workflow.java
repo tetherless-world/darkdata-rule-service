@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import darkdata.web.api.datavariable.DataVariable;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,10 +28,10 @@ public class Workflow {
     private String boundingBox;
 
     @JsonProperty("data_variables")
-    private List<DataVariable> variables;
+    private List<DataVariable> variables = new ArrayList<>();
 
     @JsonProperty("dataKeyword")
-    private List<String> keywords = Collections.<String>emptyList();
+    private List<String> keywords = new ArrayList<>();
 
     @JsonProperty("shape")
     private String shape;

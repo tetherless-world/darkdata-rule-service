@@ -6,7 +6,6 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.DCTerms;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -15,14 +14,11 @@ import java.util.Optional;
  * @author szednik
  */
 @Component
-public class DataVariableConverter implements Converter<Resource, Optional<DataVariable>> {
+public class DataVariableConverter {
 
     private static final Logger logger = LoggerFactory.getLogger(DataVariableConverter.class);
 
-    private Model model;
-
-    @Override
-    public Optional<DataVariable> convert(Resource resource) {
+    public Optional<DataVariable> convert(Model m, Resource resource) {
 
         if(resource == null) {
             return Optional.empty();
@@ -30,7 +26,7 @@ public class DataVariableConverter implements Converter<Resource, Optional<DataV
 
         DataVariable datafield = new DataVariable();
 
-        String identifier = getIdentifier(resource).orElse("UNKNOWN");
+        String identifier = getIdentifier(m, resource).orElse("UNKNOWN");
         datafield.setIdentifier(identifier);
 
         // TODO shortName
@@ -40,15 +36,7 @@ public class DataVariableConverter implements Converter<Resource, Optional<DataV
         return Optional.of(datafield);
     }
 
-    private Optional<String> getIdentifier(Resource datafield) {
-        return Optional.ofNullable(model.listObjectsOfProperty(datafield, DCTerms.identifier).next().asLiteral().getString());
-    }
-
-    public Model getModel() {
-        return model;
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
+    private Optional<String> getIdentifier(Model m, Resource datafield) {
+        return Optional.ofNullable(m.listObjectsOfProperty(datafield, DCTerms.identifier).next().asLiteral().getString());
     }
 }

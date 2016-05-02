@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 /**
@@ -44,10 +45,16 @@ public class RecommendationService {
     @Autowired
     private RuleBasedReasoningService compatibilityRulesReasoningService;
 
-    private double SCORE_THRESHOLD = 0.5;
+    @javax.annotation.Resource(name = "recommendationServiceProperties")
+    private Properties properties;
+
+    private double getScoreThreshold() {
+        return Double.valueOf(properties.getOrDefault("SCORE_THRESHOLD", 0).toString());
+    }
 
     public RecommendationResponse getRecommendation(RecommendationRequest request) {
-        CandidateWorkflowCriteria criteria = request2CandidateCriteriaConverter.convert(request);
+        CandidateWorkflowCriteria criteria = request2CandidateCriteriaConverter.convert(request)
+                .orElseThrow(() -> new RuntimeException("could not generate candidate criteria"));
 
         Model m = generateCandidateWorkflowService.generateCandidates(criteria);
         List<Resource> candidates = getCandidateWorkflows(m);
@@ -62,11 +69,10 @@ public class RecommendationService {
     }
 
     private List<CandidateWorkflow> getSortedScoredCandidates(Model m, List<Resource> candidates) {
-        candidateWorkflowConverter.setModel(m);
         return candidates.stream()
                 .map(c -> scoringService.score(m, c))
-                .filter(r -> getScore(m, r).orElse((double) -1) > SCORE_THRESHOLD)
-                .map(candidateWorkflowConverter::convert)
+                .filter(r -> getScore(m, r).orElse((double) -1) > getScoreThreshold())
+                .map(c -> candidateWorkflowConverter.convert(m, c))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .distinct()

@@ -10,11 +10,8 @@ import darkdata.web.api.datavariable.DataVariable;
 import darkdata.web.api.event.eonet.Event;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
-import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.perf4j.StopWatch;
-import org.perf4j.slf4j.Slf4JStopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,42 +51,32 @@ public class GenerateCandidateWorkflowService
      */
     @Override
     public Model generateCandidates(CandidateWorkflowCriteria criteria) {
-        StopWatch watch = new Slf4JStopWatch("GenerateCandidateWorkflowService::generate");
         final OntModel m = ModelFactory.createOntologyModel();
         final OntModel owl = datasource.createOntModel();
         owl.addSubModel(m);
         getRequestCriteria(m, criteria);
-        final InfModel inf = candidateGenerationReasoningService.reason(owl);
-        watch.stop();
-        return inf;
+        return candidateGenerationReasoningService.reason(owl);
     }
 
-    // TODO put this in new service? (RequestCriteriaFactory) which returns Model?
-    private Individual getRequestCriteria(OntModel m, CandidateWorkflowCriteria criteria) {
-        StopWatch watch = new Slf4JStopWatch("GenerateCandidateWorkflowService::getRequestCriteria");
+    // TODO put this in new service? (RequestCriteriaFactory) which returns Individual (in Model m)?
+    private Individual getRequestCriteria(final OntModel m, final CandidateWorkflowCriteria criteria) {
         Individual req = m.createIndividual(DarkData.RequestCriteria);
-
-        // add event
-        eventConverter.setOntModel(m);
 
         // make sure the event exists and has categories
         Event event = Optional.ofNullable(criteria.getEvent())
                 .orElseGet(() -> { Event e = new Event(); e.setCategories(criteria.getCategories()); return e; });
 
-        Phenomena phenomena = eventConverter.convert(event);
-        req.addProperty(DarkData.criteriaEvent, phenomena.getIndividual());
+        // convert to event RDF and add to criteria RDF
+        eventConverter.convert(m, event)
+                .ifPresent(e -> req.addProperty(DarkData.criteriaEvent, e.getIndividual()));
 
         // add variables (if any)
-        List<DataVariable> variables = criteria.getVariables();
-        dataVariableAPI2KBConverter.setOntModel(m);
-
-        variables.stream()
-                .map(v -> dataVariableAPI2KBConverter.convert(v))
+        criteria.getVariables().stream()
+                .map(v -> dataVariableAPI2KBConverter.convert(m, v))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .forEach(v -> req.addProperty(DarkData.criteriaDataField, v.getIndividual()));
 
-        watch.stop();
         return req;
     }
 }

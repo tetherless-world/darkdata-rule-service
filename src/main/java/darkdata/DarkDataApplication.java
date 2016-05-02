@@ -47,6 +47,16 @@ public class DarkDataApplication {
         return p;
     }
 
+    @Value("classpath:recommendation-service.properties")
+    private Resource recommendationServicePropertiesResource;
+
+    @Bean
+    public PropertiesFactoryBean recommendationServiceProperties() {
+        PropertiesFactoryBean p = new PropertiesFactoryBean();
+        p.setLocation(recommendationServicePropertiesResource);
+        return p;
+    }
+
     @Bean
     public CacheManager cacheManager() {
         SimpleCacheManager cacheManager = new SimpleCacheManager();
