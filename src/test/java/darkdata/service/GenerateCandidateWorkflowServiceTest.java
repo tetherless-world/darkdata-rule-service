@@ -1,15 +1,12 @@
 package darkdata.service;
 
 import darkdata.DarkDataApplication;
-import darkdata.model.kb.PhysicalFeature;
-import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.web.api.datavariable.DataVariable;
 import darkdata.web.api.datavariable.DataVariableTestHarness;
 import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.event.eonet.EventTestHarness;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -23,6 +20,7 @@ import java.util.List;
  * @author szednik
  */
 
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DarkDataApplication.class)
 @WebAppConfiguration
@@ -45,20 +43,21 @@ public class GenerateCandidateWorkflowServiceTest {
         return new CandidateWorkflowCriteria(event, variables);
     }
 
-    @Test
-    public void testGenerate() {
-        CandidateWorkflowCriteria criteria = getTestCriteria();
-        List<CandidateWorkflow> candidates = service.generate(criteria);
-        Assert.assertFalse(candidates.isEmpty());
-
-        for(CandidateWorkflow candidate : candidates) {
-            Assert.assertTrue(candidate.getFeature().isPresent());
-            PhysicalFeature feature = candidate.getFeature().get();
-            Assert.assertFalse(feature.observableProperties().isEmpty());
-            Assert.assertTrue(candidate.getService().isPresent());
-            Assert.assertTrue(candidate.getVariable().isPresent());
-            Assert.assertTrue(candidate.getEvent().isPresent());
-            Assert.assertTrue(candidate.getFeature().isPresent());
-        }
-    }
+//    @Test
+//    public void testGenerate() {
+//        CandidateWorkflowCriteria criteria = getTestCriteria();
+//        List<CandidateWorkflow> candidates = service.generate(criteria);
+//        Assert.assertFalse(candidates.isEmpty());
+//
+//        System.out.println("candidates: "+candidates.size());
+//
+//        for(CandidateWorkflow candidate : candidates) {
+//            Assert.assertTrue(candidate.getFeature().isPresent());
+//            PhysicalFeature feature = candidate.getFeature().get();
+//            Assert.assertFalse(feature.observableProperties().isEmpty());
+//            Assert.assertTrue(candidate.getService().isPresent());
+//            Assert.assertTrue(candidate.getVariable().isPresent());
+//            Assert.assertTrue(candidate.getEvent().isPresent());
+//        }
+//    }
 }

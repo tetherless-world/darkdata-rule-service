@@ -1,8 +1,9 @@
-package darkdata.transformers;
+package darkdata.factory;
 
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.web.api.RecommendationRequest;
-import org.springframework.core.convert.converter.Converter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -11,10 +12,11 @@ import java.util.Optional;
  * @author szednik
  */
 @Component
-public class Request2CandidateCriteriaConverter implements Converter<RecommendationRequest, CandidateWorkflowCriteria> {
+public class CandidateWorkflowCriteriaFactory {
 
-    @Override
-    public CandidateWorkflowCriteria convert(RecommendationRequest request) {
+    private static final Logger logger = LoggerFactory.getLogger(CandidateWorkflowCriteriaFactory.class);
+
+    public Optional<CandidateWorkflowCriteria> get(RecommendationRequest request) {
 
         CandidateWorkflowCriteria criteria = new CandidateWorkflowCriteria();
 
@@ -27,6 +29,6 @@ public class Request2CandidateCriteriaConverter implements Converter<Recommendat
         Optional.ofNullable(request.getCategories())
                 .ifPresent(criteria::setCategories);
 
-        return criteria;
+        return Optional.of(criteria);
     }
 }

@@ -46,6 +46,11 @@ public class EventRepository {
                 .map(Phenomena::new);
     }
 
+    public Optional<Phenomena> createEvent(OntModel m, String uri) {
+        return Optional.ofNullable(m.createIndividual(uri, DarkData.Phenomena))
+                .map(Phenomena::new);
+    }
+
     public Optional<Phenomena> createEvent(OntModel m, String uri, OntClass phenomena) {
 
         Optional<OntClass> phenomenaClass = phenomenaRepository.getClass(phenomena.getURI());

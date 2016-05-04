@@ -1,0 +1,52 @@
+@prefix dd: <http://www.purl.org/twc/ns/darkdata#>.
+
+[one-var-candidates:
+ (?criteria rdf:type dd:RequestCriteria),
+ (?criteria dd:criteriaDataField ?datafield),
+ (?criteria dd:criteriaEvent ?event),
+ (?service rdf:type dd:OneVariableVisualization),
+ (?event dd:physicalManifestation ?feature),
+ makeSkolem(?candidate, ?criteria, ?service, ?event, ?feature, ?datafield)
+ ->
+ (?candidate rdf:type dd:CandidateWorkflow),
+ (?candidate dd:candidateEvent ?event),
+ (?candidate dd:candidateService ?service),
+ (?candidate dd:candidateVariable ?datafield),
+ (?candidate dd:candidateFeature ?feature),
+ (?criteria dd:candidate ?candidate)
+]
+
+# will 2 candidates be generated for each datafield combination?
+[two-var-candidates:
+ (?criteria rdf:type dd:RequestCriteria),
+ (?criteria dd:criteriaDataField ?datafield1),
+ (?criteria dd:criteriaDataField ?datafield2),
+ notEqual(?datafield1, ?datafield2),
+ (?criteria dd:criteriaEvent ?event),
+ (?event dd:physicalManifestation ?feature),
+ (?service rdf:type dd:TwoVariableVisualization),
+ makeSkolem(?candidate, ?criteria, ?service, ?event, ?feature, ?datafield1, ?datafield2)
+ ->
+ (?candidate rdf:type dd:CandidateWorkflow),
+ (?candidate dd:candidateFeature ?feature),
+ (?candidate dd:candidateEvent ?event),
+ (?candidate dd:candidateService ?service),
+ (?candidate dd:candidateVariable ?datafield1),
+ (?candidate dd:candidateVariable ?datafield2),
+ (?criteria dd:candidate ?candidate)
+]
+
+[candidates-event-only:
+ (?criteria rdf:type dd:RequestCriteria),
+ noValue(?criteria dd:criteriaDataField ?datafield),
+ (?criteria dd:criteriaEvent ?event),
+ (?service rdf:type dd:Visualization),
+ (?event dd:physicalManifestation ?feature),
+ makeSkolem(?candidate, ?criteria, ?service, ?event, ?feature)
+ ->
+ (?candidate rdf:type dd:CandidateWorkflow),
+ (?candidate dd:candidateEvent ?event),
+ (?candidate dd:candidateService ?service),
+ (?candidate dd:candidateFeature ?feature),
+ (?criteria dd:candidate ?candidate)
+]

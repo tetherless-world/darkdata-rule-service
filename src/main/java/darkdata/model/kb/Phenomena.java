@@ -6,6 +6,7 @@ import darkdata.model.ontology.GeoSparql;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntResource;
+import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFNode;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class Phenomena extends IndividualProxy {
                 .collect(Collectors.toList());
     }
 
-    public List<PhysicalFeature> getPhysicalFeatures(OntModel m) {
+    public List<PhysicalFeature> getPhysicalFeatures(final OntModel m) {
         return m.getOntResource(this.getIndividual())
                 .listPropertyValues(DarkData.physicalManifestation)
                 .toList().stream()

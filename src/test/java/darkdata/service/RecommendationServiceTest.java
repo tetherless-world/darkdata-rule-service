@@ -2,10 +2,8 @@ package darkdata.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import darkdata.DarkDataApplication;
-import darkdata.repository.CandidateWorkflowRepository;
 import darkdata.web.api.RecommendationRequest;
 import darkdata.web.api.RecommendationResponse;
-import darkdata.web.api.candidate.CandidateWorkflow;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Test;

@@ -6,6 +6,7 @@ import darkdata.web.api.datavariable.DataVariable;
 import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.event.eonet.EventCategory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,10 +19,10 @@ public class CandidateWorkflowCriteria extends CandidateCriteria {
     Event event;
 
     @JsonProperty(value = "data_variables")
-    List<DataVariable> variables;
+    List<DataVariable> variables = new ArrayList<>();
 
     @JsonProperty(value = "event-categories")
-    List<EventCategory> categories;
+    List<EventCategory> categories = new ArrayList<>();
 
     public CandidateWorkflowCriteria() { }
 

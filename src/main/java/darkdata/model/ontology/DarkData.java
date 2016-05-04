@@ -218,4 +218,16 @@ public class DarkData {
     public static final OntClass VersionedDataProduct = m_model.createClass( "http://www.purl.org/twc/ns/darkdata#VersionedDataProduct" );
 
     public static final DatatypeProperty version = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#version" );
+
+//    RequestCriteria
+
+    public static final OntClass RequestCriteria = m_model.createClass( "http://www.purl.org/twc/ns/darkdata#RequestCriteria" );
+
+    public static final ObjectProperty criteriaEvent = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#criteriaEvent" );
+
+    public static final ObjectProperty criteriaDataField = m_model.createObjectProperty( "http://www.purl.org/twc/ns/darkdata#criteriaDataField" );
+
+    public static final DatatypeProperty candidateScore = m_model.createDatatypeProperty( "http://www.purl.org/twc/ns/darkdata#candidateScore" );
+
+
 }

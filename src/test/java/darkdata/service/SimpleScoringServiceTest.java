@@ -7,6 +7,7 @@ import darkdata.model.kb.compatibility.CompatibilityAssertion;
 import darkdata.model.kb.compatibility.CompatibilityValue;
 import darkdata.repository.CandidateWorkflowRepository;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 /**
  * @author szednik
  */
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DarkDataApplication.class)
 @WebAppConfiguration
@@ -50,8 +52,8 @@ public class SimpleScoringServiceTest {
         assertion4.setValue(CompatibilityValue.SOME);
         assertion4.setConfidence(0.59d);
 
-        CandidateWorkflowScore score = scoringService.score(candidate);
-        Assert.assertNotNull(score);
-        Assert.assertEquals(Double.valueOf(0.5275d), score.getScore());
+//        CandidateWorkflowScore score = scoringService.score(candidate);
+//        Assert.assertNotNull(score);
+//        Assert.assertEquals(Double.valueOf(0.5275d), score.getScore());
     }
 }

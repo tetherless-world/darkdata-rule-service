@@ -6,6 +6,10 @@ import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
 import org.apache.jena.reasoner.rulesys.Rule;
+import org.perf4j.StopWatch;
+import org.perf4j.slf4j.Slf4JStopWatch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 
@@ -23,6 +27,8 @@ import java.util.List;
  */
 
 public class RuleBasedReasoningService implements ReasoningService {
+
+    private static final Logger logger = LoggerFactory.getLogger(RuleBasedReasoningService.class);
 
     private List<Resource> rulesets;
 
@@ -54,10 +60,16 @@ public class RuleBasedReasoningService implements ReasoningService {
     }
 
     @Override
-    public InfModel reason(OntModel m) {
+    public InfModel reason(final OntModel m) {
+        StopWatch watch = new Slf4JStopWatch("RuleBasedReasoningService::reason");
         InfModel ruleInf = ModelFactory.createInfModel(reasoner, m);
         ruleInf.add(datasource.getSchema());
         ruleInf.prepare();
+        watch.stop();
         return ruleInf;
+    }
+
+    public List<Resource> getRulesets() {
+        return rulesets;
     }
 }

@@ -50,7 +50,7 @@ public class CandidateWorkflow extends Candidate {
     }
 
     public Optional<G4Service> getService() {
-        OntModel m = getIndividual().getOntModel();
+        final OntModel m = getIndividual().getOntModel();
         return Optional.ofNullable(getIndividual().getPropertyResourceValue(DarkData.candidateService))
                 .filter(RDFNode::isResource)
                 .map(RDFNode::asResource)

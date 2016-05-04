@@ -1,16 +1,13 @@
 package darkdata.service;
 
-import darkdata.model.kb.candidate.Candidate;
-import darkdata.model.kb.candidate.CandidateCriteria;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
-
-import java.util.List;
+import org.apache.jena.rdf.model.Model;
 
 /**
  * @author szednik
  */
 
-public interface CandidateFactory<T extends Candidate,C extends CandidateWorkflowCriteria> {
+interface CandidateFactory<T extends Model, C extends CandidateWorkflowCriteria> {
 
-    List<T> generate(C criteria);
+    T generateCandidates(C criteria);
 }

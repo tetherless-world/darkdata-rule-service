@@ -42,7 +42,7 @@ public class G4ServiceRepositoryTest {
 
     @Test
     public void testGetByURI() {
-        final String SERVICE_URI = "http://www.purl.org/twc/ns/darkdata#DiArAvTs";
+        final String SERVICE_URI = "http://darkdata.tw.rpi.edu/data/service/DiArAvTs";
         Optional<G4Service> service = repository.getByURI(SERVICE_URI);
         Assert.assertTrue(service.isPresent());
         Assert.assertEquals(SERVICE_URI, service.get().getIndividual().getURI());
