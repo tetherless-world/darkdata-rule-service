@@ -6,8 +6,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Hurricane),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -20,8 +21,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Hurricane),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -34,8 +36,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Hurricane),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -48,8 +51,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Hurricane),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -62,8 +66,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Hurricane),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Hurricane, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -78,8 +83,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:SevereStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -92,8 +98,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:SevereStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -106,8 +113,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:SevereStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -120,8 +128,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:SevereStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
- makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -134,8 +143,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:SevereStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:SevereStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -150,8 +160,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:VolcanicEruption),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -164,8 +175,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:VolcanicEruption),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -178,8 +190,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:VolcanicEruption),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -192,8 +205,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:VolcanicEruption),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
- makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -206,8 +220,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:VolcanicEruption),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:VolcanicEruption, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -222,8 +237,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Flood),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -236,8 +252,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Flood),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -250,8 +267,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Flood),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -264,8 +282,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Flood),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -278,8 +297,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Flood),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Flood, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -294,8 +314,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Wildfire),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -308,8 +329,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Wildfire),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -322,8 +344,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Wildfire),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -336,8 +359,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Wildfire),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -350,8 +374,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Wildfire),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Wildfire, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -366,8 +391,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:DustStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -380,8 +406,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:DustStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -394,8 +421,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:DustStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -408,8 +436,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:DustStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
- makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -422,8 +451,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:DustStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:DustStorm, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -438,8 +468,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Drought),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/half-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -452,8 +483,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Drought),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -466,8 +498,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Drought),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/3-hourly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -480,8 +513,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Drought),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/daily>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
@@ -494,8 +528,9 @@
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Drought),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:timeInterval <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
- makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable)
+ (?variable dd:timeInterval ?timeInterval),
+ equal(?timeInterval, <http://darkdata.tw.rpi.edu/data/time-interval/monthly>),
+ makeSkolem(?assertion, ?candidate, ?event, dd:Drought, ?variable, ?timeInterval)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
