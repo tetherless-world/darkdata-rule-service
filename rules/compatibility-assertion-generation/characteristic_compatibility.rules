@@ -1,0 +1,204 @@
+@prefix dd: <http://www.purl.org/twc/ns/darkdata#>.
+
+[windfield-characteristic-compatibilities:
+ (?feature rdf:type dd:WindFields)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:indifferentCompatibilityFor dd:east-west-movement),
+ (?feature dd:indifferentCompatibilityFor dd:north-south-movement),
+ (?feature dd:slightCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:indifferentCompatibilityFor dd:seasonal_variation),
+ (?feature dd:indifferentCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:someCompatibilityFor dd:global_phenomena),
+ (?feature dd:slightCompatibilityFor dd:detection_of_events)
+]
+
+[hurricane-eye-characteristic-compatibilities:
+ (?feature rdf:type dd:HurricaneEye)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height)
+]
+
+[ash-plume-characteristic-compatibilities:
+ (?feature rdf:type dd:AshPlume)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:indifferentCompatibilityFor dd:east-west-movement),
+ (?feature dd:indifferentCompatibilityFor dd:north-south-movement),
+ (?feature dd:slightCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:strongCompatibilityFor dd:seasonal_variation),
+ (?feature dd:strongCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:strongCompatibilityFor dd:global_phenomena),
+ (?feature dd:strongCompatibilityFor dd:detection_of_events)
+]
+
+[landslide-characteristic-compatibilities:
+ (?feature rdf:type dd:Landslide)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:someCompatibilityFor dd:east-west-movement),
+ (?feature dd:someCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:someCompatibilityFor dd:seasonal_variation),
+ (?feature dd:someCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:indifferentCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:someCompatibilityFor dd:global_phenomena),
+ (?feature dd:strongCompatibilityFor dd:detection_of_events)
+]
+
+[air-quality-characteristic-compatibilities:
+ (?feature rdf:type dd:AirQuality)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:slightCompatibilityFor dd:east-west-movement),
+ (?feature dd:slightCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:strongCompatibilityFor dd:seasonal_variation),
+ (?feature dd:strongCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:slightCompatibilityFor dd:global_phenomena),
+ (?feature dd:slightCompatibilityFor dd:detection_of_events)
+]
+
+[dust-plume-characteristic-compatibilities:
+ (?feature rdf:type dd:DustPlume)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:strongCompatibilityFor dd:east-west-movement),
+ (?feature dd:strongCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:indifferentCompatibilityFor dd:seasonal_variation),
+ (?feature dd:indifferentCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:indifferentCompatibilityFor dd:global_phenomena),
+ (?feature dd:someCompatibilityFor dd:detection_of_events)
+]
+
+[stationary-water-vapor-anomaly-characteristic-compatibilities:
+ (?feature rdf:type dd:StationaryWaterVaporAnomaly)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:strongCompatibilityFor dd:east-west-movement),
+ (?feature dd:strongCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:strongCompatibilityFor dd:seasonal_variation),
+ (?feature dd:someCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:someCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:strongCompatibilityFor dd:global_phenomena),
+ (?feature dd:strongCompatibilityFor dd:detection_of_events)
+]
+
+[weather-characteristic-compatibilities:
+ (?feature rdf:type dd:Weather)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:someCompatibilityFor dd:east-west-movement),
+ (?feature dd:someCompatibilityFor dd:north-south-movement),
+ (?feature dd:someCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:strongCompatibilityFor dd:seasonal_variation),
+ (?feature dd:someCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:someCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:slightCompatibilityFor dd:global_phenomena),
+ (?feature dd:someCompatibilityFor dd:detection_of_events)
+]
+
+[precipitation-characteristic-compatibilities:
+ (?feature rdf:type dd:Precipitation)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:strongCompatibilityFor dd:east-west-movement),
+ (?feature dd:strongCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:strongCompatibilityFor dd:seasonal_variation),
+ (?feature dd:strongCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:slightCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:slightCompatibilityFor dd:global_phenomena),
+ (?feature dd:someCompatibilityFor dd:detection_of_events)
+]
+
+# make assertions based on
+# feature to characteristic compatibility
+# service is best for characteristic
+
+[strong-compatibility:
+ (?candidate dd:candidateFeature ?feature),
+ (?feature dd:strongCompatibilityFor ?characteristic),
+ (?candidate dd:candidateService ?service),
+ (?service dd:bestFor ?characteristic),
+ makeSkolem(?assertion, ?service, ?feature, ?characteristic)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:assertionConfidence "1.0"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/characteristic_compatibility/strong-compatibility>),
+ (?assertion dd:evidenceForAssertion ?characteristic),
+ (?assertion dd:evidenceForAssertion ?feature)
+]
+
+[slight-compatibility:
+ (?candidate dd:candidateFeature ?feature),
+ (?feature dd:slightCompatibilityFor ?characteristic),
+ (?candidate dd:candidateService ?service),
+ (?service dd:bestFor ?characteristic),
+ makeSkolem(?assertion, ?service, ?feature, ?characteristic)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:slight_compatibility),
+ (?assertion dd:assertionConfidence "1.0"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/characteristic_compatibility/slight-compatibility>),
+ (?assertion dd:evidenceForAssertion ?characteristic),
+ (?assertion dd:evidenceForAssertion ?feature)
+]
+
+[some-compatibility:
+ (?candidate dd:candidateFeature ?feature),
+ (?feature dd:someCompatibilityFor ?characteristic),
+ (?candidate dd:candidateService ?service),
+ (?service dd:bestFor ?characteristic),
+ makeSkolem(?assertion, ?service, ?feature, ?characteristic)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:some_compatibility),
+ (?assertion dd:assertionConfidence "1.0"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/characteristic_compatibility/some-compatibility>),
+ (?assertion dd:evidenceForAssertion ?characteristic),
+ (?assertion dd:evidenceForAssertion ?feature)
+]
+
+[indifferent-compatibility:
+ (?candidate dd:candidateFeature ?feature),
+ (?feature dd:indifferentCompatibilityFor ?characteristic),
+ (?candidate dd:candidateService ?service),
+ (?service dd:bestFor ?characteristic),
+ makeSkolem(?assertion, ?service, ?feature, ?characteristic)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:indifferent_compatibility),
+ (?assertion dd:assertionConfidence "1.0"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/characteristic_compatibility/indifferent-compatibility>),
+ (?assertion dd:evidenceForAssertion ?characteristic),
+ (?assertion dd:evidenceForAssertion ?feature)
+]
+
+[negative-compatibility:
+ (?candidate dd:candidateFeature ?feature),
+ (?feature dd:negativeCompatibilityFor ?characteristic),
+ (?candidate dd:candidateService ?service),
+ (?service dd:bestFor ?characteristic),
+ makeSkolem(?assertion, ?service, ?feature, ?characteristic)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:negative_compatibility),
+ (?assertion dd:assertionConfidence "1.0"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/characteristic_compatibility/negative-compatibility>),
+ (?assertion dd:evidenceForAssertion ?characteristic),
+ (?assertion dd:evidenceForAssertion ?feature)
+]
