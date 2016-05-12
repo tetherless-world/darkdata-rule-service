@@ -4,6 +4,7 @@ import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
 import darkdata.factory.CandidateWorkflowCriteriaResourceFactory;
 import org.apache.jena.ontology.OntModel;
+import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GenerateCandidateWorkflowService
-        implements CandidateFactory<Model, CandidateWorkflowCriteria> {
+        implements CandidateFactory<InfModel, CandidateWorkflowCriteria> {
 
     @Autowired
     private DarkDataDatasource datasource;
@@ -38,7 +39,7 @@ public class GenerateCandidateWorkflowService
      * @see Model
      */
     @Override
-    public Model generateCandidates(CandidateWorkflowCriteria criteria) {
+    public InfModel generateCandidates(CandidateWorkflowCriteria criteria) {
         final OntModel m = ModelFactory.createOntologyModel();
         final OntModel owl = datasource.createOntModel();
         owl.addSubModel(m);

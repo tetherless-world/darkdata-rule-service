@@ -3,6 +3,9 @@ package darkdata.repository;
 import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntClass;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -68,6 +71,14 @@ public class ObservablePropertyRepository {
                 .toList()
                 .stream()
                 .filter(c->!c.isAnon())
+                .collect(Collectors.toList());
+    }
+
+    public List<Resource> listObservablePropertiesOfFeature(Resource feature) {
+        return feature.listProperties(DarkData.observableProperty)
+                .toList().stream()
+                .map(Statement::getObject)
+                .map(RDFNode::asResource)
                 .collect(Collectors.toList());
     }
 

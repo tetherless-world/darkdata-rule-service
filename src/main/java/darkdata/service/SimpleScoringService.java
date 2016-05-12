@@ -37,7 +37,7 @@ public class SimpleScoringService {
     private Double generateScore(Model m, List<Resource> assertions) {
         Map<Resource, DoubleSummaryStatistics> statisticsMap = getGroupedCompatibilitySummaries(m, assertions);
         return statisticsMap.entrySet().stream()
-                .map(e -> getWeight(m, e.getKey()) * e.getValue().getAverage())
+                .map(e -> getWeight(m, e.getKey()) * e.getValue().getSum())
                 .collect(Collectors.summingDouble(v -> v)) / assertions.size();
     }
 

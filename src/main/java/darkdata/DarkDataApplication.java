@@ -77,8 +77,14 @@ public class DarkDataApplication {
     @Value("classpath:rules/time_interval.rules")
     private Resource timeIntervalRules;
 
-    @Value("classpath:rdf/sciencekeywords.ttl")
-    private Resource gcmdScienceKeywords;
+    @Value("classpath:rules/measurement_Li.rules")
+    private Resource liMeasurementRules;
+
+    @Value("classpath:rules/measurement_Shen.rules")
+    private Resource shenMeasurementRules;
+
+//    @Value("classpath:rdf/sciencekeywords.ttl")
+//    private Resource gcmdScienceKeywords;
 
     @Value("classpath:rdf/datafields.ttl")
     private Resource datafields;
@@ -89,13 +95,13 @@ public class DarkDataApplication {
     @Bean
     public DarkDataDatasource datasource() {
         List<Resource> ontologies = Collections.singletonList(darkDataOntology);
-        List<Resource> dataModels = Arrays.asList(gcmdScienceKeywords, datafields);
+        List<Resource> dataModels = Collections.singletonList(datafields);
         return new DarkDataDatasource(ontologies, dataModels);
     }
 
     @Bean
     public RuleBasedReasoningService compatibilityRulesReasoningService() {
-        List<Resource> rulesets = Arrays.asList(basicRules, timeIntervalRules);
+        List<Resource> rulesets = Arrays.asList(basicRules, timeIntervalRules, liMeasurementRules, shenMeasurementRules);
         return new RuleBasedReasoningService(rulesets);
     }
 

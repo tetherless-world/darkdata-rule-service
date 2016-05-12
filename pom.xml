@@ -89,7 +89,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<threadCount>3</threadCount>
-					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+					<argLine>-Xmx2048m -XX:MaxPermSize=512m</argLine>
 				</configuration>
 			</plugin>
 		</plugins>

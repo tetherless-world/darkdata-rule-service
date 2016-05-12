@@ -192,7 +192,7 @@
  (?feature dd:negativeCompatibilityFor ?characteristic),
  (?candidate dd:candidateService ?service),
  (?service dd:bestFor ?characteristic),
- makeSkolem(?assertion, ?service, ?feature, ?characteristic, )
+ makeSkolem(?assertion, ?service, ?feature, ?characteristic)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),

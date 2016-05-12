@@ -4,7 +4,10 @@ import darkdata.datasource.DarkDataDatasource;
 import darkdata.model.kb.DataVariable;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntModel;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
+import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.vocabulary.DCTerms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -55,6 +58,14 @@ public class DataVariableRepository {
                 .listIndividuals(DarkData.DataVariable)
                 .toList().stream()
                 .map(DataVariable::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<Resource> listVariablesFromCandidate(Resource candidate) {
+        return candidate.listProperties(DarkData.candidateVariable)
+                .toList().stream()
+                .map(Statement::getObject)
+                .map(RDFNode::asResource)
                 .collect(Collectors.toList());
     }
 }

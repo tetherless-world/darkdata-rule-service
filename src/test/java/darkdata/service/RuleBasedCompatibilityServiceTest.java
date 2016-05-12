@@ -157,11 +157,49 @@ public class RuleBasedCompatibilityServiceTest {
         candidate.setFeature(windFields);
 
         final InfModel inf = compatibilityRulesReasoningService.reason(m);
-
         List<CompatibilityAssertion> assertions = service.computeCompatibilities(inf, candidate);
         Assert.assertFalse(assertions.isEmpty());
-        Assert.assertEquals(4, assertions.size());
+    }
 
+    @Test
+    public void testComputeCompatibility_Hurricane_2() {
+
+        OntModel m = datasource.createOntModel();
+
+        CandidateWorkflow candidate = repository.createCandidateWorkflow(m, "urn:candidate/rules/testComputeCompatibility_Hurricane")
+                .orElseThrow(() -> new RuntimeException("could not create candidate workflow"));
+
+        Phenomena hurricane = eventRepository.createEvent(m, "urn:event/testComputeCompatibility_Hurricane", DarkData.Hurricane)
+                .orElseThrow(() -> new RuntimeException("could not create event"));
+
+        G4Service arAvTs = serviceRepository.getByIdentifier("ArAvTs")
+                .orElseThrow(() -> new RuntimeException("could not retrieve service"));
+
+        DataVariable variable = variableRepository.getByIdentifier("MAT1NXSLV_5_2_0_UV10M_mag")
+                .orElseThrow(() -> new RuntimeException("could not retrieve datafield"));
+
+        Assert.assertEquals(m, candidate.getIndividual().getOntModel());
+
+        candidate.setEvent(hurricane);
+        candidate.setService(arAvTs);
+        candidate.addVariable(variable);
+
+        List<PhysicalFeature> features = candidate.getEvent()
+                .orElseThrow(() -> new RuntimeException("could not get candidate event"))
+                .getPhysicalFeatures();
+
+        Assert.assertFalse("features is empty", features.isEmpty());
+
+        // for test purposes this candidate will focus on only the windfields feature
+        PhysicalFeature windFields = features.stream()
+                .filter(f -> f.hasType(DarkData.WindFields))
+                .findFirst().orElseThrow(() -> new RuntimeException("could not find expected feature"));
+
+        candidate.setFeature(windFields);
+
+        final InfModel inf = compatibilityRulesReasoningService.reason(m);
+        List<CompatibilityAssertion> assertions = service.computeCompatibilities(inf, candidate);
+        Assert.assertFalse(assertions.isEmpty());
     }
 
 }

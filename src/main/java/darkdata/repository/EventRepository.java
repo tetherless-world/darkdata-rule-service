@@ -7,6 +7,7 @@ import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntResource;
+import org.apache.jena.rdf.model.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,6 +79,10 @@ public class EventRepository {
                 .map(OntResource::asIndividual)
                 .map(Phenomena::new)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<Resource> getEventFromCandidate(Resource candidate) {
+        return Optional.ofNullable(candidate.getPropertyResourceValue(DarkData.candidateEvent));
     }
 
 }

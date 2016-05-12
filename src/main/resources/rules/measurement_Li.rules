@@ -1,0 +1,227 @@
+@prefix dd: <http://www.purl.org/twc/ns/darkdata#>.
+@prefix ddmeasurement: <http://darkdata.tw.rpi.edu/data/measurement/>.
+
+#Hurricane
+[Hurricane-Sensible+Heat+Flux:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Sensible+Heat+Flux),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Sensible+Heat+Flux, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Sensible+Heat+Flux>)
+]
+
+[Hurricane-Wind+Stress+Direction:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Wind+Stress+Direction),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Wind+Stress+Direction, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Wind+Stress+Direction>)
+]
+
+[Hurricane-Latent+Heat+Flux:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Latent+Heat+Flux),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Latent+Heat+Flux, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Latent+Heat+Flux>)
+]
+
+[Hurricane-Wind:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Wind),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Wind, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Wind>)
+]
+
+[Hurricane-Albedo:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Albedo),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Albedo, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:some_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Albedo>)
+]
+
+[Hurricane-Wind+Velocity:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Wind+Velocity),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Wind+Velocity, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Wind+Velocity>)
+]
+
+[Hurricane-Dust:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Dust),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Dust, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:indifferent_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Dust>)
+]
+
+[Hurricane-NO2:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:NO2),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:NO2, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:indifferent_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-NO2>)
+]
+
+[Hurricane-CO2:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:CO2),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:CO2, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:indifferent_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-CO2>)
+]
+
+[Hurricane-Incident+Radiation:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Incident+Radiation),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Incident+Radiation, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:some_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Incident+Radiation>)
+]
+
+[Hurricane-Ground+Heat:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Ground+Heat),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Ground+Heat, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:indifferent_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Ground+Heat>)
+]
+
+[Hurricane-Statistics:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Statistics),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Statistics, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:some_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Statistics>)
+]
+
+[Hurricane-Geopotential:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Geopotential),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Geopotential, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:some_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Geopotential>)
+]
+
+[Hurricane-Soil+Temperature:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Soil+Temperature),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Soil+Temperature, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:some_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Soil+Temperature>)
+]
+
+[Hurricane-Heat+Flux:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Heat+Flux),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Heat+Flux, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Heat+Flux>)
+]
+
+[Hurricane-Soil+Moisture:
+ (?candidate dd:candidateEvent ?event),
+ (?event rdf:type dd:Hurricane),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Soil+Moisture),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Soil+Moisture, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:some_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Soil+Moisture>)
+]
