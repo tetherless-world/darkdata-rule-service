@@ -240,18 +240,18 @@
  (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Precipitation>)
 ]
 
-[Hurricane-AOD:
+[Hurricane-Aerosol+Optical+Depth:
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Hurricane),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:measurement ddmeasurement:AOD),
- makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:AOD, ?variable)
+ (?variable dd:measurement ddmeasurement:Aerosol+Optical+Depth),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Hurricane, ddmeasurement:Aerosol+Optical+Depth, ?variable)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
  (?assertion dd:compatibilityValue dd:slight_compatibility),
  (?assertion dd:assertionConfidence "0.5"^^xsd:double),
- (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-AOD>)
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Hurricane-Aerosol+Optical+Depth>)
 ]
 
 [Hurricane-Air+Pressure+:
@@ -578,18 +578,18 @@
  (?assertion dd:basisForAssertion <urn:rule/measurement/TropicalStorm-Precipitation>)
 ]
 
-[TropicalStorm-AOD:
+[TropicalStorm-Aerosol+Optical+Depth:
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:TropicalStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:measurement ddmeasurement:AOD),
- makeSkolem (?assertion, ?candidate, ?event, dd:TropicalStorm, ddmeasurement:AOD, ?variable)
+ (?variable dd:measurement ddmeasurement:Aerosol+Optical+Depth),
+ makeSkolem (?assertion, ?candidate, ?event, dd:TropicalStorm, ddmeasurement:Aerosol+Optical+Depth, ?variable)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
  (?assertion dd:compatibilityValue dd:slight_compatibility),
  (?assertion dd:assertionConfidence "0.5"^^xsd:double),
- (?assertion dd:basisForAssertion <urn:rule/measurement/TropicalStorm-AOD>)
+ (?assertion dd:basisForAssertion <urn:rule/measurement/TropicalStorm-Aerosol+Optical+Depth>)
 ]
 
 [TropicalStorm-Air+Pressure+:
@@ -916,18 +916,18 @@
  (?assertion dd:basisForAssertion <urn:rule/measurement/VolcanicEruption-Precipitation>)
 ]
 
-[VolcanicEruption-AOD:
+[VolcanicEruption-Aerosol+Optical+Depth:
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:VolcanicEruption),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:measurement ddmeasurement:AOD),
- makeSkolem (?assertion, ?candidate, ?event, dd:VolcanicEruption, ddmeasurement:AOD, ?variable)
+ (?variable dd:measurement ddmeasurement:Aerosol+Optical+Depth),
+ makeSkolem (?assertion, ?candidate, ?event, dd:VolcanicEruption, ddmeasurement:Aerosol+Optical+Depth, ?variable)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
  (?assertion dd:compatibilityValue dd:strong_compatibility),
  (?assertion dd:assertionConfidence "0.5"^^xsd:double),
- (?assertion dd:basisForAssertion <urn:rule/measurement/VolcanicEruption-AOD>)
+ (?assertion dd:basisForAssertion <urn:rule/measurement/VolcanicEruption-Aerosol+Optical+Depth>)
 ]
 
 [VolcanicEruption-Air+Pressure+:
@@ -1254,18 +1254,18 @@
  (?assertion dd:basisForAssertion <urn:rule/measurement/Flood-Precipitation>)
 ]
 
-[Flood-AOD:
+[Flood-Aerosol+Optical+Depth:
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Flood),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:measurement ddmeasurement:AOD),
- makeSkolem (?assertion, ?candidate, ?event, dd:Flood, ddmeasurement:AOD, ?variable)
+ (?variable dd:measurement ddmeasurement:Aerosol+Optical+Depth),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Flood, ddmeasurement:Aerosol+Optical+Depth, ?variable)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
  (?assertion dd:compatibilityValue dd:indifferent_compatibility),
  (?assertion dd:assertionConfidence "0.5"^^xsd:double),
- (?assertion dd:basisForAssertion <urn:rule/measurement/Flood-AOD>)
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Flood-Aerosol+Optical+Depth>)
 ]
 
 [Flood-Air+Pressure+:
@@ -1592,18 +1592,18 @@
  (?assertion dd:basisForAssertion <urn:rule/measurement/Wildfire-Precipitation>)
 ]
 
-[Wildfire-AOD:
+[Wildfire-Aerosol+Optical+Depth:
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Wildfire),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:measurement ddmeasurement:AOD),
- makeSkolem (?assertion, ?candidate, ?event, dd:Wildfire, ddmeasurement:AOD, ?variable)
+ (?variable dd:measurement ddmeasurement:Aerosol+Optical+Depth),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Wildfire, ddmeasurement:Aerosol+Optical+Depth, ?variable)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
  (?assertion dd:compatibilityValue dd:strong_compatibility),
  (?assertion dd:assertionConfidence "0.5"^^xsd:double),
- (?assertion dd:basisForAssertion <urn:rule/measurement/Wildfire-AOD>)
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Wildfire-Aerosol+Optical+Depth>)
 ]
 
 [Wildfire-Air+Pressure+:
@@ -1930,18 +1930,18 @@
  (?assertion dd:basisForAssertion <urn:rule/measurement/DustStorm-Precipitation>)
 ]
 
-[DustStorm-AOD:
+[DustStorm-Aerosol+Optical+Depth:
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:DustStorm),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:measurement ddmeasurement:AOD),
- makeSkolem (?assertion, ?candidate, ?event, dd:DustStorm, ddmeasurement:AOD, ?variable)
+ (?variable dd:measurement ddmeasurement:Aerosol+Optical+Depth),
+ makeSkolem (?assertion, ?candidate, ?event, dd:DustStorm, ddmeasurement:Aerosol+Optical+Depth, ?variable)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
  (?assertion dd:compatibilityValue dd:strong_compatibility),
  (?assertion dd:assertionConfidence "0.5"^^xsd:double),
- (?assertion dd:basisForAssertion <urn:rule/measurement/DustStorm-AOD>)
+ (?assertion dd:basisForAssertion <urn:rule/measurement/DustStorm-Aerosol+Optical+Depth>)
 ]
 
 [DustStorm-Air+Pressure+:
@@ -2268,18 +2268,18 @@
  (?assertion dd:basisForAssertion <urn:rule/measurement/Drought-Precipitation>)
 ]
 
-[Drought-AOD:
+[Drought-Aerosol+Optical+Depth:
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:Drought),
  (?candidate dd:candidateVariable ?variable),
- (?variable dd:measurement ddmeasurement:AOD),
- makeSkolem (?assertion, ?candidate, ?event, dd:Drought, ddmeasurement:AOD, ?variable)
+ (?variable dd:measurement ddmeasurement:Aerosol+Optical+Depth),
+ makeSkolem (?assertion, ?candidate, ?event, dd:Drought, ddmeasurement:Aerosol+Optical+Depth, ?variable)
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
  (?assertion dd:compatibilityValue dd:slight_compatibility),
  (?assertion dd:assertionConfidence "0.5"^^xsd:double),
- (?assertion dd:basisForAssertion <urn:rule/measurement/Drought-AOD>)
+ (?assertion dd:basisForAssertion <urn:rule/measurement/Drought-Aerosol+Optical+Depth>)
 ]
 
 [Drought-Air+Pressure+:
