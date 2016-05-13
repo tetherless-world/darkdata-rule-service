@@ -69,7 +69,8 @@ public class SimpleScoringServiceTest {
                 .map(Literal::getDouble);
 
         Assert.assertTrue("score not present", score.isPresent());
-        Assert.assertEquals(6.5d/4d, score.get(), 0d);
+        double expected = (2d*3d)/Math.sqrt(3d)+(.5d*1d)/Math.sqrt(1d);
+        Assert.assertEquals(expected, score.get(), 0d);
     }
 
     @Test
@@ -114,6 +115,7 @@ public class SimpleScoringServiceTest {
                 .map(Literal::getDouble);
 
         Assert.assertTrue("score not present", score.isPresent());
-        Assert.assertEquals(16d/6d, score.get(), 0d);
+        double expected = (3d*5d)/Math.sqrt(5)+(1d*1d)/Math.sqrt(1d);
+        Assert.assertEquals(expected, score.get(), 0d);
     }
 }
