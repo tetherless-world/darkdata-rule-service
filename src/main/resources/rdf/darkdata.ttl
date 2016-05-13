@@ -447,7 +447,7 @@ dd:Drought rdf:type owl:Class ;
 
 dd:DustAndHaze rdf:type owl:Class ;
                
-               rdfs:label "Wildfire"@en ;
+               rdfs:label "Dust and Haze"@en ;
                
                rdfs:subClassOf dd:Phenomena ;
                
@@ -581,11 +581,11 @@ dd:HurricaneEye rdf:type owl:Class ;
                 rdfs:subClassOf dd:PhysicalManifestation ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:variation_with_atmospheric_height
+                                  owl:hasValue dd:temporal_evolution
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:temporal_evolution
+                                  owl:hasValue dd:variation_with_atmospheric_height
                                 ] .
 
 
@@ -826,6 +826,20 @@ dd:TimeSeries rdf:type owl:Class ;
               rdfs:label "Time series"@en ;
               
               rdfs:subClassOf dd:Visualization .
+
+
+
+###  http://www.purl.org/twc/ns/darkdata#TropicalStorm
+
+dd:TropicalStorm rdf:type owl:Class ;
+                 
+                 rdfs:label "Tropical Storm"@en ;
+                 
+                 rdfs:subClassOf dd:SevereStorm ;
+                 
+                 dd:topic "Severe Storms" ;
+                 
+                 rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/10> .
 
 
 
