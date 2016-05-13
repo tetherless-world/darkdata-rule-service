@@ -5,9 +5,13 @@ import darkdata.model.kb.candidate.CandidateWorkflow;
 import darkdata.model.ontology.DarkData;
 import jena.schemagen;
 import org.apache.jena.ontology.OntModel;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -34,6 +38,10 @@ public class CandidateWorkflowRepository {
     public Optional<CandidateWorkflow> createCandidateWorkflow(OntModel m, String uri) {
         return Optional.ofNullable(m.createIndividual(uri, DarkData.CandidateWorkflow))
                 .map(CandidateWorkflow::new);
+    }
+
+    public List<Resource> getCandidateWorkflows(Model m) {
+        return m.listResourcesWithProperty(RDF.type, DarkData.CandidateWorkflow).toList();
     }
 
 }

@@ -2,6 +2,8 @@ package darkdata.repository;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.DataVariable;
+import darkdata.model.ontology.DarkData;
+import org.apache.jena.rdf.model.Resource;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +34,25 @@ public class DataVariableRepositoryTest {
         Assert.assertTrue("service is missing", datafield.isPresent());
         Assert.assertTrue("service identifier is missing", datafield.get().getIdentifier().isPresent());
         Assert.assertEquals("service identifier does not match expected value", SERVICE_IDENTIFIER, datafield.get().getIdentifier().get());
+    }
+
+    @Test
+    public void testGetByIdentifier_2() {
+        final String SERVICE_IDENTIFIER = "MAT1NXSLV_5_2_0_UV10M_mag";
+        Optional<DataVariable> datafield = repository.getByIdentifier(SERVICE_IDENTIFIER);
+        Assert.assertTrue("datafield is missing", datafield.isPresent());
+        Assert.assertTrue("datafield identifier is missing", datafield.get().getIdentifier().isPresent());
+        Assert.assertEquals("datafeild identifier does not match expected value", SERVICE_IDENTIFIER, datafield.get().getIdentifier().get());
+
+        Optional<Resource> timeInterval = datafield.map(DataVariable::getIndividual)
+                .map(i -> i.getPropertyResourceValue(DarkData.timeInterval))
+                .map(Resource::asResource);
+        Assert.assertTrue(timeInterval.isPresent());
+
+        Optional<Resource> spatialResolution = datafield.map(DataVariable::getIndividual)
+                .map(i -> i.getPropertyResourceValue(DarkData.spatialResolution))
+                .map(Resource::asResource);
+        Assert.assertTrue(spatialResolution.isPresent());
     }
 
     @Test

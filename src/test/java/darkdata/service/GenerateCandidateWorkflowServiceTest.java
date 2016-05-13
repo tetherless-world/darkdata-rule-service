@@ -2,62 +2,89 @@ package darkdata.service;
 
 import darkdata.DarkDataApplication;
 import darkdata.model.kb.candidate.CandidateWorkflowCriteria;
+import darkdata.repository.*;
 import darkdata.web.api.datavariable.DataVariable;
-import darkdata.web.api.datavariable.DataVariableTestHarness;
 import darkdata.web.api.event.eonet.Event;
 import darkdata.web.api.event.eonet.EventTestHarness;
+import org.apache.jena.rdf.model.InfModel;
+import org.apache.jena.rdf.model.Resource;
+import org.junit.Assert;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author szednik
  */
 
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DarkDataApplication.class)
 @WebAppConfiguration
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class GenerateCandidateWorkflowServiceTest {
 
     @Autowired
     private GenerateCandidateWorkflowService service;
 
-    private Event getTestEvent() {
-        return EventTestHarness.createEvent_EONET_224();
-    }
+    @Autowired
+    private CandidateWorkflowRepository candidateRepository;
 
-    private List<DataVariable> getTestVariables() {
-        return Collections.singletonList(DataVariableTestHarness.createVariable_MYD08_D3_6_Cirrus_Reflectance_Mean());
-    }
+    @Autowired
+    private PhysicalFeatureRepository featureRepository;
+
+    @Autowired
+    private ObservablePropertyRepository observablePropertyRepository;
+
+    @Autowired
+    private G4ServiceRepository serviceRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
+
+    @Autowired
+    private DataVariableRepository variableRepository;
 
     private CandidateWorkflowCriteria getTestCriteria() {
-        Event event = getTestEvent();
-        List<DataVariable> variables = getTestVariables();
+        Event event = EventTestHarness.createEvent_EONET_224();
+        List<DataVariable> variables = Collections.singletonList(new DataVariable("MAT1NXSLV_5_2_0_UV10M_mag"));
         return new CandidateWorkflowCriteria(event, variables);
     }
 
-//    @Test
-//    public void testGenerate() {
-//        CandidateWorkflowCriteria criteria = getTestCriteria();
-//        List<CandidateWorkflow> candidates = service.generate(criteria);
-//        Assert.assertFalse(candidates.isEmpty());
-//
-//        System.out.println("candidates: "+candidates.size());
-//
-//        for(CandidateWorkflow candidate : candidates) {
-//            Assert.assertTrue(candidate.getFeature().isPresent());
-//            PhysicalFeature feature = candidate.getFeature().get();
-//            Assert.assertFalse(feature.observableProperties().isEmpty());
-//            Assert.assertTrue(candidate.getService().isPresent());
-//            Assert.assertTrue(candidate.getVariable().isPresent());
-//            Assert.assertTrue(candidate.getEvent().isPresent());
-//        }
-//    }
+    @Ignore
+    @Test
+    public void testGenerate() {
+        CandidateWorkflowCriteria criteria = getTestCriteria();
+        InfModel m = service.generateCandidates(criteria);
+        List<Resource> candidates = candidateRepository.getCandidateWorkflows(m);
+        Assert.assertFalse(candidates.isEmpty());
+
+        for(Resource candidate: candidates) {
+            Optional<Resource> feature = featureRepository.getPhysicalFeatureFromCandidate(candidate);
+            Assert.assertTrue(feature.isPresent());
+
+            List<Resource> observableProperties = feature
+                    .map(f -> observablePropertyRepository.listObservablePropertiesOfFeature(f))
+                    .orElse(Collections.emptyList());
+
+            Assert.assertFalse(observableProperties.isEmpty());
+
+            Optional<Resource> service = serviceRepository.getServiceFromCandidate(candidate);
+            Assert.assertTrue(service.isPresent());
+
+            Optional<Resource> event = eventRepository.getEventFromCandidate(candidate);
+            Assert.assertTrue(event.isPresent());
+
+            List<Resource> variables = variableRepository.listVariablesFromCandidate(candidate);
+            Assert.assertEquals(1, variables.size());
+        }
+    }
 }

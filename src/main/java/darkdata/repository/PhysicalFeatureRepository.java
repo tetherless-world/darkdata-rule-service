@@ -1,10 +1,10 @@
 package darkdata.repository;
 
 import darkdata.datasource.DarkDataDatasource;
-import darkdata.model.kb.PhysicalFeature;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -86,6 +86,10 @@ public class PhysicalFeatureRepository {
         } finally {
             m.removeSubModel(datasource.getOntModel());
         }
+    }
+
+    public Optional<Resource> getPhysicalFeatureFromCandidate(Resource candidate) {
+        return Optional.ofNullable(candidate.getPropertyResourceValue(DarkData.candidateFeature));
     }
 
 //    public Optional<PhysicalFeature> createPhysicalFeature(String uri, OntClass featureClass) {

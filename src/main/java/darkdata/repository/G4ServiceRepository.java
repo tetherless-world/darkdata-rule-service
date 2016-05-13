@@ -5,6 +5,7 @@ import darkdata.model.kb.g4.G4Service;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.vocabulary.DCTerms;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,10 @@ public class G4ServiceRepository {
     public Optional<G4Service> createService(String uri) {
         return Optional.ofNullable(datasource.getOntModel().createIndividual(uri, DarkData.Visualization))
                 .map(G4Service::new);
+    }
+
+    public Optional<Resource> getServiceFromCandidate(Resource candidate) {
+        return Optional.ofNullable(candidate.getPropertyResourceValue(DarkData.candidateService));
     }
 
 }
