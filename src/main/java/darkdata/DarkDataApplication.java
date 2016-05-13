@@ -83,6 +83,12 @@ public class DarkDataApplication {
     @Value("classpath:rules/measurement_Shen.rules")
     private Resource shenMeasurementRules;
 
+    @Value("classpath:rules/spatial_resolution_Li.rules")
+    private Resource liSpatialResolutionRules;
+
+    @Value("classpath:rules/spatial_resolution_Shen.rules")
+    private Resource shenSpatialResolutionRules;
+
 //    @Value("classpath:rdf/sciencekeywords.ttl")
 //    private Resource gcmdScienceKeywords;
 
@@ -101,7 +107,13 @@ public class DarkDataApplication {
 
     @Bean
     public RuleBasedReasoningService compatibilityRulesReasoningService() {
-        List<Resource> rulesets = Arrays.asList(basicRules, timeIntervalRules, liMeasurementRules, shenMeasurementRules);
+        List<Resource> rulesets = Arrays.asList(
+                basicRules,
+                timeIntervalRules,
+                liMeasurementRules,
+                shenMeasurementRules,
+                liSpatialResolutionRules,
+                shenSpatialResolutionRules);
         return new RuleBasedReasoningService(rulesets);
     }
 
