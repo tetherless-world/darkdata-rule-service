@@ -27,8 +27,8 @@ public class Event {
     @JsonProperty(value = "description")
     String description;
 
-    @JsonProperty(value = "geometries")
-    List<EventGeometry> geometries;
+//    @JsonProperty(value = "geometries")
+//    List<EventGeometry> geometries;
 
     public Event() { }
 
@@ -36,14 +36,13 @@ public class Event {
                  String title,
                  String link,
                  String description,
-                 List<EventCategory> categories,
-                 List<EventGeometry> geometries) {
+                 List<EventCategory> categories) {
         this.id = id;
         this.title = title;
         this.link = link;
         this.description = description;
         this.categories = categories;
-        this.geometries = geometries;
+//        this.geometries = geometries;
     }
 
     public void setId(String id) {
@@ -66,9 +65,9 @@ public class Event {
         this.categories = categories;
     }
 
-    public void setGeometries(List<EventGeometry> geometries) {
-        this.geometries = geometries;
-    }
+//    public void setGeometries(List<EventGeometry> geometries) {
+//        this.geometries = geometries;
+//    }
 
     public String getId() {
         return id;
@@ -90,7 +89,7 @@ public class Event {
         return categories;
     }
 
-    public List<EventGeometry> getGeometries() {
-        return geometries;
-    }
+//    public List<EventGeometry> getGeometries() {
+//        return geometries;
+//    }
 }
