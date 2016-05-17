@@ -449,11 +449,25 @@ dd:DustAndHaze rdf:type owl:Class ;
                
                rdfs:label "Dust and Haze"@en ;
                
-               rdfs:subClassOf dd:Phenomena ;
+               rdfs:subClassOf dd:Phenomena ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty dd:physicalManifestation ;
+                                 owl:someValuesFrom dd:DustPlume
+                               ] ;
                
                dd:topic "Dust and Haze" ;
                
                rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/7> .
+
+
+
+###  http://www.purl.org/twc/ns/darkdata#DustPlume
+
+dd:DustPlume rdf:type owl:Class ;
+             
+             rdfs:label "Dust Plume"@en ;
+             
+             rdfs:subClassOf dd:PhysicalManifestation .
 
 
 
@@ -526,7 +540,11 @@ dd:Flood rdf:type owl:Class ;
          
          rdfs:label "Flood"@en ;
          
-         rdfs:subClassOf dd:Phenomena ;
+         rdfs:subClassOf dd:Phenomena ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty dd:physicalManifestation ;
+                           owl:someValuesFrom dd:Precipitation
+                         ] ;
          
          dd:topic "Floods" ;
          
@@ -581,11 +599,11 @@ dd:HurricaneEye rdf:type owl:Class ;
                 rdfs:subClassOf dd:PhysicalManifestation ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:temporal_evolution
+                                  owl:hasValue dd:variation_with_atmospheric_height
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:variation_with_atmospheric_height
+                                  owl:hasValue dd:temporal_evolution
                                 ] .
 
 
@@ -668,12 +686,17 @@ dd:Phenomena rdf:type owl:Class ;
 
 dd:PhysicalManifestation rdf:type owl:Class ;
                          
-                         rdfs:label "Physical Manifestation"@en ;
-                         
-                         rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                           owl:onProperty dd:observableProperty ;
-                                           owl:someValuesFrom dd:AerosolOpticalDepth
-                                         ] .
+                         rdfs:label "Physical Manifestation"@en .
+
+
+
+###  http://www.purl.org/twc/ns/darkdata#Precipitation
+
+dd:Precipitation rdf:type owl:Class ;
+                 
+                 rdfs:label "Precipitation"@en ;
+                 
+                 rdfs:subClassOf dd:PhysicalManifestation .
 
 
 
@@ -767,13 +790,27 @@ dd:ShortDurationPhenomena rdf:type owl:Class ;
 
 
 
+###  http://www.purl.org/twc/ns/darkdata#SmokePlume
+
+dd:SmokePlume rdf:type owl:Class ;
+              
+              rdfs:label "Smoke Plume"@en ;
+              
+              rdfs:subClassOf dd:PhysicalManifestation .
+
+
+
 ###  http://www.purl.org/twc/ns/darkdata#Snow
 
 dd:Snow rdf:type owl:Class ;
         
         rdfs:label "Snow"@en ;
         
-        rdfs:subClassOf dd:Phenomena ;
+        rdfs:subClassOf dd:Phenomena ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty dd:physicalManifestation ;
+                          owl:someValuesFrom dd:Precipitation
+                        ] ;
         
         rdfs:comment "Related to snow events, particularly extreme/anomalous snowfall in either timing or extent/depth." ;
         
@@ -923,7 +960,11 @@ dd:Wildfire rdf:type owl:Class ;
             
             rdfs:label "Wildfire"@en ;
             
-            rdfs:subClassOf dd:Phenomena ;
+            rdfs:subClassOf dd:Phenomena ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty dd:physicalManifestation ;
+                              owl:someValuesFrom dd:SmokePlume
+                            ] ;
             
             dd:topic "Wildfires" ;
             
@@ -1162,7 +1203,7 @@ dd:ZonalMeans rdf:type owl:Class ;
                                                
                                                rdfs:comment "Map animated along the chosen timeline for each grid cell"@en ;
                                                
-                                               dct:identifier "MpAn " .
+                                               dct:identifier "MpAn" .
 
 
 
