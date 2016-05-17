@@ -1,71 +1,1244 @@
 {
-  "candidates" : [
-    {
-      "workflow" : {
-        "service": "ArAvTs",
-        "start_time": "2015-01-01T00:00:00Z",
-        "end_time": "2015-04-30T23:59:59Z",
-        "bbox": "180,-5,180,5",
-        "data_variables": [
-          {
-            "id": "MYD08_D3_6_Cirrus_Reflectance_Mean",
-            "product" : "MYD08_D3",
-            "version" : "6",
-            "variable" : "Cirrus_Reflectance_Mean",
-            "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE",
-            "modifiers": [ ]
-          }
-        ],
-        "dataKeyword": [ ],
-        "shape": "shp_30"
-      },
-      "score" : 2.543
-    }
-  ],
-  "criteria" : {
-    "event": {
-      "id": "EONET_224",
-      "title": "Hurricane Olaf",
-      "description": "",
-      "link": "http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_224",
-      "closed": "2015-11-02T00:00:00Z",
-      "categories": [
-        {
-          "id": 10,
-          "title": "Severe Storms"
-        }
-      ],
-      "sources": [
-        {
-          "id": "EO",
-          "url": "http://earthobservatory.nasa.gov/NaturalHazards/view.php?id=86851"
-        },
-        {
-          "id": "UNISYS",
-          "url": "http://weather.unisys.com/hurricane/e_pacific/2015/OLAF/track.dat"
-        }
-
-      ],
-      "geometries": [
-        {
-          "date": "2015-10-15T00:00:00Z",
-          "type": "Point", "coordinates": [ [ -117.10, 9.90 ] ]
-        }
-      ]
+  "candidates" : [ {
+    "workflow" : {
+      "service" : "ArAvTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
     },
-    "data_variables": [
-      {
-        "product" : "MYD08_D3",
-        "version" : "6",
-        "variable" : "Cirrus_Reflectance_Mean",
-        "keyword" : "ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"
-      },
-      {
-        "product" : "MYD08_D3",
-        "version" : "6",
-        "variable" : "Cloud_Optical_Thickness_Liquid_Mean",
-        "keyword" : "ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE"
-      }
-    ]
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 8.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "ArAvTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 8.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "ArAvTs",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.7082039324993685
+  }, {
+    "workflow" : {
+      "service" : "CoMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "CoMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "DiArAvTs",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "TmAvSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "StSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "CoMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "ArAvSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "StSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "VtPf",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "DiTmAvMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "IaSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "ArAvSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "DiArAvTs",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "TmAvSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "ArAvSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "ArAvTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "DiArAvTs",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "DiTmAvMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "VtPf",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "DiTmAvMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "IaSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "IaSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "StSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "ArAvSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "ArAvTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "CoMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "StSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "TmAvSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "TmAvSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "DiArAvTs",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "IaSc",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "VtPf",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "DiTmAvMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      }, {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "VtPf",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 7.121320343559642
+  }, {
+    "workflow" : {
+      "service" : "VtPf",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 6.7082039324993685
+  }, {
+    "workflow" : {
+      "service" : "VtPf",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 6.7082039324993685
+  }, {
+    "workflow" : {
+      "service" : "ArAvTs",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 6.7082039324993685
+  }, {
+    "workflow" : {
+      "service" : "TmAvMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 6.0
+  }, {
+    "workflow" : {
+      "service" : "ZnMn",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "HvLt",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "CrTm",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "HiGm",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "CrLt",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "AcMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "TmAvMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "CrLt",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "MpAn ",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "InTs",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "QuCl",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "MpAn ",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "HvLn",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "CrLn",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "CrTm",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "QuCl",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "CrLn",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "HiGm",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "HvLt",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "InTs",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "AcMp",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "ZnMn",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "HvLn",
+      "data_variables" : [ {
+        "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "TmAvMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 3.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "TmAvMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 3.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "TmAvMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "QuCl",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "IaSc",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "DiArAvTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrLt",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "TmAvSc",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "StSc",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "MpAn ",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "ArAvSc",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "AcMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HiGm",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "QuCl",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrLn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "InTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HvLt",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "DiTmAvMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CoMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HvLt",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "StSc",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "AcMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "InTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "ZnMn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "DiArAvTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrLn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "QuCl",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HvLn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HvLn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "ArAvSc",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HvLn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CoMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrTm",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrTm",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "InTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "ZnMn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "InTs",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "ZnMn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrLt",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrTm",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "IaSc",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrLt",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HiGm",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HiGm",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrTm",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "AcMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "MpAn ",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrLn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "TmAvSc",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "TmAvMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "MpAn ",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "MpAn ",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HvLt",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "DiTmAvMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      }, {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HiGm",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HvLn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrLn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "QuCl",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "HvLt",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "ZnMn",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "CrLt",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 2.1213203435596424
+  }, {
+    "workflow" : {
+      "service" : "AcMp",
+      "data_variables" : [ {
+        "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+      } ]
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 2.1213203435596424
+  } ],
+  "criteria" : {
+    "event" : {
+      "id" : "EONET_224",
+      "title" : "Hurricane Olaf",
+      "link" : "http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_224",
+      "categories" : [ {
+        "id" : 10,
+        "title" : "Severe Storms"
+      } ],
+      "geometries" : [ {
+        "date" : "2015-10-15T00:00:00Z",
+        "type" : "Point",
+        "coordinates" : [ [ -117.1, 9.9 ] ]
+      } ]
+    },
+    "data_variables" : [ {
+      "id" : "MAT1NXSLV_5_2_0_UV10M_mag"
+    }, {
+      "id" : "MYD08_D3_6_Cirrus_Reflectance_Mean"
+    }, {
+      "id" : "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
+    } ]
   }
 }

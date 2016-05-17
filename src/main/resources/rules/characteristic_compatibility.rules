@@ -77,6 +77,20 @@
  (?feature dd:someCompatibilityFor dd:detection_of_events)
 ]
 
+[smoke-plume-characteristic-compatibilities:
+ (?feature rdf:type dd:SmokePlume)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:strongCompatibilityFor dd:east-west-movement),
+ (?feature dd:strongCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:indifferentCompatibilityFor dd:seasonal_variation),
+ (?feature dd:indifferentCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:indifferentCompatibilityFor dd:global_phenomena),
+ (?feature dd:someCompatibilityFor dd:detection_of_events)
+]
+
 [stationary-water-vapor-anomaly-characteristic-compatibilities:
  (?feature rdf:type dd:StationaryWaterVaporAnomaly)
  ->

@@ -13,22 +13,19 @@ import java.util.List;
 public class Event {
 
     @JsonProperty(value = "id")
-    String id;
+    private String id;
 
     @JsonProperty(value = "title")
-    String title;
+    private String title;
 
     @JsonProperty(value = "link")
-    String link;
+    private String link;
 
     @JsonProperty(value = "categories")
-    List<EventCategory> categories;
+    private List<EventCategory> categories;
 
     @JsonProperty(value = "description")
-    String description;
-
-    @JsonProperty(value = "geometries")
-    List<EventGeometry> geometries;
+    private String description;
 
     public Event() { }
 
@@ -36,14 +33,12 @@ public class Event {
                  String title,
                  String link,
                  String description,
-                 List<EventCategory> categories,
-                 List<EventGeometry> geometries) {
+                 List<EventCategory> categories) {
         this.id = id;
         this.title = title;
         this.link = link;
         this.description = description;
         this.categories = categories;
-        this.geometries = geometries;
     }
 
     public void setId(String id) {
@@ -66,10 +61,6 @@ public class Event {
         this.categories = categories;
     }
 
-    public void setGeometries(List<EventGeometry> geometries) {
-        this.geometries = geometries;
-    }
-
     public String getId() {
         return id;
     }
@@ -88,9 +79,5 @@ public class Event {
 
     public List<EventCategory> getCategories() {
         return categories;
-    }
-
-    public List<EventGeometry> getGeometries() {
-        return geometries;
     }
 }

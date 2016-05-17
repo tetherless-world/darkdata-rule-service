@@ -19,18 +19,13 @@
   },
   "data_variables": [
     {
-      "id": "MYD08_D3_6_Cirrus_Reflectance_Mean",
-      "product" : "MYD08_D3",
-      "version" : "6",
-      "variable" : "Cirrus_Reflectance_Mean",
-      "keywords" : ["ATMOSPHERE->ATMOSPHERIC RADIATION->REFLECTANCE"]
+      "id": "MAT1NXSLV_5_2_0_UV10M_mag"
     },
     {
-      "id": "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean",
-      "product" : "MYD08_D3",
-      "version" : "6",
-      "variable" : "Cloud_Optical_Thickness_Liquid_Mean",
-      "keywords" : ["ATMOSPHERE->CLOUDS->CLOUD LIQUIDWATER/ICE"]
+      "id": "MYD08_D3_6_Cirrus_Reflectance_Mean"
+    },
+    {
+      "id": "MYD08_D3_6_Cloud_Optical_Thickness_Liquid_Mean"
     }
   ]
 }

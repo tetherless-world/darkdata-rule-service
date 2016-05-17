@@ -1,0 +1,42 @@
+{
+  "event": {
+    "id": "EONET_397",
+    "title": "Mt. Sourabaya Volcano, Bristol Island, South Sandwich Islands",
+    "description": "A volcano in the far South Atlantic appears to be erupting for the first time in 60 years.",
+    "link": "http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_397",
+    "categories": [
+      {
+        "id": 12,
+        "title": "Volcanoes"
+      }
+    ],
+    "sources": [
+      {
+        "id": "EO",
+        "url": "http://earthobservatory.nasa.gov/IOTD/view.php?id=87995"
+      },
+      {
+        "id": "SIVolcano",
+        "url": "http://volcano.si.edu/volcano.cfm?vn=390080"
+      }
+    ],
+    "geometries": [
+      {
+        "date": "2016-04-24T00:00:00Z",
+        "type": "Point",
+        "coordinates": [
+          -26.587,
+          -59.063
+        ]
+      }
+    ]
+  },
+  "data_variables": [
+    {
+      "product": "SWDB_L305",
+      "version": "004",
+      "variable": "angstrom_exponent_stddev_land",
+      "id": "SWDB_L305_004_angstrom_exponent_stddev_land"
+    }
+  ]
+}
