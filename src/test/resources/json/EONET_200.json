@@ -1,0 +1,29 @@
+{
+  "event": {
+    "id": "EONET_200",
+    "title": "Meeks Table Fire, Washington",
+    "description": "",
+    "link": "http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_200",
+    "closed": "2015-09-21T00:00:00Z",
+    "categories": [
+      {
+        "id": 8,
+        "title": "Wildfires"
+      }
+    ],
+    "sources": [
+      {
+        "id": "InciWeb",
+        "url": "http://inciweb.nwcg.gov/incident/4609/"
+      }
+    ]
+  },
+  "data_variables": [
+    {
+      "product": "SWDB_L305",
+      "version": "004",
+      "variable": "angstrom_exponent_stddev_land",
+      "id": "SWDB_L305_004_angstrom_exponent_stddev_land"
+    }
+  ]
+}
