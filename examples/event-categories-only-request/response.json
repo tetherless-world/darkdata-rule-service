@@ -1,0 +1,39 @@
+{
+  "candidates" : [ {
+    "workflow" : {
+      "service" : "ArAvTs"
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 6.0
+  }, {
+    "workflow" : {
+      "service" : "ArAvTs"
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "VtPf"
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "VtPf"
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+    "score" : 5.0
+  }, {
+    "workflow" : {
+      "service" : "TmAvMp"
+    },
+    "feature" : "http://www.purl.org/twc/ns/darkdata#WindFields",
+    "score" : 1.0
+  } ],
+  "criteria" : {
+    "event-categories" : [ {
+      "id" : 10,
+      "title" : "Severe Storms"
+    } ]
+  }
+}
