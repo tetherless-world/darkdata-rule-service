@@ -146,6 +146,11 @@ public class RuleBasedCompatibilityServiceTest {
     public void testComputeCompatibility_SevereStorm() {
         testComputeCompatibilityOfEventType("SevereStorm", DarkData.SevereStorm);
     }
+    
+    @Test
+    public void testComputeCompatibility_Flood() {
+        testComputeCompatibilityOfEventType("Flood", DarkData.Flood);
+    }
 
     @Test
     public void testComputeCompatibility_Wildfire() {
