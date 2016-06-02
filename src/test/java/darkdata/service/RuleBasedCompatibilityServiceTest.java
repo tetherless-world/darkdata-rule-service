@@ -183,8 +183,4 @@ public class RuleBasedCompatibilityServiceTest {
         testComputeCompatibilityOfEventType("Hurricane_and_variable", DarkData.Hurricane, "MAT1NXSLV_5_2_0_UV10M_mag");
     }
 
-    @Test
-    public void name() throws Exception {
-
-    }
 }

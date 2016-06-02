@@ -36,7 +36,7 @@
 ]
 
 [landslide-characteristic-compatibilities:
- (?feature rdf:type dd:Landslide)
+ (?feature rdf:type dd:GroundFlow)
  ->
  (?feature dd:strongCompatibilityFor dd:temporal_evolution),
  (?feature dd:someCompatibilityFor dd:east-west-movement),
