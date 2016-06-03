@@ -64,22 +64,6 @@
  (?assertion dd:evidenceForAssertion ?service)
 ]
 
-[time-series-best-for-weather:
- (?candidate dd:candidateFeature ?feature),
- (?feature rdf:type dd:Weather),
- (?candidate dd:candidateService ?service),
- (?service rdf:type dd:TimeSeries),
- makeSkolem(?assertion, ?service, ?feature)
- ->
- (?candidate dd:compatibilityAssertion ?assertion),
- (?assertion rdf:type dd:CompatibilityAssertion),
- (?assertion dd:compatibilityValue dd:strong_compatibility),
- (?assertion dd:assertionConfidence "1.0"^^xsd:double),
- (?assertion dd:basisForAssertion <urn:rule/best-for-feature/time-series-best-for-weather>),
- (?assertion dd:evidenceForAssertion ?feature),
- (?assertion dd:evidenceForAssertion ?service)
-]
-
 [color-slice-map-best-for-stationary-water-vapor-anomaly:
  (?candidate dd:candidateFeature ?feature),
  (?feature rdf:type dd:StationaryWaterVaporAnomaly),
@@ -92,22 +76,6 @@
  (?assertion dd:compatibilityValue dd:strong_compatibility),
  (?assertion dd:assertionConfidence "1.0"^^xsd:double),
  (?assertion dd:basisForAssertion <urn:rule/best-for-feature/color-slice-map-best-for-stationary-water-vapor-anomaly>),
- (?assertion dd:evidenceForAssertion ?feature),
- (?assertion dd:evidenceForAssertion ?service)
-]
-
-[color-slice-map-best-for-weather:
- (?candidate dd:candidateFeature ?feature),
- (?feature rdf:type dd:Weather),
- (?candidate dd:candidateService ?service),
- (?service rdf:type dd:ColorSliceMap),
- makeSkolem(?assertion, ?service, ?feature)
- ->
- (?candidate dd:compatibilityAssertion ?assertion),
- (?assertion rdf:type dd:CompatibilityAssertion),
- (?assertion dd:compatibilityValue dd:strong_compatibility),
- (?assertion dd:assertionConfidence "1.0"^^xsd:double),
- (?assertion dd:basisForAssertion <urn:rule/best-for-feature/color-slice-map-best-for-weather>),
  (?assertion dd:evidenceForAssertion ?feature),
  (?assertion dd:evidenceForAssertion ?service)
 ]

@@ -105,20 +105,6 @@
  (?feature dd:strongCompatibilityFor dd:detection_of_events)
 ]
 
-[weather-characteristic-compatibilities:
- (?feature rdf:type dd:Weather)
- ->
- (?feature dd:strongCompatibilityFor dd:temporal_evolution),
- (?feature dd:someCompatibilityFor dd:east-west-movement),
- (?feature dd:someCompatibilityFor dd:north-south-movement),
- (?feature dd:someCompatibilityFor dd:spatial_extent_of_event),
- (?feature dd:strongCompatibilityFor dd:seasonal_variation),
- (?feature dd:someCompatibilityFor dd:year-to-year-variability),
- (?feature dd:someCompatibilityFor dd:variation_with_atmospheric_height),
- (?feature dd:slightCompatibilityFor dd:global_phenomena),
- (?feature dd:someCompatibilityFor dd:detection_of_events)
-]
-
 [precipitation-characteristic-compatibilities:
  (?feature rdf:type dd:Precipitation)
  ->

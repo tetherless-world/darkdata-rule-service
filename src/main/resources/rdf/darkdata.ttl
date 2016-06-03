@@ -563,11 +563,11 @@ dd:Flood rdf:type owl:Class ;
          rdfs:subClassOf dd:Phenomena ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty dd:physicalManifestation ;
-                           owl:someValuesFrom dd:StationaryWaterVaporAnomaly
+                           owl:someValuesFrom dd:Precipitation
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty dd:physicalManifestation ;
-                           owl:someValuesFrom dd:Precipitation
+                           owl:someValuesFrom dd:StationaryWaterVaporAnomaly
                          ] ;
          
          dd:topic "Floods" ;
@@ -633,11 +633,11 @@ dd:HurricaneEye rdf:type owl:Class ;
                 rdfs:subClassOf dd:PhysicalManifestation ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:temporal_evolution
+                                  owl:hasValue dd:variation_with_atmospheric_height
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:variation_with_atmospheric_height
+                                  owl:hasValue dd:temporal_evolution
                                 ] .
 
 
@@ -902,11 +902,7 @@ dd:TemperatureExtreme rdf:type owl:Class ;
                       
                       rdfs:label "Temperature Extreme"@en ;
                       
-                      rdfs:subClassOf dd:Phenomena ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty dd:physicalManifestation ;
-                                        owl:someValuesFrom dd:Weather
-                                      ] ;
+                      rdfs:subClassOf dd:Phenomena ;
                       
                       dd:topic "Temperature Extremes" ;
                       
@@ -991,16 +987,6 @@ dd:WaterColor rdf:type owl:Class ;
               dd:topic "Water Color" ;
               
               rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/13> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Weather
-
-dd:Weather rdf:type owl:Class ;
-           
-           rdfs:label "Weather"@en ;
-           
-           rdfs:subClassOf dd:PhysicalManifestation .
 
 
 

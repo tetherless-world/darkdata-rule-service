@@ -5,7 +5,7 @@
 
 	<groupId>edu.rpi.tw.darkdata</groupId>
 	<artifactId>darkdata-rule-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>2016-06-03-1</version>
 	<packaging>jar</packaging>
 
 	<name>darkdata</name>
