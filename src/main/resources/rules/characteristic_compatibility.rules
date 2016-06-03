@@ -36,7 +36,7 @@
 ]
 
 [landslide-characteristic-compatibilities:
- (?feature rdf:type dd:Landslide)
+ (?feature rdf:type dd:GroundFlow)
  ->
  (?feature dd:strongCompatibilityFor dd:temporal_evolution),
  (?feature dd:someCompatibilityFor dd:east-west-movement),
@@ -105,21 +105,25 @@
  (?feature dd:strongCompatibilityFor dd:detection_of_events)
 ]
 
-[weather-characteristic-compatibilities:
- (?feature rdf:type dd:Weather)
+[tropical-storm-precipitation-characteristic-compatibilities:
+ (?event rdf:type dd:TropicalStorm),
+ (?event dd:physicalManifestation ?feature),
+ (?feature rdf:type dd:Precipitation)
  ->
  (?feature dd:strongCompatibilityFor dd:temporal_evolution),
- (?feature dd:someCompatibilityFor dd:east-west-movement),
- (?feature dd:someCompatibilityFor dd:north-south-movement),
- (?feature dd:someCompatibilityFor dd:spatial_extent_of_event),
- (?feature dd:strongCompatibilityFor dd:seasonal_variation),
- (?feature dd:someCompatibilityFor dd:year-to-year-variability),
- (?feature dd:someCompatibilityFor dd:variation_with_atmospheric_height),
- (?feature dd:slightCompatibilityFor dd:global_phenomena),
- (?feature dd:someCompatibilityFor dd:detection_of_events)
+ (?feature dd:strongCompatibilityFor dd:east-west-movement),
+ (?feature dd:strongCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:someCompatibilityFor dd:seasonal_variation),
+ (?feature dd:slightCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:someCompatibilityFor dd:global_phenomena),
+ (?feature dd:strongCompatibilityFor dd:detection_of_events)
 ]
 
-[precipitation-characteristic-compatibilities:
+[non-tropical-storm-precipitation-characteristic-compatibilities:
+ noValue(?event rdf:type dd:TropicalStorm),
+ (?event dd:physicalManifestation ?feature),
  (?feature rdf:type dd:Precipitation)
  ->
  (?feature dd:strongCompatibilityFor dd:temporal_evolution),
@@ -131,6 +135,34 @@
  (?feature dd:slightCompatibilityFor dd:variation_with_atmospheric_height),
  (?feature dd:slightCompatibilityFor dd:global_phenomena),
  (?feature dd:someCompatibilityFor dd:detection_of_events)
+]
+
+[inundation-characteristic-compatibilities:
+ (?feature rdf:type dd:Inundation)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:strongCompatibilityFor dd:east-west-movement),
+ (?feature dd:strongCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:someCompatibilityFor dd:seasonal_variation),
+ (?feature dd:someCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:indifferentCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:indifferentCompatibilityFor dd:global_phenomena),
+ (?feature dd:strongCompatibilityFor dd:detection_of_events)
+]
+
+[inundation-characteristic-compatibilities:
+ (?feature rdf:type dd:AirPollution)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:strongCompatibilityFor dd:east-west-movement),
+ (?feature dd:strongCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:someCompatibilityFor dd:seasonal_variation),
+ (?feature dd:someCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:someCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:indifferentCompatibilityFor dd:global_phenomena),
+ (?feature dd:strongCompatibilityFor dd:detection_of_events)
 ]
 
 # make assertions based on

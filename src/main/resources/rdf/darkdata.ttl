@@ -306,6 +306,26 @@ dd:AerosolOpticalDepth rdf:type owl:Class ;
 
 
 
+###  http://www.purl.org/twc/ns/darkdata#AirPollution
+
+dd:AirPollution rdf:type owl:Class ;
+                
+                rdfs:label "Air Pollution"@en ;
+                
+                rdfs:subClassOf dd:PhysicalManifestation .
+
+
+
+###  http://www.purl.org/twc/ns/darkdata#AirQuality
+
+dd:AirQuality rdf:type owl:Class ;
+              
+              rdfs:label "Air Quality"@en ;
+              
+              rdfs:subClassOf dd:PhysicalManifestation .
+
+
+
 ###  http://www.purl.org/twc/ns/darkdata#AshPlume
 
 dd:AshPlume rdf:type owl:Class ;
@@ -544,11 +564,25 @@ dd:Flood rdf:type owl:Class ;
                          [ rdf:type owl:Restriction ;
                            owl:onProperty dd:physicalManifestation ;
                            owl:someValuesFrom dd:Precipitation
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty dd:physicalManifestation ;
+                           owl:someValuesFrom dd:StationaryWaterVaporAnomaly
                          ] ;
          
          dd:topic "Floods" ;
          
          rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/9> .
+
+
+
+###  http://www.purl.org/twc/ns/darkdata#GroundFlow
+
+dd:GroundFlow rdf:type owl:Class ;
+              
+              rdfs:label "Ground Flow"@en ;
+              
+              rdfs:subClassOf dd:PhysicalManifestation .
 
 
 
@@ -568,7 +602,7 @@ dd:Hovmoller rdf:type owl:Class ;
              
              rdfs:label "Hovmoller"@en ;
              
-             rdfs:subClassOf dd:Visualization .
+             rdfs:subClassOf dd:ColorSliceGrid .
 
 
 
@@ -578,7 +612,7 @@ dd:Hurricane rdf:type owl:Class ;
              
              rdfs:label "Hurricane"@en ;
              
-             rdfs:subClassOf dd:SevereStorm ,
+             rdfs:subClassOf dd:TropicalStorm ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty dd:physicalManifestation ;
                                owl:someValuesFrom dd:HurricaneEye
@@ -599,12 +633,22 @@ dd:HurricaneEye rdf:type owl:Class ;
                 rdfs:subClassOf dd:PhysicalManifestation ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:variation_with_atmospheric_height
+                                  owl:hasValue dd:temporal_evolution
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:temporal_evolution
+                                  owl:hasValue dd:variation_with_atmospheric_height
                                 ] .
+
+
+
+###  http://www.purl.org/twc/ns/darkdata#Inundation
+
+dd:Inundation rdf:type owl:Class ;
+              
+              rdfs:label "Inundation"@en ;
+              
+              rdfs:subClassOf dd:PhysicalManifestation .
 
 
 
@@ -614,7 +658,11 @@ dd:Landslide rdf:type owl:Class ;
              
              rdfs:label "Landslide"@en ;
              
-             rdfs:subClassOf dd:Phenomena ;
+             rdfs:subClassOf dd:Phenomena ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty dd:physicalManifestation ;
+                               owl:someValuesFrom dd:GroundFlow
+                             ] ;
              
              dd:topic "Landslides" ;
              
@@ -647,6 +695,14 @@ dd:ManMade rdf:type owl:Class ;
            rdfs:comment "Events that have been human-induced and are extreme in their extent." ;
            
            rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/19> .
+
+
+
+###  http://www.purl.org/twc/ns/darkdata#Map
+
+dd:Map rdf:type owl:Class ;
+       
+       rdfs:subClassOf dd:Visualization .
 
 
 
@@ -736,6 +792,16 @@ dd:RequestCriteria rdf:type owl:Class .
 
 
 
+###  http://www.purl.org/twc/ns/darkdata#ScatterPlot
+
+dd:ScatterPlot rdf:type owl:Class ;
+               
+               rdfs:label "Scatter Plot"@en ;
+               
+               rdfs:subClassOf dd:TwoVariableVisualization .
+
+
+
 ###  http://www.purl.org/twc/ns/darkdata#SeaAndLakeIce
 
 dd:SeaAndLakeIce rdf:type owl:Class ;
@@ -749,16 +815,6 @@ dd:SeaAndLakeIce rdf:type owl:Class ;
                  dd:topic "Sea and Lake Ice" ;
                  
                  rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/15> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#SeasonalTimeSeries
-
-dd:SeasonalTimeSeries rdf:type owl:Class ;
-                      
-                      rdfs:label "Seasonal Time-Series"@en ;
-                      
-                      rdfs:subClassOf dd:TimeSeries .
 
 
 
@@ -820,6 +876,16 @@ dd:Snow rdf:type owl:Class ;
 
 
 
+###  http://www.purl.org/twc/ns/darkdata#StationaryWaterVaporAnomaly
+
+dd:StationaryWaterVaporAnomaly rdf:type owl:Class ;
+                               
+                               rdfs:label "Stationary Water Vapor Anomaly"@en ;
+                               
+                               rdfs:subClassOf dd:PhysicalManifestation .
+
+
+
 ###  http://www.purl.org/twc/ns/darkdata#Temperature
 
 dd:Temperature rdf:type owl:Class ;
@@ -846,16 +912,6 @@ dd:TemperatureExtreme rdf:type owl:Class ;
 
 
 
-###  http://www.purl.org/twc/ns/darkdata#TimeAveragedMap
-
-dd:TimeAveragedMap rdf:type owl:Class ;
-                   
-                   rdfs:label "Time-averaged Map"@en ;
-                   
-                   rdfs:subClassOf dd:Visualization .
-
-
-
 ###  http://www.purl.org/twc/ns/darkdata#TimeSeries
 
 dd:TimeSeries rdf:type owl:Class ;
@@ -872,7 +928,11 @@ dd:TropicalStorm rdf:type owl:Class ;
                  
                  rdfs:label "Tropical Storm"@en ;
                  
-                 rdfs:subClassOf dd:SevereStorm ;
+                 rdfs:subClassOf dd:SevereStorm ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty dd:physicalManifestation ;
+                                   owl:someValuesFrom dd:Precipitation
+                                 ] ;
                  
                  dd:topic "Severe Storms" ;
                  
@@ -887,26 +947,6 @@ dd:TwoVariableVisualization rdf:type owl:Class ;
                             rdfs:label "Two Variable Visualization"@en ;
                             
                             rdfs:subClassOf dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#UserDefinedClimatology
-
-dd:UserDefinedClimatology rdf:type owl:Class ;
-                          
-                          rdfs:label "User-defined Climatology"@en ;
-                          
-                          rdfs:subClassOf dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#VerticalProfile
-
-dd:VerticalProfile rdf:type owl:Class ;
-                   
-                   rdfs:label "Vertical Profile"@en ;
-                   
-                   rdfs:subClassOf dd:Visualization .
 
 
 
@@ -982,16 +1022,6 @@ dd:WindFields rdf:type owl:Class ;
 
 
 
-###  http://www.purl.org/twc/ns/darkdata#ZonalMeans
-
-dd:ZonalMeans rdf:type owl:Class ;
-              
-              rdfs:label "Zonal Means"@en ;
-              
-              rdfs:subClassOf dd:Visualization .
-
-
-
 
 
 #################################################################
@@ -1003,7 +1033,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/AcMp
 
-<http://darkdata.tw.rpi.edu/data/service/AcMp> rdf:type dd:OneVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/AcMp> rdf:type dd:Map ,
+                                                        dd:OneVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
@@ -1015,7 +1046,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/ArAvSc
 
-<http://darkdata.tw.rpi.edu/data/service/ArAvSc> rdf:type dd:TwoVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/ArAvSc> rdf:type dd:ScatterPlot ,
+                                                          dd:TwoVariableVisualization ,
                                                           dd:Visualization ,
                                                           owl:NamedIndividual ;
                                                  
@@ -1045,7 +1077,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/CoMp
 
-<http://darkdata.tw.rpi.edu/data/service/CoMp> rdf:type dd:TwoVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/CoMp> rdf:type dd:Map ,
+                                                        dd:TwoVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
@@ -1057,7 +1090,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/CrLn
 
-<http://darkdata.tw.rpi.edu/data/service/CrLn> rdf:type dd:OneVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/CrLn> rdf:type dd:ColorSliceGrid ,
+                                                        dd:OneVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
@@ -1069,7 +1103,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/CrLt
 
-<http://darkdata.tw.rpi.edu/data/service/CrLt> rdf:type dd:OneVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/CrLt> rdf:type dd:ColorSliceGrid ,
+                                                        dd:OneVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
@@ -1081,7 +1116,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/CrTm
 
-<http://darkdata.tw.rpi.edu/data/service/CrTm> rdf:type dd:OneVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/CrTm> rdf:type dd:ColorSliceGrid ,
+                                                        dd:OneVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
@@ -1093,7 +1129,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/DiArAvTs
 
-<http://darkdata.tw.rpi.edu/data/service/DiArAvTs> rdf:type dd:TwoVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/DiArAvTs> rdf:type dd:TimeSeries ,
+                                                            dd:TwoVariableVisualization ,
                                                             dd:Visualization ,
                                                             owl:NamedIndividual ;
                                                    
@@ -1105,7 +1142,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/DiTmAvMp
 
-<http://darkdata.tw.rpi.edu/data/service/DiTmAvMp> rdf:type dd:TwoVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/DiTmAvMp> rdf:type dd:Map ,
+                                                            dd:TwoVariableVisualization ,
                                                             dd:Visualization ,
                                                             owl:NamedIndividual ;
                                                    
@@ -1168,20 +1206,21 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/IaSc
 
-<http://darkdata.tw.rpi.edu/data/service/IaSc> rdf:type dd:TwoVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/IaSc> rdf:type dd:ScatterPlot ,
+                                                        dd:TwoVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
-                                               dct:identifier "IaSc" ;
+                                               rdfs:label "Interactive Scatter Plot"@en ;
                                                
-                                               rdfs:comment "Interactive Scatter Plot"@en .
+                                               dct:identifier "IaSc" .
 
 
 
 ###  http://darkdata.tw.rpi.edu/data/service/InTs
 
 <http://darkdata.tw.rpi.edu/data/service/InTs> rdf:type dd:OneVariableVisualization ,
-                                                        dd:SeasonalTimeSeries ,
+                                                        dd:TimeSeries ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
@@ -1197,7 +1236,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/MpAn
 
-<http://darkdata.tw.rpi.edu/data/service/MpAn> rdf:type dd:OneVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/MpAn> rdf:type dd:Map ,
+                                                        dd:OneVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
@@ -1209,7 +1249,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/QuCl
 
-<http://darkdata.tw.rpi.edu/data/service/QuCl> rdf:type dd:OneVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/QuCl> rdf:type dd:ColorSliceMap ,
+                                                        dd:OneVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
@@ -1225,11 +1266,12 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/StSc
 
-<http://darkdata.tw.rpi.edu/data/service/StSc> rdf:type dd:TwoVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/StSc> rdf:type dd:ScatterPlot ,
+                                                        dd:TwoVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
-                                               rdfs:label "Static Scatter plot"@en ;
+                                               rdfs:label "Static Scatter Plot"@en ;
                                                
                                                dct:identifier "StSc" ;
                                                
@@ -1239,8 +1281,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/TmAvMp
 
-<http://darkdata.tw.rpi.edu/data/service/TmAvMp> rdf:type dd:OneVariableVisualization ,
-                                                          dd:TimeAveragedMap ,
+<http://darkdata.tw.rpi.edu/data/service/TmAvMp> rdf:type dd:ColorSliceMap ,
+                                                          dd:OneVariableVisualization ,
                                                           dd:Visualization ,
                                                           owl:NamedIndividual ;
                                                  
@@ -1256,9 +1298,12 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/TmAvSc
 
-<http://darkdata.tw.rpi.edu/data/service/TmAvSc> rdf:type dd:TwoVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/TmAvSc> rdf:type dd:ScatterPlot ,
+                                                          dd:TwoVariableVisualization ,
                                                           dd:Visualization ,
                                                           owl:NamedIndividual ;
+                                                 
+                                                 rdfs:label "Time-averaged Scatter Plot"@en ;
                                                  
                                                  rdfs:comment "Time-averaged, interactive X-Y plot of 2 variables"@en ;
                                                  
@@ -1268,8 +1313,8 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/VtPf
 
-<http://darkdata.tw.rpi.edu/data/service/VtPf> rdf:type dd:OneVariableVisualization ,
-                                                        dd:VerticalProfile ,
+<http://darkdata.tw.rpi.edu/data/service/VtPf> rdf:type dd:LinePlot ,
+                                                        dd:OneVariableVisualization ,
                                                         dd:Visualization ,
                                                         owl:NamedIndividual ;
                                                
@@ -1285,9 +1330,9 @@ dd:ZonalMeans rdf:type owl:Class ;
 
 ###  http://darkdata.tw.rpi.edu/data/service/ZnMn
 
-<http://darkdata.tw.rpi.edu/data/service/ZnMn> rdf:type dd:OneVariableVisualization ,
+<http://darkdata.tw.rpi.edu/data/service/ZnMn> rdf:type dd:LinePlot ,
+                                                        dd:OneVariableVisualization ,
                                                         dd:Visualization ,
-                                                        dd:ZonalMeans ,
                                                         owl:NamedIndividual ;
                                                
                                                rdfs:label "Zonal Means"@en ;

@@ -89,6 +89,9 @@ public class DarkDataApplication {
     @Value("classpath:rules/spatial_resolution_Shen.rules")
     private Resource shenSpatialResolutionRules;
 
+    @Value("classpath:rules/best_for_feature.rules")
+    private Resource bestForFeatureRules;
+
 //    @Value("classpath:rdf/sciencekeywords.ttl")
 //    private Resource gcmdScienceKeywords;
 
@@ -113,7 +116,8 @@ public class DarkDataApplication {
                 liMeasurementRules,
                 shenMeasurementRules,
                 liSpatialResolutionRules,
-                shenSpatialResolutionRules);
+                shenSpatialResolutionRules,
+                bestForFeatureRules);
         return new RuleBasedReasoningService(rulesets);
     }
 
