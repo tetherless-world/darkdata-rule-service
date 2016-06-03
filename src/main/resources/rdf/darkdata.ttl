@@ -612,7 +612,7 @@ dd:Hurricane rdf:type owl:Class ;
              
              rdfs:label "Hurricane"@en ;
              
-             rdfs:subClassOf dd:SevereStorm ,
+             rdfs:subClassOf dd:TropicalStorm ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty dd:physicalManifestation ;
                                owl:someValuesFrom dd:HurricaneEye
@@ -633,11 +633,11 @@ dd:HurricaneEye rdf:type owl:Class ;
                 rdfs:subClassOf dd:PhysicalManifestation ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:variation_with_atmospheric_height
+                                  owl:hasValue dd:temporal_evolution
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:temporal_evolution
+                                  owl:hasValue dd:variation_with_atmospheric_height
                                 ] .
 
 
@@ -928,7 +928,11 @@ dd:TropicalStorm rdf:type owl:Class ;
                  
                  rdfs:label "Tropical Storm"@en ;
                  
-                 rdfs:subClassOf dd:SevereStorm ;
+                 rdfs:subClassOf dd:SevereStorm ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty dd:physicalManifestation ;
+                                   owl:someValuesFrom dd:Precipitation
+                                 ] ;
                  
                  dd:topic "Severe Storms" ;
                  
