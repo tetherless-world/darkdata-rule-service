@@ -21,7 +21,7 @@ public class RecommendationRequest {
     private List<DataVariable> dataVariableList;
 
     @JsonProperty(value = "event-categories")
-    List<EventCategory> categories;
+    private List<EventCategory> categories;
 
     public RecommendationRequest() { }
 

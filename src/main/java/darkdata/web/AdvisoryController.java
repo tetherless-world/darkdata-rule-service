@@ -3,6 +3,8 @@ package darkdata.web;
 import darkdata.web.api.RecommendationRequest;
 import darkdata.web.api.RecommendationResponse;
 import darkdata.service.RecommendationService;
+import darkdata.web.api.event.eonet.Event;
+import darkdata.web.api.event.eonet.EventCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author szednik
@@ -39,10 +44,14 @@ public class AdvisoryController {
     }
 
     private void validate(RecommendationRequest request) throws IllegalArgumentException {
-        Assert.notNull(request, "payload is null");
-        //Assert.notNull(request.getEvent(), "event is null");
-        //Assert.notNull(request.getDataVariableList(), "data variable list is null");
-        //Assert.notEmpty(request.getDataVariableList(), "data variable list is empty");
+        try {
+            Assert.notNull(request, "payload is null");
+            Optional<Event> event = Optional.ofNullable(request.getEvent());
+            Optional<List<EventCategory>> categories = Optional.ofNullable(request.getCategories());
+            Assert.isTrue(event.isPresent() || (categories.isPresent() && !request.getCategories().isEmpty()), "either event or an event category is required");
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     // possibly have GET for recommendations by category-type?
