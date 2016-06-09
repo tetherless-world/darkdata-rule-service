@@ -61,13 +61,6 @@ Data variables are objects with id, which is equivalent with the datafieldId in 
         "id": 10,
         "title": "Severe Storms"
       }
-    ],
-    "geometries": [
-      {
-        "date": "2015-10-15T00:00:00Z",
-        "type": "Point",
-        "coordinates": [ [ -117.10, 9.90 ] ]
-      }
     ]
   },
   "data_variables": [
