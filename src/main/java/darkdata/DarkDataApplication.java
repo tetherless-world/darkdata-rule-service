@@ -89,6 +89,12 @@ public class DarkDataApplication {
     @Value("classpath:rules/spatial_resolution_Shen.rules")
     private Resource shenSpatialResolutionRules;
 
+    @Value("classpath:rules/measurement_comparison_compatibility.rules")
+    private Resource measurementComparisonRules;
+
+    @Value("classpath:rules/datafield_keyword_compatibility.rules")
+    private Resource datafieldKeywordRules;
+
     @Value("classpath:rules/best_for_feature.rules")
     private Resource bestForFeatureRules;
 
@@ -117,7 +123,9 @@ public class DarkDataApplication {
                 shenMeasurementRules,
                 liSpatialResolutionRules,
                 shenSpatialResolutionRules,
-                bestForFeatureRules);
+                bestForFeatureRules,
+                measurementComparisonRules,
+                datafieldKeywordRules);
         return new RuleBasedReasoningService(rulesets);
     }
 
