@@ -1,0 +1,23 @@
+@prefix dd: <http://www.purl.org/twc/ns/darkdata#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+[same-keyword:
+ (?candidate dd:candidateService ?service),
+ (?service rdf:type dd:TwoVariableVisualization),
+ (?candidate dd:candidateVariable ?datafield1),
+ (?candidate dd:candidateVariable ?datafield2),
+ notEqual(?datafield1, ?datafield2),
+ (?datafield1 dc:subject ?keyword1),
+ (?datafield2 dc:subject ?keyword2),
+ equal(?keyword1, ?keyword2),
+ makeSkolem(?assertion, ?service, ?keyword1, ?keyword2)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:assertionConfidence "1.0"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/datafield_keyword_compatibility/same-keyword>),
+ (?assertion dd:evidenceForAssertion ?datafield1),
+ (?assertion dd:evidenceForAssertion ?datafield2),
+ (?assertion dd:evidenceForAssertion ?service)
+]
