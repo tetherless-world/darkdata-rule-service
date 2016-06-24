@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 public class PhysicalFeature extends IndividualProxy {
 
-    public static final OntClass CLASS = DarkData.PhysicalManifestation;
+    public static final OntClass CLASS = DarkData.PhysicalFeature;
 
     public PhysicalFeature(OntResource individual) {
         super(individual);
@@ -39,8 +39,8 @@ public class PhysicalFeature extends IndividualProxy {
                 .filter(t -> !t.isAnon())
                 .filter(t -> !t.equals(RDFS.Resource))
                 .filter(t -> !t.equals(OWL.Thing))
-                .filter(t -> !t.equals(DarkData.PhysicalManifestation))
-                .filter(DarkData.PhysicalManifestation::hasSubClass)
+                .filter(t -> !t.equals(DarkData.PhysicalFeature))
+                .filter(DarkData.PhysicalFeature::hasSubClass)
                 .findAny().isPresent();
     }
 

@@ -1,1503 +1,1036 @@
 @prefix : <http://www.purl.org/twc/ns/darkdata#> .
-@prefix dd: <http://www.purl.org/twc/ns/darkdata#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix oml: <http://def.seegrid.csiro.au/ontology/om/om-lite#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.purl.org/twc/ns/darkdata> .
 
-<http://www.purl.org/twc/ns/darkdata> rdf:type owl:Ontology ;
-                                      
-                                      rdfs:label "Dark Data Ontology"@en .
-
-
-#################################################################
-#
-#    Annotation properties
-#
-#################################################################
-
-
-###  http://purl.org/dc/terms/identifier
-
-dct:identifier rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#bestFor
-
-dd:bestFor rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#scienceKeyword
-
-dd:scienceKeyword rdf:type owl:AnnotationProperty ;
-                  
-                  rdfs:label "science keyword" ;
-                  
-                  rdfs:comment "science keyword associated with class" .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#topic
-
-dd:topic rdf:type owl:AnnotationProperty ;
-         
-         rdfs:label "topic" ;
-         
-         rdfs:comment "keyword or category associated with this class or property" .
-
-
-
-
-
-#################################################################
-#
-#    Object Properties
-#
-#################################################################
-
-
-###  http://def.seegrid.csiro.au/ontology/om/om-lite#result
-
-oml:result rdf:type owl:ObjectProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#basisForAssertion
-
-dd:basisForAssertion rdf:type owl:ObjectProperty ;
-                     
-                     rdfs:label "basis for assertion" ;
-                     
-                     rdfs:domain dd:CompatibilityAssertion ;
-                     
-                     rdfs:range dd:CompatibilityFunction .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#candidate
-
-dd:candidate rdf:type owl:ObjectProperty ;
-             
-             rdfs:label "candidate workflow" ;
-             
-             rdfs:range dd:CandidateWorkflow ;
-             
-             rdfs:domain dd:CompatibilityAssertion .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#candidateEvent
-
-dd:candidateEvent rdf:type owl:ObjectProperty ;
-                  
-                  rdfs:label "candidate event" ;
-                  
-                  rdfs:domain dd:CandidateWorkflow ;
-                  
-                  rdfs:range dd:Phenomena .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#candidateFeature
-
-dd:candidateFeature rdf:type owl:ObjectProperty ;
-                    
-                    rdfs:label "candidate feature" ;
-                    
-                    rdfs:domain dd:CandidateWorkflow ;
-                    
-                    rdfs:range dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#candidateService
-
-dd:candidateService rdf:type owl:ObjectProperty ;
-                    
-                    rdfs:label "candidate service" ;
-                    
-                    rdfs:domain dd:CandidateWorkflow ;
-                    
-                    rdfs:range dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#candidateVariable
-
-dd:candidateVariable rdf:type owl:ObjectProperty ;
-                     
-                     rdfs:label "candidate variable" ;
-                     
-                     rdfs:domain dd:CandidateWorkflow ;
-                     
-                     rdfs:range dd:DataVariable .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#compatibilityAssertion
-
-dd:compatibilityAssertion rdf:type owl:ObjectProperty ;
-                          
-                          rdfs:label "compatibility assertion" ;
-                          
-                          rdfs:domain dd:Candidate ;
-                          
-                          rdfs:range dd:CompatibilityAssertion .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#compatibilityValue
-
-dd:compatibilityValue rdf:type owl:ObjectProperty ;
-                      
-                      rdfs:label "compatibility value" ;
-                      
-                      rdfs:domain dd:CompatibilityAssertion ;
-                      
-                      rdfs:range dd:CompatibilityValue .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#criteriaDataField
-
-dd:criteriaDataField rdf:type owl:ObjectProperty ;
-                     
-                     rdfs:range dd:DataVariable ;
-                     
-                     rdfs:domain dd:RequestCriteria .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#criteriaEvent
-
-dd:criteriaEvent rdf:type owl:ObjectProperty ;
-                 
-                 rdfs:range dd:Event ;
-                 
-                 rdfs:domain dd:RequestCriteria .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#evidenceForAssertion
-
-dd:evidenceForAssertion rdf:type owl:ObjectProperty ;
-                        
-                        rdfs:label "evidence for assertion" ;
-                        
-                        rdfs:domain dd:CompatibilityAssertion .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#observableProperty
-
-dd:observableProperty rdf:type owl:ObjectProperty ;
-                      
-                      rdfs:label "observable property"@en ;
-                      
-                      rdfs:comment "observable property of some physical manifestation of a phenomena"@en ;
-                      
-                      rdfs:range dd:ObservableProperty ;
-                      
-                      rdfs:domain dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#physicalDriver
-
-dd:physicalDriver rdf:type owl:ObjectProperty ;
-                  
-                  rdfs:label "physical driver"@en ;
-                  
-                  rdfs:comment "physical manifestation that is a driving force for a phenomena (e.g. elevated sea surface temperature is a driver of hurricanes)"@en ;
-                  
-                  rdfs:domain dd:Phenomena ;
-                  
-                  rdfs:range dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#physicalManifestation
-
-dd:physicalManifestation rdf:type owl:ObjectProperty ;
-                         
-                         rdfs:label "physical manifestation"@en ;
-                         
-                         rdfs:comment "physical manifestation of a phenomena"@en ;
-                         
-                         rdfs:domain dd:Phenomena ;
-                         
-                         rdfs:range dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#strongCompatibilityFor
-
-dd:strongCompatibilityFor rdf:type owl:ObjectProperty .
-
-
-
-
-
-#################################################################
-#
-#    Data properties
-#
-#################################################################
-
-
-###  http://www.purl.org/twc/ns/darkdata#assertionConfidence
-
-dd:assertionConfidence rdf:type owl:DatatypeProperty ;
-                       
-                       rdfs:label "assertion confidence" ;
-                       
-                       rdfs:domain dd:CompatibilityAssertion .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#endDateTime
-
-dd:endDateTime rdf:type owl:DatatypeProperty ;
-               
-               rdfs:label "end datetime" ;
-               
-               rdfs:range xsd:dateTime .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#startDateTime
-
-dd:startDateTime rdf:type owl:DatatypeProperty ;
-                 
-                 rdfs:label "start datetime" ;
-                 
-                 rdfs:range xsd:dateTime .
-
-
-
-
-
-#################################################################
-#
-#    Classes
-#
-#################################################################
-
-
-###  http://def.seegrid.csiro.au/ontology/om/om-lite#Observation
-
-oml:Observation rdf:type owl:Class .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#AerosolOpticalDepth
-
-dd:AerosolOpticalDepth rdf:type owl:Class ;
-                       
-                       rdfs:label "Aerosol Optical Depth"@en ;
-                       
-                       rdfs:subClassOf dd:ObservableProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#AirPollution
-
-dd:AirPollution rdf:type owl:Class ;
-                
-                rdfs:label "Air Pollution"@en ;
-                
-                rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#AirQuality
-
-dd:AirQuality rdf:type owl:Class ;
-              
-              rdfs:label "Air Quality"@en ;
-              
-              rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#AshPlume
-
-dd:AshPlume rdf:type owl:Class ;
-            
-            rdfs:label "Ash Plume"@en ;
-            
-            rdfs:subClassOf dd:PhysicalManifestation ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty dd:observableProperty ;
-                              owl:hasValue dd:aerosol_optical_depth_thickness
-                            ] .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#AtmosphericConcentration
-
-dd:AtmosphericConcentration rdf:type owl:Class ;
-                            
-                            rdfs:label "Atmospheric Concentration"@en ;
-                            
-                            rdfs:subClassOf dd:ObservableProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Candidate
-
-dd:Candidate rdf:type owl:Class ;
-             
-             rdfs:label "Candidate" .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#CandidateWorkflow
-
-dd:CandidateWorkflow rdf:type owl:Class ;
-                     
-                     rdfs:label "Candidate Workflow" ;
-                     
-                     rdfs:subClassOf dd:Candidate .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#ColorSliceGrid
-
-dd:ColorSliceGrid rdf:type owl:Class ;
-                  
-                  rdfs:label "Color-slice Grid"@en ;
-                  
-                  rdfs:subClassOf dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#ColorSliceMap
-
-dd:ColorSliceMap rdf:type owl:Class ;
-                 
-                 rdfs:label "Color-slice Map"@en ;
-                 
-                 rdfs:subClassOf dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Column_SO2
-
-dd:Column_SO2 rdf:type owl:Class ;
-              
-              rdfs:label "SO2 Column"@en ;
-              
-              rdfs:subClassOf dd:ObservableProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#CompatibilityAssertion
-
-dd:CompatibilityAssertion rdf:type owl:Class ;
-                          
-                          rdfs:label "Compatibility Assertion" .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#CompatibilityFunction
-
-dd:CompatibilityFunction rdf:type owl:Class ;
-                         
-                         rdfs:label "Compatibility Function" .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#CompatibilityValue
-
-dd:CompatibilityValue rdf:type owl:Class ;
-                      
-                      rdfs:label "Compatibility Value" .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#DataVariable
-
-dd:DataVariable rdf:type owl:Class ;
-                
-                rdfs:label "Data Variable"@en ;
-                
-                rdfs:comment "Representation of the measurement in a data file"@en .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#DataVariableObservation
-
-dd:DataVariableObservation rdf:type owl:Class ;
-                           
-                           rdfs:label "Data Variable Observation"@en ;
-                           
-                           rdfs:subClassOf oml:Observation ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty oml:result ;
-                                             owl:allValuesFrom dd:DataVariable
-                                           ] ;
-                           
-                           rdfs:comment "Observation whose result is a data variable"@en .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Drought
-
-dd:Drought rdf:type owl:Class ;
-           
-           rdfs:label "Long lasting absence of precipitation affecting agriculture and livestock, and the overall availability of food and water." ,
-                      "Drought"@en ;
-           
-           rdfs:subClassOf dd:Phenomena ;
-           
-           dd:topic "Drought" ;
-           
-           rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/6> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#DustAndHaze
-
-dd:DustAndHaze rdf:type owl:Class ;
-               
-               rdfs:label "Dust and Haze"@en ;
-               
-               rdfs:subClassOf dd:Phenomena ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty dd:physicalManifestation ;
-                                 owl:someValuesFrom dd:DustPlume
-                               ] ;
-               
-               dd:topic "Dust and Haze" ;
-               
-               rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/7> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#DustPlume
-
-dd:DustPlume rdf:type owl:Class ;
-             
-             rdfs:label "Dust Plume"@en ;
-             
-             rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#DustStorm
-
-dd:DustStorm rdf:type owl:Class ;
-             
-             rdfs:label "Dust Storm"@en ;
-             
-             rdfs:subClassOf dd:DustAndHaze ,
-                             dd:SevereStorm ;
-             
-             dd:topic "Dust Storm" .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Earthquake
-
-dd:Earthquake rdf:type owl:Class ;
-              
-              rdfs:label "Earthquake"@en ;
-              
-              rdfs:subClassOf dd:Phenomena ;
-              
-              dd:topic "Earthquakes" ;
-              
-              rdfs:comment "Related to all manner of shaking and displacement. Certain aftermath of earthquakes may also be found under landslides and floods." ;
-              
-              rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/16> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#ElevatedSurfaceTemperature
-
-dd:ElevatedSurfaceTemperature rdf:type owl:Class ;
-                              
-                              rdfs:label "Elevated Surface Temperature"@en ;
-                              
-                              rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Emission_SO2
-
-dd:Emission_SO2 rdf:type owl:Class ;
-                
-                rdfs:label "SO2 Emission"@en ;
-                
-                rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Event
-
-dd:Event rdf:type owl:Class ;
-         
-         rdfs:label "Event"@en .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#FeatureCharacteristic
-
-dd:FeatureCharacteristic rdf:type owl:Class .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Flood
-
-dd:Flood rdf:type owl:Class ;
-         
-         rdfs:label "Flood"@en ;
-         
-         rdfs:subClassOf dd:Phenomena ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty dd:physicalManifestation ;
-                           owl:someValuesFrom dd:Precipitation
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty dd:physicalManifestation ;
-                           owl:someValuesFrom dd:StationaryWaterVaporAnomaly
-                         ] ;
-         
-         dd:topic "Floods" ;
-         
-         rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/9> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#GroundFlow
-
-dd:GroundFlow rdf:type owl:Class ;
-              
-              rdfs:label "Ground Flow"@en ;
-              
-              rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Histogram
-
-dd:Histogram rdf:type owl:Class ;
-             
-             rdfs:label "Histogram"@en ;
-             
-             rdfs:subClassOf dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Hovmoller
-
-dd:Hovmoller rdf:type owl:Class ;
-             
-             rdfs:label "Hovmoller"@en ;
-             
-             rdfs:subClassOf dd:ColorSliceGrid .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Hurricane
-
-dd:Hurricane rdf:type owl:Class ;
-             
-             rdfs:label "Hurricane"@en ;
-             
-             rdfs:subClassOf dd:TropicalStorm ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty dd:physicalManifestation ;
-                               owl:someValuesFrom dd:HurricaneEye
-                             ] ;
-             
-             dd:topic "Severe Storms" ;
-             
-             rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/10> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#HurricaneEye
-
-dd:HurricaneEye rdf:type owl:Class ;
-                
-                rdfs:label "Hurricane Eye"@en ;
-                
-                rdfs:subClassOf dd:PhysicalManifestation ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:temporal_evolution
-                                ] ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty dd:strongCompatibilityFor ;
-                                  owl:hasValue dd:variation_with_atmospheric_height
-                                ] .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Inundation
-
-dd:Inundation rdf:type owl:Class ;
-              
-              rdfs:label "Inundation"@en ;
-              
-              rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Landslide
-
-dd:Landslide rdf:type owl:Class ;
-             
-             rdfs:label "Landslide"@en ;
-             
-             rdfs:subClassOf dd:Phenomena ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty dd:physicalManifestation ;
-                               owl:someValuesFrom dd:GroundFlow
-                             ] ;
-             
-             dd:topic "Landslides" ;
-             
-             rdfs:comment "Related to landslides and variations thereof: mudslides, avalanche." ;
-             
-             rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/14> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#LinePlot
-
-dd:LinePlot rdf:type owl:Class ;
-            
-            rdfs:label "Line Plot"@en ;
-            
-            rdfs:subClassOf dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#ManMade
-
-dd:ManMade rdf:type owl:Class ;
-           
-           rdfs:label "Man-made"@en ;
-           
-           rdfs:subClassOf dd:Phenomena ;
-           
-           dd:topic "Manmade" ;
-           
-           rdfs:comment "Events that have been human-induced and are extreme in their extent." ;
-           
-           rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/19> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Map
-
-dd:Map rdf:type owl:Class ;
-       
-       rdfs:subClassOf dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#ObservableProperty
-
-dd:ObservableProperty rdf:type owl:Class ;
-                      
-                      rdfs:label "Observable Property"@en .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#OneVariableVisualization
-
-dd:OneVariableVisualization rdf:type owl:Class ;
-                            
-                            rdfs:label "One Variable Visualization"@en ;
-                            
-                            rdfs:subClassOf dd:Visualization ;
-                            
-                            owl:disjointWith dd:TwoVariableVisualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Phenomena
-
-dd:Phenomena rdf:type owl:Class ;
-             
-             rdfs:label "Phenomena"@en ;
-             
-             rdfs:subClassOf dd:Event ;
-             
-             rdfs:comment "An observable occurrence of particular physical (as opposed to dynamic or synoptic) significance within the atmosphere"@en .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#PhysicalManifestation
-
-dd:PhysicalManifestation rdf:type owl:Class ;
-                         
-                         rdfs:label "Physical Manifestation"@en .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Precipitation
-
-dd:Precipitation rdf:type owl:Class ;
-                 
-                 rdfs:label "Precipitation"@en ;
-                 
-                 rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Radiance
-
-dd:Radiance rdf:type owl:Class ;
-            
-            rdfs:label "Radiance"@en ;
-            
-            rdfs:subClassOf dd:ObservableProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#RainRate
-
-dd:RainRate rdf:type owl:Class ;
-            
-            rdfs:label "Rain Rate"@en ;
-            
-            rdfs:subClassOf dd:ObservableProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Reflectance
-
-dd:Reflectance rdf:type owl:Class ;
-               
-               rdfs:label "Reflectance"@en ;
-               
-               rdfs:subClassOf dd:ObservableProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#RequestCriteria
-
-dd:RequestCriteria rdf:type owl:Class .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#ScatterPlot
-
-dd:ScatterPlot rdf:type owl:Class ;
-               
-               rdfs:label "Scatter Plot"@en ;
-               
-               rdfs:subClassOf dd:TwoVariableVisualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#SeaAndLakeIce
-
-dd:SeaAndLakeIce rdf:type owl:Class ;
-                 
-                 rdfs:label "Sea and Lake Ice"@en ;
-                 
-                 rdfs:subClassOf dd:Phenomena ;
-                 
-                 rdfs:comment "Related to all ice that resides on oceans and lakes, including sea and lake ice (permanent and seasonal) and icebergs." ;
-                 
-                 dd:topic "Sea and Lake Ice" ;
-                 
-                 rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/15> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#SevereStorm
-
-dd:SevereStorm rdf:type owl:Class ;
-               
-               rdfs:label "Severe Storm"@en ;
-               
-               rdfs:subClassOf dd:Phenomena ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty dd:physicalManifestation ;
-                                 owl:someValuesFrom dd:WindFields
-                               ] ;
-               
-               dd:topic "Severe Storms" ;
-               
-               rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/10> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#ShortDurationPhenomena
-
-dd:ShortDurationPhenomena rdf:type owl:Class ;
-                          
-                          rdfs:label "Short-duration Phenomena"@en ;
-                          
-                          rdfs:subClassOf dd:Phenomena .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#SmokePlume
-
-dd:SmokePlume rdf:type owl:Class ;
-              
-              rdfs:label "Smoke Plume"@en ;
-              
-              rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Snow
-
-dd:Snow rdf:type owl:Class ;
-        
-        rdfs:label "Snow"@en ;
-        
-        rdfs:subClassOf dd:Phenomena ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty dd:physicalManifestation ;
-                          owl:someValuesFrom dd:Precipitation
-                        ] ;
-        
-        rdfs:comment "Related to snow events, particularly extreme/anomalous snowfall in either timing or extent/depth." ;
-        
-        dd:topic "Snow" ;
-        
-        rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/17> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#StationaryWaterVaporAnomaly
-
-dd:StationaryWaterVaporAnomaly rdf:type owl:Class ;
-                               
-                               rdfs:label "Stationary Water Vapor Anomaly"@en ;
-                               
-                               rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Temperature
-
-dd:Temperature rdf:type owl:Class ;
-               
-               rdfs:label "Temperature"@en ;
-               
-               rdfs:subClassOf dd:ObservableProperty .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#TemperatureExtreme
-
-dd:TemperatureExtreme rdf:type owl:Class ;
-                      
-                      rdfs:label "Temperature Extreme"@en ;
-                      
-                      rdfs:subClassOf dd:Phenomena ;
-                      
-                      dd:topic "Temperature Extremes" ;
-                      
-                      rdfs:comment "Related to anomalous land temperatures, either heat or cold." ;
-                      
-                      rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/18> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#TimeSeries
-
-dd:TimeSeries rdf:type owl:Class ;
-              
-              rdfs:label "Time series"@en ;
-              
-              rdfs:subClassOf dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#TropicalStorm
-
-dd:TropicalStorm rdf:type owl:Class ;
-                 
-                 rdfs:label "Tropical Storm"@en ;
-                 
-                 rdfs:subClassOf dd:SevereStorm ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty dd:physicalManifestation ;
-                                   owl:someValuesFrom dd:Precipitation
-                                 ] ;
-                 
-                 dd:topic "Severe Storms" ;
-                 
-                 rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/10> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#TwoVariableVisualization
-
-dd:TwoVariableVisualization rdf:type owl:Class ;
-                            
-                            rdfs:label "Two Variable Visualization"@en ;
-                            
-                            rdfs:subClassOf dd:Visualization .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Visualization
-
-dd:Visualization rdf:type owl:Class ;
-                 
-                 rdfs:label "Visualization"@en .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#VolcanicEruption
-
-dd:VolcanicEruption rdf:type owl:Class ;
-                    
-                    rdfs:label "Volcanic Eruption"@en ;
-                    
-                    rdfs:subClassOf dd:Phenomena ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty dd:physicalManifestation ;
-                                      owl:someValuesFrom dd:AshPlume
-                                    ] ;
-                    
-                    dd:topic "Volcanoes" ;
-                    
-                    rdfs:comment "Related to both the physical effects of an eruption (rock, ash, lava) and the atmospheric (ash and gas plumes). " ;
-                    
-                    rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/12> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#WaterColor
-
-dd:WaterColor rdf:type owl:Class ;
-              
-              rdfs:label "Water Color"@en ;
-              
-              rdfs:subClassOf dd:Phenomena ;
-              
-              rdfs:comment "Related to events that alter the appearance of water: phytoplankton, red tide, algae, sediment, whiting, etc." ;
-              
-              dd:topic "Water Color" ;
-              
-              rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/13> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#Wildfire
-
-dd:Wildfire rdf:type owl:Class ;
-            
-            rdfs:label "Wildfire"@en ;
-            
-            rdfs:subClassOf dd:Phenomena ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty dd:physicalManifestation ;
-                              owl:someValuesFrom dd:SmokePlume
-                            ] ;
-            
-            dd:topic "Wildfires" ;
-            
-            rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/8> .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#WindFields
-
-dd:WindFields rdf:type owl:Class ;
-              
-              rdfs:label "Wind Fields"@en ;
-              
-              rdfs:subClassOf dd:PhysicalManifestation .
-
-
-
-
-
-#################################################################
-#
-#    Individuals
-#
-#################################################################
-
-
-###  http://darkdata.tw.rpi.edu/data/service/AcMp
-
-<http://darkdata.tw.rpi.edu/data/service/AcMp> rdf:type dd:Map ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               dct:identifier "AcMp" ;
-                                               
-                                               rdfs:comment "Accumulation of measurement over time at each grid point"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/ArAvSc
-
-<http://darkdata.tw.rpi.edu/data/service/ArAvSc> rdf:type dd:ScatterPlot ,
-                                                          dd:TwoVariableVisualization ,
-                                                          dd:Visualization ,
-                                                          owl:NamedIndividual ;
-                                                 
-                                                 dct:identifier "ArAvSc" ;
-                                                 
-                                                 rdfs:comment "Scatter plot comparing area averaged time series for two variables"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/ArAvTs
-
-<http://darkdata.tw.rpi.edu/data/service/ArAvTs> rdf:type dd:OneVariableVisualization ,
-                                                          dd:TimeSeries ,
-                                                          dd:Visualization ,
-                                                          owl:NamedIndividual ;
-                                                 
-                                                 rdfs:label "Area-averaged Time Series"@en ;
-                                                 
-                                                 dct:identifier "ArAvTs" ;
-                                                 
-                                                 rdfs:comment "Time series of area-averaged values"@en ;
-                                                 
-                                                 dd:bestFor dd:detection_of_events ,
-                                                            dd:temporal_evolution .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/CoMp
-
-<http://darkdata.tw.rpi.edu/data/service/CoMp> rdf:type dd:Map ,
-                                                        dd:TwoVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               dct:identifier "CoMp" ;
-                                               
-                                               rdfs:comment "Simple linear regression of 2 variables at each grid cell"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/CrLn
-
-<http://darkdata.tw.rpi.edu/data/service/CrLn> rdf:type dd:ColorSliceGrid ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               dct:identifier "CrLn" ;
-                                               
-                                               rdfs:comment "Cross Map, Longitude-Pressure"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/CrLt
-
-<http://darkdata.tw.rpi.edu/data/service/CrLt> rdf:type dd:ColorSliceGrid ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               dct:identifier "CrLt" ;
-                                               
-                                               rdfs:comment "Cross Map, Latitude-Pressure"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/CrTm
-
-<http://darkdata.tw.rpi.edu/data/service/CrTm> rdf:type dd:ColorSliceGrid ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               dct:identifier "CrTm" ;
-                                               
-                                               rdfs:comment "Cross Map, Time-Pressure"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/DiArAvTs
-
-<http://darkdata.tw.rpi.edu/data/service/DiArAvTs> rdf:type dd:TimeSeries ,
-                                                            dd:TwoVariableVisualization ,
-                                                            dd:Visualization ,
-                                                            owl:NamedIndividual ;
-                                                   
-                                                   dct:identifier "DiArAvTs" ;
-                                                   
-                                                   rdfs:comment "Time series of area averages of differences between two variables at each spatial grid point"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/DiTmAvMp
-
-<http://darkdata.tw.rpi.edu/data/service/DiTmAvMp> rdf:type dd:Map ,
-                                                            dd:TwoVariableVisualization ,
-                                                            dd:Visualization ,
-                                                            owl:NamedIndividual ;
-                                                   
-                                                   dct:identifier "DiTmAvMp" ;
-                                                   
-                                                   rdfs:comment "Difference of two time averaged variable maps"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/HiGm
-
-<http://darkdata.tw.rpi.edu/data/service/HiGm> rdf:type dd:Histogram ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:label "Histogram"@en ;
-                                               
-                                               dct:identifier "HiGm" ;
-                                               
-                                               rdfs:comment "Distribution of values over time and space"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/HvLn
-
-<http://darkdata.tw.rpi.edu/data/service/HvLn> rdf:type dd:ColorSliceGrid ,
-                                                        dd:Hovmoller ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:label "Hovmoller (Latitude)"@en ;
-                                               
-                                               dct:identifier "HvLn"^^xsd:string ;
-                                               
-                                               rdfs:comment "Latitude-averaged Hovmoller, plotted over the selected time and longitude ranges"@en ;
-                                               
-                                               dd:bestFor dd:north-south-movement .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/HvLt
-
-<http://darkdata.tw.rpi.edu/data/service/HvLt> rdf:type dd:ColorSliceGrid ,
-                                                        dd:Hovmoller ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:label "Hovmoller (Longitude)"@en ;
-                                               
-                                               dct:identifier "HvLt"^^xsd:string ;
-                                               
-                                               rdfs:comment "Longitude-averaged Hovmoller, plotted over the selected time and latitude ranges"@en ;
-                                               
-                                               dd:bestFor dd:east-west-movement .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/IaSc
-
-<http://darkdata.tw.rpi.edu/data/service/IaSc> rdf:type dd:ScatterPlot ,
-                                                        dd:TwoVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:label "Interactive Scatter Plot"@en ;
-                                               
-                                               dct:identifier "IaSc" .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/InTs
-
-<http://darkdata.tw.rpi.edu/data/service/InTs> rdf:type dd:OneVariableVisualization ,
-                                                        dd:TimeSeries ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:label "Seasonal Time Series"@en ;
-                                               
-                                               dct:identifier "InTs" ;
-                                               
-                                               rdfs:comment "Seasonal (inter annual) time series"@en ;
-                                               
-                                               dd:bestFor dd:year-to-year-variability .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/MpAn
-
-<http://darkdata.tw.rpi.edu/data/service/MpAn> rdf:type dd:Map ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:comment "Map animated along the chosen timeline for each grid cell"@en ;
-                                               
-                                               dct:identifier "MpAn" .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/QuCl
-
-<http://darkdata.tw.rpi.edu/data/service/QuCl> rdf:type dd:ColorSliceMap ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:label "User-defined Climatology"@en ;
-                                               
-                                               dct:identifier "QuCl" ;
-                                               
-                                               rdfs:comment "Quasi Climatology Map"@en ;
-                                               
-                                               dd:bestFor dd:seasonal_variation .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/StSc
-
-<http://darkdata.tw.rpi.edu/data/service/StSc> rdf:type dd:ScatterPlot ,
-                                                        dd:TwoVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:label "Static Scatter Plot"@en ;
-                                               
-                                               dct:identifier "StSc" ;
-                                               
-                                               rdfs:comment "Static Scatter plot"@en .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/TmAvMp
-
-<http://darkdata.tw.rpi.edu/data/service/TmAvMp> rdf:type dd:ColorSliceMap ,
-                                                          dd:OneVariableVisualization ,
-                                                          dd:Visualization ,
-                                                          owl:NamedIndividual ;
-                                                 
-                                                 rdfs:label "Time-averaged Map"@en ;
-                                                 
-                                                 rdfs:comment "Interactive map of average over time at each grid cell"@en ;
-                                                 
-                                                 dct:identifier "TmAvMp" ;
-                                                 
-                                                 dd:bestFor dd:spatial_extent_of_event .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/TmAvSc
-
-<http://darkdata.tw.rpi.edu/data/service/TmAvSc> rdf:type dd:ScatterPlot ,
-                                                          dd:TwoVariableVisualization ,
-                                                          dd:Visualization ,
-                                                          owl:NamedIndividual ;
-                                                 
-                                                 rdfs:label "Time-averaged Scatter Plot"@en ;
-                                                 
-                                                 rdfs:comment "Time-averaged, interactive X-Y plot of 2 variables"@en ;
-                                                 
-                                                 dct:identifier "TmAvSc" .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/VtPf
-
-<http://darkdata.tw.rpi.edu/data/service/VtPf> rdf:type dd:LinePlot ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:label "Vertical Profile"@en ;
-                                               
-                                               dct:identifier "VtPf" ;
-                                               
-                                               rdfs:comment "Vertical Profile"@en ;
-                                               
-                                               dd:bestFor dd:variation_with_atmospheric_height .
-
-
-
-###  http://darkdata.tw.rpi.edu/data/service/ZnMn
-
-<http://darkdata.tw.rpi.edu/data/service/ZnMn> rdf:type dd:LinePlot ,
-                                                        dd:OneVariableVisualization ,
-                                                        dd:Visualization ,
-                                                        owl:NamedIndividual ;
-                                               
-                                               rdfs:label "Zonal Means"@en ;
-                                               
-                                               dct:identifier "ZnMn" ;
-                                               
-                                               rdfs:comment "Zonal mean plot, averaged values are plotted over latitude zones"@en ;
-                                               
-                                               dd:bestFor dd:global-phenomena .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#aerosol_optical_depth_thickness
-
-dd:aerosol_optical_depth_thickness rdf:type dd:AerosolOpticalDepth ,
-                                            owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#atmospheric_concentration_SO2
-
-dd:atmospheric_concentration_SO2 rdf:type dd:AtmosphericConcentration ,
-                                          owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#detection_of_events
-
-dd:detection_of_events rdf:type dd:FeatureCharacteristic ,
-                                owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#east-west-movement
-
-dd:east-west-movement rdf:type dd:FeatureCharacteristic ,
-                               owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#global_phenomena
-
-dd:global_phenomena rdf:type dd:FeatureCharacteristic ,
-                             owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#indifferent_compatibility
-
-dd:indifferent_compatibility rdf:type dd:CompatibilityValue ,
-                                      owl:NamedIndividual ;
-                             
-                             rdfs:label "indifferent compatibility" ;
-                             
-                             dct:identifier "INDIFFERENT"^^xsd:string .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#infrared_radiance
-
-dd:infrared_radiance rdf:type dd:Radiance ,
-                              owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#negative_compatibility
-
-dd:negative_compatibility rdf:type dd:CompatibilityValue ,
-                                   owl:NamedIndividual ;
-                          
-                          rdfs:label "negative compatibility" ;
-                          
-                          dct:identifier "NEGATIVE"^^xsd:string .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#north-south-movement
-
-dd:north-south-movement rdf:type dd:FeatureCharacteristic ,
-                                 owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#seasonal_variation
-
-dd:seasonal_variation rdf:type dd:FeatureCharacteristic ,
-                               owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#slight_compatibility
-
-dd:slight_compatibility rdf:type dd:CompatibilityValue ,
-                                 owl:NamedIndividual ;
-                        
-                        rdfs:label "slight compatibility" ;
-                        
-                        dct:identifier "SLIGHT"^^xsd:string .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#some_compatibility
-
-dd:some_compatibility rdf:type dd:CompatibilityValue ,
-                               owl:NamedIndividual ;
-                      
-                      rdfs:label "some compatibility" ;
-                      
-                      dct:identifier "SOME"^^xsd:string .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#spatial_extent_of_event
-
-dd:spatial_extent_of_event rdf:type dd:FeatureCharacteristic ,
-                                    owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#strong_compatibility
-
-dd:strong_compatibility rdf:type dd:CompatibilityValue ,
-                                 owl:NamedIndividual ;
-                        
-                        rdfs:label "strong compatibility" ;
-                        
-                        dct:identifier "STRONG"^^xsd:string .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#surface_temperature
-
-dd:surface_temperature rdf:type dd:Temperature ,
-                                owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#temporal_evolution
-
-dd:temporal_evolution rdf:type dd:FeatureCharacteristic ,
-                               owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#variation_with_atmospheric_height
-
-dd:variation_with_atmospheric_height rdf:type dd:FeatureCharacteristic ,
-                                              owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#visible_radiance
-
-dd:visible_radiance rdf:type dd:Radiance ,
-                             owl:NamedIndividual .
-
-
-
-###  http://www.purl.org/twc/ns/darkdata#year-to-year-variability
-
-dd:year-to-year-variability rdf:type dd:FeatureCharacteristic ,
-                                     owl:NamedIndividual .
-
-
-
-
-###  Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net
-
+<http://www.purl.org/twc/ns/darkdata> a owl:Ontology ;
+	rdfs:label "Dark Data Ontology"@en .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/identifier
+
+dct:identifier a owl:AnnotationProperty .
+# 
+# http://www.purl.org/twc/ns/darkdata#bestFor
+
+:bestFor a owl:AnnotationProperty ;
+	rdfs:label "best for"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#scienceKeyword
+
+:scienceKeyword a owl:AnnotationProperty ;
+	rdfs:comment "science keyword associated with class" ;
+	rdfs:label "science keyword" .
+# 
+# http://www.purl.org/twc/ns/darkdata#shortName
+
+:shortName a owl:AnnotationProperty ;
+	rdfs:label "short name"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#topic
+
+:topic a owl:AnnotationProperty ;
+	rdfs:comment "keyword or category associated with this class or property" ;
+	rdfs:label "topic" .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://purl.org/dc/terms/hasPart
+
+dct:hasPart a owl:ObjectProperty ;
+	owl:inverseOf dct:isPartOf .
+# 
+# http://purl.org/dc/terms/hasVersion
+
+dct:hasVersion a owl:ObjectProperty ;
+	owl:inverseOf dct:isVersionOf .
+# 
+# http://purl.org/dc/terms/isPartOf
+
+dct:isPartOf a owl:ObjectProperty .
+# 
+# http://purl.org/dc/terms/isVersionOf
+
+dct:isVersionOf a owl:ObjectProperty .
+# 
+# http://www.purl.org/twc/ns/darkdata#basisForAssertion
+
+:basisForAssertion a owl:ObjectProperty ;
+	rdfs:domain :CompatibilityAssertion ;
+	rdfs:range :CompatibilityFunction ;
+	rdfs:label "basis for assertion" .
+# 
+# http://www.purl.org/twc/ns/darkdata#candidate
+
+:candidate a owl:ObjectProperty ;
+	rdfs:domain :CompatibilityAssertion ;
+	rdfs:range :CandidateWorkflow ;
+	rdfs:label "candidate workflow" .
+# 
+# http://www.purl.org/twc/ns/darkdata#candidateEvent
+
+:candidateEvent a owl:ObjectProperty ;
+	rdfs:domain :CandidateWorkflow ;
+	rdfs:range :Phenomena ;
+	rdfs:label "candidate event" .
+# 
+# http://www.purl.org/twc/ns/darkdata#candidateFeature
+
+:candidateFeature a owl:ObjectProperty ;
+	rdfs:domain :CandidateWorkflow ;
+	rdfs:range :PhysicalFeature ;
+	rdfs:label "candidate feature" .
+# 
+# http://www.purl.org/twc/ns/darkdata#candidateService
+
+:candidateService a owl:ObjectProperty ;
+	rdfs:domain :CandidateWorkflow ;
+	rdfs:range :Visualization ;
+	rdfs:label "candidate service" .
+# 
+# http://www.purl.org/twc/ns/darkdata#candidateVariable
+
+:candidateVariable a owl:ObjectProperty ;
+	rdfs:domain :CandidateWorkflow ;
+	rdfs:range :DataVariable ;
+	rdfs:label "candidate variable" .
+# 
+# http://www.purl.org/twc/ns/darkdata#compatibilityAssertion
+
+:compatibilityAssertion a owl:ObjectProperty ;
+	rdfs:domain :Candidate ;
+	rdfs:range :CompatibilityAssertion ;
+	rdfs:label "compatibility assertion" .
+# 
+# http://www.purl.org/twc/ns/darkdata#compatibilityValue
+
+:compatibilityValue a owl:ObjectProperty ;
+	rdfs:domain :CompatibilityAssertion ;
+	rdfs:range :CompatibilityValue ;
+	rdfs:label "compatibility value" .
+# 
+# http://www.purl.org/twc/ns/darkdata#criteriaDataField
+
+:criteriaDataField a owl:ObjectProperty ;
+	rdfs:domain :RequestCriteria ;
+	rdfs:range :DataField ;
+	rdfs:label "request criteria datafield"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#criteriaEvent
+
+:criteriaEvent a owl:ObjectProperty ;
+	rdfs:domain :RequestCriteria ;
+	rdfs:range :Event ;
+	rdfs:label "request criteria event"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#evidenceForAssertion
+
+:evidenceForAssertion a owl:ObjectProperty ;
+	rdfs:domain :CompatibilityAssertion ;
+	rdfs:label "evidence for assertion" .
+# 
+# http://www.purl.org/twc/ns/darkdata#hasDeployment
+
+:hasDeployment a owl:ObjectProperty ;
+	rdfs:range ssn:Deployment ;
+	rdfs:label "has deployment"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#measurement
+
+:measurement a owl:ObjectProperty ;
+	rdfs:domain :DataField ;
+	rdfs:range :Measurement ;
+	rdfs:label "measurement"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#observableProperty
+
+:observableProperty a owl:ObjectProperty ;
+	rdfs:domain :PhysicalFeature ;
+	rdfs:range :ObservableProperty ;
+	rdfs:comment "observable property of some physical manifestation of a phenomena"@en ;
+	rdfs:label "observable property"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#physicalDriver
+
+:physicalDriver a owl:ObjectProperty ;
+	rdfs:domain :Phenomena ;
+	rdfs:range :PhysicalFeature ;
+	rdfs:comment "physical manifestation that is a driving force for a phenomena (e.g. elevated sea surface temperature is a driver of hurricanes)"@en ;
+	rdfs:label "physical driver"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#physicalManifestation
+
+:physicalManifestation a owl:ObjectProperty ;
+	rdfs:domain :Phenomena ;
+	rdfs:range :PhysicalFeature ;
+	rdfs:comment "physical manifestation of a phenomena"@en ;
+	rdfs:label "physical manifestation"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#spatialResolution
+
+:spatialResolution a owl:ObjectProperty ;
+	rdfs:domain :DataField ;
+	rdfs:range :SpatialResolution ;
+	rdfs:label "spatial resolution"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#strongCompatibilityFor
+
+:strongCompatibilityFor a owl:ObjectProperty .
+# 
+# http://www.purl.org/twc/ns/darkdata#timeInterval
+
+:timeInterval a owl:ObjectProperty ;
+	rdfs:domain :DataField ;
+	rdfs:range :TimeInterval ;
+	rdfs:label "time interval"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://www.purl.org/twc/ns/darkdata#assertionConfidence
+
+:assertionConfidence a owl:DatatypeProperty ;
+	rdfs:domain :CompatibilityAssertion ;
+	rdfs:label "assertion confidence"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#endDateTime
+
+:endDateTime a owl:DatatypeProperty ;
+	rdfs:range xsd:dateTime ;
+	rdfs:label "end datetime"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#processingLevel
+
+:processingLevel a owl:DatatypeProperty ;
+	rdfs:domain _:genid1 .
+
+_:genid1 a owl:Class ;
+	owl:unionOf _:genid4 .
+
+_:genid4 a rdf:List ;
+	rdf:first :DataField ;
+	rdf:rest _:genid3 .
+
+_:genid3 a rdf:List ;
+	rdf:first :DataProduct ;
+	rdf:rest _:genid2 .
+
+_:genid2 a rdf:List ;
+	rdf:first :VersionedDataProduct ;
+	rdf:rest rdf:nil .
+
+:processingLevel rdfs:label "processing level"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#startDateTime
+
+:startDateTime a owl:DatatypeProperty ;
+	rdfs:range xsd:dateTime ;
+	rdfs:label "start datetime"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://purl.oclc.org/NET/ssnx/ssn#Deployment
+
+ssn:Deployment a owl:Class .
+# 
+# http://purl.oclc.org/NET/ssnx/ssn#Property
+
+ssn:Property a owl:Class .
+# 
+# http://www.purl.org/twc/ns/darkdata#AerosolOpticalDepth
+
+:AerosolOpticalDepth a owl:Class ;
+	rdfs:subClassOf :ObservableProperty ;
+	rdfs:label "Aerosol Optical Depth"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#AirPollution
+
+:AirPollution a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Air Pollution"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#AirQuality
+
+:AirQuality a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Air Quality"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#AshPlume
+
+:AshPlume a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature , _:genid5 .
+
+_:genid5 a owl:Restriction ;
+	owl:onProperty :observableProperty ;
+	owl:hasValue :aerosol_optical_depth_thickness .
+
+:AshPlume rdfs:label "Ash Plume"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#AtmosphericConcentration
+
+:AtmosphericConcentration a owl:Class ;
+	rdfs:subClassOf :ObservableProperty ;
+	rdfs:label "Atmospheric Concentration"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Candidate
+
+:Candidate a owl:Class ;
+	rdfs:label "Candidate" .
+# 
+# http://www.purl.org/twc/ns/darkdata#CandidateWorkflow
+
+:CandidateWorkflow a owl:Class ;
+	rdfs:subClassOf :Candidate , _:genid6 .
+
+_:genid6 a owl:Restriction ;
+	owl:onProperty :candidateEvent ;
+	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :Event .
+
+:CandidateWorkflow rdfs:subClassOf _:genid7 .
+
+_:genid7 a owl:Restriction ;
+	owl:onProperty :candidateFeature ;
+	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :PhysicalFeature .
+
+:CandidateWorkflow rdfs:label "Candidate Workflow" .
+# 
+# http://www.purl.org/twc/ns/darkdata#ColorSliceGrid
+
+:ColorSliceGrid a owl:Class ;
+	rdfs:subClassOf :Visualization ;
+	rdfs:label "Color-slice Grid"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#ColorSliceMap
+
+:ColorSliceMap a owl:Class ;
+	rdfs:subClassOf :Visualization ;
+	rdfs:label "Color-slice Map"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Column_SO2
+
+:Column_SO2 a owl:Class ;
+	rdfs:subClassOf :ObservableProperty ;
+	rdfs:label "SO2 Column"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#CompatibilityAssertion
+
+:CompatibilityAssertion a owl:Class ;
+	rdfs:label "Compatibility Assertion" .
+# 
+# http://www.purl.org/twc/ns/darkdata#CompatibilityFunction
+
+:CompatibilityFunction a owl:Class ;
+	rdfs:label "Compatibility Function" .
+# 
+# http://www.purl.org/twc/ns/darkdata#CompatibilityValue
+
+:CompatibilityValue a owl:Class ;
+	rdfs:label "Compatibility Value" .
+# 
+# http://www.purl.org/twc/ns/darkdata#DataField
+
+:DataField a owl:Class ;
+	owl:equivalentClass :DataVariable ;
+	rdfs:subClassOf _:genid8 .
+
+_:genid8 a owl:Restriction ;
+	owl:onProperty dct:isPartOf ;
+	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :VersionedDataProduct .
+
+:DataField rdfs:label "DataField"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#DataProduct
+
+:DataProduct a owl:Class ;
+	rdfs:label "Data Product"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#DataVariable
+
+:DataVariable a owl:Class ;
+	rdfs:comment "Representation of the measurement in a data file"@en ;
+	rdfs:label "Data Variable"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Drought
+
+:Drought a owl:Class ;
+	rdfs:subClassOf :Phenomena ;
+	:topic "Drought" ;
+	rdfs:label "Drought"@en , "Long lasting absence of precipitation affecting agriculture and livestock, and the overall availability of food and water." ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/6> .
+# 
+# http://www.purl.org/twc/ns/darkdata#DustAndHaze
+
+:DustAndHaze a owl:Class ;
+	rdfs:subClassOf :Phenomena , _:genid9 .
+
+_:genid9 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :DustPlume .
+
+:DustAndHaze :topic "Dust and Haze" ;
+	rdfs:label "Dust and Haze"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/7> .
+# 
+# http://www.purl.org/twc/ns/darkdata#DustPlume
+
+:DustPlume a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Dust Plume"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#DustStorm
+
+:DustStorm a owl:Class ;
+	rdfs:subClassOf :DustAndHaze , :SevereStorm ;
+	:topic "Dust Storm" ;
+	rdfs:label "Dust Storm"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Earthquake
+
+:Earthquake a owl:Class ;
+	rdfs:subClassOf :Phenomena ;
+	:topic "Earthquakes" ;
+	rdfs:comment "Related to all manner of shaking and displacement. Certain aftermath of earthquakes may also be found under landslides and floods." ;
+	rdfs:label "Earthquake"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/16> .
+# 
+# http://www.purl.org/twc/ns/darkdata#ElevatedSurfaceTemperature
+
+:ElevatedSurfaceTemperature a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Elevated Surface Temperature"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Emission_SO2
+
+:Emission_SO2 a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "SO2 Emission"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Event
+
+:Event a owl:Class ;
+	rdfs:label "Event"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#FeatureCharacteristic
+
+:FeatureCharacteristic a owl:Class ;
+	rdfs:label "Feature Characteristic"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Flood
+
+:Flood a owl:Class ;
+	rdfs:subClassOf :Phenomena , _:genid10 .
+
+_:genid10 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :Precipitation .
+
+:Flood rdfs:subClassOf _:genid11 .
+
+_:genid11 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :StationaryWaterVaporAnomaly .
+
+:Flood :topic "Floods" ;
+	rdfs:label "Flood"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/9> .
+# 
+# http://www.purl.org/twc/ns/darkdata#GroundFlow
+
+:GroundFlow a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Ground Flow"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Histogram
+
+:Histogram a owl:Class ;
+	rdfs:subClassOf :Visualization ;
+	rdfs:label "Histogram"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Hovmoller
+
+:Hovmoller a owl:Class ;
+	rdfs:subClassOf :ColorSliceGrid ;
+	rdfs:label "Hovmoller"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Hurricane
+
+:Hurricane a owl:Class ;
+	rdfs:subClassOf :TropicalStorm , _:genid12 .
+
+_:genid12 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :HurricaneEye .
+
+:Hurricane :topic "Severe Storms" ;
+	rdfs:label "Hurricane"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/10> .
+# 
+# http://www.purl.org/twc/ns/darkdata#HurricaneEye
+
+:HurricaneEye a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature , _:genid13 .
+
+_:genid13 a owl:Restriction ;
+	owl:onProperty :strongCompatibilityFor ;
+	owl:hasValue :temporal_evolution .
+
+:HurricaneEye rdfs:subClassOf _:genid14 .
+
+_:genid14 a owl:Restriction ;
+	owl:onProperty :strongCompatibilityFor ;
+	owl:hasValue :variation_with_atmospheric_height .
+
+:HurricaneEye rdfs:label "Hurricane Eye"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Inundation
+
+:Inundation a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Inundation"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Landslide
+
+:Landslide a owl:Class ;
+	rdfs:subClassOf :Phenomena , _:genid15 .
+
+_:genid15 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :GroundFlow .
+
+:Landslide :topic "Landslides" ;
+	rdfs:comment "Related to landslides and variations thereof: mudslides, avalanche." ;
+	rdfs:label "Landslide"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/14> .
+# 
+# http://www.purl.org/twc/ns/darkdata#LinePlot
+
+:LinePlot a owl:Class ;
+	rdfs:subClassOf :Visualization ;
+	rdfs:label "Line Plot"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#ManMade
+
+:ManMade a owl:Class ;
+	rdfs:subClassOf :Phenomena ;
+	:topic "Manmade" ;
+	rdfs:comment "Events that have been human-induced and are extreme in their extent." ;
+	rdfs:label "Man-made"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/19> .
+# 
+# http://www.purl.org/twc/ns/darkdata#Map
+
+:Map a owl:Class ;
+	rdfs:subClassOf :Visualization ;
+	rdfs:label "Map"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Measurement
+
+:Measurement a owl:Class ;
+	owl:equivalentClass :ObservableProperty ;
+	rdfs:label "Measurement"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#ObservableProperty
+
+:ObservableProperty a owl:Class ;
+	rdfs:label "Observable Property"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#OneVariableVisualization
+
+:OneVariableVisualization a owl:Class ;
+	rdfs:subClassOf :Visualization ;
+	owl:disjointWith :TwoVariableVisualization ;
+	rdfs:label "One Variable Visualization"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Phenomena
+
+:Phenomena a owl:Class ;
+	rdfs:subClassOf :Event ;
+	rdfs:comment "An observable occurrence of particular physical (as opposed to dynamic or synoptic) significance within the atmosphere"@en ;
+	rdfs:label "Phenomena"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#PhysicalFeature
+
+:PhysicalFeature a owl:Class ;
+	rdfs:label "Physical Feature"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Precipitation
+
+:Precipitation a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Precipitation"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Radiance
+
+:Radiance a owl:Class ;
+	rdfs:subClassOf :ObservableProperty ;
+	rdfs:label "Radiance"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#RainRate
+
+:RainRate a owl:Class ;
+	rdfs:subClassOf :ObservableProperty ;
+	rdfs:label "Rain Rate"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Reflectance
+
+:Reflectance a owl:Class ;
+	rdfs:subClassOf :ObservableProperty ;
+	rdfs:label "Reflectance"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#RequestCriteria
+
+:RequestCriteria a owl:Class ;
+	rdfs:subClassOf _:genid16 .
+
+_:genid16 a owl:Restriction ;
+	owl:onProperty :criteriaEvent ;
+	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :Event .
+
+:RequestCriteria rdfs:label "Request Criteria"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#ScatterPlot
+
+:ScatterPlot a owl:Class ;
+	rdfs:subClassOf :TwoVariableVisualization ;
+	rdfs:label "Scatter Plot"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#SeaAndLakeIce
+
+:SeaAndLakeIce a owl:Class ;
+	rdfs:subClassOf :Phenomena ;
+	:topic "Sea and Lake Ice" ;
+	rdfs:comment "Related to all ice that resides on oceans and lakes, including sea and lake ice (permanent and seasonal) and icebergs." ;
+	rdfs:label "Sea and Lake Ice"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/15> .
+# 
+# http://www.purl.org/twc/ns/darkdata#SevereStorm
+
+:SevereStorm a owl:Class ;
+	rdfs:subClassOf :Phenomena , _:genid17 .
+
+_:genid17 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :WindFields .
+
+:SevereStorm :topic "Severe Storms" ;
+	rdfs:label "Severe Storm"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/10> .
+# 
+# http://www.purl.org/twc/ns/darkdata#ShortDurationPhenomena
+
+:ShortDurationPhenomena a owl:Class ;
+	rdfs:subClassOf :Phenomena ;
+	rdfs:label "Short-duration Phenomena"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#SmokePlume
+
+:SmokePlume a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Smoke Plume"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Snow
+
+:Snow a owl:Class ;
+	rdfs:subClassOf :Phenomena , _:genid18 .
+
+_:genid18 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :Precipitation .
+
+:Snow :topic "Snow" ;
+	rdfs:comment "Related to snow events, particularly extreme/anomalous snowfall in either timing or extent/depth." ;
+	rdfs:label "Snow"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/17> .
+# 
+# http://www.purl.org/twc/ns/darkdata#SpatialResolution
+
+:SpatialResolution a owl:Class ;
+	rdfs:label "Spatial Resolution"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#StationaryWaterVaporAnomaly
+
+:StationaryWaterVaporAnomaly a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Stationary Water Vapor Anomaly"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Temperature
+
+:Temperature a owl:Class ;
+	rdfs:subClassOf :ObservableProperty ;
+	rdfs:label "Temperature"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#TemperatureExtreme
+
+:TemperatureExtreme a owl:Class ;
+	rdfs:subClassOf :Phenomena ;
+	:topic "Temperature Extremes" ;
+	rdfs:comment "Related to anomalous land temperatures, either heat or cold." ;
+	rdfs:label "Temperature Extreme"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/18> .
+# 
+# http://www.purl.org/twc/ns/darkdata#TimeInterval
+
+:TimeInterval a owl:Class ;
+	rdfs:label "Time Interval"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#TimeSeries
+
+:TimeSeries a owl:Class ;
+	rdfs:subClassOf :Visualization ;
+	rdfs:label "Time series"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#TropicalStorm
+
+:TropicalStorm a owl:Class ;
+	rdfs:subClassOf :SevereStorm , _:genid19 .
+
+_:genid19 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :Precipitation .
+
+:TropicalStorm :topic "Severe Storms" ;
+	rdfs:label "Tropical Storm"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/10> .
+# 
+# http://www.purl.org/twc/ns/darkdata#TwoVariableVisualization
+
+:TwoVariableVisualization a owl:Class ;
+	rdfs:subClassOf :Visualization ;
+	rdfs:label "Two Variable Visualization"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#VersionedDataProduct
+
+:VersionedDataProduct a owl:Class ;
+	rdfs:subClassOf _:genid20 .
+
+_:genid20 a owl:Restriction ;
+	owl:onProperty dct:isVersionOf ;
+	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onClass :DataProduct .
+
+:VersionedDataProduct rdfs:label "Versioned Data Product"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#Visualization
+
+:Visualization a owl:Class ;
+	rdfs:label "Visualization"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#VolcanicEruption
+
+:VolcanicEruption a owl:Class ;
+	rdfs:subClassOf :Phenomena , _:genid21 .
+
+_:genid21 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :AshPlume .
+
+:VolcanicEruption :topic "Volcanoes" ;
+	rdfs:comment "Related to both the physical effects of an eruption (rock, ash, lava) and the atmospheric (ash and gas plumes). " ;
+	rdfs:label "Volcanic Eruption"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/12> .
+# 
+# http://www.purl.org/twc/ns/darkdata#WaterColor
+
+:WaterColor a owl:Class ;
+	rdfs:subClassOf :Phenomena ;
+	:topic "Water Color" ;
+	rdfs:comment "Related to events that alter the appearance of water: phytoplankton, red tide, algae, sediment, whiting, etc." ;
+	rdfs:label "Water Color"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/13> .
+# 
+# http://www.purl.org/twc/ns/darkdata#Wildfire
+
+:Wildfire a owl:Class ;
+	rdfs:subClassOf :Phenomena , _:genid22 .
+
+_:genid22 a owl:Restriction ;
+	owl:onProperty :physicalManifestation ;
+	owl:someValuesFrom :SmokePlume .
+
+:Wildfire :topic "Wildfires" ;
+	rdfs:label "Wildfire"@en ;
+	rdfs:seeAlso <http://eonet.sci.gsfc.nasa.gov/api/v1/topics/8> .
+# 
+# http://www.purl.org/twc/ns/darkdata#WindFields
+
+:WindFields a owl:Class ;
+	rdfs:subClassOf :PhysicalFeature ;
+	rdfs:label "Wind Fields"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://darkdata.tw.rpi.edu/data/service/AcMp
+
+<http://darkdata.tw.rpi.edu/data/service/AcMp> a owl:NamedIndividual , :Map , :OneVariableVisualization , :Visualization ;
+	dct:identifier "AcMp" ;
+	rdfs:comment "Accumulation of measurement over time at each grid point"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/ArAvSc
+
+<http://darkdata.tw.rpi.edu/data/service/ArAvSc> a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
+	dct:identifier "ArAvSc" ;
+	rdfs:comment "Scatter plot comparing area averaged time series for two variables"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/ArAvTs
+
+<http://darkdata.tw.rpi.edu/data/service/ArAvTs> a owl:NamedIndividual , :OneVariableVisualization , :TimeSeries , :Visualization ;
+	dct:identifier "ArAvTs" ;
+	:bestFor :detection_of_events , :temporal_evolution ;
+	rdfs:comment "Time series of area-averaged values"@en ;
+	rdfs:label "Area-averaged Time Series"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/CoMp
+
+<http://darkdata.tw.rpi.edu/data/service/CoMp> a owl:NamedIndividual , :Map , :TwoVariableVisualization , :Visualization ;
+	dct:identifier "CoMp" ;
+	rdfs:comment "Simple linear regression of 2 variables at each grid cell"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/CrLn
+
+<http://darkdata.tw.rpi.edu/data/service/CrLn> a owl:NamedIndividual , :ColorSliceGrid , :OneVariableVisualization , :Visualization ;
+	dct:identifier "CrLn" ;
+	rdfs:comment "Cross Map, Longitude-Pressure"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/CrLt
+
+<http://darkdata.tw.rpi.edu/data/service/CrLt> a owl:NamedIndividual , :ColorSliceGrid , :OneVariableVisualization , :Visualization ;
+	dct:identifier "CrLt" ;
+	rdfs:comment "Cross Map, Latitude-Pressure"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/CrTm
+
+<http://darkdata.tw.rpi.edu/data/service/CrTm> a owl:NamedIndividual , :ColorSliceGrid , :OneVariableVisualization , :Visualization ;
+	dct:identifier "CrTm" ;
+	rdfs:comment "Cross Map, Time-Pressure"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/DiArAvTs
+
+<http://darkdata.tw.rpi.edu/data/service/DiArAvTs> a owl:NamedIndividual , :TimeSeries , :TwoVariableVisualization , :Visualization ;
+	dct:identifier "DiArAvTs" ;
+	rdfs:comment "Time series of area averages of differences between two variables at each spatial grid point"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/DiTmAvMp
+
+<http://darkdata.tw.rpi.edu/data/service/DiTmAvMp> a owl:NamedIndividual , :Map , :TwoVariableVisualization , :Visualization ;
+	dct:identifier "DiTmAvMp" ;
+	rdfs:comment "Difference of two time averaged variable maps"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/HiGm
+
+<http://darkdata.tw.rpi.edu/data/service/HiGm> a owl:NamedIndividual , :Histogram , :OneVariableVisualization , :Visualization ;
+	dct:identifier "HiGm" ;
+	rdfs:comment "Distribution of values over time and space"@en ;
+	rdfs:label "Histogram"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/HvLn
+
+<http://darkdata.tw.rpi.edu/data/service/HvLn> a owl:NamedIndividual , :ColorSliceGrid , :Hovmoller , :OneVariableVisualization , :Visualization ;
+	dct:identifier "HvLn"^^xsd:string ;
+	:bestFor :north-south-movement ;
+	rdfs:comment "Latitude-averaged Hovmoller, plotted over the selected time and longitude ranges"@en ;
+	rdfs:label "Hovmoller (Latitude)"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/HvLt
+
+<http://darkdata.tw.rpi.edu/data/service/HvLt> a owl:NamedIndividual , :ColorSliceGrid , :Hovmoller , :OneVariableVisualization , :Visualization ;
+	dct:identifier "HvLt"^^xsd:string ;
+	:bestFor :east-west-movement ;
+	rdfs:comment "Longitude-averaged Hovmoller, plotted over the selected time and latitude ranges"@en ;
+	rdfs:label "Hovmoller (Longitude)"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/IaSc
+
+<http://darkdata.tw.rpi.edu/data/service/IaSc> a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
+	dct:identifier "IaSc" ;
+	rdfs:label "Interactive Scatter Plot"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/InTs
+
+<http://darkdata.tw.rpi.edu/data/service/InTs> a owl:NamedIndividual , :OneVariableVisualization , :TimeSeries , :Visualization ;
+	dct:identifier "InTs" ;
+	:bestFor :year-to-year-variability ;
+	rdfs:comment "Seasonal (inter annual) time series"@en ;
+	rdfs:label "Seasonal Time Series"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/MpAn
+
+<http://darkdata.tw.rpi.edu/data/service/MpAn> a owl:NamedIndividual , :Map , :OneVariableVisualization , :Visualization ;
+	dct:identifier "MpAn" ;
+	rdfs:comment "Map animated along the chosen timeline for each grid cell"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/QuCl
+
+<http://darkdata.tw.rpi.edu/data/service/QuCl> a owl:NamedIndividual , :ColorSliceMap , :OneVariableVisualization , :Visualization ;
+	dct:identifier "QuCl" ;
+	:bestFor :seasonal_variation ;
+	rdfs:comment "Quasi Climatology Map"@en ;
+	rdfs:label "User-defined Climatology"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/StSc
+
+<http://darkdata.tw.rpi.edu/data/service/StSc> a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
+	dct:identifier "StSc" ;
+	rdfs:comment "Static Scatter plot"@en ;
+	rdfs:label "Static Scatter Plot"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/TmAvMp
+
+<http://darkdata.tw.rpi.edu/data/service/TmAvMp> a owl:NamedIndividual , :ColorSliceMap , :OneVariableVisualization , :Visualization ;
+	dct:identifier "TmAvMp" ;
+	:bestFor :spatial_extent_of_event ;
+	rdfs:comment "Interactive map of average over time at each grid cell"@en ;
+	rdfs:label "Time-averaged Map"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/TmAvSc
+
+<http://darkdata.tw.rpi.edu/data/service/TmAvSc> a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
+	dct:identifier "TmAvSc" ;
+	rdfs:comment "Time-averaged, interactive X-Y plot of 2 variables"@en ;
+	rdfs:label "Time-averaged Scatter Plot"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/VtPf
+
+<http://darkdata.tw.rpi.edu/data/service/VtPf> a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :Visualization ;
+	dct:identifier "VtPf" ;
+	:bestFor :variation_with_atmospheric_height ;
+	rdfs:comment "Vertical Profile"@en ;
+	rdfs:label "Vertical Profile"@en .
+# 
+# http://darkdata.tw.rpi.edu/data/service/ZnMn
+
+<http://darkdata.tw.rpi.edu/data/service/ZnMn> a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :Visualization ;
+	dct:identifier "ZnMn" ;
+	:bestFor :global-phenomena ;
+	rdfs:comment "Zonal mean plot, averaged values are plotted over latitude zones"@en ;
+	rdfs:label "Zonal Means"@en .
+# 
+# http://www.purl.org/twc/ns/darkdata#aerosol_optical_depth_thickness
+
+:aerosol_optical_depth_thickness a owl:NamedIndividual , :AerosolOpticalDepth .
+# 
+# http://www.purl.org/twc/ns/darkdata#atmospheric_concentration_SO2
+
+:atmospheric_concentration_SO2 a owl:NamedIndividual , :AtmosphericConcentration .
+# 
+# http://www.purl.org/twc/ns/darkdata#detection_of_events
+
+:detection_of_events a owl:NamedIndividual , :FeatureCharacteristic .
+# 
+# http://www.purl.org/twc/ns/darkdata#east-west-movement
+
+:east-west-movement a owl:NamedIndividual , :FeatureCharacteristic .
+# 
+# http://www.purl.org/twc/ns/darkdata#global_phenomena
+
+:global_phenomena a owl:NamedIndividual , :FeatureCharacteristic .
+# 
+# http://www.purl.org/twc/ns/darkdata#indifferent_compatibility
+
+:indifferent_compatibility a owl:NamedIndividual , :CompatibilityValue ;
+	dct:identifier "INDIFFERENT"^^xsd:string ;
+	rdfs:label "indifferent compatibility" .
+# 
+# http://www.purl.org/twc/ns/darkdata#infrared_radiance
+
+:infrared_radiance a owl:NamedIndividual , :Radiance .
+# 
+# http://www.purl.org/twc/ns/darkdata#negative_compatibility
+
+:negative_compatibility a owl:NamedIndividual , :CompatibilityValue ;
+	dct:identifier "NEGATIVE"^^xsd:string ;
+	rdfs:label "negative compatibility" .
+# 
+# http://www.purl.org/twc/ns/darkdata#north-south-movement
+
+:north-south-movement a owl:NamedIndividual , :FeatureCharacteristic .
+# 
+# http://www.purl.org/twc/ns/darkdata#seasonal_variation
+
+:seasonal_variation a owl:NamedIndividual , :FeatureCharacteristic .
+# 
+# http://www.purl.org/twc/ns/darkdata#slight_compatibility
+
+:slight_compatibility a owl:NamedIndividual , :CompatibilityValue ;
+	dct:identifier "SLIGHT"^^xsd:string ;
+	rdfs:label "slight compatibility" .
+# 
+# http://www.purl.org/twc/ns/darkdata#some_compatibility
+
+:some_compatibility a owl:NamedIndividual , :CompatibilityValue ;
+	dct:identifier "SOME"^^xsd:string ;
+	rdfs:label "some compatibility" .
+# 
+# http://www.purl.org/twc/ns/darkdata#spatial_extent_of_event
+
+:spatial_extent_of_event a owl:NamedIndividual , :FeatureCharacteristic .
+# 
+# http://www.purl.org/twc/ns/darkdata#strong_compatibility
+
+:strong_compatibility a owl:NamedIndividual , :CompatibilityValue ;
+	dct:identifier "STRONG"^^xsd:string ;
+	rdfs:label "strong compatibility" .
+# 
+# http://www.purl.org/twc/ns/darkdata#surface_temperature
+
+:surface_temperature a owl:NamedIndividual , :Temperature .
+# 
+# http://www.purl.org/twc/ns/darkdata#temporal_evolution
+
+:temporal_evolution a owl:NamedIndividual , :FeatureCharacteristic .
+# 
+# http://www.purl.org/twc/ns/darkdata#variation_with_atmospheric_height
+
+:variation_with_atmospheric_height a owl:NamedIndividual , :FeatureCharacteristic .
+# 
+# http://www.purl.org/twc/ns/darkdata#visible_radiance
+
+:visible_radiance a owl:NamedIndividual , :Radiance .
+# 
+# http://www.purl.org/twc/ns/darkdata#year-to-year-variability
+
+:year-to-year-variability a owl:NamedIndividual , :FeatureCharacteristic .
+# 
+# Generated by the OWL API (version 4.2.5.20160517-0735) https://github.com/owlcs/owlapi

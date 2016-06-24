@@ -78,8 +78,10 @@ public class DarkData {
 
     public static final OntClass ShortDurationPhenomena = m_model.createClass("http://www.purl.org/twc/ns/darkdata#ShortDurationPhenomena");
     
-    public static final OntClass PhysicalManifestation = m_model.createClass("http://www.purl.org/twc/ns/darkdata#PhysicalManifestation");
-    
+//    public static final OntClass PhysicalManifestation = m_model.createClass("http://www.purl.org/twc/ns/darkdata#PhysicalManifestation");
+
+    public static final OntClass PhysicalFeature = m_model.createClass("http://www.purl.org/twc/ns/darkdata#PhysicalFeature");
+
     public static final OntClass Radiance = m_model.createClass("http://www.purl.org/twc/ns/darkdata#Radiance");
     
     public static final OntClass Rainrate = m_model.createClass("http://www.purl.org/twc/ns/darkdata#Rainrate");

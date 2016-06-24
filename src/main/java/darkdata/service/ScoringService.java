@@ -1,5 +1,6 @@
 package darkdata.service;
 
+import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 
 /**
@@ -8,5 +9,5 @@ import org.apache.jena.rdf.model.Resource;
 
 interface ScoringService<S extends Resource,T extends Resource> {
 
-    S score(T candidate);
+    S score(Model m, T candidate);
 }

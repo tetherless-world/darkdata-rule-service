@@ -54,7 +54,7 @@ public class PhysicalFeatureRepository {
     @Cacheable("features")
     public List<OntClass> listSubclasses() {
         return datasource.getOntModel()
-                .getOntClass(DarkData.PhysicalManifestation.getURI())
+                .getOntClass(DarkData.PhysicalFeature.getURI())
                 .listSubClasses()
                 .toList()
                 .stream()
@@ -79,8 +79,8 @@ public class PhysicalFeatureRepository {
                     .stream()
                     .map(v -> ((OntResource) v.asResource()))
                     .flatMap(v -> v.listRDFTypes(false).toList().stream())
-                    .filter(t -> !t.isAnon() && !t.equals(DarkData.PhysicalManifestation))
-                    .filter(DarkData.PhysicalManifestation::hasSubClass)
+                    .filter(t -> !t.isAnon() && !t.equals(DarkData.PhysicalFeature))
+                    .filter(DarkData.PhysicalFeature::hasSubClass)
                     .map(t -> m.getOntClass(t.getURI()))
                     .collect(Collectors.toList());
         } finally {

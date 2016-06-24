@@ -35,6 +35,10 @@ public class SimpleScoringServiceTest {
     @Autowired
     private CandidateWorkflowRepository candidateRepository;
 
+    private final double SLIGHT_WEIGHT = 1d;
+    private final double SOME_WEIGHT = 3d;
+    private final double STRONG_WEIGHT = 5d;
+
     @Test
     public void testScore() {
 
@@ -69,7 +73,7 @@ public class SimpleScoringServiceTest {
                 .map(Literal::getDouble);
 
         Assert.assertTrue("score not present", score.isPresent());
-        double expected = (2d*3d)/Math.sqrt(3d)+(.5d*1d)/Math.sqrt(1d);
+        double expected = (2d*SOME_WEIGHT)/Math.sqrt(3d)+(.5d*SLIGHT_WEIGHT)/Math.sqrt(1d);
         Assert.assertEquals(expected, score.get(), 0d);
     }
 
@@ -115,7 +119,7 @@ public class SimpleScoringServiceTest {
                 .map(Literal::getDouble);
 
         Assert.assertTrue("score not present", score.isPresent());
-        double expected = (3d*5d)/Math.sqrt(5)+(1d*1d)/Math.sqrt(1d);
+        double expected = (3d*STRONG_WEIGHT)/Math.sqrt(5)+(1d*SLIGHT_WEIGHT)/Math.sqrt(1d);
         Assert.assertEquals(expected, score.get(), 0d);
     }
 }
