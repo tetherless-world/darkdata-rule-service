@@ -6,6 +6,10 @@ darkdata-rule-service
 
 Dark Data Rule Service
 
+## Prerequisites
+- Java 8
+- Maven 3+
+
 ## Build & Test
 
 ``mvn test``
