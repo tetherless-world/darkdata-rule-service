@@ -7,6 +7,7 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ddservice: <http://darkdata.tw.rpi.edu/data/service/> .
 
 <http://www.purl.org/twc/ns/darkdata> a owl:Ontology ;
 	rdfs:label "Dark Data Ontology"@en .
@@ -909,147 +910,168 @@ _:genid23 a owl:Restriction ;
 # 
 # http://darkdata.tw.rpi.edu/data/service/AcMp
 
-<http://darkdata.tw.rpi.edu/data/service/AcMp> a owl:NamedIndividual , :Map , :OneVariableVisualization , :Visualization ;
+ddservice:AcMp a owl:NamedIndividual , :Map , :OneVariableVisualization , :Visualization ;
 	dct:identifier "AcMp" ;
-	rdfs:comment "Accumulation of measurement over time at each grid point"@en .
+	rdfs:comment "Accumulation of measurement over time at each grid point"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> .
 # 
 # http://darkdata.tw.rpi.edu/data/service/ArAvSc
 
-<http://darkdata.tw.rpi.edu/data/service/ArAvSc> a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
+ddservice:ArAvSc a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
 	dct:identifier "ArAvSc" ;
-	rdfs:comment "Scatter plot comparing area averaged time series for two variables"@en .
+	rdfs:comment "Scatter plot comparing area averaged time series for two variables"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> .
 # 
 # http://darkdata.tw.rpi.edu/data/service/ArAvTs
 
-<http://darkdata.tw.rpi.edu/data/service/ArAvTs> a owl:NamedIndividual , :OneVariableVisualization , :TimeSeries , :Visualization ;
+ddservice:ArAvTs a owl:NamedIndividual , :OneVariableVisualization , :TimeSeries , :Visualization ;
 	dct:identifier "ArAvTs" ;
 	:bestFor :detection_of_events , :temporal_evolution ;
 	rdfs:comment "Time series of area-averaged values"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Area-averaged Time Series"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/CoMp
 
-<http://darkdata.tw.rpi.edu/data/service/CoMp> a owl:NamedIndividual , :Map , :TwoVariableVisualization , :Visualization ;
+ddservice:CoMp a owl:NamedIndividual , :Map , :TwoVariableVisualization , :Visualization ;
 	dct:identifier "CoMp" ;
-	rdfs:comment "Simple linear regression of 2 variables at each grid cell"@en .
+	rdfs:comment "Simple linear regression of 2 variables at each grid cell"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> .
 # 
 # http://darkdata.tw.rpi.edu/data/service/CrLn
 
-<http://darkdata.tw.rpi.edu/data/service/CrLn> a owl:NamedIndividual , :ColorSliceGrid , :OneVariableVisualization , :Visualization ;
+ddservice:CrLn a owl:NamedIndividual , :ColorSliceGrid , :OneVariableVisualization , :Visualization ;
 	dct:identifier "CrLn" ;
-	rdfs:comment "Cross Map, Longitude-Pressure"@en .
+	rdfs:comment "Cross Map, Longitude-Pressure"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> .
 # 
 # http://darkdata.tw.rpi.edu/data/service/CrLt
 
-<http://darkdata.tw.rpi.edu/data/service/CrLt> a owl:NamedIndividual , :ColorSliceGrid , :OneVariableVisualization , :Visualization ;
+ddservice:CrLt a owl:NamedIndividual , :ColorSliceGrid , :OneVariableVisualization , :Visualization ;
 	dct:identifier "CrLt" ;
-	rdfs:comment "Cross Map, Latitude-Pressure"@en .
+	rdfs:comment "Cross Map, Latitude-Pressure"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> .
 # 
 # http://darkdata.tw.rpi.edu/data/service/CrTm
 
-<http://darkdata.tw.rpi.edu/data/service/CrTm> a owl:NamedIndividual , :ColorSliceGrid , :OneVariableVisualization , :Visualization ;
+ddservice:CrTm a owl:NamedIndividual , :ColorSliceGrid , :OneVariableVisualization , :Visualization ;
 	dct:identifier "CrTm" ;
-	rdfs:comment "Cross Map, Time-Pressure"@en .
+	rdfs:comment "Cross Map, Time-Pressure"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> .
 # 
 # http://darkdata.tw.rpi.edu/data/service/DiArAvTs
 
-<http://darkdata.tw.rpi.edu/data/service/DiArAvTs> a owl:NamedIndividual , :TimeSeries , :TwoVariableVisualization , :Visualization ;
+ddservice:DiArAvTs a owl:NamedIndividual , :TimeSeries , :TwoVariableVisualization , :Visualization ;
 	dct:identifier "DiArAvTs" ;
-	rdfs:comment "Time series of area averages of differences between two variables at each spatial grid point"@en .
+	rdfs:comment "Time series of area averages of differences between two variables at each spatial grid point"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> .
 # 
 # http://darkdata.tw.rpi.edu/data/service/DiTmAvMp
 
-<http://darkdata.tw.rpi.edu/data/service/DiTmAvMp> a owl:NamedIndividual , :Map , :TwoVariableVisualization , :Visualization ;
+ddservice:DiTmAvMp a owl:NamedIndividual , :Map , :TwoVariableVisualization , :Visualization ;
 	dct:identifier "DiTmAvMp" ;
-	rdfs:comment "Difference of two time averaged variable maps"@en .
+	rdfs:comment "Difference of two time averaged variable maps"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> .
 # 
 # http://darkdata.tw.rpi.edu/data/service/HiGm
 
-<http://darkdata.tw.rpi.edu/data/service/HiGm> a owl:NamedIndividual , :Histogram , :OneVariableVisualization , :Visualization ;
+ddservice:HiGm a owl:NamedIndividual , :Histogram , :OneVariableVisualization , :Visualization ;
 	dct:identifier "HiGm" ;
 	rdfs:comment "Distribution of values over time and space"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Histogram"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/HvLn
 
-<http://darkdata.tw.rpi.edu/data/service/HvLn> a owl:NamedIndividual , :ColorSliceGrid , :Hovmoller , :OneVariableVisualization , :Visualization ;
+ddservice:HvLn a owl:NamedIndividual , :ColorSliceGrid , :Hovmoller , :OneVariableVisualization , :Visualization ;
 	dct:identifier "HvLn"^^xsd:string ;
 	:bestFor :north-south-movement ;
 	rdfs:comment "Latitude-averaged Hovmoller, plotted over the selected time and longitude ranges"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Hovmoller (Latitude)"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/HvLt
 
-<http://darkdata.tw.rpi.edu/data/service/HvLt> a owl:NamedIndividual , :ColorSliceGrid , :Hovmoller , :OneVariableVisualization , :Visualization ;
+ddservice:HvLt a owl:NamedIndividual , :ColorSliceGrid , :Hovmoller , :OneVariableVisualization , :Visualization ;
 	dct:identifier "HvLt"^^xsd:string ;
 	:bestFor :east-west-movement ;
 	rdfs:comment "Longitude-averaged Hovmoller, plotted over the selected time and latitude ranges"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Hovmoller (Longitude)"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/IaSc
 
-<http://darkdata.tw.rpi.edu/data/service/IaSc> a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
+ddservice:IaSc a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
 	dct:identifier "IaSc" ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Interactive Scatter Plot"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/InTs
 
-<http://darkdata.tw.rpi.edu/data/service/InTs> a owl:NamedIndividual , :OneVariableVisualization , :TimeSeries , :Visualization ;
+ddservice:InTs a owl:NamedIndividual , :OneVariableVisualization , :TimeSeries , :Visualization ;
 	dct:identifier "InTs" ;
 	:bestFor :year-to-year-variability ;
 	rdfs:comment "Seasonal (inter annual) time series"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Seasonal Time Series"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/MpAn
 
-<http://darkdata.tw.rpi.edu/data/service/MpAn> a owl:NamedIndividual , :Map , :OneVariableVisualization , :Visualization ;
+ddservice:MpAn a owl:NamedIndividual , :Map , :OneVariableVisualization , :Visualization ;
 	dct:identifier "MpAn" ;
-	rdfs:comment "Map animated along the chosen timeline for each grid cell"@en .
+	rdfs:comment "Map animated along the chosen timeline for each grid cell"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> .
 # 
 # http://darkdata.tw.rpi.edu/data/service/QuCl
 
-<http://darkdata.tw.rpi.edu/data/service/QuCl> a owl:NamedIndividual , :ColorSliceMap , :OneVariableVisualization , :Visualization ;
+ddservice:QuCl a owl:NamedIndividual , :ColorSliceMap , :OneVariableVisualization , :Visualization ;
 	dct:identifier "QuCl" ;
 	:bestFor :seasonal_variation ;
 	rdfs:comment "Quasi Climatology Map"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "User-defined Climatology"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/StSc
 
-<http://darkdata.tw.rpi.edu/data/service/StSc> a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
+ddservice:StSc a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
 	dct:identifier "StSc" ;
 	rdfs:comment "Static Scatter plot"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Static Scatter Plot"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/TmAvMp
 
-<http://darkdata.tw.rpi.edu/data/service/TmAvMp> a owl:NamedIndividual , :ColorSliceMap , :OneVariableVisualization , :Visualization ;
+ddservice:TmAvMp a owl:NamedIndividual , :ColorSliceMap , :OneVariableVisualization , :Visualization ;
 	dct:identifier "TmAvMp" ;
 	:bestFor :spatial_extent_of_event ;
 	rdfs:comment "Interactive map of average over time at each grid cell"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Time-averaged Map"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/TmAvSc
 
-<http://darkdata.tw.rpi.edu/data/service/TmAvSc> a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
+ddservice:TmAvSc a owl:NamedIndividual , :ScatterPlot , :TwoVariableVisualization , :Visualization ;
 	dct:identifier "TmAvSc" ;
 	rdfs:comment "Time-averaged, interactive X-Y plot of 2 variables"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Time-averaged Scatter Plot"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/VtPf
 
-<http://darkdata.tw.rpi.edu/data/service/VtPf> a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :Visualization ;
+ddservice:VtPf a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :Visualization ;
 	dct:identifier "VtPf" ;
 	:bestFor :variation_with_atmospheric_height ;
 	rdfs:comment "Vertical Profile"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Vertical Profile"@en .
 # 
 # http://darkdata.tw.rpi.edu/data/service/ZnMn
 
-<http://darkdata.tw.rpi.edu/data/service/ZnMn> a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :Visualization ;
+ddservice:ZnMn a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :Visualization ;
 	dct:identifier "ZnMn" ;
 	:bestFor :global-phenomena ;
 	rdfs:comment "Zonal mean plot, averaged values are plotted over latitude zones"@en ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Zonal Means"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#aerosol_optical_depth_thickness
@@ -1062,20 +1084,27 @@ _:genid23 a owl:Restriction ;
 # 
 # http://www.purl.org/twc/ns/darkdata#detection_of_events
 
-:detection_of_events a owl:NamedIndividual , :FeatureCharacteristic .
+:detection_of_events a owl:NamedIndividual , :FeatureCharacteristic ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
+	rdfs:label "detection of events"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#east-west-movement
 
-:east-west-movement a owl:NamedIndividual , :FeatureCharacteristic .
+:east-west-movement a owl:NamedIndividual , :FeatureCharacteristic ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
+	rdfs:label "east-west movement"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#global_phenomena
 
-:global_phenomena a owl:NamedIndividual , :FeatureCharacteristic .
+:global_phenomena a owl:NamedIndividual , :FeatureCharacteristic ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
+	rdfs:label "global phenomena"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#indifferent_compatibility
 
 :indifferent_compatibility a owl:NamedIndividual , :CompatibilityValue ;
 	dct:identifier "INDIFFERENT"^^xsd:string ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "indifferent compatibility" .
 # 
 # http://www.purl.org/twc/ns/darkdata#infrared_radiance
@@ -1086,36 +1115,46 @@ _:genid23 a owl:Restriction ;
 
 :negative_compatibility a owl:NamedIndividual , :CompatibilityValue ;
 	dct:identifier "NEGATIVE"^^xsd:string ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "negative compatibility" .
 # 
 # http://www.purl.org/twc/ns/darkdata#north-south-movement
 
-:north-south-movement a owl:NamedIndividual , :FeatureCharacteristic .
+:north-south-movement a owl:NamedIndividual , :FeatureCharacteristic ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
+	rdfs:label "north-south movement"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#seasonal_variation
 
-:seasonal_variation a owl:NamedIndividual , :FeatureCharacteristic .
+:seasonal_variation a owl:NamedIndividual , :FeatureCharacteristic ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
+	rdfs:label "seasonal variation"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#slight_compatibility
 
 :slight_compatibility a owl:NamedIndividual , :CompatibilityValue ;
 	dct:identifier "SLIGHT"^^xsd:string ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "slight compatibility" .
 # 
 # http://www.purl.org/twc/ns/darkdata#some_compatibility
 
 :some_compatibility a owl:NamedIndividual , :CompatibilityValue ;
 	dct:identifier "SOME"^^xsd:string ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "some compatibility" .
 # 
 # http://www.purl.org/twc/ns/darkdata#spatial_extent_of_event
 
-:spatial_extent_of_event a owl:NamedIndividual , :FeatureCharacteristic .
+:spatial_extent_of_event a owl:NamedIndividual , :FeatureCharacteristic ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
+	rdfs:label "spatial extent of event"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#strong_compatibility
 
 :strong_compatibility a owl:NamedIndividual , :CompatibilityValue ;
 	dct:identifier "STRONG"^^xsd:string ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "strong compatibility" .
 # 
 # http://www.purl.org/twc/ns/darkdata#surface_temperature
@@ -1124,11 +1163,15 @@ _:genid23 a owl:Restriction ;
 # 
 # http://www.purl.org/twc/ns/darkdata#temporal_evolution
 
-:temporal_evolution a owl:NamedIndividual , :FeatureCharacteristic .
+:temporal_evolution a owl:NamedIndividual , :FeatureCharacteristic ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
+	rdfs:label "temporal evolution"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#variation_with_atmospheric_height
 
-:variation_with_atmospheric_height a owl:NamedIndividual , :FeatureCharacteristic .
+:variation_with_atmospheric_height a owl:NamedIndividual , :FeatureCharacteristic ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
+	rdfs:label "variation with atmospheric height"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#visible_radiance
 
@@ -1136,6 +1179,8 @@ _:genid23 a owl:Restriction ;
 # 
 # http://www.purl.org/twc/ns/darkdata#year-to-year-variability
 
-:year-to-year-variability a owl:NamedIndividual , :FeatureCharacteristic .
+:year-to-year-variability a owl:NamedIndividual , :FeatureCharacteristic ;
+	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
+	rdfs:label "year-to-year variability"@en .
 # 
 # Generated by the OWL API (version 4.2.5.20160517-0735) https://github.com/owlcs/owlapi
