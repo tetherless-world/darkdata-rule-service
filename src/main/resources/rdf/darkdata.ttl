@@ -297,13 +297,6 @@ ssn:Deployment a owl:Class .
 
 ssn:Property a owl:Class .
 # 
-# http://www.purl.org/twc/ns/darkdata#AerosolOpticalDepth
-
-:AerosolOpticalDepth a owl:Class ;
-	rdfs:subClassOf :ObservableProperty ;
-	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
-	rdfs:label "Aerosol Optical Depth"@en .
-# 
 # http://www.purl.org/twc/ns/darkdata#AirPollution
 
 :AirPollution a owl:Class ;
@@ -321,21 +314,9 @@ ssn:Property a owl:Class .
 # http://www.purl.org/twc/ns/darkdata#AshPlume
 
 :AshPlume a owl:Class ;
-	rdfs:subClassOf :PhysicalFeature , _:genid5 .
-
-_:genid5 a owl:Restriction ;
-	owl:onProperty :observableProperty ;
-	owl:hasValue :aerosol_optical_depth_thickness .
-
-:AshPlume rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
-	rdfs:label "Ash Plume"@en .
-# 
-# http://www.purl.org/twc/ns/darkdata#AtmosphericConcentration
-
-:AtmosphericConcentration a owl:Class ;
-	rdfs:subClassOf :ObservableProperty ;
+	rdfs:subClassOf :PhysicalFeature ;
 	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
-	rdfs:label "Atmospheric Concentration"@en .
+	rdfs:label "Ash Plume"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#Candidate
 
@@ -346,16 +327,16 @@ _:genid5 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#CandidateWorkflow
 
 :CandidateWorkflow a owl:Class ;
-	rdfs:subClassOf :Candidate , _:genid6 .
+	rdfs:subClassOf :Candidate , _:genid5 .
 
-_:genid6 a owl:Restriction ;
+_:genid5 a owl:Restriction ;
 	owl:onProperty :candidateEvent ;
 	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
 	owl:onClass :Event .
 
-:CandidateWorkflow rdfs:subClassOf _:genid7 .
+:CandidateWorkflow rdfs:subClassOf _:genid6 .
 
-_:genid7 a owl:Restriction ;
+_:genid6 a owl:Restriction ;
 	owl:onProperty :candidateFeature ;
 	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
 	owl:onClass :PhysicalFeature .
@@ -376,13 +357,6 @@ _:genid7 a owl:Restriction ;
 	rdfs:subClassOf :Visualization ;
 	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Color-slice Map"@en .
-# 
-# http://www.purl.org/twc/ns/darkdata#Column_SO2
-
-:Column_SO2 a owl:Class ;
-	rdfs:subClassOf :ObservableProperty ;
-	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
-	rdfs:label "SO2 Column"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#CompatibilityAssertion
 
@@ -406,9 +380,9 @@ _:genid7 a owl:Restriction ;
 
 :DataField a owl:Class ;
 	owl:equivalentClass :DataVariable ;
-	rdfs:subClassOf _:genid8 .
+	rdfs:subClassOf _:genid7 .
 
-_:genid8 a owl:Restriction ;
+_:genid7 a owl:Restriction ;
 	owl:onProperty dct:isPartOf ;
 	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
 	owl:onClass :VersionedDataProduct .
@@ -441,9 +415,9 @@ _:genid8 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#DustAndHaze
 
 :DustAndHaze a owl:Class ;
-	rdfs:subClassOf :Phenomena , _:genid9 .
+	rdfs:subClassOf :Phenomena , _:genid8 .
 
-_:genid9 a owl:Restriction ;
+_:genid8 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :DustPlume .
 
@@ -506,15 +480,15 @@ _:genid9 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#Flood
 
 :Flood a owl:Class ;
-	rdfs:subClassOf :Phenomena , _:genid10 .
+	rdfs:subClassOf :Phenomena , _:genid9 .
 
-_:genid10 a owl:Restriction ;
+_:genid9 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :Precipitation .
 
-:Flood rdfs:subClassOf _:genid11 .
+:Flood rdfs:subClassOf _:genid10 .
 
-_:genid11 a owl:Restriction ;
+_:genid10 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :StationaryWaterVaporAnomaly .
 
@@ -547,9 +521,9 @@ _:genid11 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#Hurricane
 
 :Hurricane a owl:Class ;
-	rdfs:subClassOf :TropicalStorm , _:genid12 .
+	rdfs:subClassOf :TropicalStorm , _:genid11 .
 
-_:genid12 a owl:Restriction ;
+_:genid11 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :HurricaneEye .
 
@@ -560,15 +534,15 @@ _:genid12 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#HurricaneEye
 
 :HurricaneEye a owl:Class ;
-	rdfs:subClassOf :PhysicalFeature , _:genid13 .
+	rdfs:subClassOf :PhysicalFeature , _:genid12 .
 
-_:genid13 a owl:Restriction ;
+_:genid12 a owl:Restriction ;
 	owl:onProperty :strongCompatibilityFor ;
 	owl:hasValue :temporal_evolution .
 
-:HurricaneEye rdfs:subClassOf _:genid14 .
+:HurricaneEye rdfs:subClassOf _:genid13 .
 
-_:genid14 a owl:Restriction ;
+_:genid13 a owl:Restriction ;
 	owl:onProperty :strongCompatibilityFor ;
 	owl:hasValue :variation_with_atmospheric_height .
 
@@ -585,9 +559,9 @@ _:genid14 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#Landslide
 
 :Landslide a owl:Class ;
-	rdfs:subClassOf :Phenomena , _:genid15 .
+	rdfs:subClassOf :Phenomena , _:genid14 .
 
-_:genid15 a owl:Restriction ;
+_:genid14 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :GroundFlow .
 
@@ -670,33 +644,12 @@ _:genid15 a owl:Restriction ;
 	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Precipitation"@en .
 # 
-# http://www.purl.org/twc/ns/darkdata#Radiance
-
-:Radiance a owl:Class ;
-	rdfs:subClassOf :ObservableProperty ;
-	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
-	rdfs:label "Radiance"@en .
-# 
-# http://www.purl.org/twc/ns/darkdata#RainRate
-
-:RainRate a owl:Class ;
-	rdfs:subClassOf :ObservableProperty ;
-	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
-	rdfs:label "Rain Rate"@en .
-# 
-# http://www.purl.org/twc/ns/darkdata#Reflectance
-
-:Reflectance a owl:Class ;
-	rdfs:subClassOf :ObservableProperty ;
-	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
-	rdfs:label "Reflectance"@en .
-# 
 # http://www.purl.org/twc/ns/darkdata#RequestCriteria
 
 :RequestCriteria a owl:Class ;
-	rdfs:subClassOf _:genid16 .
+	rdfs:subClassOf _:genid15 .
 
-_:genid16 a owl:Restriction ;
+_:genid15 a owl:Restriction ;
 	owl:onProperty :criteriaEvent ;
 	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
 	owl:onClass :Event .
@@ -724,9 +677,9 @@ _:genid16 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#SevereStorm
 
 :SevereStorm a owl:Class ;
-	rdfs:subClassOf :Phenomena , _:genid17 .
+	rdfs:subClassOf :Phenomena , _:genid16 .
 
-_:genid17 a owl:Restriction ;
+_:genid16 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :WindFields .
 
@@ -752,9 +705,9 @@ _:genid17 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#Snow
 
 :Snow a owl:Class ;
-	rdfs:subClassOf :Phenomena , _:genid18 .
+	rdfs:subClassOf :Phenomena , _:genid17 .
 
-_:genid18 a owl:Restriction ;
+_:genid17 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :Precipitation .
 
@@ -776,13 +729,6 @@ _:genid18 a owl:Restriction ;
 	rdfs:subClassOf :PhysicalFeature ;
 	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Stationary Water Vapor Anomaly"@en .
-# 
-# http://www.purl.org/twc/ns/darkdata#Temperature
-
-:Temperature a owl:Class ;
-	rdfs:subClassOf :ObservableProperty ;
-	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
-	rdfs:label "Temperature"@en .
 # 
 # http://www.purl.org/twc/ns/darkdata#TemperatureExtreme
 
@@ -810,9 +756,9 @@ _:genid18 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#TropicalStorm
 
 :TropicalStorm a owl:Class ;
-	rdfs:subClassOf :SevereStorm , _:genid19 .
+	rdfs:subClassOf :SevereStorm , _:genid18 .
 
-_:genid19 a owl:Restriction ;
+_:genid18 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :Precipitation .
 
@@ -831,9 +777,9 @@ _:genid19 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#VersionedDataProduct
 
 :VersionedDataProduct a owl:Class ;
-	rdfs:subClassOf _:genid20 .
+	rdfs:subClassOf _:genid19 .
 
-_:genid20 a owl:Restriction ;
+_:genid19 a owl:Restriction ;
 	owl:onProperty dct:isVersionOf ;
 	owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
 	owl:onClass :DataProduct .
@@ -850,15 +796,15 @@ _:genid20 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#VolcanicEruption
 
 :VolcanicEruption a owl:Class ;
-	rdfs:subClassOf :Phenomena , _:genid21 .
+	rdfs:subClassOf :Phenomena , _:genid20 .
 
-_:genid21 a owl:Restriction ;
+_:genid20 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :AshPlume .
 
-:VolcanicEruption rdfs:subClassOf _:genid22 .
+:VolcanicEruption rdfs:subClassOf _:genid21 .
 
-_:genid22 a owl:Restriction ;
+_:genid21 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :LavaFlow .
 
@@ -881,9 +827,9 @@ _:genid22 a owl:Restriction ;
 # http://www.purl.org/twc/ns/darkdata#Wildfire
 
 :Wildfire a owl:Class ;
-	rdfs:subClassOf :Phenomena , _:genid23 .
+	rdfs:subClassOf :Phenomena , _:genid22 .
 
-_:genid23 a owl:Restriction ;
+_:genid22 a owl:Restriction ;
 	owl:onProperty :physicalManifestation ;
 	owl:someValuesFrom :SmokePlume .
 
@@ -1074,14 +1020,6 @@ ddservice:ZnMn a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :
 	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Zonal Means"@en .
 # 
-# http://www.purl.org/twc/ns/darkdata#aerosol_optical_depth_thickness
-
-:aerosol_optical_depth_thickness a owl:NamedIndividual , :AerosolOpticalDepth .
-# 
-# http://www.purl.org/twc/ns/darkdata#atmospheric_concentration_SO2
-
-:atmospheric_concentration_SO2 a owl:NamedIndividual , :AtmosphericConcentration .
-# 
 # http://www.purl.org/twc/ns/darkdata#detection_of_events
 
 :detection_of_events a owl:NamedIndividual , :FeatureCharacteristic ;
@@ -1106,10 +1044,6 @@ ddservice:ZnMn a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :
 	dct:identifier "INDIFFERENT"^^xsd:string ;
 	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "indifferent compatibility" .
-# 
-# http://www.purl.org/twc/ns/darkdata#infrared_radiance
-
-:infrared_radiance a owl:NamedIndividual , :Radiance .
 # 
 # http://www.purl.org/twc/ns/darkdata#negative_compatibility
 
@@ -1157,10 +1091,6 @@ ddservice:ZnMn a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :
 	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "strong compatibility" .
 # 
-# http://www.purl.org/twc/ns/darkdata#surface_temperature
-
-:surface_temperature a owl:NamedIndividual , :Temperature .
-# 
 # http://www.purl.org/twc/ns/darkdata#temporal_evolution
 
 :temporal_evolution a owl:NamedIndividual , :FeatureCharacteristic ;
@@ -1172,10 +1102,6 @@ ddservice:ZnMn a owl:NamedIndividual , :LinePlot , :OneVariableVisualization , :
 :variation_with_atmospheric_height a owl:NamedIndividual , :FeatureCharacteristic ;
 	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "variation with atmospheric height"@en .
-# 
-# http://www.purl.org/twc/ns/darkdata#visible_radiance
-
-:visible_radiance a owl:NamedIndividual , :Radiance .
 # 
 # http://www.purl.org/twc/ns/darkdata#year-to-year-variability
 
