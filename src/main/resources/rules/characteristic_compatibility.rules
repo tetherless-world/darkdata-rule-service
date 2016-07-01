@@ -49,6 +49,20 @@
  (?feature dd:strongCompatibilityFor dd:detection_of_events)
 ]
 
+[lava-flow-characteristic-compatibilities:
+ (?feature rdf:type dd:LavaFlow)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:someCompatibilityFor dd:east-west-movement),
+ (?feature dd:someCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:someCompatibilityFor dd:seasonal_variation),
+ (?feature dd:someCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:indifferentCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:someCompatibilityFor dd:global_phenomena),
+ (?feature dd:strongCompatibilityFor dd:detection_of_events)
+]
+
 [air-quality-characteristic-compatibilities:
  (?feature rdf:type dd:AirQuality)
  ->
