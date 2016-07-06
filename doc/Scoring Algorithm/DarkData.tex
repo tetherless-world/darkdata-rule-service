@@ -1,0 +1,210 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\graphicspath{ {/Users/anirudhprabhu/} }
+
+\begin{document}
+\title{DarkData Scoring Function}
+\author{Anirudh Prabhu, Stephan Zednik}
+\maketitle
+
+\section{Scoring Algorithm}
+
+
+\begin{large}
+
+Current Scoring Function : 
+
+$$ \sum^{c}_{0}\left(   \frac{\sum^{n_{c}}_{0} (f_{n_{c}} \cdot w_{n_{c}})}{\sqrt{n_{c}}} \right) $$
+
+New function : 
+
+$$ Score = \log_{10}  \left( \sum^{c}_{i=0}\left(  \frac{\sum^{n_{c}}_{i=0} \left( f_{n_{c}}   \right) }{max \left( f_{n_{c}}   \right)}  \cdot w_{c}  \right) \times \left( \frac{na_{c}}{na_{max}}\right)\right)   $$
+
+\begin{itemize}
+
+\item $c \longrightarrow $ Compatibility (Strong, Slight, Some, Negative , Indifferent)
+
+\item $0$ to $n_{c} \longrightarrow $ All compatibility assertions
+
+\item $na_{c} \longrightarrow $ Number of Assertions for a specific 'c'.
+
+\item $f_{n_{c}} \longrightarrow $ Confidence for a specific assertion for a specific compatibility.
+
+\item $w_{c} \longrightarrow $ Weight for a specific compatibility.
+
+\item $na_{max} \longrightarrow $ Maximum value from all $na_{c}$ values.
+
+
+\end{itemize}
+
+
+
+Example : \\ \\
+Candidate $1$ \\
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+  & $c_{slight}$  & $c_{some}$  & $c_{strong}$  & $c_{indifferent}$ & $c_{negative}$  \\ \hline
+$f$ & 0.5 & 0.7 & 0.5 & 1  & 0.5 \\ \hline
+$w$ & 1   & 3   & 5   & 0  & -1  \\ \hline
+$na$ & 1  & 1  & 1  & 1 & 1  \\ \hline
+\end{tabular} 
+
+Applying the formula, \\
+$$Score = (0.5) + (0.7 \times 3) + (0.5 \times 5) + (0) + (0.5 \times -1) = 4.6 $$
+
+Once normalized , $\log_{10}(Score) = 0.6627 $
+
+Candidate $2$ \\ \\
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+  & $c_{slight}$  & $c_{some_{1}}$  & $c_{some_{2}}$  & $c_{some_{3}}$ & $c_{strong}$  \\ \hline
+$f$ & 0.5 & 0.7 & 0.5 & 1  & 0.5 \\ \hline
+$w$ & 1   & 3   & 3   & 3  & 5  \\ \hline
+$na$ & 1  & 3  & 3  & 3 & 1  \\ \hline
+\end{tabular}
+
+Applying the formula, \\
+$$Score = (0.5 \times \frac{1}{3}) + ((0.7+0.5+1) \times 3) +  (0.5 \times 5 \times \frac{1}{3}) = 7.5983 $$
+
+Once normalized , $\log_{10}(Score) = 0.8807 $
+
+Candidate $3$ \\ \\
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+  & $c_{strong_{1}}$  & $c_{strong_{2}}$  & $c_{strong_{3}}$  & $c_{strong_{4}}$ & $c_{strong_{5}}$  \\ \hline
+$f$ & 0.5 & 0.7 & 0.5 & 1  & 0.5 \\ \hline
+$w$ & 5   & 5   & 5   & 5  & 5  \\ \hline
+$na$ & 5  & 5  & 5  & 5 & 5  \\ \hline
+\end{tabular}
+
+Applying the formula, \\
+$$Score = (0.5 + 0.7 +0.5 +1 + 0.5) \times 5 = 16 $$
+
+Once normalized , $\log_{10}(Score) = 1.2041 $
+
+Candidate $4$ \\ \\
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+  & $c_{slight_{1}}$  & $c_{slight_{2}}$  & $c_{slight_{3}}$  & $c_{slight_{4}}$ & $c_{slight_{5}}$  \\ \hline
+$f$ & 0.5 & 0.7 & 0.5 & 1  & 0.5 \\ \hline
+$w$ & 1   & 1   & 1   & 1  & 1  \\ \hline
+$na$ & 5  & 5  & 5  & 5 & 5  \\ \hline
+\end{tabular}
+
+Applying the formula, \\
+$$Score = (0.5 + 0.7 +0.5 +1 + 0.5) \times 1 = 3.2 $$
+
+Once normalized , $\log_{10}(Score) =  0.5051$ \\ \\
+
+\end{large}
+
+
+Notes : 
+Initial Attempt
+$$  \sum^{c}_{i=0}\left(  \frac{\sum^{n_{c}}_{i=0} \left( f_{n_{c}} \cdot w_{c}  \right) \times \left( \frac{na_{c}}{na_{max}}\right) }{max \left( f_{n_{c}} \cdot w_{c}  \right)}   \right)   $$
+
+First Iteration of the formula uses the $f_{n_{c}} \cdot w_{c}$ combination to normalize, but this  makes the weights assigned loose its importance and the final result only give priority to results where candidates have the same type of compatibility. (Irrespective of whether the value of the compatibility assertion is strong or weak.) 
+
+The second formula, solves this issue by using $log$ to normalize the results instead.\\
+
+\section{User Scenario}
+
+\begin{large}
+Scenario 1 \\
+
+Let us consider candidate 4 as an example for this scenario and see how the score changes when assertions are added, changed or removed.\\
+
+\textbf{Original Case} \\
+Candidate $4$ \\ \\
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+  & $c_{slight_{1}}$  & $c_{slight_{2}}$  & $c_{slight_{3}}$  & $c_{slight_{4}}$ & $c_{slight_{5}}$  \\ \hline
+$f$ & 0.5 & 0.7 & 0.5 & 1  & 0.5 \\ \hline
+$w$ & 1   & 1   & 1   & 1  & 1  \\ \hline
+$na$ & 5  & 5  & 5  & 5 & 5  \\ \hline
+\end{tabular}
+
+Applying the formula, \\
+$$Score = (0.5 + 0.7 +0.5 +1 + 0.5) \times 1 = 3.2 $$
+
+Once normalized , $\log_{10}(Score) =  0.5051$ \\ \\
+
+
+
+\textbf{Replace one of the slight compatibility assertions with a "Strong" assertion} \\
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+     & $c_{strong_{1}}$ & $c_{slight_{1}}$ & $c_{slight_{2}}$ & $c_{slight_{3}}$ & $c_{slight_{4}}$ \\ \hline
+$f$  & 0.5              & 0.5              & 0.7              & 0.5              & 1                \\ \hline
+$w$  & 5                & 1                & 1                & 1                & 1                \\ \hline
+$na$ & 1                & 4                & 4                & 4                & 4                \\ \hline
+\end{tabular}
+
+Applying the formula, \\
+$$Score = ((0.5 + 0.7 +0.5 +1) \times 1) + (\frac{0.5}{1} \times 5 \times \frac{1}{4}) = 3.325 $$
+
+Once normalized , $\log_{10}(Score) =  0.5217$ \\ \\
+
+\textbf{Replace one of the slight compatibility assertions with a "Some" assertion} \\
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+     & $c_{strong_{1}}$ & $c_{slight_{1}}$ & $c_{slight_{2}}$ & $c_{slight_{3}}$ & $c_{some_{1}}$ \\ \hline
+$f$  & 0.5              & 0.5              & 0.7              & 0.5              & 1                \\ \hline
+$w$  & 5                & 1                & 1                & 1                & 3                \\ \hline
+$na$ & 1                & 3                & 3                & 3                & 1                \\ \hline
+\end{tabular}
+
+Applying the formula, \\
+$$Score = ((0.5 + 0.7 +0.5 ) \times 1) + (\frac{0.5}{1} \times 5 \times \frac{1}{3}) + ((\frac{1}{1} \times 3 \times \frac{1}{3})) = 3.5333 $$
+
+Once normalized , $\log_{10}(Score) =  0.5481$ \\ \\
+
+\textbf{Replace 2 of the slight compatibility assertions with a "Negative" assertion} \\
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+     & $c_{strong_{1}}$ & $c_{slight_{1}}$ & $c_{negative_{1}}$ & $c_{negative_{2}}$ & $c_{some_{1}}$ \\ \hline
+$f$  & 0.5              & 0.5              & 0.7              & 0.5              & 1                \\ \hline
+$w$  & 5                & 1                & -1                & -1                & 3                \\ \hline
+$na$ & 1                & 1                & 2                & 2                & 1                \\ \hline
+\end{tabular}
+
+Applying the formula, \\
+$$Score = (0.5 \times \frac{1}{2}) + (\frac{0.5}{1} \times 5 \times \frac{1}{2}) + ((\frac{1}{1} \times 3 \times \frac{1}{2})) + (\frac{(0.7+0.5)}{1} \times -1 \times \frac{2}{2}) = 1.8 $$
+
+Once normalized , $\log_{10}(Score) =  0.2552$ \\ \\
+
+\textbf{Add 2 strong compatibility assertions to the original example} \\
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+     & $c_{strong_{1}}$ & $c_{strong_{2}}$ & $c_{slight_{1}}$ & $c_{slight_{2}}$ & $c_{slight_{3}}$ & $c_{slight_{4}}$ & $c_{slight_{4}}$ \\ \hline
+$f$  & 0.5              & 0.8              & 0.5              & 0.7              & 0.5              & 1                & 0.5              \\ \hline
+$w$  & 5                & 5                & 1                & 1                & 1                & 1                & 1                \\ \hline
+$na$ & 2                & 2                & 5                & 5                & 5                & 5                & 5                \\ \hline
+\end{tabular}
+
+Applying the formula, \\
+$$Score = ((0.5 + 0.7 +0.5 +1 + 0.5) \times 1) + (\frac{0.5+0.8}{1} \times 5 \times \frac{2}{5}) = 5.8 $$
+
+Once normalized , $\log_{10}(Score) =  0.7634$ \\ \\
+
+\textbf{Remove 2 slight compatibility assertions from the original example} \\
+\begin{tabular}{|l|l|l|l|}
+\hline
+     & $c_{slight_{1}}$ & $c_{slight_{2}}$ & $c_{slight_{3}}$ \\ \hline
+$f$  & 0.5              & 0.7              & 0.5              \\ \hline
+$w$  & 1                & 1                & 1                \\ \hline
+$na$ & 3                & 3                & 3                \\ \hline
+\end{tabular}
+
+Applying the formula, \\
+$$Score = (\frac{(0.5 + 0.7 +0.5)}{0.7} \times 1) = 2.428 $$
+
+Once normalized , $\log_{10}(Score) =  0.3852$ \\ \\
+
+Scores vs Number of Assertions for Slight Compatibility \\
+\includegraphics[scale=0.5]{DD_Lines_Slight.png}
+
+\end{large}
+
+\end{document}
+
