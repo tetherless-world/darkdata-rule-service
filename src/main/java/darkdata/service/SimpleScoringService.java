@@ -37,6 +37,10 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
                 .max().orElse(0);
     }
 
+    protected Double normalizeScore(Double rawScore) {
+        return Math.log10(rawScore);
+    }
+
     private Double computeCandidateScore(Model m, Resource candidate) {
         return generateScore(m, getCompatibilityAssertionsForCandidate(m, candidate));
     }
