@@ -30,6 +30,13 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
         return candidate;
     }
 
+    protected int computeNaMax(Model m, List<Resource> assertions) {
+        return groupAssertions(m, assertions).entrySet().stream()
+                .map(Map.Entry::getValue)
+                .mapToInt(List::size)
+                .max().orElse(0);
+    }
+
     private Double computeCandidateScore(Model m, Resource candidate) {
         return generateScore(m, getCompatibilityAssertionsForCandidate(m, candidate));
     }
