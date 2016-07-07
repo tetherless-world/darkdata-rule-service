@@ -42,9 +42,10 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
     }
 
     protected Double computeRawScoreForCompatibilityValue(Model m, Map.Entry<Resource, DoubleSummaryStatistics> e, Double naMax) {
-        double numAssertions = e.getValue().getCount();
-        double maxConfidence = e.getValue().getMax();
-        double sumConfidence = e.getValue().getSum();
+        DoubleSummaryStatistics confidenceStats = e.getValue();
+        double numAssertions = confidenceStats.getCount();
+        double maxConfidence = confidenceStats.getMax();
+        double sumConfidence = confidenceStats.getSum();
         double weight = getWeight(m, e.getKey());
         return (sumConfidence / maxConfidence * weight) * (numAssertions / naMax);
     }
