@@ -216,6 +216,7 @@
  (?assertion dd:basisForAssertion <urn:rule/time_interval/volcanic-eruption-daily>)
 ]
 
+# Stephan: I changed this to negative because I think monthly data is not useful to show eruptions
 [volcanic-eruption-monthly:
  (?candidate dd:candidateEvent ?event),
  (?event rdf:type dd:VolcanicEruption),
@@ -226,8 +227,8 @@
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
- (?assertion dd:compatibilityValue dd:indifferent_compatibility),
- (?assertion dd:assertionConfidence "0.25"^^xsd:double),
+ (?assertion dd:compatibilityValue dd:negative_compatibility),
+ (?assertion dd:assertionConfidence "0.5"^^xsd:double),
  (?assertion dd:basisForAssertion <urn:rule/time_interval/volcanic-eruption-monthly>)
 ]
 

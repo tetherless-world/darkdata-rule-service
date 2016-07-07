@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @author szednik
  */
 @Service
-public class SimpleScoringService {
+public class SimpleScoringService implements ScoringService<Resource,Resource> {
 
     @javax.annotation.Resource(name = "simpleWeights")
     private Properties weights;

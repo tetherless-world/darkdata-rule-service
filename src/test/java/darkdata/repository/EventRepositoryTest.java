@@ -42,8 +42,8 @@ public class EventRepositoryTest {
                 .flatMap(e -> e.listPropertyValues(DarkData.physicalManifestation).toList().stream())
                 .map(v -> ((OntResource) v.asResource()))
                 .flatMap(v -> v.listRDFTypes(false).toList().stream())
-                .filter(t -> !t.isAnon() && !t.equals(DarkData.PhysicalManifestation))
-                .filter(DarkData.PhysicalManifestation::hasSubClass)
+                .filter(t -> !t.isAnon() && !t.equals(DarkData.PhysicalFeature))
+                .filter(DarkData.PhysicalFeature::hasSubClass)
                 .forEach(t -> System.out.println(t.getURI()));
     }
 

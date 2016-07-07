@@ -74,7 +74,7 @@ public class CandidateWorkflowObjectFactory implements ObjectFactory<CandidateWo
                 .map(Resource::getURI)
                 .filter(u -> !u.equals(OWL.Thing.getURI()))
                 .filter(u -> !u.equals(RDFS.Resource.getURI()))
-                .filter(u -> !u.equals(DarkData.PhysicalManifestation.getURI()))
+                .filter(u -> !u.equals(DarkData.PhysicalFeature.getURI()))
                 .findAny();
     }
 

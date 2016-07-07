@@ -1,0 +1,16 @@
+@prefix dd: <http://www.purl.org/twc/ns/darkdata#>.
+@prefix ddmeasurement: <http://darkdata.tw.rpi.edu/data/measurement/>.
+
+[LavaFlow-Surface+Temperature:
+ (?candidate dd:candidateFeature ?feature),
+ (?feature rdf:type dd:LavaFlow),
+ (?candidate dd:candidateVariable ?variable),
+ (?variable dd:measurement ddmeasurement:Surface+Temperature),
+ makeSkolem (?assertion, ?candidate, ?feature, ddmeasurement:Surface+Temperature, ?variable)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:assertionConfidence "0.75"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/measurement/LavaFlow-Surface+Temperature>)
+]
