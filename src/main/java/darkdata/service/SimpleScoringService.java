@@ -30,15 +30,23 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
         return candidate;
     }
 
-    protected int computeNaMax(Model m, List<Resource> assertions) {
+    protected Double computeNaMax(Model m, List<Resource> assertions) {
         return groupAssertions(m, assertions).entrySet().stream()
                 .map(Map.Entry::getValue)
-                .mapToInt(List::size)
-                .max().orElse(0);
+                .mapToDouble(List::size)
+                .max().orElse(0d);
     }
 
     protected Double normalizeScore(Double rawScore) {
         return Math.log10(rawScore);
+    }
+
+    protected Double computeRawScoreForCompatibilityValue(Model m, Map.Entry<Resource, DoubleSummaryStatistics> e, Double naMax) {
+        double numAssertions = e.getValue().getCount();
+        double maxConfidence = e.getValue().getMax();
+        double sumConfidence = e.getValue().getSum();
+        double weight = getWeight(m, e.getKey());
+        return (sumConfidence / maxConfidence * weight) * (numAssertions / naMax);
     }
 
     private Double computeCandidateScore(Model m, Resource candidate) {
@@ -46,10 +54,14 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
     }
 
     private Double generateScore(Model m, List<Resource> assertions) {
+        Double naMax = computeNaMax(m, assertions);
         Map<Resource, DoubleSummaryStatistics> statisticsMap = getGroupedCompatibilitySummaries(m, assertions);
-        return statisticsMap.entrySet().stream()
-                .map(e -> (getWeight(m, e.getKey()) * e.getValue().getSum()) / Math.sqrt(e.getValue().getCount()))
-                .collect(Collectors.summingDouble(v -> v));
+
+        double rawScore =  statisticsMap.entrySet().stream()
+                .mapToDouble(e -> computeRawScoreForCompatibilityValue(m, e, naMax))
+                .sum();
+
+        return normalizeScore(rawScore);
     }
 
     private Map<Resource, DoubleSummaryStatistics> getGroupedCompatibilitySummaries(Model m, List<Resource> assertions) {
