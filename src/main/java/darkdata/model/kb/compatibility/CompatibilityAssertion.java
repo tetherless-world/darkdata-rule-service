@@ -7,9 +7,7 @@ import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntResource;
-import org.apache.jena.rdf.model.Literal;
-import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.ResourceFactory;
+import org.apache.jena.rdf.model.*;
 
 import java.util.Optional;
 
@@ -70,5 +68,13 @@ public class CompatibilityAssertion extends IndividualProxy {
                 .filter(RDFNode::isLiteral)
                 .map(RDFNode::asLiteral)
                 .map(Literal::getDouble);
+    }
+
+    public static Double getConfidence(Model m, Resource assertion) {
+        return m.listObjectsOfProperty(assertion, DarkData.assertionConfidence)
+                .toList().stream()
+                .map(RDFNode::asLiteral)
+                .map(Literal::getDouble)
+                .findAny().orElse(0.5D);
     }
 }

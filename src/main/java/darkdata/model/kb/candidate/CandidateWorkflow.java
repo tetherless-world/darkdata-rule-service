@@ -61,7 +61,7 @@ public class CandidateWorkflow extends Candidate {
     public List<PhysicalFeature> getCandidatePhysicalFeatures() {
         return getEvent()
                 .map(Phenomena::getPhysicalFeatures)
-                .orElse(Collections.<PhysicalFeature>emptyList());
+                .orElse(Collections.emptyList());
     }
 
     public void addVariable(DataVariable variable) {

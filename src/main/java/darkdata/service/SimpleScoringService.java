@@ -1,16 +1,21 @@
 package darkdata.service;
 
+import darkdata.model.kb.compatibility.CompatibilityAssertion;
+import darkdata.model.kb.compatibility.CompatibilityValue;
 import darkdata.model.ontology.DarkData;
-import org.apache.jena.rdf.model.Literal;
+import darkdata.repository.CompatibilityAssertionRepository;
+import darkdata.repository.CompatibilityValueRepository;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.DCTerms;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.DoubleSummaryStatistics;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 /**
@@ -22,6 +27,12 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
     @javax.annotation.Resource(name = "simpleWeights")
     private Properties weights;
 
+    @Autowired
+    private CompatibilityAssertionRepository compatibilityAssertionRepository;
+
+    @Autowired
+    private CompatibilityValueRepository compatibilityValueRepository;
+
     private static final Logger logger = LoggerFactory.getLogger(SimpleScoringService.class);
 
     public Resource score(Model m, Resource candidate) {
@@ -30,15 +41,44 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
         return candidate;
     }
 
+    protected Double computeNaMax(Model m, List<Resource> assertions) {
+        return groupAssertions(m, assertions).entrySet().stream()
+                .map(Map.Entry::getValue)
+                .mapToDouble(List::size)
+                .max().orElse(0d);
+    }
+
+    protected Double computeConfidenceMax(Model m, List<Resource> assertions) {
+        return summarizeConfidence(m, assertions).getMax();
+    }
+
+    protected Double normalizeScore(Double rawScore) {
+        return Math.log10(rawScore);
+    }
+
+    protected Double computeRawScoreForCompatibilityValue(Model m, Resource compatibilityValue, DoubleSummaryStatistics confidenceStats, Double naMax, Double maxConfidence) {
+        double numAssertions = confidenceStats.getCount();
+        double sumConfidence = confidenceStats.getSum();
+        double weight = getWeight(m, compatibilityValue);
+        return (sumConfidence / maxConfidence * weight) * (numAssertions / naMax);
+    }
+
     private Double computeCandidateScore(Model m, Resource candidate) {
-        return generateScore(m, getCompatibilityAssertionsForCandidate(m, candidate));
+        List<Resource> assertions = compatibilityAssertionRepository.getCompatibilityAssertionsForCandidate(m, candidate);
+        return generateScore(m, assertions);
     }
 
     private Double generateScore(Model m, List<Resource> assertions) {
+        Double naMax = computeNaMax(m, assertions);
+        Double confidenceMax = computeConfidenceMax(m, assertions);
+
         Map<Resource, DoubleSummaryStatistics> statisticsMap = getGroupedCompatibilitySummaries(m, assertions);
-        return statisticsMap.entrySet().stream()
-                .map(e -> (getWeight(m, e.getKey()) * e.getValue().getSum()) / Math.sqrt(e.getValue().getCount()))
-                .collect(Collectors.summingDouble(v -> v));
+
+        double rawScore =  statisticsMap.entrySet().stream()
+                .mapToDouble(e -> computeRawScoreForCompatibilityValue(m, e.getKey(), e.getValue(), naMax, confidenceMax))
+                .sum();
+
+        return normalizeScore(rawScore);
     }
 
     private Map<Resource, DoubleSummaryStatistics> getGroupedCompatibilitySummaries(Model m, List<Resource> assertions) {
@@ -48,47 +88,18 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
 
     private DoubleSummaryStatistics summarizeConfidence(Model m, List<Resource> assertions) {
         return assertions.stream()
-                .map(a -> getConfidence(m, a))
+                .map(a -> CompatibilityAssertion.getConfidence(m, a))
                 .collect(Collectors.summarizingDouble(a -> a));
-    }
-
-    private Double getConfidence(Model m, Resource assertion) {
-        return m.listObjectsOfProperty(assertion, DarkData.assertionConfidence)
-                .toList().stream()
-                .map(RDFNode::asLiteral)
-                .map(Literal::getDouble)
-                .findAny().orElse(0.5D);
     }
 
     private Map<Resource, List<Resource>> groupAssertions(Model m, List<Resource> assertions) {
         return assertions.stream()
-                .collect(Collectors.groupingBy(a -> getCompatibilityValue(m, a)));
-    }
-
-    private Resource getCompatibilityValue(Model m, Resource assertion) {
-        return m.listObjectsOfProperty(assertion, DarkData.compatibilityValue)
-                .toList().stream()
-                .map(RDFNode::asResource)
-                .findAny().orElse(DarkData.indifferent_compatibility);
+                .collect(Collectors.groupingBy(a -> compatibilityValueRepository.getCompatibilityValue(m, a)));
     }
 
     private Double getWeight(Model m, Resource compatibilityValue) {
-        String weightIdentifier = getCompatibilityValueIdentifier(m, compatibilityValue);
+        String weightIdentifier = CompatibilityValue.getIdentifier(m, compatibilityValue);
         return Double.valueOf(weights.getOrDefault(weightIdentifier, 0).toString());
     }
 
-    private String getCompatibilityValueIdentifier(Model m, Resource compatibilityValue) {
-        return m.listObjectsOfProperty(compatibilityValue, DCTerms.identifier)
-                .toList().stream()
-                .map(RDFNode::asLiteral)
-                .map(Literal::getString)
-                .findAny().orElse("DEFAULT");
-    }
-
-    private List<Resource> getCompatibilityAssertionsForCandidate(Model m, Resource candidate) {
-        return m.listObjectsOfProperty(candidate, DarkData.compatibilityAssertion)
-                .toList().stream()
-                .map(RDFNode::asResource)
-                .collect(Collectors.toList());
-    }
 }
