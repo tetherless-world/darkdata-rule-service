@@ -4,9 +4,7 @@ import darkdata.model.kb.IndividualProxy;
 import darkdata.model.ontology.DarkData;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntResource;
-import org.apache.jena.rdf.model.Literal;
-import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.ResourceFactory;
+import org.apache.jena.rdf.model.*;
 import org.apache.jena.vocabulary.DCTerms;
 
 import java.util.Optional;
@@ -17,6 +15,14 @@ import java.util.Optional;
 public class CompatibilityValue extends IndividualProxy {
 
     public final static OntClass CLASS = DarkData.CompatibilityValue;
+
+    static public String getIdentifier(Model m, Resource compatibilityValue) {
+        return m.listObjectsOfProperty(compatibilityValue, DCTerms.identifier)
+                .toList().stream()
+                .map(RDFNode::asLiteral)
+                .map(Literal::getString)
+                .findAny().orElse("DEFAULT");
+    }
 
     public CompatibilityValue(OntResource individual) {
         super(individual);

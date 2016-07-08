@@ -75,7 +75,7 @@ public class SimpleScoringServiceTest {
         Assert.assertTrue("score not present", score.isPresent());
         double expected = Math.log10(
                 ((2d / 1d * SOME_WEIGHT) * (3d / 3d))
-                        + ((0.5d / 0.5d * SLIGHT_WEIGHT) * (1d / 3d))
+                        + ((0.5d / 1d * SLIGHT_WEIGHT) * (1d / 3d))
         );
         Assert.assertEquals(expected, score.get(), 1e-15);
     }
