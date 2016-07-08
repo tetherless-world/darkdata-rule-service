@@ -56,11 +56,10 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
         return Math.log10(rawScore);
     }
 
-    protected Double computeRawScoreForCompatibilityValue(Model m, Map.Entry<Resource, DoubleSummaryStatistics> e, Double naMax, Double maxConfidence) {
-        DoubleSummaryStatistics confidenceStats = e.getValue();
+    protected Double computeRawScoreForCompatibilityValue(Model m, Resource compatibilityValue, DoubleSummaryStatistics confidenceStats, Double naMax, Double maxConfidence) {
         double numAssertions = confidenceStats.getCount();
         double sumConfidence = confidenceStats.getSum();
-        double weight = getWeight(m, e.getKey());
+        double weight = getWeight(m, compatibilityValue);
         return (sumConfidence / maxConfidence * weight) * (numAssertions / naMax);
     }
 
@@ -76,7 +75,7 @@ public class SimpleScoringService implements ScoringService<Resource,Resource> {
         Map<Resource, DoubleSummaryStatistics> statisticsMap = getGroupedCompatibilitySummaries(m, assertions);
 
         double rawScore =  statisticsMap.entrySet().stream()
-                .mapToDouble(e -> computeRawScoreForCompatibilityValue(m, e, naMax, confidenceMax))
+                .mapToDouble(e -> computeRawScoreForCompatibilityValue(m, e.getKey(), e.getValue(), naMax, confidenceMax))
                 .sum();
 
         return normalizeScore(rawScore);
