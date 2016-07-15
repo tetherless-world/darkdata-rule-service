@@ -56,7 +56,7 @@ public class RuleBasedCompatibilityServiceTest {
     @Autowired
     private RuleBasedReasoningService compatibilityRulesReasoningService;
 
-    private void testComputeCompatibilityOfEventType(String label, OntClass phenomenaClass) {
+    private List<CompatibilityAssertion> computeCompatibilityAssertionsOfEventType(String label, OntClass phenomenaClass) {
 
         OntModel m = datasource.createOntModel();
 
@@ -76,28 +76,19 @@ public class RuleBasedCompatibilityServiceTest {
 
         m.prepare();
 
-        List<PhysicalFeature> features = candidate.getEvent()
+        candidate.getEvent()
                 .map(Phenomena::getPhysicalFeatures)
-                .orElseThrow(() -> new RuntimeException("Could not get event features"));
-
-        Assert.assertFalse("features is empty", features.isEmpty());
-
-        PhysicalFeature feature = features.stream()
+                .orElseThrow(() -> new RuntimeException("Could not get event features"))
+                .stream()
                 .filter(PhysicalFeature::hasConcreteFeatureClass)
-                .findFirst().orElseThrow(() -> new RuntimeException("could not find expected feature"));
-
-        candidate.setFeature(feature);
+                .findFirst()
+                .ifPresent(candidate::setFeature);
 
         final InfModel inf = compatibilityRulesReasoningService.reason(m);
-
-        List<CompatibilityAssertion> assertions = service.computeCompatibilities(inf, candidate);
-        Assert.assertFalse(assertions.isEmpty());
-
-        assertions.stream()
-                .forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
+        return service.computeCompatibilities(inf, candidate);
     }
 
-    private void testComputeCompatibilityOfEventType(String label, OntClass phenomenaClass, String datafieldId) {
+    private List<CompatibilityAssertion> computeCompatibilityAssertionsOfEventType(String label, OntClass phenomenaClass, String datafieldId) {
 
         OntModel m = datasource.createOntModel();
 
@@ -121,66 +112,89 @@ public class RuleBasedCompatibilityServiceTest {
 
         m.prepare();
 
-        List<PhysicalFeature> features = candidate.getEvent()
+        candidate.getEvent()
                 .map(Phenomena::getPhysicalFeatures)
-                .orElseThrow(() -> new RuntimeException("Could not get event features"));
-
-        Assert.assertFalse("features is empty", features.isEmpty());
-
-        PhysicalFeature feature = features.stream()
+                .orElseThrow(() -> new RuntimeException("Could not get event features"))
+                .stream()
                 .filter(PhysicalFeature::hasConcreteFeatureClass)
-                .findFirst().orElseThrow(() -> new RuntimeException("could not find expected feature"));
-
-        candidate.setFeature(feature);
+                .findFirst()
+                .ifPresent(candidate::setFeature);
 
         final InfModel inf = compatibilityRulesReasoningService.reason(m);
-
-        List<CompatibilityAssertion> assertions = service.computeCompatibilities(inf, candidate);
-        Assert.assertFalse(assertions.isEmpty());
-
-        assertions.stream()
-                .forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
+        return service.computeCompatibilities(inf, candidate);
     }
 
     @Test
     public void testComputeCompatibility_SevereStorm() {
-        testComputeCompatibilityOfEventType("SevereStorm", DarkData.SevereStorm);
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("SevereStorm", DarkData.SevereStorm);
+        Assert.assertFalse(assertions.isEmpty());
+        assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
     }
     
     @Test
     public void testComputeCompatibility_Flood() {
-        testComputeCompatibilityOfEventType("Flood", DarkData.Flood);
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("Flood", DarkData.Flood);
+        Assert.assertFalse(assertions.isEmpty());
+        assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
     }
 
     @Test
     public void testComputeCompatibility_Wildfire() {
-        testComputeCompatibilityOfEventType("Wildfire", DarkData.Wildfire);
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("Wildfire", DarkData.Wildfire);
+        Assert.assertFalse(assertions.isEmpty());
+        assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
     }
 
     @Test
     public void testComputeCompatibility_VolcanicEruption() {
-        testComputeCompatibilityOfEventType("VolcanicEruption", DarkData.VolcanicEruption);
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("VolcanicEruption", DarkData.VolcanicEruption);
+        Assert.assertFalse(assertions.isEmpty());
+        assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
     }
 
     @Test
     public void testComputeCompatibility_DustAndHaze() {
-        testComputeCompatibilityOfEventType("DustAndHaze", DarkData.DustAndHaze);
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("DustAndHaze", DarkData.DustAndHaze);
+        Assert.assertFalse(assertions.isEmpty());
+        assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
     }
 
-    // TODO add compatibility rules to catch basic drought with no variables
-//    @Test
-//    public void testComputeCompatibility_Drought() {
-//        testComputeCompatibilityOfEventType("Drought", DarkData.Drought);
-//    }
+    @Test
+    public void testComputeCompatibility_Drought() {
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("Drought", DarkData.Drought);
+        Assert.assertNotNull(assertions);
+        //Assert.assertFalse(assertions.isEmpty());
+        //assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
+    }
+
+    @Test
+    public void testComputeCompatibility_ManMade() {
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("ManMade", DarkData.ManMade);
+        Assert.assertNotNull(assertions);
+        //Assert.assertFalse(assertions.isEmpty());
+        //assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
+    }
+
+    @Test
+    public void testComputeCompatibility_WaterColor() {
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("WaterColor", DarkData.WaterColor);
+        Assert.assertNotNull(assertions);
+        //Assert.assertFalse(assertions.isEmpty());
+        //assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
+    }
 
     @Test
     public void testComputeCompatibility_Hurricane() {
-        testComputeCompatibilityOfEventType("Hurricane", DarkData.Hurricane);
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("Hurricane", DarkData.Hurricane);
+        Assert.assertFalse(assertions.isEmpty());
+        assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
     }
 
     @Test
     public void testComputeCompatibility_Hurricane_and_variable() {
-        testComputeCompatibilityOfEventType("Hurricane_and_variable", DarkData.Hurricane, "MAT1NXSLV_5_2_0_UV10M_mag");
+        List<CompatibilityAssertion> assertions = computeCompatibilityAssertionsOfEventType("Hurricane_and_variable", DarkData.Hurricane, "MAT1NXSLV_5_2_0_UV10M_mag");
+        Assert.assertFalse(assertions.isEmpty());
+        assertions.forEach(a -> Assert.assertTrue(a.getValue().isPresent()));
     }
 
 }
