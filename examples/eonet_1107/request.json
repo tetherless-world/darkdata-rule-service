@@ -1,0 +1,25 @@
+{
+  "event": {
+    "id": "EONET_1107",
+    "title": "Hurricane Karina",
+    "link": "http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_1107",
+    "categories": [
+      {
+        "id": 10,
+        "title": "Severe Storms"
+      }
+    ],
+    "geometries": [
+      {
+        "date": "2014-09-01T00:00:00Z",
+        "type": "Point",
+        "coordinates": [ [-136.9,4.699999999999999,-107.8,28.3] ]
+      }
+    ]
+  },
+  "data_variables": [
+    {
+      "id": "TRMM_3B42_7_precipitation"
+    }
+  ]
+}

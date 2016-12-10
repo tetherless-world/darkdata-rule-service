@@ -7,18 +7,34 @@
  (?feature dd:indifferentCompatibilityFor dd:east-west-movement),
  (?feature dd:indifferentCompatibilityFor dd:north-south-movement),
  (?feature dd:slightCompatibilityFor dd:spatial_extent_of_event),
- (?feature dd:indifferentCompatibilityFor dd:seasonal_variation),
+ (?feature dd:negativeCompatibilityFor dd:seasonal_variation),
  (?feature dd:indifferentCompatibilityFor dd:year-to-year-variability),
  (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
  (?feature dd:someCompatibilityFor dd:global_phenomena),
  (?feature dd:slightCompatibilityFor dd:detection_of_events)
 ]
 
+[precipitation-characteristic-compatibilities:
+ (?feature rdf:type dd:Precipitation)
+ ->
+ (?feature dd:strongCompatibilityFor dd:temporal_evolution),
+ (?feature dd:strongCompatibilityFor dd:east-west-movement),
+ (?feature dd:strongCompatibilityFor dd:north-south-movement),
+ (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:negativeCompatibilityFor dd:seasonal_variation),
+ (?feature dd:slightCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:someCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:someCompatibilityFor dd:global_phenomena),
+ (?feature dd:strongCompatibilityFor dd:detection_of_events)
+]
+
 [hurricane-eye-characteristic-compatibilities:
  (?feature rdf:type dd:HurricaneEye)
  ->
  (?feature dd:strongCompatibilityFor dd:temporal_evolution),
- (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height)
+ (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
+ (?feature dd:someCompatibilityFor dd:spatial_extent_of_event),
+ (?feature dd:negativeCompatibilityFor dd:seasonal_variation)
 ]
 
 [ash-plume-characteristic-compatibilities:
@@ -128,8 +144,8 @@
  (?feature dd:strongCompatibilityFor dd:east-west-movement),
  (?feature dd:strongCompatibilityFor dd:north-south-movement),
  (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
- (?feature dd:someCompatibilityFor dd:seasonal_variation),
- (?feature dd:slightCompatibilityFor dd:year-to-year-variability),
+ (?feature dd:negativeCompatibilityFor dd:seasonal_variation),
+ (?feature dd:negativeCompatibilityFor dd:year-to-year-variability),
  (?feature dd:strongCompatibilityFor dd:variation_with_atmospheric_height),
  (?feature dd:someCompatibilityFor dd:global_phenomena),
  (?feature dd:strongCompatibilityFor dd:detection_of_events)
@@ -144,7 +160,7 @@
  (?feature dd:strongCompatibilityFor dd:east-west-movement),
  (?feature dd:strongCompatibilityFor dd:north-south-movement),
  (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
- (?feature dd:strongCompatibilityFor dd:seasonal_variation),
+ (?feature dd:indifferentCompatibilityFor dd:seasonal_variation),
  (?feature dd:strongCompatibilityFor dd:year-to-year-variability),
  (?feature dd:slightCompatibilityFor dd:variation_with_atmospheric_height),
  (?feature dd:slightCompatibilityFor dd:global_phenomena),
