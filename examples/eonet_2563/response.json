@@ -1,0 +1,526 @@
+{
+  "candidates": [
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "CrTm"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "AcMp"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "InTs"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "HiGm"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "CrLn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "HvLn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "HiGm"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "CrLt"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "MpAn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "CrLt"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "MpAn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "AcMp"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "CrTm"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "CrTm"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "MpAn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "AcMp"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "CrLt"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "ZnMn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "ZnMn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "HiGm"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "CrLn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "HvLt"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "ZnMn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.3617278360175928,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "CrLn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.3222192947339193,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "ArAvTs"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.2148438480476977,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "ArAvTs"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.209515014542631,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "ArAvTs"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.209515014542631,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "VtPf"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.209515014542631,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "VtPf"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.209515014542631,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "HvLn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.209515014542631,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "HvLt"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.209515014542631,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "VtPf"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.1818435879447726,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "TmAvMp"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 1.1222158782728267,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "TmAvMp"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.070037866607755,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "TmAvMp"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.0606978403536116,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "HvLt"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.0606978403536116,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "InTs"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.0606978403536116,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "HvLn"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 1.0107238653917732,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "InTs"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#WindFields",
+      "score": 1.0107238653917732,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "QuCl"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#Precipitation",
+      "score": 0.8129133566428556,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "QuCl"
+      }
+    },
+    {
+      "feature": "http://www.purl.org/twc/ns/darkdata#HurricaneEye",
+      "score": 0.8129133566428556,
+      "workflow": {
+        "data_variables": [
+          {
+            "id": "TRMM_3B42_7_precipitation"
+          }
+        ],
+        "service": "QuCl"
+      }
+    }
+  ],
+  "criteria": {
+    "data_variables": [
+      {
+        "id": "TRMM_3B42_7_precipitation"
+      }
+    ],
+    "event": {
+      "categories": [
+        {
+          "id": 10,
+          "title": "Severe Storms"
+        }
+      ],
+      "id": "EONET_1107",
+      "link": "http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_1107",
+      "title": "Hurricane Karina"
+    }
+  }
+}

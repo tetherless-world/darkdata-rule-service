@@ -630,7 +630,8 @@ _:genid14 a owl:Restriction ;
 	rdfs:comment "An observable occurrence of particular physical (as opposed to dynamic or synoptic) significance within the atmosphere"@en ;
 	rdfs:isDefinedBy <http://www.purl.org/twc/ns/darkdata> ;
 	rdfs:label "Phenomena"@en .
-# 
+
+#
 # http://www.purl.org/twc/ns/darkdata#PhysicalFeature
 
 :PhysicalFeature a owl:Class ;
