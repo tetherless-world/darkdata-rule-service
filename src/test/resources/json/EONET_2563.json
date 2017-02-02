@@ -1,0 +1,30 @@
+{
+  "id": "EONET_2563",
+  "title": "India Floods, August 2016",
+  "description": "In August 2016, heavy monsoon rains pushed the Ganges and other rivers in eastern and central India above their banks.",
+  "link": "http://eonet.sci.gsfc.nasa.gov/api/v2/events/EONET_2563",
+  "closed": "2016-09-16T00:00:00Z",
+  "categories": [
+    {
+      "id": 9,
+      "title": "Floods"
+    }
+  ],
+  "sources": [
+    {
+      "id": "EO",
+      "url": "http://earthobservatory.nasa.gov/NaturalHazards/view.php?id=88624"
+    },
+    {
+      "id": "IDC",
+      "url": "https://www.disasterscharter.org/web/guest/-/flood-in-ind-1"
+    }
+
+  ],
+  "geometries": [
+    {
+      "date": "2016-08-20T00:00:00Z",
+      "type": "Polygon", "coordinates": [ [84.217529296875, 25.089764710605582], [84.217529296875, 26.221669228651407], [86.01318359375, 26.221669228651407], [86.01318359375, 25.089764710605582], [84.217529296875, 25.089764710605582] ]
+    }
+  ]
+}

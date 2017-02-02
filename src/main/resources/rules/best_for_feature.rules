@@ -73,7 +73,7 @@
  ->
  (?candidate dd:compatibilityAssertion ?assertion),
  (?assertion rdf:type dd:CompatibilityAssertion),
- (?assertion dd:compatibilityValue dd:strong_compatibility),
+ (?assertion dd:compatibilityValue dd:negative_compatibility),
  (?assertion dd:assertionConfidence "1.0"^^xsd:double),
  (?assertion dd:basisForAssertion <urn:rule/best-for-feature/color-slice-map-best-for-stationary-water-vapor-anomaly>),
  (?assertion dd:evidenceForAssertion ?feature),
@@ -108,6 +108,22 @@
  (?assertion dd:compatibilityValue dd:negative_compatibility),
  (?assertion dd:assertionConfidence "1.0"^^xsd:double),
  (?assertion dd:basisForAssertion <urn:rule/best-for-feature/color-slice-map-best-for-hurricane-eye>),
+ (?assertion dd:evidenceForAssertion ?feature),
+ (?assertion dd:evidenceForAssertion ?service)
+]
+
+[color-slice-map-best-for-inundation:
+ (?candidate dd:candidateFeature ?feature),
+ (?feature rdf:type dd:Precipitation),
+ (?candidate dd:candidateService ?service),
+ (?service rdf:type dd:ColorSliceMap),
+ makeSkolem(?assertion, ?service, ?feature)
+ ->
+ (?candidate dd:compatibilityAssertion ?assertion),
+ (?assertion rdf:type dd:CompatibilityAssertion),
+ (?assertion dd:compatibilityValue dd:negative_compatibility),
+ (?assertion dd:assertionConfidence "1.0"^^xsd:double),
+ (?assertion dd:basisForAssertion <urn:rule/best-for-feature/color-slice-map-best-for-precipitation>),
  (?assertion dd:evidenceForAssertion ?feature),
  (?assertion dd:evidenceForAssertion ?service)
 ]

@@ -128,7 +128,7 @@
  (?feature dd:strongCompatibilityFor dd:east-west-movement),
  (?feature dd:strongCompatibilityFor dd:north-south-movement),
  (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
- (?feature dd:strongCompatibilityFor dd:seasonal_variation),
+ (?feature dd:negativeCompatibilityFor dd:seasonal_variation),
  (?feature dd:someCompatibilityFor dd:year-to-year-variability),
  (?feature dd:someCompatibilityFor dd:variation_with_atmospheric_height),
  (?feature dd:strongCompatibilityFor dd:global_phenomena),
@@ -174,14 +174,14 @@
  (?feature dd:strongCompatibilityFor dd:east-west-movement),
  (?feature dd:strongCompatibilityFor dd:north-south-movement),
  (?feature dd:strongCompatibilityFor dd:spatial_extent_of_event),
- (?feature dd:someCompatibilityFor dd:seasonal_variation),
+ (?feature dd:negativeCompatibilityFor dd:seasonal_variation),
  (?feature dd:someCompatibilityFor dd:year-to-year-variability),
  (?feature dd:indifferentCompatibilityFor dd:variation_with_atmospheric_height),
  (?feature dd:indifferentCompatibilityFor dd:global_phenomena),
  (?feature dd:strongCompatibilityFor dd:detection_of_events)
 ]
 
-[inundation-characteristic-compatibilities:
+[air-pollution-characteristic-compatibilities:
  (?feature rdf:type dd:AirPollution)
  ->
  (?feature dd:strongCompatibilityFor dd:temporal_evolution),
